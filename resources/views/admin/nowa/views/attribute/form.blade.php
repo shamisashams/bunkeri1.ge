@@ -97,23 +97,24 @@
                     <div class="form-group">
                         <label class="form-label">@lang('admin.input_type')</label>
                         <select name="type" class="form-control">
-                            <option>Select</option>
+                            <option value="select">Select</option>
+                            <option value="text">Text</option>
                         </select>
                     </div>
 
-                    <div class="row" id="options">
+                    <div class="row">
                         <div class="col-12">
                             <div class="main-content-label mg-b-5">
                                 @lang('admin.options')
                             </div>
                             <div class="form-group">
-                                <table>
+                                <table id="options">
                                     <tr>
                                         @foreach(config('translatable.locales') as $locale)
 
 
                                             <th>
-                                                label - {{$locale}}
+                                                @lang('admin.label') - {{$locale}}
                                             </th>
                                         @endforeach
                                     </tr>
@@ -219,12 +220,24 @@
             $('.input-images').imageUploader();
         }
 
+        let locales = @json(config('translatable.locales'));
+
+
+        let ind = 1;
 
         $('#add_option_btn').click(function (){
+            let tr = $('<tr></tr>');
+            Object.keys(locales).map((name, index) => {
 
+                console.log(locales[name])
 
+                tr.append('<td> <input class="form-control" type="text" name="options[option_'+ ind +']['+ locales[name] +'][label]" value=""> </td>');
 
-            $('<div class="form-group"><input class="form-control" type="text"> </div>').insertAfter($('#options').find('.form-group'));
+            })
+
+            $('#options').append(tr);
+            ind++
+
         });
     </script>
 

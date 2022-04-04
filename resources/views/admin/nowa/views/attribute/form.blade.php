@@ -96,13 +96,13 @@
 
                     <?php
 
-                    $types = ['select','text']
+                    $types = ['select','text','boolean']
 
                     ?>
 
                     <div class="form-group">
                         <label class="form-label">@lang('admin.input_type')</label>
-                        <select name="type" class="form-control">
+                        <select {{$attribute->created_at ? 'disabled' : ''}} name="type" class="form-control">
                             @foreach($types as $type)
                             <option value="{{$type}}"{{$attribute->type == $type ? ' selected':''}}>{{ucfirst($type)}}</option>
                             @endforeach

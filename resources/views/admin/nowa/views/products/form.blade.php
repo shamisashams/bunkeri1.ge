@@ -2,7 +2,7 @@
 
 $ids = $product->categories->pluck("id")->toArray();
 
-//dd($ids);
+//dd($attributes);
 
 
 $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
@@ -295,11 +295,28 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
 
                     </div>
 
+                    @foreach($attributes as $item)
+                        <div class="form-group">
+                            <label class="form-label">{{$item->name}}</label>
+                            @if($item->type == 'select')
+                                <select class="form-control">
+                                    <option value=""></option>
+                                    @foreach($item->options as $option)
+                                        <option>{{$option->label}}</option>
+                                    @endforeach
+                                </select>
+                            @endif
+                        </div>
+
+                    @endforeach
+
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <div>
                             {!! Form::submit($product->created_at ? __('admin.update') : __('admin.create'),['class' => 'btn btn-primary']) !!}
                         </div>
                     </div>
+
+
 
                 </div>
             </div>

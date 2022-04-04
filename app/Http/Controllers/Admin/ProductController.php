@@ -22,6 +22,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 use ReflectionException;
+use App\Repositories\Eloquent\AttributeRepository;
 
 class ProductController extends Controller
 {
@@ -40,15 +41,19 @@ class ProductController extends Controller
      * @param CategoryRepositoryInterface $categoryRepository
      */
 
+    private $attributeRepository;
+
     private $categories;
     public function __construct(
         ProductRepositoryInterface  $productRepository,
-        CategoryRepositoryInterface $categoryRepository
+        CategoryRepositoryInterface $categoryRepository,
+        AttributeRepository $attributeRepository
     )
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->categories = $this->categoryRepository->getCategoryTree();
+        $this->attributeRepository = $attributeRepository;
     }
 
     /**
@@ -97,7 +102,8 @@ class ProductController extends Controller
             'product' => $product,
             'url' => $url,
             'method' => $method,
-            'categories' => $this->categories
+            'categories' => $this->categories,
+            'attributes' => $this->attributeRepository->all()
         ]);
     }
 

@@ -1,0 +1,59 @@
+.product_filter {
+  background-color: #fff;
+  border-radius: 15px;
+  width: 276px;
+  padding: 20px;
+  margin-right: 15px;
+  overflow: hidden;
+}
+.product_filter .section .clear {
+  font-size: 16px;
+}
+.product_filter .section .clear img {
+  margin-right: 10px;
+}
+.product_filter .section {
+  padding: 20px 0;
+  position: relative;
+}
+.product_filter .section::after {
+  left: 50%;
+  bottom: 0;
+  width: 276px;
+  height: 1px;
+  transform: translateX(-50%);
+  background-color: #eaeaea;
+}
+.product_filter .section:last-child::after {
+  display: none;
+}
+.product_filter .section .head {
+  margin-bottom: 25px;
+}
+.product_filter .section .flex {
+  margin-bottom: 14px;
+}
+.product_filter .section label {
+  position: relative;
+  width: 100%;
+  color: #2f3e5179;
+  cursor: pointer;
+}
+.product_filter .section input[type="checkbox"] {
+  display: none;
+}
+.product_filter .section label::after {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  right: 0;
+  top: 2px;
+}
+.product_filter .section input[type="checkbox"]:checked + label {
+  color: #7c7ed4;
+}
+.product_filter .section input[type="checkbox"]:checked + label::after {
+  background-color: #d2d3ff;
+  border: 1px solid #d2d3ff;
+}

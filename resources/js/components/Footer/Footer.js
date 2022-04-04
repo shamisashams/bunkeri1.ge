@@ -1,84 +1,124 @@
 import React from "react";
-import { Link } from '@inertiajs/inertia-react'
-//import Logo from "../../assets/images/logo/1.svg";
-import { Map } from "../Map";
-//import FB from "../../assets/images/icons/sm/fb.svg";
-//import IG from "../../assets/images/icons/sm/ig.svg";
-import Navbar from "../Navbar/Navbar";
+import { Link } from "@inertiajs/inertia-react";
+
+import { SocialMedia } from "../SmallComps/SocialMedia";
 import "./Footer.css";
 
-import { usePage } from '@inertiajs/inertia-react'
-
-
-
 const Footer = () => {
-    const { url, component } = usePage();
-    const { pathname, categories, info } = usePage().props;
-    const sharedData = usePage().props.localizations;
-    //console.log(categories);
-
-    let subcategory = function (children){
-        let rows = [];
-        if(children.length > 0){
-            children.map(child => {
-                //console.log(child)
-                   rows.push(<Link href={route('client.category.show',child.slug)}>{child.title}</Link>)
-            })
-        }
-        return rows
-    }
-
+  const { pathname } = "/";
+  const contactInfo = [
+    {
+      link: "/",
+      icon: "/img/icons/header/pin.svg",
+      text: "აკაკი წერეთლის N1",
+    },
+    {
+      link: "/",
+      icon: "/img/icons/header/tel.svg",
+      text: "+995 555 555 555",
+    },
+    {
+      link: "/",
+      icon: "/img/icons/header/mail.svg",
+      text: "didube_dollarstore@yahoo.com",
+    },
+  ];
+  const links = [
+    {
+      link: "/",
+      name: "ტანსაცმელი",
+    },
+    {
+      link: "/",
+      name: "ფეხსაცმელი",
+    },
+    {
+      link: "/",
+      name: "ჩანთა & აქსესუარი",
+    },
+    {
+      link: "/",
+      name: "თეთრეული",
+    },
+    {
+      link: "/",
+      name: "თავის მოვლა",
+    },
+    {
+      link: "/",
+      name: "საოჯახო პროდუქცია",
+    },
+    {
+      link: "/",
+      name: "მობ. აქსესუარები",
+    },
+    {
+      link: "/",
+      name: "სათვალე",
+    },
+    {
+      link: "/",
+      name: "სუნამო",
+    },
+  ];
   return (
     <div
       className="footer"
-      style={{ background: pathname === "/" ? "#fff" : "#ECF0F7" }}
+      style={{
+        background:
+          pathname === "/products"
+            ? "#f5f5f5"
+            : "linear-gradient(to top, #e5e5e5, transparent)",
+      }}
     >
-      <div className="wrapper flex">
-        <div className="part">
-          <div className="flex" style={{ justifyContent: "flex-start" }}>
-            <Link href={route('client.home.index')} className="logo">
-              <img src="/assets/images/logo/1.svg" alt="" />
-            </Link>
-            <Navbar />
+      <div className="wrapper">
+        <Link href="/">
+          <img src="/img/logo/1.svg" alt="" />
+        </Link>
+        <div className="flex main">
+          <div className="column">
+            <div className="archy-edt">ჩვენ შესახებ</div>
+            <div className="op05">
+              მსოფლიო ბრენდების მიერ შექმნილი ფუნქციური და დახვეწილი ჩანთები,
+              რომლებსაც გამოიყენებთ მოგზაურობასა და თუ სახლიდან რიგითი
+              გასვლისას.
+            </div>
+            <SocialMedia color="#2F3E51" />
           </div>
-          <div className="category_grid">
-              {categories.map(function (category){
-                  return (
-                      <div className="column">
-                          <div className="bold">{category.title}</div>
-                          {subcategory(category.children)}
-                      </div>
-                  )
-              })}
-
+          <div className="column">
+            <div className="archy-edt">დაგვიკავშირდით</div>
+            {contactInfo.map((info, index) => {
+              return (
+                <Link className="contact_info" href={info.link} key={index}>
+                  <img src={info.icon} alt="" />
+                  <span>{info.text}</span>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="column">
+            <div className="archy-edt">მოგვძებნე რუკაზე</div>
+            <div className="map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11909.044506590086!2d44.7621418!3d41.7364602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sge!4v1648473368143!5m2!1sen!2sge"
+                width="600"
+                height="450"
+                style={{ border: "0" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
-          {
-              info.instagram.active == 1 || info.facebook.active ? <div className="part">
-                  <h6>{__('client.footer_social_links',sharedData)}:</h6>
-                  {
-                      info.facebook.active == 1 ?  <a href={info.facebook.translation ? info.facebook.translation.value : null} className="sm flex">
-                          <div className="icon flex centered">
-                              <img src="/assets/images/icons/sm/fb.svg" alt="" />
-                          </div>
-                          <p>Facebook</p>
-                      </a>  : ''
-                  }
-
-                  {
-                      info.instagram.active == 1 ? <a href={info.instagram.translation ? info.instagram.translation.value : null} className="sm flex">
-                          <div className="icon flex centered">
-                              <img src="/assets/images/icons/sm/ig.svg" alt="" />
-                          </div>
-                          <p>Instagram</p>
-                      </a> : ''
-                  }
-
-              </div> : ''
-          }
-
-        <div className="part map">
-          <Map />
+        <div className="bottom_Links flex">
+          {links.map((link, i) => {
+            return (
+              <Link className="archy-edt" key={i} href={link.link}>
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -1,6 +1,15 @@
+@font-face {
+    font-family: "dejavu";
+    src: url(/fonts/dejavu-sans.ttf);
+}
+@font-face {
+    font-family: "archy-edt";
+    src: url(/fonts/archyedt-bold.ttf);
+}
 *,
 *::after,
 *::before {
+    font-family: "dejavu";
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
@@ -19,15 +28,15 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #272639;
+    background: #f8f9fd;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #e81748b6;
+    background: #303285;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #e81748;
+    background: #4346c2;
 }
 
 html {
@@ -35,9 +44,10 @@ html {
     box-sizing: border-box;
 }
 body {
+    font-family: "dejavu";
     font-weight: 400;
     line-height: 1.3;
-    color: #334e60;
+    color: #2f3e51;
     background: #fff;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -56,7 +66,6 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
-    outline: none;
 }
 input,
 textarea,
@@ -67,6 +76,7 @@ button {
 }
 button {
     cursor: pointer;
+    outline: none;
 }
 select {
     border: none;
@@ -76,6 +86,9 @@ img {
     height: auto;
     max-width: 100%;
 }
+.archy-edt {
+    font-family: "archy-edt";
+}
 .img {
     overflow: hidden;
 }
@@ -84,8 +97,12 @@ img {
     height: 100%;
     object-fit: cover;
 }
+.map iframe {
+    width: 100%;
+    height: 100%;
+}
 .wrapper {
-    width: 1400px;
+    width: 1600px;
     height: 100%;
     margin: auto;
     position: relative;
@@ -98,21 +115,38 @@ img {
 .flex.centered {
     justify-content: center;
 }
-.circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    border: 2px solid #fff;
+.blue {
+    color: #303285;
 }
-.circle.dark {
-    border: 2px solid #334e60;
+.op05 {
+    opacity: 0.5;
+}
+.radius5 {
+    border-radius: 5px;
+}
+.title35 {
+    font-size: 35px;
+    font-family: "archy-edt";
+}
+.common_input {
+    border-radius: 5px;
+    border: #dedede 1px solid;
+    padding-left: 20px;
+    height: 65px;
 }
 
-@media screen and (max-width: 1550px) {
+@media screen and (max-width: 1650px) {
     .wrapper {
         width: 95%;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .common_input {
+        height: 50px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .title35 {
+        font-size: 30px;
     }
 }

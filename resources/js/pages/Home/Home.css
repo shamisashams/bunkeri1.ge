@@ -1,146 +1,78 @@
-.homePage .categories_home {
-    margin-top: 60px;
-    margin-bottom: 33px;
+.homePage .hero_section {
+  width: 100%;
+  background: url(/img/home/bg1.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 67px 0 83px 0;
+  margin-bottom: 60px;
 }
-.homePage .categories_home h4 {
-    font-size: 40px;
-    font-weight: lighter;
-    opacity: 0.5;
-    line-height: 100%;
-    margin-bottom: 20px;
-    white-space: nowrap;
-    margin-right: 20px;
+.homePage .hero_section .archy-edt {
+  margin: 15px 0 15px 0;
+  max-width: 500px;
 }
-.homePage .exhibition {
-    width: 100% !important;
-    height: 650px !important;
-    background-size: cover !important;
-    background-position: center !important;
+.homePage .new_products {
+  margin-bottom: 80px;
 }
-.homePage .onsale_cats {
-    margin-top: 33px;
-    margin-bottom: 60px;
+.homePage .bunker {
+  background: url(/img/home/bg2.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 30px 0 60px 0;
 }
-.homePage .onsale_cats .box {
-    width: 50%;
-    height: 420px;
-    margin: 0 8px;
-    position: relative;
-    overflow: hidden;
+.homePage .bunker .title35 {
+  color: #fdf416;
 }
-.homePage .onsale_cats .box .bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: 1s;
+.homePage .bunker .progressbar {
+  border: 1px solid #fdf416;
 }
-.homePage .onsale_cats .box .container {
-    width: calc(100% - 120px);
-    height: calc(100% - 120px);
-    text-align: center;
-    flex-direction: column;
+.homePage .bunker .progressbar .fill::after {
+  background-color: #fff;
+  border: 1px solid #fff;
 }
-.homePage .onsale_cats .box h5 {
-    font-size: 40px;
-    font-weight: lighter;
-    margin-bottom: 20px;
-}
-.homePage .onsale_cats .box:hover .bg {
-    transform: scale(1.2);
-}
-.homePage .popular_products .head {
-    margin-bottom: 45px;
-}
-.homePage .popular_products .head .title {
-    font-size: 35px;
-    position: relative;
-}
-.homePage .popular_products .head .title::after {
-    height: 3px;
-    width: 73px;
-    background-color: #05185a;
-    left: 0;
-    bottom: -7px;
-}
-.homePage .popular_products {
-    margin-bottom: 80px;
-}
-.homePage .popular_products .product_box {
-    margin: 0 10px;
+.homePage .bunker .slick-dots li button:before {
+  color: #fff;
 }
 
-/* responsivenesssssss */
+.homePage .today {
+  padding: 20px 0 40px 0;
+}
 
-@media screen and (max-width: 1320px) {
-    .homePage .categories_home {
-        align-items: flex-start;
-    }
+.homePage .special_price {
+  background: url(/img/home/bg3.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 20px 0 60px 0;
 }
-@media screen and (max-width: 1200px) {
-    .homePage .exhibition {
-        height: 340px;
-    }
-    .homePage .onsale_cats .box .container {
-        width: calc(100% - 60px);
-        height: calc(100% - 60px);
-    }
-    .homePage .onsale_cats .box h5 {
-        font-size: 34px;
-        margin-bottom: 10px;
-    }
-    .homePage .onsale_cats .box {
-        height: 282px;
-    }
+.homePage .popular {
+  padding: 40px 0 70px 0;
 }
-@media screen and (max-width: 900px) {
-    .homePage .categories_home {
-        flex-direction: column;
-    }
-    .homePage .popular_products .head .title {
-        font-size: 25px;
-    }
+.homePage .new_collection {
+  background: url(/img/home/bg4.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 75px 0;
+  color: #fff;
+  text-align: center;
 }
-@media screen and (max-width: 800px) {
-    .homePage .onsale_cats {
-        flex-direction: column;
-        margin-bottom: 20px;
-    }
-    .homePage .onsale_cats .box {
-        width: 100%;
-        margin: 0;
-        margin-bottom: 20px;
-    }
+.homePage .new_collection .archy-edt {
+  max-width: 523px;
+  margin: 15px auto;
 }
+
+/* responsive */
 @media screen and (max-width: 600px) {
-    .homePage .exhibition {
-        height: 160px;
-    }
-}
-@media screen and (max-width: 500px) {
-    .homePage .categories_home {
-        margin-top: 21px;
-    }
-    .homePage .categories_home h4 {
-        font-size: 30px;
-        margin-bottom: 6px;
-        margin-right: 0;
-    }
-    .homePage .onsale_cats .box .container {
-        width: calc(100% - 30px);
-        height: calc(100% - 30px);
-    }
-    .homePage .onsale_cats .box h5 {
-        font-size: 27px;
-        margin-bottom: 10px;
-    }
-    .homePage .onsale_cats .box .bold {
-        font-size: 13px;
-    }
-    .homePage .onsale_cats .box {
-        height: 230px;
-    }
+  .homePage .hero_section {
+    padding: 29px 0 34px 0;
+    margin-bottom: 20px;
+  }
+  .homePage .hero_section .archy-edt {
+    margin: 4px 0 15px 0;
+    max-width: 90%;
+  }
+  .homePage .new_collection {
+    padding: 23px 0;
+  }
+  .homePage .new_collection .archy-edt {
+    margin: 7px auto;
+  }
 }

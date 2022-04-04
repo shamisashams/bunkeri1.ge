@@ -1,0 +1,10 @@
+.pagepath {
+  width: 100%;
+  padding: 9px 0;
+  font-size: 16px;
+  background-color: #f8f9fd;
+  margin-bottom: 30px;
+}
+.pagepath p {
+  opacity: 0.3;
+}

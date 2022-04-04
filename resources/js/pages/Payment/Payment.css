@@ -1,0 +1,100 @@
+.paymentPage .title35 {
+  margin-bottom: 30px;
+}
+.paymentPage .content {
+  width: 890px;
+  margin: 67px auto;
+}
+.paymentPage .flex.main {
+  align-items: flex-start;
+}
+.paymentPage .content .form {
+  margin-right: 99px;
+  width: 60%;
+}
+.paymentPage .content .form input {
+  width: 100%;
+}
+.paymentPage .content .title {
+  font-size: 18px;
+  margin: 22px 0;
+}
+.paymentPage .content .expiration {
+  margin: 25px 0;
+}
+.paymentPage .content .expiration input {
+  max-width: 110px;
+}
+.paymentPage .content .cvv input {
+  max-width: 168px;
+}
+.paymentPage .content .yellow_button {
+  width: 100%;
+  margin-top: 22px;
+  height: 65px;
+}
+
+.paymentPage .content .receipt {
+  width: 268px;
+  padding: 23px 18px;
+  box-shadow: 0 15px 30px #22252c23;
+  font-size: 14px;
+}
+.paymentPage .content .receipt .op05 {
+  margin-bottom: 14px;
+  margin-top: 27px;
+}
+.paymentPage .content .receipt .op05:first-child {
+  margin-top: 0;
+}
+.paymentPage .content .receipt .costs .flex {
+  border-bottom: #70707046 1px dashed;
+  margin-bottom: 8px;
+}
+.paymentPage .content .receipt .costs {
+  max-height: 112px;
+  overflow-y: scroll;
+}
+.paymentPage .content .receipt .costs::-webkit-scrollbar {
+  width: 2px;
+}
+.paymentPage .content .receipt .costs::-webkit-scrollbar-thumb {
+  background: #3031855d;
+}
+.paymentPage .content .receipt .total {
+  margin-top: 40px;
+  padding-top: 23px;
+  border-top: #707070 1px dashed;
+}
+.paymentPage .content .receipt .total span {
+  font-size: 25px;
+}
+
+@media screen and (max-width: 1000px) {
+  .paymentPage .content {
+    width: 95%;
+  }
+  .paymentPage .content .form {
+    margin-right: 31px;
+  }
+}
+@media screen and (max-width: 770px) {
+  .paymentPage .flex.main {
+    flex-direction: column;
+  }
+  .paymentPage .content .form {
+    margin-right: 0;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  .paymentPage .content .receipt {
+    margin: auto;
+  }
+  .paymentPage .content .title {
+    font-size: 16px;
+    margin: 14px 0;
+  }
+  .paymentPage .content .expiration {
+    margin: 16px 0;
+  }
+}

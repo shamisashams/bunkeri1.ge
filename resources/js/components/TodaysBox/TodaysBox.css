@@ -1,0 +1,136 @@
+.todays_boxes {
+  align-items: flex-start;
+}
+.todays_boxes .box {
+  background-color: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 25px;
+  width: 49%;
+}
+.todays_boxes .box:first-child {
+  margin-right: 30px;
+}
+.inbox_slider {
+  display: flex;
+}
+.todays_boxes .box .inner_slide {
+  flex-shrink: 0;
+  width: 48%;
+  border-right: 2px solid #dedede;
+  margin-right: 30px;
+}
+.todays_boxes .box .btns {
+  margin-top: 30px;
+}
+.todays_boxes .box .common_btn {
+  background-color: #def9ec;
+  color: #303285;
+  border: 1px solid #fff;
+  transition: 0.2s;
+}
+.todays_boxes .box .common_btn:hover {
+  border: 1px solid #303285;
+}
+.todays_boxes .box {
+  text-align: center;
+  position: relative;
+}
+.todays_boxes .box .img img {
+  height: 210px;
+  width: auto;
+  margin: auto;
+}
+.todays_boxes .box .inbox_slider {
+  padding-right: 30px;
+  border-right: 2px solid #dedede;
+}
+.todays_boxes .box .old_price {
+  color: #979ea8;
+  text-decoration: line-through;
+  font-size: 12px;
+}
+.todays_boxes .box .blue {
+  font-size: 18px;
+  margin-right: 27px;
+}
+.todays_boxes .box p {
+  margin: 15px 0;
+  min-height: 100px;
+}
+.todays_boxes .box::after {
+  width: 5px;
+  background-color: #fff;
+  height: 80%;
+  bottom: 16px;
+  right: 25px;
+}
+.slick-arrow {
+  top: -69px;
+  width: 35px;
+  height: 35px;
+  opacity: 0;
+}
+.slick-arrow.slick-prev {
+  left: auto;
+  right: 45px;
+}
+.slick-arrow.slick-next {
+  right: 0;
+}
+
+@media screen and (max-width: 1500px) {
+  .todays_boxes .box .inbox_slider {
+    padding: 0 5px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .todays_boxes .box p {
+    margin: 8px 0;
+    font-size: 14px;
+    min-height: 85px;
+  }
+  .todays_boxes .box .btns {
+    margin-top: 17px;
+  }
+  .todays_boxes .box {
+    padding: 15px;
+  }
+  .todays_boxes .box::after {
+    height: 82%;
+    bottom: 8px;
+    right: 14px;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .todays_boxes .box .inbox_slider {
+    border-right: none;
+  }
+  .todays_boxes .box:first-child {
+    margin-right: 10px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .todays_boxes .title35 {
+    font-size: 25px;
+  }
+  .slick-arrow {
+    top: -64px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .todays_boxes {
+    flex-direction: column;
+  }
+  .todays_boxes .box {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .todays_boxes .box p {
+    min-height: auto;
+  }
+  .todays_boxes .box .img img {
+    height: 316px;
+  }
+}

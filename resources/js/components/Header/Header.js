@@ -1,40 +1,157 @@
-import React from "react";
-//import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
 import { Link } from "@inertiajs/inertia-react";
-//import Logo from "../../assets/images/logo/1.svg";
-import Navbar from "../Navbar/Navbar";
+import { Pin } from "../SmallComps/Icons";
+import { SocialMedia } from "../SmallComps/SocialMedia";
 import "./Header.css";
-
-import { usePage } from '@inertiajs/inertia-react'
-import {Languages} from "../Languages/Languages";
-
-
+import { Languages } from "../SmallComps/Languages";
+import { CatButton } from "../Buttons/Buttons";
+import Categories from "../Categories/Categories";
 
 const Header = () => {
-    const { url, component } = usePage();
-    const { pathname, currentLocale } = usePage().props;
-    //console.log(usePage().props);
-    let url_ = new URL(pathname);
-    let pathname_ = url_.pathname;
-    console.log(pathname_);
+  const [categoryDrop, setCategoryDrop] = useState(false);
+  const toggleDrop = () => {
+    setCategoryDrop(!categoryDrop);
+  };
+  const links = [
+    {
+      name: "ბოლოს დამატებული",
+      link: "/products",
+    },
+    {
+      name: "პოპულარული პროდუქცია",
+      link: "/products",
+    },
+    {
+      name: "სპეციალური ფასი",
+      link: "/products",
+    },
+  ];
+  const inCartProducts = [
+    {
+      link: "/",
+      img: "/img/products/1.png",
+      name: "პროდუქტის დასახელება",
+      number: "1",
+      price: "17.0",
+    },
+    {
+      link: "/",
+      img: "/img/products/2.png",
+      name: "პროდუქტის დასახელება",
+      number: "1",
+      price: "17.0",
+    },
+    {
+      link: "/",
+      img: "/img/products/3.png",
+      name: "პროდუქტის დასახელება",
+      number: "1",
+      price: "17.0",
+    },
+    {
+      link: "/",
+      img: "/img/products/3.png",
+      name: "პროდუქტის დასახელება",
+      number: "1",
+      price: "17.0",
+    },
+    {
+      link: "/",
+      img: "/img/products/1.png",
+      name: "პროდუქტის დასახელება",
+      number: "1",
+      price: "17.0",
+    },
+  ];
   return (
-    <div
-      className="header"
-      style={{
-        position: pathname_ === "/" + currentLocale ? "absolute" : "relative",
-        background: pathname_ === "/" + currentLocale ? "transparent" : "#ECF0F7",
-      }}
-    >
-      <div className="wrapper flex">
-        <div className="flex">
-          <Link href={route('client.home.index')} className="logo">
-            <img src="/assets/images/logo/1.svg" alt="" />
+    <div className="header">
+      <div className="top">
+        <div className="wrapper flex">
+          <Link className="logo " href="/">
+            <img src="/img/logo/1.svg" alt="" />
           </Link>
-          <Navbar />
+          <Link className="logo second" href="/">
+            <img src="/img/logo/2.svg" alt="" />
+          </Link>
+          <div className="search radius5">
+            <input type="text" placeholder="ძებნა" />
+            <button>
+              <img src="/img/icons/header/search.svg" alt="" />
+            </button>
+          </div>
+          <div className="contact_info blue">
+            <Link className="archy-edt" href="/">
+              <Pin color="#303285" />
+              აკაკი წერეთლის N1
+            </Link>
+            <Link className="archy-edt" href="/">
+              +995 555 555 555
+            </Link>
+          </div>
+          <SocialMedia color="#303285" />
         </div>
-
-          <Languages></Languages>
       </div>
+      <div className="bottom">
+        <div className="wrapper flex">
+          <div className="flex">
+            <CatButton
+              onClick={() => toggleDrop()}
+              rotate={categoryDrop ? "180" : "0"}
+            />
+            {links.map((link, i) => {
+              return (
+                <Link className="links_3" key={i} href={link.link}>
+                  {link.name}
+                </Link>
+              );
+            })}
+          </div>
+          <div className="flex">
+            <div className="shopping_cart">
+              <Link className="  flex centered" href="/shopping-cart">
+                <div className="number_of_products">
+                  {inCartProducts.length}
+                </div>
+                <img src="/img/icons/header/cart.svg" alt="" />
+                <span className="archy-edt">კალათა</span>
+              </Link>
+              <div className="cart_drop">
+                <div className="incart_products">
+                  {inCartProducts.map((item, index) => {
+                    return (
+                      <Link className="flex" href={item.link} key={index}>
+                        <div className="img">
+                          <img src={item.img} alt="" />
+                        </div>
+                        <div>
+                          <strong>{item.name}</strong>
+                          <p>
+                            {item.number} x {item.price}₾
+                          </p>
+                        </div>
+                        <button className="close">
+                          <img src="/img/icons/other/close.svg" alt="" />
+                        </button>
+                      </Link>
+                    );
+                  })}
+                </div>
+                <div className="flex total">
+                  <strong>ჯამი</strong>
+                  <strong>3200 ₾</strong>
+                </div>
+                <div className="flex">
+                  <button className="archy-edt blue">კალათა</button>
+                  <button className="archy-edt">გადახდა</button>
+                </div>
+              </div>
+            </div>
+
+            <Languages />
+          </div>
+        </div>
+      </div>
+      <Categories linkList={links} dropList={categoryDrop} />
     </div>
   );
 };

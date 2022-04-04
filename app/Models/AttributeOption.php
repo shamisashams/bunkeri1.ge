@@ -18,4 +18,8 @@ class AttributeOption extends Model
     /** @var string */
     protected $translationModel = AttributeOptionTranslation::class;
 
+    protected $fillable = [
+        'attribute_id',
+    ];
+
 }

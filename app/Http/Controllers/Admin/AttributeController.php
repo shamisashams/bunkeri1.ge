@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingRequest;
+use App\Models\Attribute;
 use App\Models\Setting;
 use App\Repositories\Eloquent\AttributeRepository;
 use App\Repositories\SettingRepositoryInterface;
@@ -80,21 +81,21 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $saveData = Arr::except($request->except('_token','path'), []);
-        $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
-        $saveData['parent_id'] = $saveData['parent_id'] ? $saveData['parent_id'] : null;
+        //dd($request->all());
+        $request->validate([
+            'type'       => 'required',
+        ]);
 
-        //dd($saveData);
-        $category = $this->categoryRepository->create($saveData);
+        $data = $request->all();
 
-        // Save Files
-        if ($request->hasFile('images')) {
-            $category = $this->categoryRepository->saveFiles($category->id, $request);
-        }
+        $data['is_user_defined'] = 1;
+
+        $this->attributeRepository->create($data);
 
 
-        return redirect(locale_route('category.index', $category->id))->with('success', __('admin.create_successfully'));
+
+
+        return redirect(locale_route('attribute.index'))->with('success', __('admin.create_successfully'));
 
     }
 
@@ -117,9 +118,9 @@ class AttributeController extends Controller
      * @param Setting $setting
      * @return Application|Factory|View
      */
-    public function edit(string $locale, Setting $setting)
+    public function edit(string $locale, Attribute $attribute)
     {
-        $url = locale_route('setting.update', $setting->id, false);
+        $url = locale_route('attribute.update', $attribute->id, false);
         $method = 'PUT';
 
         /*return view('admin.pages.setting.form', [
@@ -128,8 +129,8 @@ class AttributeController extends Controller
             'method' => $method,
         ]);*/
 
-        return view('admin.nowa.views.setting.form', [
-            'setting' => $setting,
+        return view('admin.nowa.views.attribute.form', [
+            'attribute' => $attribute,
             'url' => $url,
             'method' => $method,
         ]);
@@ -142,13 +143,30 @@ class AttributeController extends Controller
      * @param Setting $setting
      * @return Application|RedirectResponse|Redirector
      */
-    public function update(SettingRequest $request, string $locale, Setting $setting)
+    public function update(SettingRequest $request, string $locale, Attribute $attribute)
     {
         $saveData = Arr::except($request->except('_token'), []);
-        $this->settingRepository->update($setting->id,$saveData);
+        $this->attributeRepository->update($attribute->id,$saveData);
 
 
-        return redirect(locale_route('setting.index', $setting->id))->with('success', __('admin.update_successfully'));
+        return redirect(locale_route('attribute.index', $attribute->id))->with('success', __('admin.update_successfully'));
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param string $locale
+     * @param \App\Models\Category $category
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy(string $locale, Attribute $attribute)
+    {
+        if (!$this->attributeRepository->delete($attribute->id)) {
+            return redirect(locale_route('attribute.index', $attribute->id))->with('danger', __('admin.not_delete_message'));
+        }
+        return redirect(locale_route('attribute.index'))->with('success', __('admin.delete_message'));
     }
 
 

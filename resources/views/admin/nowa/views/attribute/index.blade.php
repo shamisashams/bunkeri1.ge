@@ -83,7 +83,7 @@
                                                         <div class="tab-content">
 
                                                             @foreach(config('translatable.locales') as $locale)
-                                                                <div class="tab-pane {{$loop->first?"active":""}}" id="cat-{{$locale}}-{{$setting->id}}">
+                                                                <div class="tab-pane {{$loop->first?"active":""}}" id="cat-{{$locale}}-{{$attribute->id}}">
                                                                     {{$attribute->translate($locale)->name ?? ''}}
                                                                 </div>
                                                             @endforeach
@@ -100,6 +100,11 @@
                                                 <a href="{{locale_route('attribute.edit',$attribute->id)}}"
                                                    class="pl-3">
                                                     <i class="fa fa-edit">შეცვლა</i>
+                                                </a>
+
+                                                <a href="{{locale_route('attribute.destroy',$attribute->id)}}"
+                                                   class="pl-3">
+                                                    <i class="fa fa-edit">delete</i>
                                                 </a>
 
 

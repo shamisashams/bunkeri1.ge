@@ -75,7 +75,7 @@
                                         ?>
                                         <div class="tab-pane {{$active}}" id="lang-{{$locale}}">
                                             <div class="form-group">
-                                                <input type="text" name="{{$locale.'[title]'}}" class="form-control" placeholder="@lang('admin.title')" value="{{$attribute->translate($locale)->title ?? ''}}">
+                                                <input type="text" name="{{$locale.'[name]'}}" class="form-control" placeholder="@lang('admin.title')" value="{{$attribute->translate($locale)->name ?? ''}}">
                                             </div>
                                             @error($locale.'.title')
                                             <small class="text-danger">
@@ -94,11 +94,18 @@
 
                     </div>
 
+                    <?php
+
+                    $types = ['select','text']
+
+                    ?>
+
                     <div class="form-group">
                         <label class="form-label">@lang('admin.input_type')</label>
                         <select name="type" class="form-control">
-                            <option value="select">Select</option>
-                            <option value="text">Text</option>
+                            @foreach($types as $type)
+                            <option value="{{$type}}"{{$attribute->type == $type ? ' selected':''}}>{{ucfirst($type)}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -119,17 +126,26 @@
                                         @endforeach
                                     </tr>
 
+                                    <?php
+                                    $i = 1;
+                                    ?>
+                                    @foreach($attribute->options as $item)
                                         <tr>
-                                            <?php $k = 0; ?>
+                                            <input type="hidden" name="options[{{$item->id}}][isNew]" value="false">
+                                            <input type="hidden" name="options[{{$item->id}}][isDelete]" value="false">
                                             @foreach(config('translatable.locales') as $locale)
 
 
                                                 <td>
-                                                    <input class="form-control" type="text" name="options[option_1][{{$locale}}][label]" value="">
+                                                    <input class="form-control" type="text" name="options[{{$item->id}}][{{$locale}}][label]" value="{{$item->translate($locale)->label}}">
                                                 </td>
-                                                <?php $k++; ?>
+
                                             @endforeach
+                                            <td>
+                                                <a href="javascript:void(0);" class="del-option"><i class="fa fa-trash-alt"></i></a>
+                                            </td>
                                         </tr>
+                                    @endforeach
 
 
                                 </table>
@@ -227,6 +243,8 @@
 
         $('#add_option_btn').click(function (){
             let tr = $('<tr></tr>');
+            tr.append('<input type="hidden" name="options[option_'+ ind +'][isNew]" value="true">');
+            tr.append('<input type="hidden" name="options[option_'+ ind +'][isDelete]" value="false">');
             Object.keys(locales).map((name, index) => {
 
                 console.log(locales[name])
@@ -235,9 +253,24 @@
 
             })
 
+            tr.append('<td><a href="javascript:void(0);" class="del-option"><i class="fa fa-trash-alt"></i></a></td>');
+
             $('#options').append(tr);
+
             ind++
 
+        });
+
+        $(document).on('click','.del-option',function (e){
+
+            let input = $(this).parents('tr').find('input[type=hidden]');
+            console.log(input[0])
+            if(input[0].value === 'true'){
+                $(this).parents('tr').remove();
+            } else {
+                $(this).parents('tr').hide();
+                input[1].value = 'true';
+            }
         });
     </script>
 

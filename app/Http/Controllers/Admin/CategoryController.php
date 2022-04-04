@@ -180,29 +180,13 @@ class CategoryController extends Controller
      */
     public function destroy(string $locale, Category $category)
     {
-        $this->deleteCategoryPath($category->id);
         if (!$this->categoryRepository->delete($category->id)) {
             return redirect(locale_route('category.show', $category->id))->with('danger', __('admin.not_delete_message'));
         }
         return redirect(locale_route('category.index'))->with('success', __('admin.delete_message'));
     }
 
-    private function deleteCategoryPath($category_id) {
-        //$this->db->query("DELETE FROM category_path WHERE category_id = '" . (int)$category_id . "'");
 
-        DB::table('category_path')->where('category_id', $category_id)->delete();
-
-        //$query = $this->db->query("SELECT * FROM category_path WHERE path_id = '" . (int)$category_id . "'");
-
-        $data = DB::table('category_path')->select('*')
-            ->where('path_id',$category_id)->get();
-
-        foreach ($data as $result) {
-            $this->deleteCategoryPath($result['category_id']);
-        }
-
-
-    }
 
 
     public function autocomplete(Request $request, CategoryRepository $categoryRepository) {

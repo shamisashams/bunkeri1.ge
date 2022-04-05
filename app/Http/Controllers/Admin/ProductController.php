@@ -14,6 +14,7 @@ use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductAttributeValue;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\Eloquent\ProductAttributeValueRepository;
 use App\Repositories\ProductRepositoryInterface;
@@ -239,12 +240,62 @@ class ProductController extends Controller
         $saveData['stock'] = isset($saveData['stock']) && (bool)$saveData['stock'];
 
         //dd($saveData);
+        $attributes = $saveData['attribute'];
+        unset($saveData['attribute']);
+
+        //dd($attributes);
 
         $this->productRepository->update($product->id, $saveData);
 
         $this->productRepository->saveFiles($product->id, $request);
 
         $product->categories()->sync($saveData['categories'] ?? []);
+
+
+        //update product attributes
+        $attr = [];
+        $attr_del = [];
+        foreach ($attributes as $key => $item){
+            if ($item){
+
+                $product_atribute = ProductAttributeValue::where('product_id',$product->id)
+                    ->where('attribute_id',$key)->first();
+                if ($product_atribute){
+                    $data['integer_value'] = $item;
+                    ProductAttributeValue::where('product_id',$product_atribute->product_id)
+                        ->where('attribute_id',$product_atribute->attribute_id)
+                        ->update($data);
+                } else {
+                    $attr[$key] = $item;
+                }
+            } else $attr_del[] = $key;
+        }
+
+        $attr_ids = array_keys($attr);
+
+        $_attributes = Attribute::whereIn('id',$attr_ids)->get();
+
+        $arr = [];
+        foreach ($_attributes as $item){
+            $arr[$item->id] = $item;
+        }
+
+        $data = [];
+        foreach ($attr as $key => $item){
+            $data['product_id'] = $product->id;
+            $data['attribute_id'] = $arr[$key]->id;
+            $data['type'] = $arr[$key]->type;
+            $data['value'] = $item;
+
+            //dd($data);
+            $this->productAttributeValueRepository->create($data);
+        }
+
+
+        ProductAttributeValue::where('product_id',$product->id)
+            ->whereIn('attribute_id',$attr_del)->delete();
+
+
 
 
         return redirect(locale_route('product.index', $product->id))->with('success', __('admin.update_successfully'));

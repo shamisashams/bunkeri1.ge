@@ -252,10 +252,23 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('code',__('admin.price'),['class' => 'form-label']) !!}
+                        {!! Form::label('price',__('admin.price'),['class' => 'form-label']) !!}
                         {!! Form::number('price',$product->price,['class' => 'form-control','step' => '0.01','min' => '0']) !!}
 
-                        @error('code')
+                        @error('price')
+                        <small class="text-danger">
+                            <div class="error">
+                                {{$message}}
+                            </div>
+                        </small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('special_price',__('admin.special_price'),['class' => 'form-label']) !!}
+                        {!! Form::number('special_price',$product->special_price,['class' => 'form-control','step' => '0.01','min' => '0']) !!}
+
+                        @error('special_price')
                         <small class="text-danger">
                             <div class="error">
                                 {{$message}}
@@ -302,7 +315,7 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                         </label>
                     </div>--}}
 
-                    <div class="form-group">
+                    {{--<div class="form-group">
 
                         {!! Form::label('sale',__('admin.sale')) !!}
                         {!! Form::number('sale',$product->sale ?? '',['step'=>'0.1','class' => 'form-control']) !!}
@@ -315,10 +328,12 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                         </small>
                         @enderror
 
-                    </div>
+                    </div>--}}
 
                     <div class="form-group">
-
+                        <div class="main-content-label mg-b-5">
+                            @lang('admin.product_attributes')
+                        </div>
                     </div>
 
                     <?php

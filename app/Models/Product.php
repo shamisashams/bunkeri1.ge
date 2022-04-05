@@ -76,7 +76,8 @@ class Product extends Model implements Searchable
         'stock',
         'code',
         'price',
-        'quantity'
+        'quantity',
+        'special_price'
     ];
 
     /** @var string */

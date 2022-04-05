@@ -166,7 +166,8 @@ class ProductController extends Controller
             $data['product_id'] = $product->id;
             $data['attribute_id'] = $arr[$key]->id;
             $data['type'] = $arr[$key]->type;
-            $data['value'] = $item;
+            if($data['type'] == 'boolean') $data['value'] = (bool)$item;
+            else $data['value'] = $item;
 
             //dd($data);
             $this->productAttributeValueRepository->create($data);

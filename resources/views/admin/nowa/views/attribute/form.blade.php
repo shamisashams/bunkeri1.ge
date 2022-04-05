@@ -109,7 +109,7 @@
                         </select>
                     </div>
 
-                    <div class="row" id="option_row"{!!$attribute->type == 'select' ? ' style="display:block"' : ' style="display:none"'!!}>
+                    <div class="row" id="option_row"{!!$attribute->type == 'boolean' ? ' style="display:none"' : ' style="display:block"'!!}>
                         <div class="col-12">
                             <div class="main-content-label mg-b-5">
                                 @lang('admin.options')

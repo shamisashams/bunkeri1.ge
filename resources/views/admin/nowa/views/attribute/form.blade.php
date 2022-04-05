@@ -96,7 +96,7 @@
 
                     <?php
 
-                    $types = ['select','text','boolean']
+                    $types = ['select','boolean']
 
                     ?>
 
@@ -109,7 +109,7 @@
                         </select>
                     </div>
 
-                    <div class="row">
+                    <div class="row" id="option_row"{!!$attribute->type == 'select' ? ' style="display:block"' : ' style="display:none"'!!}>
                         <div class="col-12">
                             <div class="main-content-label mg-b-5">
                                 @lang('admin.options')
@@ -270,6 +270,16 @@
             } else {
                 $(this).parents('tr').hide();
                 input[1].value = 'true';
+            }
+        });
+
+        $('select[name=type]').change(function (e){
+            let value = $(this).val();
+            console.log(value);
+            if(value == 'select'){
+                $('#option_row').show();
+            } else {
+                $('#option_row').hide();
             }
         });
     </script>

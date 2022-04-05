@@ -251,6 +251,32 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        {!! Form::label('code',__('admin.price'),['class' => 'form-label']) !!}
+                        {!! Form::number('price',$product->price,['class' => 'form-control','step' => '0.01','min' => '0']) !!}
+
+                        @error('code')
+                        <small class="text-danger">
+                            <div class="error">
+                                {{$message}}
+                            </div>
+                        </small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('code',__('admin.quantity'),['class' => 'form-label']) !!}
+                        {!! Form::number('quantity',$product->quantity,['class' => 'form-control','min' => '0']) !!}
+
+                        @error('code')
+                        <small class="text-danger">
+                            <div class="error">
+                                {{$message}}
+                            </div>
+                        </small>
+                        @enderror
+                    </div>
+
                     <div class="form-group mb-0 justify-content-end">
                         <div class="checkbox">
                             <div class="custom-checkbox custom-control">
@@ -268,13 +294,13 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                         </label>
                     </div>
 
-                    <div class="form-group">
+                    {{--<div class="form-group">
                         <label class="ckbox">
                             <input type="checkbox" name="stock"
                                    value="true" {{$product->stock ? 'checked' : ''}}>
                             <span>{{__('admin.instock')}}</span>
                         </label>
-                    </div>
+                    </div>--}}
 
                     <div class="form-group">
 
@@ -297,7 +323,8 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
 
                     <?php
                     $prod_attr = \Illuminate\Support\Arr::pluck($product->attribute_values,'integer_value','attribute_id');
-                    //dd($prod_attr);
+                    $prod_attr_bool = \Illuminate\Support\Arr::pluck($product->attribute_values,'boolean_value','attribute_id');
+                    //dd($prod_attr_bool,$prod_attr);
                     ?>
 
                     @foreach($attributes as $item)
@@ -318,6 +345,29 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                                         <option value="{{$option->id}}"{{$selected}}>{{$option->label}}</option>
                                     @endforeach
                                 </select>
+                            @else
+
+                                <?php
+                                if (isset($prod_attr_bool[$item->id])){
+                                    if($prod_attr_bool[$item->id]){
+                                        $checked = ' checked';
+                                        $val = 1;
+                                    } else {
+                                        $checked = '';
+                                        $val = 0;
+                                    }
+                                } else {
+                                    $checked = '';
+                                    $val = 0;
+                                }
+                                ?>
+
+                                <label class="ckbox">
+                                    <input type="hidden" name="attribute[{{$item->id}}]" value="{{$val}}">
+                                    <input class="bool_ckbox" type="checkbox"{{$checked}}>
+                                    <span></span>
+                                </label>
+
                             @endif
                         </div>
 
@@ -466,6 +516,12 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                 }
 
 
+        });
+
+        $('.bool_ckbox').click(function (e){
+            if($(this).is(':checked')){
+                $(this).prev('input[type=hidden]').val(1);
+            } else $(this).prev('input[type=hidden]').val(0);
         });
     </script>
 

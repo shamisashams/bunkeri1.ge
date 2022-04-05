@@ -201,6 +201,19 @@ trait ScopeFilter
 
     /**
      * @param $query
+     * @param $title
+     *
+     * @return mixed
+     */
+    public function scopeNameTranslation($query, $title)
+    {
+        return $query->whereHas('translations', function ($query) use ($title) {
+            return $query->where('name', 'like', '%' . $title . '%');
+        });
+    }
+
+    /**
+     * @param $query
      * @param $value
      * @return mixed
      */

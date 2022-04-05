@@ -33,7 +33,7 @@ class Attribute extends Model
             ],
             'name' => [
                 'hasParam' => true,
-                'scopeMethod' => 'titleTranslation'
+                'scopeMethod' => 'nameTranslation'
             ],
         ];
     }

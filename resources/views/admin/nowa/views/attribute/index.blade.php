@@ -55,7 +55,7 @@
 
                                     <th>
                                         <input class="form-control" type="text" name="name" onchange="this.form.submit()"
-                                               value="{{Request::get('value')}}"
+                                               value="{{Request::get('name')}}"
                                                class="validate {{$errors->has('value') ? '' : 'valid'}}">
                                     </th>
                                     <th></th>

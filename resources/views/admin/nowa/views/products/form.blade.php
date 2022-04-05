@@ -295,16 +295,27 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
 
                     </div>
 
-                    {{--@dd($product->attribute_values)--}}
+                    <?php
+                    $prod_attr = \Illuminate\Support\Arr::pluck($product->attribute_values,'integer_value','attribute_id');
+                    //dd($prod_attr);
+                    ?>
 
                     @foreach($attributes as $item)
                         <div class="form-group">
                             <label class="form-label">{{$item->name}}</label>
+
                             @if($item->type == 'select')
                                 <select class="form-control" name="attribute[{{$item->id}}]">
                                     <option value=""></option>
                                     @foreach($item->options as $option)
-                                        <option value="{{$option->id}}">{{$option->label}}</option>
+                                        <?php
+                                            if (isset($prod_attr[$item->id])){
+                                                if($prod_attr[$item->id] == $option->id){
+                                                    $selected = ' selected';
+                                                } else $selected = '';
+                                            } else $selected = '';
+                                        ?>
+                                        <option value="{{$option->id}}"{{$selected}}>{{$option->label}}</option>
                                     @endforeach
                                 </select>
                             @endif

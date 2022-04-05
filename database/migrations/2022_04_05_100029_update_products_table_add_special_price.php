@@ -15,7 +15,7 @@ class UpdateProductsTableAddSpecialPrice extends Migration
     {
         //
         Schema::table('products', function (Blueprint $table) {
-            $table->float('special_price')->default(0);
+            $table->float('special_price')->nullable();
         });
     }
 

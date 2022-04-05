@@ -10,6 +10,8 @@ class ProductAttributeValue extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
 
     public static $attributeTypeFields = [
         'text' => 'text_value',

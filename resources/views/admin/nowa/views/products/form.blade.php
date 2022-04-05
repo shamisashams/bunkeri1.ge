@@ -295,14 +295,16 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
 
                     </div>
 
+                    {{--@dd($product->attribute_values)--}}
+
                     @foreach($attributes as $item)
                         <div class="form-group">
                             <label class="form-label">{{$item->name}}</label>
                             @if($item->type == 'select')
-                                <select class="form-control">
+                                <select class="form-control" name="attribute[{{$item->id}}]">
                                     <option value=""></option>
                                     @foreach($item->options as $option)
-                                        <option>{{$option->label}}</option>
+                                        <option value="{{$option->id}}">{{$option->label}}</option>
                                     @endforeach
                                 </select>
                             @endif

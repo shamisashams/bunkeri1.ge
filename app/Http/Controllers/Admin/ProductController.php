@@ -11,9 +11,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\CategoryRepositoryInterface;
+use App\Repositories\Eloquent\ProductAttributeValueRepository;
 use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -23,6 +25,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 use ReflectionException;
 use App\Repositories\Eloquent\AttributeRepository;
+use function Symfony\Component\Translation\t;
 
 class ProductController extends Controller
 {
@@ -43,17 +46,21 @@ class ProductController extends Controller
 
     private $attributeRepository;
 
+    private $productAttributeValueRepository;
+
     private $categories;
     public function __construct(
         ProductRepositoryInterface  $productRepository,
         CategoryRepositoryInterface $categoryRepository,
-        AttributeRepository $attributeRepository
+        AttributeRepository $attributeRepository,
+        ProductAttributeValueRepository $productAttributeValueRepository
     )
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->categories = $this->categoryRepository->getCategoryTree();
         $this->attributeRepository = $attributeRepository;
+        $this->productAttributeValueRepository = $productAttributeValueRepository;
     }
 
     /**
@@ -124,7 +131,9 @@ class ProductController extends Controller
         $saveData['stock'] = isset($saveData['stock']) && (bool)$saveData['stock'];
         $saveData['popular'] = isset($saveData['popular']) && (bool)$saveData['popular'];
 
-        //dd($saveData);
+        $attributes = $saveData['attribute'];
+        unset($saveData['attribute']);
+
         $product = $this->productRepository->create($saveData);
         $product->categories()->sync($saveData['categories']);
 
@@ -132,6 +141,37 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             $product = $this->productRepository->saveFiles($product->id, $request);
         }
+
+
+        //save product attributes
+        $attr = [];
+        foreach ($attributes as $key => $item){
+            if ($item){
+                $attr[$key] = $item;
+            }
+        }
+
+        $attr_ids = array_keys($attr);
+
+        $_attributes = Attribute::whereIn('id',$attr_ids)->get();
+
+        $arr = [];
+        foreach ($_attributes as $item){
+            $arr[$item->id] = $item;
+        }
+
+        $data = [];
+        foreach ($attr as $key => $item){
+            $data['product_id'] = $product->id;
+            $data['attribute_id'] = $arr[$key]->id;
+            $data['type'] = $arr[$key]->type;
+            $data['value'] = $item;
+
+            //dd($data);
+            $this->productAttributeValueRepository->create($data);
+        }
+
+
 
         return redirect(locale_route('product.index', $product->id))->with('success', __('admin.create_successfully'));
 
@@ -176,7 +216,8 @@ class ProductController extends Controller
             'product' => $product,
             'url' => $url,
             'method' => $method,
-            'categories' => $this->categories
+            'categories' => $this->categories,
+            'attributes' => $this->attributeRepository->all()
         ]);
     }
 

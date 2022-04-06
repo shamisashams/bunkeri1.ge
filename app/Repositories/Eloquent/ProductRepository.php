@@ -101,7 +101,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         }
 
         $query->groupBy('products.id');
-        return $query->get();
+        return $query->paginate('2');
     }
 
 

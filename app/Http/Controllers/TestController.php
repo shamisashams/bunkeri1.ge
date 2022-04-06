@@ -44,7 +44,7 @@ class TestController extends Controller
     }
 
     public function attr(){
-        $attrs = $this->attributeRepository->model->with('options')->get();
+        $attrs = $this->attributeRepository->model->with('options')->orderBy('position')->get();
         $categories = app(CategoryRepository::class)->getVisibleCategoryTree();
         $maxPrice = $this->productRepository->getMaxprice();
 

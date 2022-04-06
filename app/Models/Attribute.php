@@ -22,7 +22,8 @@ class Attribute extends Model
 
     protected $fillable = [
         'type',
-        'code'
+        'code',
+        'position'
     ];
 
     public function getFilterScopes(): array

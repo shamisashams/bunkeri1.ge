@@ -109,6 +109,11 @@
 
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label">@lang('admin.position')</label>
+                        <input class="form-control" type="number" name="position" value="{{$attribute->position}}">
+                    </div>
+
                     <?php
 
                     $types = ['select','boolean']

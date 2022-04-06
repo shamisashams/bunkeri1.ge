@@ -30,7 +30,7 @@ class UpdateProductsTableAddAttributes extends Migration
     public function down()
     {
         //
-        Schema::table('attributes', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->dropColumn('weight');
             $table->dropColumn('width');
             $table->dropColumn('height');

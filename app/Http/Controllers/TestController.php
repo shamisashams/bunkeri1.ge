@@ -49,6 +49,7 @@ class TestController extends Controller
     }
 
     public function filter(Request $request){
-        dd($request->all());
+        $products = $this->productRepository->getAll();
+        dd($products);
     }
 }

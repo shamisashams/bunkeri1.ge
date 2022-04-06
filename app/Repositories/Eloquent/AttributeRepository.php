@@ -91,4 +91,9 @@ class AttributeRepository extends BaseRepository implements AttributeRepositoryI
         return $attribute;
     }
 
+
+    public function getFilterAttributes($codes = null){
+        return $this->model->whereIn('code',$codes)->get();
+    }
+
 }

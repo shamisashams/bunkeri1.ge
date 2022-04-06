@@ -36,6 +36,10 @@ class Attribute extends Model
                 'hasParam' => true,
                 'scopeMethod' => 'nameTranslation'
             ],
+            'code' => [
+                'hasParam' => true,
+                'scopeMethod' => 'code'
+            ],
         ];
     }
 

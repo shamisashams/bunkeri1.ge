@@ -86,6 +86,17 @@ trait ScopeFilter
 
     /**
      * @param $query
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function scopeCode($query, $code)
+    {
+        return $query->where('code', 'like', '%' . $code . '%');
+    }
+
+    /**
+     * @param $query
      * @param $name
      *
      * @return mixed

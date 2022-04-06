@@ -40,6 +40,7 @@
                                 <thead>
                                 <tr>
                                     <th>@lang('admin.id')</th>
+                                    <th>@lang('admin.attribute_code')</th>
                                     <th>@lang('admin.name')</th>
                                     <th>@lang('admin.actions')</th>
                                 </tr>
@@ -54,6 +55,12 @@
                                     </th>
 
                                     <th>
+                                        <input class="form-control" type="text" name="code" onchange="this.form.submit()"
+                                               value="{{Request::get('code')}}"
+                                               class="validate {{$errors->has('code') ? '' : 'valid'}}">
+                                    </th>
+
+                                    <th>
                                         <input class="form-control" type="text" name="name" onchange="this.form.submit()"
                                                value="{{Request::get('name')}}"
                                                class="validate {{$errors->has('value') ? '' : 'valid'}}">
@@ -65,6 +72,8 @@
                                     @foreach($attributes as $attribute)
                                         <tr>
                                             <td>{{$attribute->id}}</td>
+
+                                            <td>{{$attribute->code}}</td>
 
                                             <td>
                                                 <div class="panel panel-primary tabs-style-2">

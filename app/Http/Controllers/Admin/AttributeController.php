@@ -8,6 +8,7 @@ use App\Models\Attribute;
 use App\Models\Setting;
 use App\Repositories\Eloquent\AttributeRepository;
 use App\Repositories\SettingRepositoryInterface;
+use App\Rules\Code;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -83,12 +84,13 @@ class AttributeController extends Controller
     {
         //dd($request->all());
         $request->validate([
+            'code'       => ['required', 'unique:attributes,code', new Code()],
             'type'       => 'required',
         ]);
 
         $data = $request->all();
 
-        $data['is_user_defined'] = 1;
+        //$data['is_user_defined'] = 1;
 
         $this->attributeRepository->create($data);
 
@@ -143,8 +145,12 @@ class AttributeController extends Controller
      * @param Setting $setting
      * @return Application|RedirectResponse|Redirector
      */
-    public function update(SettingRequest $request, string $locale, Attribute $attribute)
+    public function update(Request $request, string $locale, Attribute $attribute)
     {
+        $request->validate([
+            'code'       => ['required', 'unique:attributes,code,' .$attribute->id, new Code()],
+            'type'       => 'required'
+        ]);
         $saveData = Arr::except($request->except('_token'), []);
         $this->attributeRepository->update($attribute->id,$saveData);
 

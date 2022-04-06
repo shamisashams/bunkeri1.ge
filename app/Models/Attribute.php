@@ -21,7 +21,8 @@ class Attribute extends Model
     protected $translationModel = AttributeTranslation::class;
 
     protected $fillable = [
-        'type'
+        'type',
+        'code'
     ];
 
     public function getFilterScopes(): array

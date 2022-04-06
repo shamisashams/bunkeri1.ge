@@ -37,4 +37,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return $products;
     }
 
+
+    public function getAll($categoryId = null){
+
+    }
+
 }

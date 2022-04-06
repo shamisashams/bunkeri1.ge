@@ -106,7 +106,12 @@ Route::prefix('{locale?}')
             Route::get('popular',[\App\Http\Controllers\Client\CategoryController::class,'popular'])->name('client.category.popular');
 
 
+            Route::get('test/{method}',function ($locale,$method,\App\Http\Controllers\TestController $testController){
 
+                return $testController->{$method}();
+            });
+
+            Route::post('test/filter',[\App\Http\Controllers\TestController::class,'filter']);
         });
     });
 

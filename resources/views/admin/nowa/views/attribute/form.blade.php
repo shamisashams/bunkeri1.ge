@@ -45,6 +45,21 @@
                         <h6 class="card-title mb-1">@lang('admin.attribute')</h6>
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label">@lang('admin.attribute_code')</label>
+                        <input {{$attribute->created_at ? 'disabled' : ''}} class="form-control" type="text" name="code" value="{{$attribute->code}}">
+                        @if($attribute->created_at)
+                            <input type="hidden" name="code" value="{{$attribute->code}}">
+                        @endif
+                        @error('code')
+                        <small class="text-danger">
+                            <div class="error">
+                                {{$message}}
+                            </div>
+                        </small>
+                        @enderror
+                    </div>
+
                     <div class="mb-4">
                         <p class="mg-b-10">@lang('admin.title')</p>
                         <div class="panel panel-primary tabs-style-2">
@@ -107,6 +122,16 @@
                             <option value="{{$type}}"{{$attribute->type == $type ? ' selected':''}}>{{ucfirst($type)}}</option>
                             @endforeach
                         </select>
+                        @if($attribute->created_at)
+                            <input type="hidden" name="type" value="{{$attribute->type}}">
+                        @endif
+                        @error('type')
+                        <small class="text-danger">
+                            <div class="error">
+                                {{$message}}
+                            </div>
+                        </small>
+                        @enderror
                     </div>
 
                     <div class="row" id="option_row"{!!$attribute->type == 'boolean' ? ' style="display:none"' : ' style="display:block"'!!}>

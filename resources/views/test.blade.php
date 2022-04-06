@@ -1,6 +1,22 @@
 
+
 <form method="post" action="/ge/test/filter">
     @csrf
+
+    <input type="number" name="filter[price][]" placeholder="min" value="0">
+    <input type="number" name="filter[price][]" placeholder="max" value="{{$maxPrice}}">
+
+    <ul>
+        @foreach($categories as $item)
+            <li>
+                <label>
+                    {{$item->title}}
+                    <input type="checkbox" name="category" value="{{$item->id}}">
+                </label>
+            </li>
+        @endforeach
+    </ul>
+
     <ul>
         @foreach($attrs as $item)
 

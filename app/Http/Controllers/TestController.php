@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Eloquent\AttributeRepository;
+use App\Repositories\Eloquent\CategoryRepository;
 use Illuminate\Http\Request;
 
 use App\Repositories\Eloquent\ProductAttributeValueRepository;
@@ -44,12 +45,14 @@ class TestController extends Controller
 
     public function attr(){
         $attrs = $this->attributeRepository->model->with('options')->get();
+        $categories = app(CategoryRepository::class)->getVisibleCategoryTree();
+        $maxPrice = $this->productRepository->getMaxprice();
 
-        return view('test',compact('attrs'));
+        return view('test',compact('attrs','categories','maxPrice'));
     }
 
     public function filter(Request $request){
-        $products = $this->productRepository->getAll();
+        $products = $this->productRepository->getAll($request->post('category'));
         dd($products);
     }
 }

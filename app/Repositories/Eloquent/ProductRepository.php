@@ -45,12 +45,25 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function getAll($categoryId = null){
 
-        $attributes = $this->attributeRepository->getFilterAttributes(array_keys(request()->post('filter') ? request()->post('filter') : []));
 
         //dd(request()->post());
 
         $query =  $this->model->select('products.*')
+            ->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')
             ->leftJoin('product_attribute_values','product_attribute_values.product_id','products.id');
+
+        if ($categoryId) {
+            $query->whereIn('product_categories.category_id', explode(',', $categoryId));
+        }
+
+        if($priceRange = request()->post('filter')['price']){
+            $query->where(function ($pQ) use ($priceRange){
+                $pQ->where('products.price', '>=', $priceRange[0])
+                    ->where('products.price', '<=', end($priceRange));
+            });
+        }
+
+        $attributes = $this->attributeRepository->getFilterAttributes(array_keys(request()->post('filter') ? request()->post('filter') : []));
 
         if (count($attributes) > 0) {
             $query->where(function ($fQ) use ($attributes) {
@@ -64,12 +77,21 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                         $aQ = $aQ->where('product_attribute_values.attribute_id', $attribute->id);
 
                         $aQ->where(function ($attributeValueQuery) use ($column, $filterInputValues) {
-                            foreach ($filterInputValues as $filterValue) {
-                                if (!is_numeric($filterValue)) {
-                                    continue;
+
+                            if(is_array($filterInputValues)){
+                                foreach ($filterInputValues as $filterValue) {
+                                    if (!is_numeric($filterValue)) {
+                                        continue;
+                                    }
+                                    $attributeValueQuery->orWhereRaw("find_in_set(?, {$column})", [$filterValue]);
                                 }
-                                $attributeValueQuery->orWhereRaw("find_in_set(?, {$column})", [$filterValue]);
+                            } else {
+                                if (is_numeric($filterInputValues)) {
+                                    $attributeValueQuery->orWhereRaw("find_in_set(?, {$column})", [$filterInputValues]);
+                                }
+
                             }
+
                         });
                     });
 
@@ -80,6 +102,11 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         $query->groupBy('products.id');
         return $query->get();
+    }
+
+
+    public function getMaxPrice(){
+        return $this->model->max('price');
     }
 
 }

@@ -1,14 +1,15 @@
 import React from "react";
 import "./Buttons.css";
 import { Arrow } from "../SmallComps/Icons";
-import { Link } from "@inertiajs/inertia-react";
+import {Link, usePage} from "@inertiajs/inertia-react";
 import { Cart } from "../SmallComps/Icons";
 
 export const CatButton = ({ onClick, rotate }) => {
+    const sharedData = usePage().props.localizations;
   return (
     <button className="category_btn flex radius5" onClick={onClick}>
       <img src="/img/icons/header/cat.svg"alt="" />
-      <span>კატეგორიები</span>
+      <span>{__('client.categories_btn_title',sharedData)}</span>
       <Arrow color="#fff" rotate={rotate} />
     </button>
   );

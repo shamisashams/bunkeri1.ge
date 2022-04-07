@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "@inertiajs/inertia-react";
+import {Link, usePage} from "@inertiajs/inertia-react";
 import { Arrow } from "../SmallComps/Icons";
 import { CatData } from "./CatData";
 import "./Categories.css";
 
 const Categories = ({ dropList, linkList }) => {
   const [showCategory, setShowcategory] = useState(0);
+    const { categories } = usePage().props;
+    console.log(categories);
   return (
     <div
       className={
@@ -28,7 +30,7 @@ const Categories = ({ dropList, linkList }) => {
             );
           })}
         </div>
-        {CatData.map((cat, index) => {
+        {categories.map((cat, index) => {
           return (
             <div
               onMouseEnter={() => setShowcategory(index + 1)}
@@ -40,13 +42,13 @@ const Categories = ({ dropList, linkList }) => {
               }
               key={index}
             >
-              <span className="archy-edt">{cat.category}</span>
+              <span className="archy-edt">{cat.title}</span>
               <Arrow color="#11151C" rotate="-90" />
             </div>
           );
         })}
       </div>
-      {CatData.map((cat, index) => {
+      {categories.map((cat, index) => {
         return (
           <div
             onMouseEnter={() => setShowcategory(index + 1)}
@@ -59,22 +61,29 @@ const Categories = ({ dropList, linkList }) => {
             }
           >
             <div className="grid">
-              {cat.columns.map((column, index) => {
+              {cat.children.length > 0 ? cat.children.map((column, index) => {
                 return (
                   <div className="column" key={index}>
                     <div className="archy-edt">{column.title}</div>
-                    {column.links.map((link, i) => {
+                    {column.children.length > 0 ? column.children.map((link, i) => {
                       return (
-                        <Link href={link.to} key={i}>
-                          {link.name}
+                        <Link href={route('client.category.show',link.slug)} key={i}>
+                          {link.title}
                         </Link>
                       );
-                    })}
+                    }) : null}
                   </div>
                 );
-              })}
+              }) : null}
             </div>
-            <img src={cat.img} alt="" />
+            <img src={
+                cat.files.length > 0
+                    ? "/" +
+                    cat.files[0].path +
+                    "/" +
+                    cat.files[0].title
+                    : null
+            } alt="" />
           </div>
         );
       })}

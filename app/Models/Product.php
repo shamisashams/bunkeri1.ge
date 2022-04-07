@@ -77,7 +77,8 @@ class Product extends Model implements Searchable
         'code',
         'price',
         'quantity',
-        'special_price'
+        'special_price',
+        'new'
     ];
 
     /** @var string */
@@ -169,6 +170,12 @@ class Product extends Model implements Searchable
     public function file(): MorphOne
     {
         return $this->morphOne(File::class, 'fileable');
+    }
+
+
+    public function latestImage()
+    {
+        return $this->morphOne(File::class, 'fileable')->latestOfMany();
     }
 
 }

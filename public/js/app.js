@@ -4918,6 +4918,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ProductSlider_SliderData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/ProductSlider/SliderData */ "./resources/js/components/ProductSlider/SliderData.js");
 /* harmony import */ var _components_TodaysBox_TodaysBox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/TodaysBox/TodaysBox */ "./resources/js/components/TodaysBox/TodaysBox.js");
 /* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 
 
@@ -4927,8 +4928,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Home = function Home() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+
+var renderHTML = function renderHTML(rawHTML) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: rawHTML
+    }
+  });
+};
+
+var Home = function Home(_ref) {
+  var page = _ref.page,
+      seo = _ref.seo;
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.usePage)().props.localizations;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    seo: seo
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "homePage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "hero_section"
@@ -4936,11 +4951,11 @@ var Home = function Home() {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title35 blue"
-  }, "\u10D0\u10EE\u10D0\u10DA\u10D8 \u10D9\u10DD\u10DA\u10D4\u10E5\u10EA\u10D8\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __('client.home_section1_title', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "archy-edt blue"
-  }, "\u10E8\u10D4\u10E1\u10EB\u10D8\u10DC\u10D4 \u10E1\u10D0\u10D9\u10E3\u10D7\u10D0\u10E0 \u10D7\u10D0\u10D5\u10E1 \u10DB\u10D4\u10E2\u10D8 \u10D7\u10D0\u10D5\u10D3\u10D0\u10EF\u10D4\u10E0\u10D4\u10D1\u10E3\u10DA\u10DD\u10D1\u10D0 \u10D3\u10D0 \u10E8\u10D4\u10D8\u10D2\u10E0\u10EB\u10D4\u10DC\u10D8 \u10D0\u10DB\u10D4\u10E0\u10D8\u10D9\u10E3\u10DA\u10D8 \u10D3\u10D0 \u10D4\u10D5\u10E0\u10DD\u10DE\u10E3\u10DA\u10D8 \u10EE\u10D0\u10E0\u10D8\u10E1\u10EE\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.RoundButton, {
+  }, renderHTML(__('client.home_section1_text', sharedData).newLineToBr())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.RoundButton, {
     link: "/",
-    text: "\u10D2\u10D0\u10D8\u10D2\u10D4 \u10DB\u10D4\u10E2\u10D8"
+    text: __('client.home_section1_btn_title', sharedData)
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "new_products wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -5022,9 +5037,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/products/3.png */ "./public/img/products/3.png");
-/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/products/2.png */ "./public/img/products/2.png");
-/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/products/6.png */ "./public/img/products/6.png");
+/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../img/products/3.png */ "./public/img/products/3.png");
+/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/products/2.png */ "./public/img/products/2.png");
+/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../img/products/6.png */ "./public/img/products/6.png");
 /* harmony import */ var _OrderForm_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OrderForm.css */ "./resources/js/Pages/OrderForm/OrderForm.css");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
@@ -5203,7 +5218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
+/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
 /* harmony import */ var _Payment_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Payment.css */ "./resources/js/Pages/Payment/Payment.css");
 
 
@@ -5526,12 +5541,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Filters_Filters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Filters/Filters */ "./resources/js/components/Filters/Filters.js");
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
 /* harmony import */ var react_select_animated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-select/animated */ "./node_modules/react-select/animated/dist/react-select.esm.js");
 /* harmony import */ var _Products_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Products.css */ "./resources/js/Pages/Products/Products.css");
 /* harmony import */ var _ProductsData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductsData */ "./resources/js/Pages/Products/ProductsData.js");
 /* harmony import */ var _components_ProductBox_ProductBox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/ProductBox/ProductBox */ "./resources/js/components/ProductBox/ProductBox.js");
 /* harmony import */ var _components_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/SmallComps/Icons */ "./resources/js/components/SmallComps/Icons.js");
+/* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5553,7 +5570,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Products = function Products() {
+
+
+var Products = function Products(_ref) {
+  var page = _ref.page,
+      seo = _ref.seo;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       showFilter = _useState2[0],
@@ -5574,7 +5596,14 @@ var Products = function Products() {
     value: "თარიღის მიხედვით",
     label: "თარიღის მიხედვით"
   }];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.usePage)().props,
+      products = _usePage$props.products,
+      category = _usePage$props.category,
+      images = _usePage$props.images;
+  console.log(products);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    seo: seo
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "productsPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper flex main"
@@ -5596,7 +5625,7 @@ var Products = function Products() {
     className: "flex headflex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "headtitle"
-  }, "\u10D9\u10D0\u10E2\u10D4\u10D2\u10DD\u10E0\u10D8\u10D8\u10E1 \u10D3\u10D0\u10E1\u10D0\u10EE\u10D4\u10DA\u10D4\u10D1\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, "\u10D9\u10D0\u10E2\u10D4\u10D2\u10DD\u10E0\u10D8\u10D8\u10E1 \u10D3\u10D0\u10E1\u10D0\u10EE\u10D4\u10DA\u10D4\u10D1\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_9__["default"], {
     closeMenuOnSelect: true,
     components: animatedComponents,
     placeholder: "\u10D7\u10D0\u10E0\u10D8\u10E6\u10D8\u10E1 \u10DB\u10D8\u10EE\u10D4\u10D3\u10D5\u10D8\u10D7",
@@ -5604,12 +5633,12 @@ var Products = function Products() {
     options: options
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "product_grid"
-  }, _ProductsData__WEBPACK_IMPORTED_MODULE_4__.productsData.map(function (data, index) {
+  }, products.data.map(function (data, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductBox_ProductBox__WEBPACK_IMPORTED_MODULE_5__.ProductBox, {
       key: index,
-      link: data.link,
-      img: data.img,
-      title: data.name,
+      link: route('client.product.show', data.slug),
+      img: data.latest_image != null ? '/' + data.latest_image.path + '/' + data.latest_image.title : null,
+      title: data.title,
       price: data.price,
       sale: data.sale,
       "new": data["new"]
@@ -5638,7 +5667,7 @@ var Products = function Products() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_6__.Arrow, {
     color: "#2F3E51",
     rotate: "-90"
-  }))))));
+  })))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Products);
@@ -6041,13 +6070,14 @@ __webpack_require__.r(__webpack_exports__);
 var CatButton = function CatButton(_ref) {
   var onClick = _ref.onClick,
       rotate = _ref.rotate;
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.localizations;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "category_btn flex radius5",
     onClick: onClick
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/header/cat.svg",
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\u10D9\u10D0\u10E2\u10D4\u10D2\u10DD\u10E0\u10D8\u10D4\u10D1\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_2__.Arrow, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, __('client.categories_btn_title', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_2__.Arrow, {
     color: "#fff",
     rotate: rotate
   }));
@@ -6638,6 +6668,8 @@ var Categories = function Categories(_ref) {
       showCategory = _useState2[0],
       setShowcategory = _useState2[1];
 
+  var categories = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.categories;
+  console.log(categories);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: dropList ? "category_container wrapper flex dropped" : "category_container wrapper flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -6650,7 +6682,7 @@ var Categories = function Categories(_ref) {
       key: index,
       href: link.link
     }, link.name);
-  })), _CatData__WEBPACK_IMPORTED_MODULE_3__.CatData.map(function (cat, index) {
+  })), categories.map(function (cat, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       onMouseEnter: function onMouseEnter() {
         return setShowcategory(index + 1);
@@ -6662,11 +6694,11 @@ var Categories = function Categories(_ref) {
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "archy-edt"
-    }, cat.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_2__.Arrow, {
+    }, cat.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_2__.Arrow, {
       color: "#11151C",
       rotate: "-90"
     }));
-  })), _CatData__WEBPACK_IMPORTED_MODULE_3__.CatData.map(function (cat, index) {
+  })), categories.map(function (cat, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       onMouseEnter: function onMouseEnter() {
         return setShowcategory(index + 1);
@@ -6678,20 +6710,20 @@ var Categories = function Categories(_ref) {
       className: showCategory === index + 1 ? "category_columns show" : "category_columns"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "grid"
-    }, cat.columns.map(function (column, index) {
+    }, cat.children.length > 0 ? cat.children.map(function (column, index) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "column",
         key: index
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "archy-edt"
-      }, column.title), column.links.map(function (link, i) {
+      }, column.title), column.children.length > 0 ? column.children.map(function (link, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          href: link.to,
+          href: route('client.category.show', link.slug),
           key: i
-        }, link.name);
-      }));
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: cat.img,
+        }, link.title);
+      }) : null);
+    }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      src: cat.files.length > 0 ? "/" + cat.files[0].path + "/" + cat.files[0].title : null,
       alt: ""
     }));
   }));
@@ -6965,14 +6997,15 @@ var Header = function Header() {
     setCategoryDrop(!categoryDrop);
   };
 
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.localizations;
   var links = [{
-    name: "ბოლოს დამატებული",
+    name: __('client.header_last_added', sharedData),
     link: "/products"
   }, {
-    name: "პოპულარული პროდუქცია",
+    name: __('client.header_popular', sharedData),
     link: "/products"
   }, {
-    name: "სპეციალური ფასი",
+    name: __('client.header_special', sharedData),
     link: "/products"
   }];
   var inCartProducts = [{
@@ -7014,7 +7047,7 @@ var Header = function Header() {
     className: "wrapper flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
     className: "logo ",
-    href: "/"
+    href: route('client.home.index')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/logo/1.svg",
     alt: ""
@@ -7028,7 +7061,7 @@ var Header = function Header() {
     className: "search radius5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
-    placeholder: "\u10EB\u10D4\u10D1\u10DC\u10D0"
+    placeholder: __('client.header_search_placeholder', sharedData)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/header/search.svg",
     alt: ""
@@ -7075,7 +7108,7 @@ var Header = function Header() {
     alt: ""
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "archy-edt"
-  }, "\u10D9\u10D0\u10DA\u10D0\u10D7\u10D0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __('client.header_cart', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cart_drop"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "incart_products"
@@ -7780,17 +7813,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Languages": () => (/* binding */ Languages)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
 
 var Languages = function Languages() {
+  var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props,
+      locales = _usePage$props.locales,
+      currentLocale = _usePage$props.currentLocale,
+      locale_urls = _usePage$props.locale_urls;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "language"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "on archy-edt"
-  }, "\u10E5\u10E0\u10D7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, Object.keys(locales).map(function (name, index) {
+    if (locales[name] === currentLocale) {
+      return name;
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "drop"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "/"
-  }, "ENG")));
+  }, Object.keys(locales).map(function (name, index) {
+    if (locales[name] !== currentLocale) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: locale_urls[name],
+        key: name + "locale"
+      }, name);
+    }
+  })));
 };
 
 /***/ }),
@@ -8258,7 +8306,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\n  width: 100%;\n  background: url(/img/home/bg1.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 67px 0 83px 0;\n  margin-bottom: 60px;\n}\n.homePage .hero_section .archy-edt {\n  margin: 15px 0 15px 0;\n  max-width: 500px;\n}\n.homePage .new_products {\n  margin-bottom: 80px;\n}\n.homePage .bunker {\n  background: url(/img/home/bg2.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 30px 0 60px 0;\n}\n.homePage .bunker .title35 {\n  color: #fdf416;\n}\n.homePage .bunker .progressbar {\n  border: 1px solid #fdf416;\n}\n.homePage .bunker .progressbar .fill::after {\n  background-color: #fff;\n  border: 1px solid #fff;\n}\n.homePage .bunker .slick-dots li button:before {\n  color: #fff;\n}\n\n.homePage .today {\n  padding: 20px 0 40px 0;\n}\n\n.homePage .special_price {\n  background: url(/img/home/bg3.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 20px 0 60px 0;\n}\n.homePage .popular {\n  padding: 40px 0 70px 0;\n}\n.homePage .new_collection {\n  background: url(/img/home/bg4.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 75px 0;\n  color: #fff;\n  text-align: center;\n}\n.homePage .new_collection .archy-edt {\n  max-width: 523px;\n  margin: 15px auto;\n}\n\n/* responsive */\n@media screen and (max-width: 600px) {\n  .homePage .hero_section {\n    padding: 29px 0 34px 0;\n    margin-bottom: 20px;\n  }\n  .homePage .hero_section .archy-edt {\n    margin: 4px 0 15px 0;\n    max-width: 90%;\n  }\n  .homePage .new_collection {\n    padding: 23px 0;\n  }\n  .homePage .new_collection .archy-edt {\n    margin: 7px auto;\n  }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\r\n  width: 100%;\r\n  background: url(/img/home/bg1.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 67px 0 83px 0;\r\n  margin-bottom: 60px;\r\n}\r\n.homePage .hero_section .archy-edt {\r\n  margin: 15px 0 15px 0;\r\n  max-width: 500px;\r\n}\r\n.homePage .new_products {\r\n  margin-bottom: 80px;\r\n}\r\n.homePage .bunker {\r\n  background: url(/img/home/bg2.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 30px 0 60px 0;\r\n}\r\n.homePage .bunker .title35 {\r\n  color: #fdf416;\r\n}\r\n.homePage .bunker .progressbar {\r\n  border: 1px solid #fdf416;\r\n}\r\n.homePage .bunker .progressbar .fill::after {\r\n  background-color: #fff;\r\n  border: 1px solid #fff;\r\n}\r\n.homePage .bunker .slick-dots li button:before {\r\n  color: #fff;\r\n}\r\n\r\n.homePage .today {\r\n  padding: 20px 0 40px 0;\r\n}\r\n\r\n.homePage .special_price {\r\n  background: url(/img/home/bg3.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 20px 0 60px 0;\r\n}\r\n.homePage .popular {\r\n  padding: 40px 0 70px 0;\r\n}\r\n.homePage .new_collection {\r\n  background: url(/img/home/bg4.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 75px 0;\r\n  color: #fff;\r\n  text-align: center;\r\n}\r\n.homePage .new_collection .archy-edt {\r\n  max-width: 523px;\r\n  margin: 15px auto;\r\n}\r\n\r\n/* responsive */\r\n@media screen and (max-width: 600px) {\r\n  .homePage .hero_section {\r\n    padding: 29px 0 34px 0;\r\n    margin-bottom: 20px;\r\n  }\r\n  .homePage .hero_section .archy-edt {\r\n    margin: 4px 0 15px 0;\r\n    max-width: 90%;\r\n  }\r\n  .homePage .new_collection {\r\n    padding: 23px 0;\r\n  }\r\n  .homePage .new_collection .archy-edt {\r\n    margin: 7px auto;\r\n  }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8282,7 +8330,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".orderformPage .grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  grid-gap: 50px;\n  margin-top: 30px;\n}\n.orderformPage .title {\n  font-size: 20px;\n  margin-bottom: 20px;\n}\n.orderformPage .input_grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  grid-gap: 16px;\n}\n.orderformPage .input_grid textarea {\n  grid-row: span 2;\n  grid-row-start: 3;\n  grid-row-end: 5;\n  grid-column-start: 2;\n  grid-column-end: 3;\n  height: 100%;\n  padding-top: 15px;\n}\n.orderformPage .intable_pro .img {\n  width: 121px;\n  height: 100px;\n  margin-right: 12px;\n}\n.orderformPage .intable_pro .name {\n  max-width: 200px;\n  margin-bottom: 10px;\n}\n.orderformPage .intable_pro .op05 {\n  font-size: 14px;\n}\n.orderformPage .intable_pro {\n  align-items: flex-start;\n  margin-bottom: 15px;\n}\n.orderformPage .intable_pro .quantity {\n  margin: 0 15px;\n}\n.orderformPage .checks {\n  margin-bottom: 25px;\n}\n.orderformPage .checks.last {\n  margin-top: 50px;\n}\n.orderformPage .checks label {\n  position: relative;\n  padding-left: 30px;\n  color: #2f3e5173;\n}\n.orderformPage .checks label::before {\n  border: 1px solid #dedede;\n  width: 15px;\n  height: 15px;\n  border-radius: 3px;\n  left: 0;\n  top: 2px;\n}\n.orderformPage .checks label::after {\n  width: 16px;\n  height: 15px;\n  left: 3px;\n  top: 2px;\n  background: url(/img/icons/other/tick.svg) no-repeat;\n  background-size: contain;\n  display: none;\n}\n.orderformPage .checks input {\n  display: none;\n}\n.orderformPage .checks input:checked + label::after {\n  display: block;\n}\n\n@media screen and (max-width: 1400px) {\n  .orderformPage .grid {\n    grid-gap: 23px;\n  }\n}\n@media screen and (max-width: 1100px) {\n  .orderformPage .grid .products,\n  .orderformPage .grid .first {\n    grid-column: span 2;\n  }\n  .orderformPage .intable_pro .name {\n    max-width: none;\n  }\n}\n@media screen and (max-width: 700px) {\n  .orderformPage .grid {\n    grid-template-columns: 1fr;\n  }\n  .orderformPage .grid .products,\n  .orderformPage .grid .first {\n    grid-column: span 1;\n  }\n  .orderformPage .intable_pro {\n    font-size: 13px;\n  }\n  .orderformPage .intable_pro .name {\n    font-size: 14px;\n    max-width: 80%;\n  }\n  .orderformPage .intable_pro .op05 {\n    font-size: 13px;\n  }\n  .orderformPage .intable_pro .img {\n    width: 83px;\n    height: 66px;\n    margin-right: 9px;\n  }\n  .orderformPage .checks {\n    margin-bottom: 10px;\n    font-size: 13px;\n  }\n}\n@media screen and (max-width: 550px) {\n  .orderformPage .intable_pro .name {\n    font-size: 13px;\n  }\n  .orderformPage .input_grid {\n    grid-template-columns: 1fr;\n    grid-gap: 10px;\n  }\n  .orderformPage .input_grid textarea {\n    grid-row: span 1;\n    grid-row-start: auto;\n    grid-row-end: auto;\n    grid-column-start: auto;\n    grid-column-end: auto;\n    height: 100px;\n  }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".orderformPage .grid {\r\n  display: grid;\r\n  grid-template-columns: repeat(2, 1fr);\r\n  grid-gap: 50px;\r\n  margin-top: 30px;\r\n}\r\n.orderformPage .title {\r\n  font-size: 20px;\r\n  margin-bottom: 20px;\r\n}\r\n.orderformPage .input_grid {\r\n  display: grid;\r\n  grid-template-columns: repeat(2, 1fr);\r\n  grid-gap: 16px;\r\n}\r\n.orderformPage .input_grid textarea {\r\n  grid-row: span 2;\r\n  grid-row-start: 3;\r\n  grid-row-end: 5;\r\n  grid-column-start: 2;\r\n  grid-column-end: 3;\r\n  height: 100%;\r\n  padding-top: 15px;\r\n}\r\n.orderformPage .intable_pro .img {\r\n  width: 121px;\r\n  height: 100px;\r\n  margin-right: 12px;\r\n}\r\n.orderformPage .intable_pro .name {\r\n  max-width: 200px;\r\n  margin-bottom: 10px;\r\n}\r\n.orderformPage .intable_pro .op05 {\r\n  font-size: 14px;\r\n}\r\n.orderformPage .intable_pro {\r\n  align-items: flex-start;\r\n  margin-bottom: 15px;\r\n}\r\n.orderformPage .intable_pro .quantity {\r\n  margin: 0 15px;\r\n}\r\n.orderformPage .checks {\r\n  margin-bottom: 25px;\r\n}\r\n.orderformPage .checks.last {\r\n  margin-top: 50px;\r\n}\r\n.orderformPage .checks label {\r\n  position: relative;\r\n  padding-left: 30px;\r\n  color: #2f3e5173;\r\n}\r\n.orderformPage .checks label::before {\r\n  border: 1px solid #dedede;\r\n  width: 15px;\r\n  height: 15px;\r\n  border-radius: 3px;\r\n  left: 0;\r\n  top: 2px;\r\n}\r\n.orderformPage .checks label::after {\r\n  width: 16px;\r\n  height: 15px;\r\n  left: 3px;\r\n  top: 2px;\r\n  background: url(/img/icons/other/tick.svg) no-repeat;\r\n  background-size: contain;\r\n  display: none;\r\n}\r\n.orderformPage .checks input {\r\n  display: none;\r\n}\r\n.orderformPage .checks input:checked + label::after {\r\n  display: block;\r\n}\r\n\r\n@media screen and (max-width: 1400px) {\r\n  .orderformPage .grid {\r\n    grid-gap: 23px;\r\n  }\r\n}\r\n@media screen and (max-width: 1100px) {\r\n  .orderformPage .grid .products,\r\n  .orderformPage .grid .first {\r\n    grid-column: span 2;\r\n  }\r\n  .orderformPage .intable_pro .name {\r\n    max-width: none;\r\n  }\r\n}\r\n@media screen and (max-width: 700px) {\r\n  .orderformPage .grid {\r\n    grid-template-columns: 1fr;\r\n  }\r\n  .orderformPage .grid .products,\r\n  .orderformPage .grid .first {\r\n    grid-column: span 1;\r\n  }\r\n  .orderformPage .intable_pro {\r\n    font-size: 13px;\r\n  }\r\n  .orderformPage .intable_pro .name {\r\n    font-size: 14px;\r\n    max-width: 80%;\r\n  }\r\n  .orderformPage .intable_pro .op05 {\r\n    font-size: 13px;\r\n  }\r\n  .orderformPage .intable_pro .img {\r\n    width: 83px;\r\n    height: 66px;\r\n    margin-right: 9px;\r\n  }\r\n  .orderformPage .checks {\r\n    margin-bottom: 10px;\r\n    font-size: 13px;\r\n  }\r\n}\r\n@media screen and (max-width: 550px) {\r\n  .orderformPage .intable_pro .name {\r\n    font-size: 13px;\r\n  }\r\n  .orderformPage .input_grid {\r\n    grid-template-columns: 1fr;\r\n    grid-gap: 10px;\r\n  }\r\n  .orderformPage .input_grid textarea {\r\n    grid-row: span 1;\r\n    grid-row-start: auto;\r\n    grid-row-end: auto;\r\n    grid-column-start: auto;\r\n    grid-column-end: auto;\r\n    height: 100px;\r\n  }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8594,7 +8642,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".product_box {\n  max-width: 246px;\n  background-color: #fff;\n  border-radius: 20px;\n  border: 1px solid #dedede;\n  position: relative;\n  padding: 14px;\n  overflow: hidden;\n}\n.product_box .img {\n  height: 200px;\n  margin-bottom: 10px;\n  position: relative;\n}\n.product_box .img::after {\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  background: url(/img/icons/other/eye.svg) no-repeat;\n  background-position: center;\n  background-size: 25px;\n  transform: translateY(30px);\n  transition: 0.3s;\n  opacity: 0;\n}\n.product_box:hover .img::after {\n  opacity: 1;\n  transform: translateY(0);\n}\n.product_box .title {\n  position: relative;\n  margin-bottom: 36px;\n}\n.product_box .title::after {\n  width: 100%;\n  height: 5px;\n  border-top: 1px solid #eeeeee;\n  border-bottom: 1px solid #eeeeee;\n  left: 0;\n  bottom: -20px;\n}\n\n.product_box .status {\n  position: absolute;\n  left: 0;\n  top: 0;\n  padding: 6px 12px;\n  border-top-left-radius: 20px;\n  border-bottom-right-radius: 20px;\n  color: #fff;\n  font-size: 12px;\n  font-weight: bold;\n  z-index: 100;\n}\n.product_box .status.sale {\n  background-color: #f74b81;\n}\n.product_box .status.new {\n  background-color: #3bb77e;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".product_box {\r\n  max-width: 246px;\r\n  background-color: #fff;\r\n  border-radius: 20px;\r\n  border: 1px solid #dedede;\r\n  position: relative;\r\n  padding: 14px;\r\n  overflow: hidden;\r\n}\r\n.product_box .img {\r\n  height: 200px;\r\n  margin-bottom: 10px;\r\n  position: relative;\r\n}\r\n.product_box .img::after {\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  background: url(/img/icons/other/eye.svg) no-repeat;\r\n  background-position: center;\r\n  background-size: 25px;\r\n  transform: translateY(30px);\r\n  transition: 0.3s;\r\n  opacity: 0;\r\n}\r\n.product_box:hover .img::after {\r\n  opacity: 1;\r\n  transform: translateY(0);\r\n}\r\n.product_box .title {\r\n  position: relative;\r\n  margin-bottom: 36px;\r\n}\r\n.product_box .title::after {\r\n  width: 100%;\r\n  height: 5px;\r\n  border-top: 1px solid #eeeeee;\r\n  border-bottom: 1px solid #eeeeee;\r\n  left: 0;\r\n  bottom: -20px;\r\n}\r\n\r\n.product_box .status {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  padding: 6px 12px;\r\n  border-top-left-radius: 20px;\r\n  border-bottom-right-radius: 20px;\r\n  color: #fff;\r\n  font-size: 12px;\r\n  font-weight: bold;\r\n  z-index: 100;\r\n}\r\n.product_box .status.sale {\r\n  background-color: #f74b81;\r\n}\r\n.product_box .status.new {\r\n  background-color: #3bb77e;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

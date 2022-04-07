@@ -10,19 +10,22 @@ import ProductSlider from "../../components/ProductSlider/ProductSlider";
 import { SliderData } from "../../components/ProductSlider/SliderData";
 import TodaysBox from "../../components/TodaysBox/TodaysBox";
 import Layout from "../../Layouts/Layout";
+import { usePage } from "@inertiajs/inertia-react";
 
-const Home = () => {
+const renderHTML = (rawHTML) => React.createElement("div", { dangerouslySetInnerHTML: { __html: rawHTML } });
+
+const Home = ({page,seo}) => {
+    const sharedData = usePage().props.localizations;
   return (
-      <Layout>
+      <Layout seo={seo}>
           <div className="homePage">
               <div className="hero_section">
                   <div className="wrapper">
-                      <div className="title35 blue">ახალი კოლექცია</div>
+                      <div className="title35 blue">{__('client.home_section1_title',sharedData)}</div>
                       <div className="archy-edt blue">
-                          შესძინე საკუთარ თავს მეტი თავდაჯერებულობა და შეიგრძენი ამერიკული და
-                          ევროპული ხარისხი
+                          {renderHTML(__('client.home_section1_text',sharedData).newLineToBr())}
                       </div>
-                      <RoundButton link="/" text="გაიგე მეტი" />
+                      <RoundButton link="/" text={__('client.home_section1_btn_title',sharedData)} />
                   </div>
               </div>
               <div className="new_products wrapper">

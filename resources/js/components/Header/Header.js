@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "@inertiajs/inertia-react";
+import {Link, usePage} from "@inertiajs/inertia-react";
 import { Pin } from "../SmallComps/Icons";
 import { SocialMedia } from "../SmallComps/SocialMedia";
 import "./Header.css";
@@ -12,17 +12,21 @@ const Header = () => {
   const toggleDrop = () => {
     setCategoryDrop(!categoryDrop);
   };
+
+    const sharedData = usePage().props.localizations;
+
+
   const links = [
     {
-      name: "ბოლოს დამატებული",
+      name: __('client.header_last_added',sharedData),
       link: "/products",
     },
     {
-      name: "პოპულარული პროდუქცია",
+      name: __('client.header_popular',sharedData),
       link: "/products",
     },
     {
-      name: "სპეციალური ფასი",
+      name: __('client.header_special',sharedData),
       link: "/products",
     },
   ];
@@ -67,14 +71,14 @@ const Header = () => {
     <div className="header">
       <div className="top">
         <div className="wrapper flex">
-          <Link className="logo " href="/">
+          <Link className="logo " href={route('client.home.index')}>
             <img src="/img/logo/1.svg" alt="" />
           </Link>
           <Link className="logo second" href="/">
             <img src="/img/logo/2.svg" alt="" />
           </Link>
           <div className="search radius5">
-            <input type="text" placeholder="ძებნა" />
+            <input type="text" placeholder={__('client.header_search_placeholder',sharedData)} />
             <button>
               <img src="/img/icons/header/search.svg" alt="" />
             </button>
@@ -113,7 +117,7 @@ const Header = () => {
                   {inCartProducts.length}
                 </div>
                 <img src="/img/icons/header/cart.svg" alt="" />
-                <span className="archy-edt">კალათა</span>
+                <span className="archy-edt">{__('client.header_cart',sharedData)}</span>
               </Link>
               <div className="cart_drop">
                 <div className="incart_products">

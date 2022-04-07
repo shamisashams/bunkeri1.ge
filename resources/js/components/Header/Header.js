@@ -14,6 +14,7 @@ const Header = () => {
   };
 
     const sharedData = usePage().props.localizations;
+    const {info} = usePage().props;
 
 
   const links = [
@@ -86,10 +87,10 @@ const Header = () => {
           <div className="contact_info blue">
             <Link className="archy-edt" href="/">
               <Pin color="#303285" />
-              აკაკი წერეთლის N1
+              {info.address}
             </Link>
             <Link className="archy-edt" href="/">
-              +995 555 555 555
+                {info.phone}
             </Link>
           </div>
           <SocialMedia color="#303285" />

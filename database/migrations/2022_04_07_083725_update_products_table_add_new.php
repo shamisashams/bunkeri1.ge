@@ -16,6 +16,7 @@ class UpdateProductsTableAddNew extends Migration
         //
         Schema::table('products', function (Blueprint $table) {
             $table->boolean('new')->nullable();
+            $table->integer('quantity')->default(0)->nullable()->change();
         });
     }
 
@@ -29,6 +30,7 @@ class UpdateProductsTableAddNew extends Migration
         //
         Schema::table('products', function (Blueprint $table) {
             $table->dropColumn('new');
+            $table->integer('quantity')->change();
         });
     }
 }

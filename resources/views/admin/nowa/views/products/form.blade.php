@@ -290,13 +290,13 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                         @enderror
                     </div>
 
-                    <div class="form-group mb-0 justify-content-end">
-                        <div class="checkbox">
-                            <div class="custom-checkbox custom-control">
-                                <input type="checkbox" data-checkboxes="mygroup" name="status" class="custom-control-input" id="checkbox-2" {{$product->status ? 'checked' : ''}}>
-                                <label for="checkbox-2" class="custom-control-label mt-1">@lang('admin.status')</label>
-                            </div>
-                        </div>
+
+                    <div class="form-group">
+                        <label class="ckbox">
+                            <input type="checkbox" name="status"
+                                   value="true" {{$product->status ? 'checked' : ''}}>
+                            <span>{{__('admin.status')}}</span>
+                        </label>
                     </div>
 
                     <div class="form-group">
@@ -307,13 +307,13 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                         </label>
                     </div>
 
-                    {{--<div class="form-group">
+                    <div class="form-group">
                         <label class="ckbox">
-                            <input type="checkbox" name="stock"
-                                   value="true" {{$product->stock ? 'checked' : ''}}>
-                            <span>{{__('admin.instock')}}</span>
+                            <input type="checkbox" name="new"
+                                   value="true" {{$product->new ? 'checked' : ''}}>
+                            <span>{{__('admin.new_product')}}</span>
                         </label>
-                    </div>--}}
+                    </div>
 
                     {{--<div class="form-group">
 

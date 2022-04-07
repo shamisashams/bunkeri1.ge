@@ -60,7 +60,7 @@ class HandleInertiaRequests extends Middleware
         //dd($info);
         $_result = [];
         foreach ($info as $item){
-            $_result[$item->key] = $item;
+            $_result[$item->key] = $item->value;
         }
 
         //dd($result,$categories);

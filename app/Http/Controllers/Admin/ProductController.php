@@ -131,6 +131,7 @@ class ProductController extends Controller
         $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
         $saveData['stock'] = isset($saveData['stock']) && (bool)$saveData['stock'];
         $saveData['popular'] = isset($saveData['popular']) && (bool)$saveData['popular'];
+        $saveData['new'] = isset($saveData['new']) && (bool)$saveData['new'];
 
         $attributes = $saveData['attribute'];
         unset($saveData['attribute']);
@@ -239,6 +240,7 @@ class ProductController extends Controller
         $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
         $saveData['popular'] = isset($saveData['popular']) && (bool)$saveData['popular'];
         $saveData['stock'] = isset($saveData['stock']) && (bool)$saveData['stock'];
+        $saveData['new'] = isset($saveData['new']) && (bool)$saveData['new'];
 
         //dd($saveData);
         $attributes = $saveData['attribute'];

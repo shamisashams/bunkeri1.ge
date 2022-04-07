@@ -1,26 +1,36 @@
 import React from "react";
-import { Link } from "@inertiajs/inertia-react";
+import {Link, usePage} from "@inertiajs/inertia-react";
 
 import { SocialMedia } from "../SmallComps/SocialMedia";
 import "./Footer.css";
 
+const renderHTML = (rawHTML) =>
+    React.createElement("div", {
+        dangerouslySetInnerHTML: { __html: rawHTML },
+    });
+
 const Footer = () => {
+    const {info, categories, currentLocale} = usePage().props;
+    const sharedData = usePage().props.localizations;
+    //console.log(usePage().props);
+    /*let url_ = new URL(pathname);
+    let pathname_ = url_.pathname;*/
   const { pathname } = "/";
   const contactInfo = [
     {
       link: "/",
       icon: "/img/icons/header/pin.svg",
-      text: "აკაკი წერეთლის N1",
+      text: info.address,
     },
     {
       link: "/",
       icon: "/img/icons/header/tel.svg",
-      text: "+995 555 555 555",
+      text: info.phone,
     },
     {
       link: "/",
       icon: "/img/icons/header/mail.svg",
-      text: "didube_dollarstore@yahoo.com",
+      text: info.email,
     },
   ];
   const links = [
@@ -72,21 +82,19 @@ const Footer = () => {
       }}
     >
       <div className="wrapper">
-        <Link href="/">
+        <Link href={route('client.home.index')}>
           <img src="/img/logo/1.svg" alt="" />
         </Link>
         <div className="flex main">
           <div className="column">
-            <div className="archy-edt">ჩვენ შესახებ</div>
+            <div className="archy-edt">{__('client.footer_about_title',sharedData)}</div>
             <div className="op05">
-              მსოფლიო ბრენდების მიერ შექმნილი ფუნქციური და დახვეწილი ჩანთები,
-              რომლებსაც გამოიყენებთ მოგზაურობასა და თუ სახლიდან რიგითი
-              გასვლისას.
+                {renderHTML(__('client.footer_about_text',sharedData).newLineToBr())}
             </div>
             <SocialMedia color="#2F3E51" />
           </div>
           <div className="column">
-            <div className="archy-edt">დაგვიკავშირდით</div>
+            <div className="archy-edt">{__('client.footer_contact',sharedData)}</div>
             {contactInfo.map((info, index) => {
               return (
                 <Link className="contact_info" href={info.link} key={index}>
@@ -97,7 +105,7 @@ const Footer = () => {
             })}
           </div>
           <div className="column">
-            <div className="archy-edt">მოგვძებნე რუკაზე</div>
+            <div className="archy-edt">{__('client.footer_map',sharedData)}</div>
             <div className="map">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11909.044506590086!2d44.7621418!3d41.7364602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sge!4v1648473368143!5m2!1sen!2sge"
@@ -112,10 +120,10 @@ const Footer = () => {
           </div>
         </div>
         <div className="bottom_Links flex">
-          {links.map((link, i) => {
+          {categories.map((link, i) => {
             return (
-              <Link className="archy-edt" key={i} href={link.link}>
-                {link.name}
+              <Link className="archy-edt" key={i} href={route('client.category.show',link.slug)}>
+                {link.title}
               </Link>
             );
           })}

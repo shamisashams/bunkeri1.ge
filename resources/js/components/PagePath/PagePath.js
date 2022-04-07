@@ -6,7 +6,7 @@ export const PagePath = ({ previous, current, first }) => {
     <div className="pagepath">
       <div className="wrapper">
         <p>
-          {first} {previous} / {current}
+          {previous}
         </p>
       </div>
     </div>

@@ -83,7 +83,28 @@ class ProductController extends Controller
         $product = Product::where(['status' => true, 'slug' => $slug])->whereHas('categories', function (Builder $query) {
             $query->where('status', 1);
 
-        })->with(['files','categories'])->firstOrFail();
+        })->with(['categories'])->firstOrFail();
+
+        $productImages = $product->files()->orderBy('id','desc')->get();
+
+        $product_attributes = $product->attribute_values;
+
+        $result = [];
+
+        foreach ($product_attributes as $item){
+            $options = $item->attribute->options;
+            $value = '';
+            foreach ($options as $option){
+                if($item->attribute->type == 'select'){
+                    if($item->integer_value == $option->id) {
+                        $result[$item->attribute->code] = $option->label;
+                    }
+
+                }
+            }
+
+        }
+
 
         //dd(last($product->categories));
         $categories = $product->categories;
@@ -160,10 +181,12 @@ class ProductController extends Controller
         /*return view('client.pages.product.show', [
             'product' => $product
         ]);*/
-        return Inertia::render('SingleProduct/SingleProduct',[
+        return Inertia::render('ProductDetails/ProductDetails',[
             'product' => $product,
             'category_path' => $path,
             'similar_products' => $similar_products,
+            'product_images' => $productImages,
+            'product_attributes' => $result,
             "seo" => [
                 "title"=>$product->meta_title,
                 "description"=>$product->meta_description,

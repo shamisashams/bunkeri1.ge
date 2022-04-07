@@ -8,6 +8,47 @@ import { ProductBox } from "../../components/ProductBox/ProductBox";
 import { Arrow } from "../../components/SmallComps/Icons";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
+import { Link } from "@inertiajs/inertia-react";
+
+let links = function (links){
+    let rows = [];
+    //links.shift();
+    //links.splice(-1);
+    {links.map(function (item,index){
+
+
+        if (index > 0 && index < links.length - 1){
+            rows.push(<Link href={item.url} className={(item.active) ? 'num active': 'num'}>{item.label}</Link>)
+        }
+
+    })}
+    return <div className="nums"> {rows.length > 1 ? rows : null} </div>
+}
+
+let linksPrev = function (links){
+    let rowCount = 0;
+    links.map(function (item,index){
+        if (index > 0 && index < links.length - 1){
+            rowCount++;
+        }
+    })
+    return rowCount > 1 ? <Link href={links[0].url}>
+        <Arrow color="#2F3E51" rotate="90" />
+        <Arrow color="#2F3E51" rotate="90" />
+    </Link> : null
+}
+let linksNext = function (links){
+    let rowCount = 0;
+    links.map(function (item,index){
+        if (index > 0 && index < links.length - 1){
+            rowCount++;
+        }
+    })
+    return rowCount > 1 ? <Link href={links[links.length - 1].url}>
+        <Arrow color="#2F3E51" rotate="-90" />
+        <Arrow color="#2F3E51" rotate="-90" />
+    </Link> : null
+}
 
 const Products = ({page,seo}) => {
   const [showFilter, setShowFilter] = useState(false);
@@ -24,6 +65,7 @@ const Products = ({page,seo}) => {
     const { products, category, images } = usePage().props;
 
     console.log(products);
+    console.log(category);
 
   return (
       <Layout seo={seo}>
@@ -43,7 +85,7 @@ const Products = ({page,seo}) => {
                 <img src="/img/icons/other/filter.png" alt="" />
               </button>
               <div className="flex headflex">
-                <div className="headtitle">კატეგორიის დასახელება</div>
+                <div className="headtitle">{category.title}</div>
                 <Select
                   closeMenuOnSelect={true}
                   components={animatedComponents}
@@ -68,7 +110,7 @@ const Products = ({page,seo}) => {
                 })}
               </div>
               <div className="pagination flex centered">
-                <button>
+                {/*<button>
                   <Arrow color="#2F3E51" rotate="90" />
                   <Arrow color="#2F3E51" rotate="90" />
                 </button>
@@ -82,7 +124,10 @@ const Products = ({page,seo}) => {
                 <button>
                   <Arrow color="#2F3E51" rotate="-90" />
                   <Arrow color="#2F3E51" rotate="-90" />
-                </button>
+                </button>*/}
+                  {linksPrev(products.links)}
+                  {links(products.links)}
+                  {linksNext(products.links)}
               </div>
             </div>
           </div>

@@ -18,7 +18,7 @@ export const ProductBox = (props) => {
           <div className="price blue" style={{ fontWeight: "bold" }}>
             {props.price} ლარი
           </div>
-          <AddToCart />
+          <AddToCart productId={props.id} />
         </div>
       </div>
     </Link>

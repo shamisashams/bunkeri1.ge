@@ -4,6 +4,8 @@ import { Arrow } from "../SmallComps/Icons";
 import {Link, usePage} from "@inertiajs/inertia-react";
 import { Cart } from "../SmallComps/Icons";
 
+
+
 export const CatButton = ({ onClick, rotate }) => {
     const sharedData = usePage().props.localizations;
   return (
@@ -35,11 +37,15 @@ export const CommonButton = ({ link, text, gray }) => {
   );
 };
 
-export const AddToCart = () => {
+export const AddToCart = ({productId}) => {
+    const sharedData = usePage().props.localizations;
+    let addToCart = function (){
+
+    }
   return (
-    <button className="add_to_cart">
+    <button onClick={addToCart} className="add_to_cart">
       <Cart color="#303285" />
-      Add
+        {__('client.add_to_cart_btn',sharedData)}
     </button>
   );
 };

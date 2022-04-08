@@ -243,7 +243,14 @@ class OrderController extends Controller
     }
 
     public function statusSuccess(){
-        return Inertia::render('Success/Success');
+        return Inertia::render('Success/Success')->withViewData([
+            'meta_title' => 'success',
+            'meta_description' => 'success',
+            'meta_keyword' => 'success',
+            "image" => '',
+            'og_title' => 'success',
+            'og_description' => 'success'
+        ]);
     }
 
 }

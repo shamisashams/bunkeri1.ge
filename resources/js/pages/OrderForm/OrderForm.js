@@ -105,6 +105,12 @@ const OrderForm = ({seo}) => {
         Inertia.post(route('client.checkout.order'), values)
     }
 
+    function handleClick(e) {
+        //document.getElementById('order_f').submit();
+        values['cart'] = getCart();
+        Inertia.post(route('client.checkout.order'), values)
+    }
+
 
   return (
       <Layout seo={seo}>
@@ -119,7 +125,7 @@ const OrderForm = ({seo}) => {
             <div className="grid">
               <div className="first">
                 <div className="title archy-edt">შეიყვანე პირადი ინფორმაცია</div>
-                  <form onSubmit={handleSubmit}>
+                  <form id="order_f" onSubmit={handleSubmit}>
                       <div className="input_grid">
                           {inputs.map((input, index) => {
                               return (
@@ -199,6 +205,7 @@ const OrderForm = ({seo}) => {
                   <label htmlFor="bank-transfer">გადახდა ბანკით</label>
                 </div>
                 <YellowButton link="/payment" text="შეკვეთის გაფორმება" />
+                  <button type="button" onClick={handleClick}>place order</button>
               </div>
             </div>
           </div>

@@ -5094,6 +5094,9 @@ var getCart = function getCart() {
 
 var OrderForm = function OrderForm(_ref) {
   var seo = _ref.seo;
+
+  /*const { errors } = usePage().props
+  console.log(errors);*/
   var items = [{
     img: _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__["default"],
     name: "პროდუქტის დასახელება გრძელი ვარიანტი",
@@ -5135,7 +5138,7 @@ var OrderForm = function OrderForm(_ref) {
     name: "phone"
   }, {
     Placeholder: "ელფოსტა",
-    type: "number",
+    type: "email",
     name: "email"
   }];
 
@@ -6236,6 +6239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
 /* harmony import */ var _Success_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Success.css */ "./resources/js/Pages/Success/Success.css");
+/* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6252,6 +6256,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Success = function Success() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -6261,7 +6266,7 @@ var Success = function Success() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setSparkle(true);
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "successPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__.PagePath, {
     first: "\u10DB\u10D7\u10D0\u10D5\u10D0\u10E0\u10D8 /",
@@ -6283,7 +6288,7 @@ var Success = function Success() {
   }, "\u10DB\u10D0\u10D3\u10DA\u10DD\u10D1\u10D0 \u10E8\u10D4\u10DC\u10D0\u10EB\u10D4\u10DC\u10D8\u10E1\u10D7\u10D5\u10D8\u10E1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "\u10E9\u10D0\u10DB\u10DD\u10E2\u10D5\u10D8\u10E0\u10D7\u10D4 \u10E5\u10D5\u10D8\u10D7\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/other/download.svg",
     alt: ""
-  }))));
+  })))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Success);

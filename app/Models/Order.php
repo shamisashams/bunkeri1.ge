@@ -12,6 +12,20 @@ class Order extends Model
 
     protected $table = 'orders';
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'phone',
+        'email',
+        'city',
+        'address',
+        'info',
+        'payment_method',
+        'courier_service',
+        'locale',
+        'grand_total'
+    ];
+
 
     public function items():HasMany{
         return $this->hasMany(OrderItem::class);

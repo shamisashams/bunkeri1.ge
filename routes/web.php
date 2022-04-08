@@ -109,6 +109,7 @@ Route::prefix('{locale?}')
             Route::get('cart',[\App\Http\Controllers\Client\CartController::class,'index'])->name('client.cart.index');
             Route::get('checkout',[\App\Http\Controllers\Client\OrderController::class,'index'])->name('client.checkout.index');
             Route::post('checkout',[\App\Http\Controllers\Client\OrderController::class,'order'])->name('client.checkout.order');
+            Route::get('order/success',[\App\Http\Controllers\Client\OrderController::class,'statusSuccess'])->name('order.success');
 
             Route::get('test/{method}',function ($locale,$method,\App\Http\Controllers\TestController $testController){
 

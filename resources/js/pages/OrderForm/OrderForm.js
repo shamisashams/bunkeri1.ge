@@ -28,6 +28,8 @@ const getCart = function (){
 }
 
 const OrderForm = ({seo}) => {
+    /*const { errors } = usePage().props
+    console.log(errors);*/
   const items = [
     {
       img: Product1,
@@ -79,7 +81,7 @@ const OrderForm = ({seo}) => {
     },
     {
       Placeholder: "ელფოსტა",
-      type: "number",
+      type: "email",
         name: "email"
     },
   ];

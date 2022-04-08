@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Page;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
@@ -11,6 +13,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use App\Repositories\Eloquent\ProductRepository;
 use Spatie\TranslationLoader\TranslationLoaders\Db;
@@ -206,7 +209,41 @@ class OrderController extends Controller
     }
 
     public function order(Request $request){
-        dd($request->all());
+        //dd($request->all());
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+        ]);
+
+        $data = $request->all();
+        $cart = Arr::pull($data,'cart');
+        $data['locale'] = app()->getLocale();
+        $data['grand_total'] = $cart['total'];
+
+        $order = Order::create($data);
+
+        $data = [];
+        $insert = [];
+        foreach ($cart['items'] as $item){
+            $data['order_id'] = $order->id;
+            $data['product_id'] = $item['product']['id'];
+            $data['name'] = $item['product']['title'];
+            $data['qty_ordered'] = $item['qty'];
+            $data['price'] = $item['product']['price'];
+            $data['total'] = $item['product']['price'] * $item['qty'];
+            $insert[] = $data;
+        }
+        //dd($insert);
+        OrderItem::insert($insert);
+        return redirect(locale_route('order.success'));
+    }
+
+    public function statusSuccess(){
+        return Inertia::render('Success/Success');
     }
 
 }

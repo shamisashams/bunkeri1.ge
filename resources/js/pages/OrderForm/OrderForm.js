@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { PagePath } from "../../components/PagePath/PagePath";
 import Product1 from "/img/products/3.png";
 import Product2 from "/img/products/2.png";
@@ -8,6 +8,7 @@ import { YellowButton } from "../../components/Buttons/Buttons";
 import { Link } from "@inertiajs/inertia-react";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
+import { Inertia } from '@inertiajs/inertia'
 
 const getCart = function (){
     let cart = [];
@@ -54,28 +55,57 @@ const OrderForm = ({seo}) => {
     {
       type: "text",
       Placeholder: "სახელი",
+        name: "first_name"
     },
     {
       Placeholder: "ქალაქი / სოფელი",
       type: "text",
+        name: "city"
     },
     {
       Placeholder: "გვარი",
       type: "text",
+        name: "last_name"
     },
     {
       Placeholder: "მისამართი",
       type: "text",
+        name: "address"
     },
     {
       Placeholder: "ტელეფონის ნომერი",
       type: "number",
+        name: "phone"
     },
     {
       Placeholder: "ელფოსტა",
       type: "number",
+        name: "email"
     },
   ];
+
+    const [values, setValues] = useState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: ""
+    })
+
+    function handleChange(e) {
+        const key = e.target.name;
+        const value = e.target.value
+        setValues(values => ({
+            ...values,
+            [key]: value,
+        }))
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        Inertia.post(route('client.checkout.order'), values)
+    }
+
+
   return (
       <Layout seo={seo}>
         <div className="orderformPage">
@@ -89,22 +119,28 @@ const OrderForm = ({seo}) => {
             <div className="grid">
               <div className="first">
                 <div className="title archy-edt">შეიყვანე პირადი ინფორმაცია</div>
-                <div className="input_grid">
-                  {inputs.map((input, index) => {
-                    return (
-                      <input
-                        className="common_input"
-                        placeholder={input.Placeholder}
-                        key={index}
-                        type={input.type}
-                      />
-                    );
-                  })}
-                  <textarea
-                    className="common_input"
-                    placeholder="დამატებითი ინფორმაცია"
-                  ></textarea>
-                </div>
+                  <form onSubmit={handleSubmit}>
+                      <div className="input_grid">
+                          {inputs.map((input, index) => {
+                              return (
+                                  <input
+                                      className="common_input"
+                                      placeholder={input.Placeholder}
+                                      key={index}
+                                      type={input.type}
+                                      name={input.name}
+                                      onChange={handleChange}
+                                  />
+                              );
+                          })}
+                          <textarea name="info"
+                                    className="common_input"
+                                    placeholder="დამატებითი ინფორმაცია"
+                                    onChange={handleChange}
+                          ></textarea>
+                      </div>
+                  </form>
+
               </div>
               <div className="products">
                 <div className="title archy-edt">შენი შეკვეთა</div>

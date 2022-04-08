@@ -50,7 +50,7 @@ const Filters = () => {
       <div className="section">
         <div className="head">ფასი</div>
         {/* Price Range */}
-        <DoubleRangeSlider />
+        <DoubleRangeSlider price={filter.price} />
       </div>
 
         {filter.attributes.map((item, index) => {

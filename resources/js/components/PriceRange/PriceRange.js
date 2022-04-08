@@ -6,7 +6,7 @@ class DoubleRangeSlider extends React.Component {
     sliderWidth: 0,
     offsetSliderWidht: 0,
     min: 0,
-    max: 200,
+    max: this.props.price.max,
     minValueBetween: 10,
 
     currentMin: 55,

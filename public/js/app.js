@@ -5043,6 +5043,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OrderForm_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OrderForm.css */ "./resources/js/Pages/OrderForm/OrderForm.css");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
 
 
 
@@ -5052,7 +5053,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var OrderForm = function OrderForm() {
+
+
+var getCart = function getCart() {
+  var cart = [];
+
+  var _cart = localStorage.getItem('cart');
+
+  if (_cart !== null) cart = JSON.parse(_cart);
+  var total = 0;
+  cart.forEach(function (el, i) {
+    total += el.qty * el.product.price;
+  });
+  var obj = {
+    items: cart,
+    total: total
+  };
+  return obj;
+};
+
+var OrderForm = function OrderForm(_ref) {
+  var seo = _ref.seo;
   var items = [{
     img: _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__["default"],
     name: "პროდუქტის დასახელება გრძელი ვარიანტი",
@@ -5091,7 +5112,9 @@ var OrderForm = function OrderForm() {
     Placeholder: "ელფოსტა",
     type: "number"
   }];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    seo: seo
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "orderformPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__.PagePath, {
     first: "\u10DB\u10D7\u10D0\u10D5\u10D0\u10E0\u10D8 /",
@@ -5123,7 +5146,7 @@ var OrderForm = function OrderForm() {
     className: "products"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
-  }, "\u10E8\u10D4\u10DC\u10D8 \u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D0"), items.map(function (item, index) {
+  }, "\u10E8\u10D4\u10DC\u10D8 \u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D0"), getCart().items.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       key: index,
       className: "flex intable_pro",
@@ -5133,15 +5156,15 @@ var OrderForm = function OrderForm() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "img"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: item.img,
+      src: item.product.latest_image != null ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null,
       alt: ""
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "name"
-    }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", item.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", item.product.attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "quantity"
-    }, item.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.price, " \u10DA\u10D0\u10E0\u10D8"));
+    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
   }, "\u10E1\u10D0\u10D9\u10E3\u10E0\u10D8\u10D4\u10E0\u10DD \u10DB\u10DD\u10DB\u10E1\u10D0\u10EE\u10E3\u10E0\u10D4\u10D1\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5178,7 +5201,7 @@ var OrderForm = function OrderForm() {
     className: "title archy-edt"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", {
     className: "total_cost"
-  }, "\u10EF\u10D0\u10DB\u10E3\u10E0\u10D8 \u10D7\u10D0\u10DC\u10EE\u10D0: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "188"), " \u10DA\u10D0\u10E0\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "\u10EF\u10D0\u10DB\u10E3\u10E0\u10D8 \u10D7\u10D0\u10DC\u10EE\u10D0: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, getCart().total.toFixed(2)), " \u10DA\u10D0\u10E0\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -5197,7 +5220,7 @@ var OrderForm = function OrderForm() {
   }, "\u10D2\u10D0\u10D3\u10D0\u10EE\u10D3\u10D0 \u10D1\u10D0\u10DC\u10D9\u10D8\u10D7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
     link: "/payment",
     text: "\u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D8\u10E1 \u10D2\u10D0\u10E4\u10DD\u10E0\u10DB\u10D4\u10D1\u10D0"
-  })))));
+  }))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderForm);
@@ -5431,6 +5454,7 @@ var ProductDetails = function ProductDetails(_ref) {
       similar_products = _usePage$props.similar_products,
       product_images = _usePage$props.product_images,
       product_attributes = _usePage$props.product_attributes;
+  console.log(similar_products);
   console.log(product);
   console.log(product_attributes);
 
@@ -5445,6 +5469,46 @@ var ProductDetails = function ProductDetails(_ref) {
       }
     });
     return rows;
+  };
+
+  var addToCart = function addToCart(product) {
+    //localStorage.removeItem('cart')
+    var _cart = localStorage.getItem('cart');
+
+    var cart;
+
+    if (_cart !== null) {
+      cart = JSON.parse(_cart);
+    } else cart = [];
+
+    var qty = parseInt(document.getElementById('qty_add').value);
+
+    if (cart.length > 0) {
+      var exists = false;
+      cart.forEach(function (el, i) {
+        if (el.product.id === product.id) {
+          el.qty += qty;
+          exists = true;
+        }
+      });
+
+      if (!exists) {
+        var obj = {
+          product: product,
+          qty: qty
+        };
+        cart.push(obj);
+      }
+    } else {
+      var _obj = {
+        product: product,
+        qty: qty
+      };
+      cart.push(_obj);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(JSON.parse(localStorage.getItem('cart'))); //localStorage.removeItem('cart')
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -5530,6 +5594,7 @@ var ProductDetails = function ProductDetails(_ref) {
       return setquantity(quantity > 1 ? quantity - 1 : 1);
     }
   }, "\u2212"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "qty_add",
     type: "number",
     value: quantity,
     readOnly: true
@@ -5538,12 +5603,15 @@ var ProductDetails = function ProductDetails(_ref) {
       return setquantity(quantity + 1);
     }
   }, "+")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      return addToCart(product);
+    },
     className: "add flex radius5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_2__.Cart, {
     color: "#fff"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "archy-edt"
-  }, "\u10D9\u10D0\u10DA\u10D0\u10D7\u10D0\u10E8\u10D8 \u10D3\u10D0\u10DB\u10D0\u10E2\u10D4\u10D1\u10D0"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_3__.YellowButton, {
+  }, __('client.prod_det_add_to_cart', sharedData)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_3__.YellowButton, {
     link: "/",
     text: "\u10D2\u10D0\u10D3\u10D0\u10D8\u10EE\u10D0\u10D3\u10D4"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5557,12 +5625,7 @@ var ProductDetails = function ProductDetails(_ref) {
     className: "archy-edt title"
   }, "\u10DE\u10E0\u10DD\u10D3\u10E3\u10E5\u10E2\u10D8\u10E1 \u10D0\u10E6\u10EC\u10D4\u10E0\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "op05"
-  }, renderHTML(product.description)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    head: "\u10DB\u10E1\u10D2\u10D0\u10D5\u10E1\u10D8 \u10DE\u10E0\u10DD\u10D3\u10E3\u10E5\u10EA\u10D8\u10D0",
-    data: _components_ProductSlider_SliderData__WEBPACK_IMPORTED_MODULE_7__.SliderData
-  }))));
+  }, renderHTML(product.description))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductDetails);
@@ -5669,6 +5732,46 @@ var linksNext = function linksNext(links) {
   })) : null;
 };
 
+var addToCart = function addToCart(product) {
+  //localStorage.removeItem('cart')
+  var _cart = localStorage.getItem('cart');
+
+  var cart;
+
+  if (_cart !== null) {
+    cart = JSON.parse(_cart);
+  } else cart = [];
+
+  var qty = 1;
+
+  if (cart.length > 0) {
+    var exists = false;
+    cart.forEach(function (el, i) {
+      if (el.product.id === product.id) {
+        el.qty += qty;
+        exists = true;
+      }
+    });
+
+    if (!exists) {
+      var obj = {
+        product: product,
+        qty: qty
+      };
+      cart.push(obj);
+    }
+  } else {
+    var _obj = {
+      product: product,
+      qty: qty
+    };
+    cart.push(_obj);
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  console.log(JSON.parse(localStorage.getItem('cart'))); //localStorage.removeItem('cart')
+};
+
 var Products = function Products(_ref) {
   var page = _ref.page,
       seo = _ref.seo;
@@ -5739,7 +5842,8 @@ var Products = function Products(_ref) {
       title: data.title,
       price: data.price,
       sale: data.sale,
-      "new": data["new"]
+      "new": data["new"],
+      product: data
     });
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "pagination flex centered"
@@ -5921,14 +6025,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _components_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/SmallComps/Icons */ "./resources/js/components/SmallComps/Icons.js");
+/* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 
 
 
 
 
-var ShoppingCart = function ShoppingCart() {
+
+
+var ShoppingCart = function ShoppingCart(_ref) {
+  var seo = _ref.seo;
+
   // const [quantity, setquantity] = useState(1);
+  var getCart = function getCart() {
+    var cart = [];
+
+    var _cart = localStorage.getItem('cart');
+
+    if (_cart !== null) cart = JSON.parse(_cart);
+    var total = 0;
+    cart.forEach(function (el, i) {
+      total += el.qty * el.product.price;
+    });
+    var obj = {
+      items: cart,
+      total: total
+    };
+    return obj;
+  };
+
+  var removeCartItem = function removeCartItem(i) {
+    var cart = [];
+
+    var _cart = localStorage.getItem('cart');
+
+    if (_cart !== null) cart = JSON.parse(_cart);
+    cart.splice(i, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+
   var items = [{
     img: "/img/products/3.png",
     name: "პროდუქტის დასახელება გრძელი ვარიანტი",
@@ -5948,7 +6085,9 @@ var ShoppingCart = function ShoppingCart() {
     price: 27.99,
     quantity: 1
   }];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    seo: seo
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "shoppingcartPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_2__.PagePath, {
     previous: "\u10DB\u10D7\u10D0\u10D5\u10D0\u10E0\u10D8",
@@ -5959,11 +6098,11 @@ var ShoppingCart = function ShoppingCart() {
     className: "title35"
   }, "\u10E9\u10D4\u10DB\u10D8 \u10D9\u10D0\u10DA\u10D0\u10D7\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "blue"
-  }, "\u10E1\u10E3\u10DA \u10DB\u10DD\u10D8\u10EB\u10D4\u10D1\u10DC\u10D0 3 \u10DE\u10E0\u10DD\u10D3\u10E3\u10E5\u10E2\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "\u10E1\u10E3\u10DA \u10DB\u10DD\u10D8\u10EB\u10D4\u10D1\u10DC\u10D0 ", getCart().items.length, " \u10DE\u10E0\u10DD\u10D3\u10E3\u10E5\u10E2\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     className: "head"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10DE\u10E0\u10DD\u10D3\u10E3\u10E5\u10E2\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10D4\u10E0\u10D7\u10D4\u10E3\u10DA\u10D8\u10E1 \u10E4\u10D0\u10E1\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10E0\u10D0\u10DD\u10D3\u10D4\u10DC\u10DD\u10D1\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10EF\u10D0\u10DB\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10EC\u10D0\u10E8\u10DA\u10D0")), items.map(function (item, index) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10DE\u10E0\u10DD\u10D3\u10E3\u10E5\u10E2\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10D4\u10E0\u10D7\u10D4\u10E3\u10DA\u10D8\u10E1 \u10E4\u10D0\u10E1\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10E0\u10D0\u10DD\u10D3\u10D4\u10DC\u10DD\u10D1\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10EF\u10D0\u10DB\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "\u10EC\u10D0\u10E8\u10DA\u10D0")), getCart().items.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5974,20 +6113,23 @@ var ShoppingCart = function ShoppingCart() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "img"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: item.img,
+      src: item.product.latest_image != null ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null,
       alt: ""
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "name"
-    }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", item.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.price, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.price, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "number radius5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "\u2212"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       type: "number",
-      value: item.quantity
+      value: item.qty
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "+"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
       className: "sum"
-    }, item.price * item.quantity, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, item.product.price * item.qty, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: function onClick(event) {
+        return removeCartItem(index);
+      },
       className: "remove flex centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       src: "/img/icons/other/delete.svg",
@@ -6004,10 +6146,10 @@ var ShoppingCart = function ShoppingCart() {
     className: "archy-edt"
   }, "\u10E8\u10DD\u10DE\u10D8\u10DC\u10D2\u10D8\u10E1 \u10D2\u10D0\u10D2\u10E0\u10EB\u10D4\u10DA\u10D4\u10D1\u10D0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", {
     className: "total_cost"
-  }, "\u10EF\u10D0\u10DB\u10E3\u10E0\u10D8 \u10D7\u10D0\u10DC\u10EE\u10D0: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "188"), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_3__.YellowButton, {
-    link: "/order-form",
+  }, "\u10EF\u10D0\u10DB\u10E3\u10E0\u10D8 \u10D7\u10D0\u10DC\u10EE\u10D0: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, getCart().total.toFixed(2)), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_3__.YellowButton, {
+    link: route('client.checkout.index'),
     text: "\u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D8\u10E1 \u10D2\u10D0\u10E4\u10DD\u10E0\u10DB\u10D4\u10D1\u10D0"
-  })))));
+  }))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShoppingCart);
@@ -6177,14 +6319,9 @@ var CommonButton = function CommonButton(_ref3) {
     href: link
   }, text);
 };
-var AddToCart = function AddToCart(_ref4) {
-  var productId = _ref4.productId;
+var AddToCart = function AddToCart() {
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.localizations;
-
-  var addToCart = function addToCart() {};
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: addToCart,
     className: "add_to_cart"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_2__.Cart, {
     color: "#303285"
@@ -6211,9 +6348,9 @@ var SliderButtons = function SliderButtons() {
     className: "slider_btns flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PrevSlide, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(NextSlide, null));
 };
-var YellowButton = function YellowButton(_ref5) {
-  var link = _ref5.link,
-      text = _ref5.text;
+var YellowButton = function YellowButton(_ref4) {
+  var link = _ref4.link,
+      text = _ref4.text;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
     href: link
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -6829,11 +6966,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Filters_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filters.css */ "./resources/js/components/Filters/Filters.css");
 /* harmony import */ var _PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../PriceRange/PriceRange */ "./resources/js/components/PriceRange/PriceRange.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 
 
+
+
+var options = function options(code, _options) {
+  var rows = [];
+
+  _options.map(function (item, index) {
+    rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "flex",
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      type: "checkbox",
+      id: "".concat(code, "-").concat(index)
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      htmlFor: "".concat(code, "-").concat(index)
+    }, item.label)));
+  });
+
+  return rows;
+};
 
 var Filters = function Filters() {
+  var filter = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.filter;
+  console.log(filter);
   var categories = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
   var brands = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
   var sizes = ["XS", "S", "M", "L", "XL"];
@@ -6850,49 +7009,13 @@ var Filters = function Filters() {
     className: "section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "head"
-  }, "\u10E4\u10D0\u10E1\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "section"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "head"
-  }, "\u10E5\u10D5\u10D4\u10D9\u10D0\u10E2\u10D4\u10D2\u10DD\u10E0\u10D8\u10D0"), categories.map(function (item, index) {
+  }, "\u10E4\u10D0\u10E1\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_2__["default"], null)), filter.attributes.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "flex",
-      key: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      type: "checkbox",
-      id: "category-".concat(index)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-      htmlFor: "category-".concat(index)
-    }, item));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "section"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "head"
-  }, "\u10D1\u10E0\u10D4\u10DC\u10D3\u10D8"), brands.map(function (item, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "flex",
-      key: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      type: "checkbox",
-      id: "brand-".concat(index)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-      htmlFor: "brand-".concat(index)
-    }, item));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "section"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "head"
-  }, "\u10D6\u10DD\u10DB\u10D4\u10D1\u10D8"), sizes.map(function (item, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "flex",
-      key: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      type: "checkbox",
-      id: "size-".concat(index)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-      htmlFor: "size-".concat(index)
-    }, item));
-  })));
+      className: "section"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "head"
+    }, item.name), options(item.code, item.options));
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Filters);
@@ -7098,6 +7221,34 @@ var Header = function Header() {
 
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.localizations;
   var info = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.info;
+
+  var getCart = function getCart() {
+    var cart = [];
+
+    var _cart = localStorage.getItem('cart');
+
+    if (_cart !== null) cart = JSON.parse(_cart);
+    var total = 0;
+    cart.forEach(function (el, i) {
+      total += el.qty * el.product.price;
+    });
+    var obj = {
+      items: cart,
+      total: total
+    };
+    return obj;
+  };
+
+  var removeCartItem = function removeCartItem(i) {
+    var cart = [];
+
+    var _cart = localStorage.getItem('cart');
+
+    if (_cart !== null) cart = JSON.parse(_cart);
+    cart.splice(i, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+
   var links = [{
     name: __('client.header_last_added', sharedData),
     link: "/products"
@@ -7201,9 +7352,9 @@ var Header = function Header() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
     className: "  flex centered",
     href: "/shopping-cart"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, getCart().items.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "number_of_products"
-  }, inCartProducts.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  }, getCart().items.length) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/header/cart.svg",
     alt: ""
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -7212,17 +7363,21 @@ var Header = function Header() {
     className: "cart_drop"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "incart_products"
-  }, inCartProducts.map(function (item, index) {
+  }, getCart().items.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
       className: "flex",
-      href: item.link,
+      href: route('client.product.show', item.product.slug),
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "img"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: item.img,
+      src: item.product.latest_image != null ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null,
       alt: ""
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.number, " x ", item.price, "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.qty, " x ", item.product.price.toFixed(2), "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: function onClick(event) {
+        event.stopPropagation();
+        removeCartItem(index);
+      },
       className: "close"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       src: "/img/icons/other/close.svg",
@@ -7230,13 +7385,15 @@ var Header = function Header() {
     })));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex total"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "\u10EF\u10D0\u10DB\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "3200 \u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, __('client.mini_cart_total', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, getCart().total.toFixed(2), " \u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    href: route('client.cart.index'),
     className: "archy-edt blue"
-  }, "\u10D9\u10D0\u10DA\u10D0\u10D7\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, __('client.mini_cart_cart', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    href: route('client.checkout.index'),
     className: "archy-edt"
-  }, "\u10D2\u10D0\u10D3\u10D0\u10EE\u10D3\u10D0")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Languages__WEBPACK_IMPORTED_MODULE_5__.Languages, null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Categories_Categories__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, __('client.mini_cart_payment', sharedData))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Languages__WEBPACK_IMPORTED_MODULE_5__.Languages, null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Categories_Categories__WEBPACK_IMPORTED_MODULE_7__["default"], {
     linkList: links,
     dropList: categoryDrop
   }));
@@ -7587,7 +7744,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ProductBox = function ProductBox(props) {
+var ProductBox = function ProductBox(props, handleClick, product) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
     href: props.link
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -7610,9 +7767,7 @@ var ProductBox = function ProductBox(props) {
     style: {
       fontWeight: "bold"
     }
-  }, props.price, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, {
-    productId: props.id
-  }))));
+  }, props.price, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, null))));
 };
 
 /***/ }),
@@ -7707,9 +7862,9 @@ var ProductSlider = function ProductSlider(_ref) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_slick_lib_slider__WEBPACK_IMPORTED_MODULE_3__["default"], settings, data.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductBox_ProductBox__WEBPACK_IMPORTED_MODULE_4__.ProductBox, {
       key: index,
-      link: item.link,
-      img: item.img,
-      title: item.name,
+      link: route('client.product.show', item.slug),
+      img: item.latest_image != null ? '/' + item.latest_image.path + '/' + item.latest_image.title : null,
+      title: item.title,
       price: item.price,
       sale: item.sale,
       "new": item["new"]
@@ -7733,51 +7888,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SliderData": () => (/* binding */ SliderData)
 /* harmony export */ });
 var SliderData = [{
-  link: "/product-details",
+  slug: "/product-details",
   img: "/img/products/2.png",
-  name: "პროდუქტის ",
+  title: "პროდუქტის ",
   price: "17.5",
   sale: false,
   "new": true
 }, {
-  link: "/product-details",
+  slug: "/product-details",
   img: "/img/products/3.png",
-  name: "პროდუქტის ",
+  title: "პროდუქტის ",
   price: "17.5",
   sale: true,
   "new": false
 }, {
-  link: "/product-details",
+  slug: "/product-details",
   img: "/img/products/4.png",
-  name: "პროდუქტის ",
+  title: "პროდუქტის ",
   price: "17.5",
   sale: false,
   "new": false
 }, {
-  link: "/product-details",
+  slug: "/product-details",
   img: "/img/products/5.png",
-  name: "პროდუქტის ",
+  title: "პროდუქტის ",
   price: "17.5",
   sale: true,
   "new": false
 }, {
-  link: "/product-details",
+  slug: "/product-details",
   img: "/img/products/6.png",
-  name: "პროდუქტის ",
+  title: "პროდუქტის ",
   price: "17.5",
   sale: false,
   "new": false
 }, {
-  link: "/product-details",
+  slug: "/product-details",
   img: "/img/products/7.png",
-  name: "პროდუქტის ",
+  title: "პროდუქტის ",
   price: "17.5",
   sale: false,
   "new": true
 }, {
-  link: "/product-details",
+  slug: "/product-details",
   img: "/img/products/1.png",
-  name: "პროდუქტის ",
+  title: "პროდუქტის ",
   price: "17.5",
   sale: false,
   "new": false

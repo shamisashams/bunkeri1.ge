@@ -6,8 +6,27 @@ import Product3 from "/img/products/6.png";
 import "./OrderForm.css";
 import { YellowButton } from "../../components/Buttons/Buttons";
 import { Link } from "@inertiajs/inertia-react";
+import Layout from "../../Layouts/Layout";
+import { usePage } from "@inertiajs/inertia-react";
 
-const OrderForm = () => {
+const getCart = function (){
+    let cart = [];
+    let _cart = localStorage.getItem('cart');
+    if(_cart !== null) cart = JSON.parse(_cart);
+
+    let total = 0;
+    cart.forEach(function (el,i){
+        total += el.qty * el.product.price;
+    })
+
+    let obj = {
+        items: cart,
+        total: total
+    }
+    return obj;
+}
+
+const OrderForm = ({seo}) => {
   const items = [
     {
       img: Product1,
@@ -58,95 +77,97 @@ const OrderForm = () => {
     },
   ];
   return (
-    <div className="orderformPage">
-      <PagePath
-        first="მთავარი /"
-        previous="კალათა"
-        current="შეკვეთის გაფორმება"
-      />
-      <div className="wrapper">
-        <div className="title35">შეკვეთის გაფორმება</div>
-        <div className="grid">
-          <div className="first">
-            <div className="title archy-edt">შეიყვანე პირადი ინფორმაცია</div>
-            <div className="input_grid">
-              {inputs.map((input, index) => {
-                return (
-                  <input
+      <Layout seo={seo}>
+        <div className="orderformPage">
+          <PagePath
+            first="მთავარი /"
+            previous="კალათა"
+            current="შეკვეთის გაფორმება"
+          />
+          <div className="wrapper">
+            <div className="title35">შეკვეთის გაფორმება</div>
+            <div className="grid">
+              <div className="first">
+                <div className="title archy-edt">შეიყვანე პირადი ინფორმაცია</div>
+                <div className="input_grid">
+                  {inputs.map((input, index) => {
+                    return (
+                      <input
+                        className="common_input"
+                        placeholder={input.Placeholder}
+                        key={index}
+                        type={input.type}
+                      />
+                    );
+                  })}
+                  <textarea
                     className="common_input"
-                    placeholder={input.Placeholder}
-                    key={index}
-                    type={input.type}
-                  />
-                );
-              })}
-              <textarea
-                className="common_input"
-                placeholder="დამატებითი ინფორმაცია"
-              ></textarea>
-            </div>
-          </div>
-          <div className="products">
-            <div className="title archy-edt">შენი შეკვეთა</div>
-            {items.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex intable_pro"
-                  style={{ justifyContent: "flex-start" }}
-                >
-                  <div className="img">
-                    <img src={item.img} alt="" />
-                  </div>
-                  <div>
-                    <div className="name">{item.name}</div>
-                    <div className="op05">მწარმოებელი: {item.brand}</div>
-                  </div>
-                  <div className="quantity">{item.quantity}</div>
-                  <div>{item.price} ლარი</div>
+                    placeholder="დამატებითი ინფორმაცია"
+                  ></textarea>
                 </div>
-              );
-            })}
-          </div>
-          <div>
-            <div className="title archy-edt">საკურიერო მომსახურება</div>
-            <div className="checks">
-              <input type="radio" name="location" id="tbilisi" />
-              <label htmlFor="tbilisi">თბილისი</label>
+              </div>
+              <div className="products">
+                <div className="title archy-edt">შენი შეკვეთა</div>
+                {getCart().items.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex intable_pro"
+                      style={{ justifyContent: "flex-start" }}
+                    >
+                      <div className="img">
+                        <img src={( item.product.latest_image != null) ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null} alt="" />
+                      </div>
+                      <div>
+                        <div className="name">{item.product.title}</div>
+                        <div className="op05">მწარმოებელი: {item.product.attributes.brand}</div>
+                      </div>
+                      <div className="quantity">{item.qty}</div>
+                      <div>{item.product.price.toFixed(2)} ლარი</div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                <div className="title archy-edt">საკურიერო მომსახურება</div>
+                <div className="checks">
+                  <input type="radio" name="location" id="tbilisi" />
+                  <label htmlFor="tbilisi">თბილისი</label>
+                </div>
+                <div className="checks">
+                  <input type="radio" name="location" id="region" />
+                  <label htmlFor="region">რეგიონი</label>
+                </div>
+                <div className="checks last">
+                  <input type="checkbox" name="location" id="iagree" />
+                  <label htmlFor="iagree">
+                    გავეცანი და ვეთანხმები{" "}
+                    <Link className="blue" href="/" style={{ whiteSpace: "nowrap" }}>
+                      წესებს და პირობებს
+                    </Link>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <div className="title archy-edt">
+                  <strong className="total_cost">
+                    ჯამური თანხა: <span>{getCart().total.toFixed(2)}</span> ლარი
+                  </strong>
+                </div>
+                <div className="checks">
+                  <input type="radio" name="payment" id="cash" />
+                  <label htmlFor="cash">ნაღდი ანგარიშსწორება</label>
+                </div>
+                <div className="checks">
+                  <input type="radio" name="payment" id="bank-transfer" />
+                  <label htmlFor="bank-transfer">გადახდა ბანკით</label>
+                </div>
+                <YellowButton link="/payment" text="შეკვეთის გაფორმება" />
+              </div>
             </div>
-            <div className="checks">
-              <input type="radio" name="location" id="region" />
-              <label htmlFor="region">რეგიონი</label>
-            </div>
-            <div className="checks last">
-              <input type="checkbox" name="location" id="iagree" />
-              <label htmlFor="iagree">
-                გავეცანი და ვეთანხმები{" "}
-                <Link className="blue" href="/" style={{ whiteSpace: "nowrap" }}>
-                  წესებს და პირობებს
-                </Link>
-              </label>
-            </div>
-          </div>
-          <div>
-            <div className="title archy-edt">
-              <strong className="total_cost">
-                ჯამური თანხა: <span>188</span> ლარი
-              </strong>
-            </div>
-            <div className="checks">
-              <input type="radio" name="payment" id="cash" />
-              <label htmlFor="cash">ნაღდი ანგარიშსწორება</label>
-            </div>
-            <div className="checks">
-              <input type="radio" name="payment" id="bank-transfer" />
-              <label htmlFor="bank-transfer">გადახდა ბანკით</label>
-            </div>
-            <YellowButton link="/payment" text="შეკვეთის გაფორმება" />
           </div>
         </div>
-      </div>
-    </div>
+      </Layout>
   );
 };
 

@@ -15,7 +15,7 @@ use Inertia\Inertia;
 use App\Repositories\Eloquent\ProductRepository;
 use Spatie\TranslationLoader\TranslationLoaders\Db;
 
-class ProductController extends Controller
+class CartController extends Controller
 {
 
     protected $productRepository;
@@ -47,7 +47,7 @@ class ProductController extends Controller
         }
 
         //dd($products);
-        return Inertia::render('Products/Products',[
+        return Inertia::render('ShoppingCart/ShoppingCart',[
             'products' => $products,
             'images' => $images,
             'page' => $page,
@@ -104,8 +104,6 @@ class ProductController extends Controller
             }
 
         }
-
-        $product['attributes'] = $result;
 
 
         //dd(last($product->categories));

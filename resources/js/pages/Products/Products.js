@@ -10,6 +10,7 @@ import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
 import { Link } from "@inertiajs/inertia-react";
 
+
 let links = function (links){
     let rows = [];
     //links.shift();
@@ -48,6 +49,50 @@ let linksNext = function (links){
         <Arrow color="#2F3E51" rotate="-90" />
         <Arrow color="#2F3E51" rotate="-90" />
     </Link> : null
+}
+
+const addToCart = function (product){
+
+    //localStorage.removeItem('cart')
+    let _cart = localStorage.getItem('cart');
+    let cart;
+    if (_cart !== null) {
+        cart = JSON.parse(_cart);
+    } else cart = [];
+
+    let qty = 1;
+
+
+    if(cart.length > 0){
+        let exists = false;
+        cart.forEach(function (el,i){
+
+            if(el.product.id === product.id){
+                el.qty += qty;
+                exists = true;
+            }
+
+        })
+        if (!exists) {
+            let obj = {
+                product: product,
+                qty: qty
+            }
+            cart.push(obj);
+        }
+
+    } else {
+        let obj = {
+            product: product,
+            qty: qty
+        }
+        cart.push(obj);
+    }
+
+
+    localStorage.setItem('cart',JSON.stringify(cart))
+    console.log(JSON.parse(localStorage.getItem('cart')))
+    //localStorage.removeItem('cart')
 }
 
 const Products = ({page,seo}) => {
@@ -105,6 +150,7 @@ const Products = ({page,seo}) => {
                       price={data.price}
                       sale={data.sale}
                       new={data.new}
+                      product={data}
                     />
                   );
                 })}

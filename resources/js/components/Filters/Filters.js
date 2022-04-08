@@ -1,8 +1,25 @@
 import React from "react";
 import "./Filters.css";
 import DoubleRangeSlider from "../PriceRange/PriceRange";
+import {usePage} from "@inertiajs/inertia-react";
+
+let options = function (code,options){
+    let rows = [];
+    options.map((item, index) => {
+        rows.push(
+            <div className="flex" key={index}>
+                <input type="checkbox" id={`${code}-${index}`} />
+                <label htmlFor={`${code}-${index}`}>{item.label}</label>
+            </div>
+        );
+    })
+    return rows;
+}
 
 const Filters = () => {
+    const { filter } = usePage().props;
+
+    console.log(filter);
   const categories = [
     "დასახელება",
     "დასახელება",
@@ -35,39 +52,16 @@ const Filters = () => {
         {/* Price Range */}
         <DoubleRangeSlider />
       </div>
-      <div className="section">
-        <div className="head">ქვეკატეგორია</div>
-        {categories.map((item, index) => {
-          return (
-            <div className="flex" key={index}>
-              <input type="checkbox" id={`category-${index}`} />
-              <label htmlFor={`category-${index}`}>{item}</label>
-            </div>
-          );
+
+        {filter.attributes.map((item, index) => {
+            return (
+                <div className="section">
+                    <div className="head">{item.name}</div>
+                        {options(item.code,item.options)}
+                </div>
+                )
         })}
-      </div>
-      <div className="section">
-        <div className="head">ბრენდი</div>
-        {brands.map((item, index) => {
-          return (
-            <div className="flex" key={index}>
-              <input type="checkbox" id={`brand-${index}`} />
-              <label htmlFor={`brand-${index}`}>{item}</label>
-            </div>
-          );
-        })}
-      </div>
-      <div className="section">
-        <div className="head">ზომები</div>
-        {sizes.map((item, index) => {
-          return (
-            <div className="flex" key={index}>
-              <input type="checkbox" id={`size-${index}`} />
-              <label htmlFor={`size-${index}`}>{item}</label>
-            </div>
-          );
-        })}
-      </div>
+
     </div>
   );
 };

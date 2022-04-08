@@ -76,9 +76,9 @@ const ProductSlider = ({ data, head, rightBtns, showArrows }) => {
           return (
             <ProductBox
               key={index}
-              link={item.link}
-              img={item.img}
-              title={item.name}
+              link={route('client.product.show',item.slug)}
+              img={( item.latest_image != null) ? '/' + item.latest_image.path + '/' + item.latest_image.title : null}
+              title={item.title}
               price={item.price}
               sale={item.sale}
               new={item.new}

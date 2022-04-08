@@ -4,7 +4,7 @@ import { AddToCart } from "../Buttons/Buttons";
 
 import "./ProductBox.css";
 
-export const ProductBox = (props) => {
+export const ProductBox = (props,handleClick,product) => {
   return (
     <Link href={props.link}>
       <div className="product_box">
@@ -18,7 +18,7 @@ export const ProductBox = (props) => {
           <div className="price blue" style={{ fontWeight: "bold" }}>
             {props.price} ლარი
           </div>
-          <AddToCart productId={props.id} />
+          <AddToCart />
         </div>
       </div>
     </Link>

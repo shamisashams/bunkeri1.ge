@@ -105,6 +105,9 @@ Route::prefix('{locale?}')
            Route::get('category/{category}',[\App\Http\Controllers\Client\CategoryController::class,'show'])->name('client.category.show');
             Route::get('popular',[\App\Http\Controllers\Client\CategoryController::class,'popular'])->name('client.category.popular');
 
+            //checkout
+            Route::get('cart',[\App\Http\Controllers\Client\CartController::class,'index'])->name('client.cart.index');
+            Route::get('checkout',[\App\Http\Controllers\Client\OrderController::class,'index'])->name('client.checkout.index');
 
             Route::get('test/{method}',function ($locale,$method,\App\Http\Controllers\TestController $testController){
 

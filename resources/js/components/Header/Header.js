@@ -17,6 +17,32 @@ const Header = () => {
     const {info} = usePage().props;
 
 
+    const getCart = function (){
+        let cart = [];
+        let _cart = localStorage.getItem('cart');
+        if(_cart !== null) cart = JSON.parse(_cart);
+
+        let total = 0;
+        cart.forEach(function (el,i){
+            total += el.qty * el.product.price;
+        })
+
+        let obj = {
+            items: cart,
+            total: total
+        }
+        return obj;
+    }
+
+    const removeCartItem = function (i){
+        let cart = [];
+        let _cart = localStorage.getItem('cart');
+        if(_cart !== null) cart = JSON.parse(_cart);
+        cart.splice(i,1);
+        localStorage.setItem('cart',JSON.stringify(cart));
+    }
+
+
   const links = [
     {
       name: __('client.header_last_added',sharedData),
@@ -114,27 +140,30 @@ const Header = () => {
           <div className="flex">
             <div className="shopping_cart">
               <Link className="  flex centered" href="/shopping-cart">
-                <div className="number_of_products">
-                  {inCartProducts.length}
-                </div>
+                  {getCart().items.length > 0 ? <div className="number_of_products">
+                  {getCart().items.length}
+                </div> : null}
                 <img src="/img/icons/header/cart.svg" alt="" />
                 <span className="archy-edt">{__('client.header_cart',sharedData)}</span>
               </Link>
               <div className="cart_drop">
                 <div className="incart_products">
-                  {inCartProducts.map((item, index) => {
+                  {getCart().items.map((item, index) => {
                     return (
-                      <Link className="flex" href={item.link} key={index}>
+                      <Link className="flex" href={route('client.product.show',item.product.slug)} key={index}>
                         <div className="img">
-                          <img src={item.img} alt="" />
+                          <img src={( item.product.latest_image != null) ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null} alt="" />
                         </div>
                         <div>
-                          <strong>{item.name}</strong>
+                          <strong>{item.product.title}</strong>
                           <p>
-                            {item.number} x {item.price}₾
+                            {item.qty} x {item.product.price.toFixed(2)}₾
                           </p>
                         </div>
-                        <button className="close">
+                        <button onClick={(event) => {
+                            event.stopPropagation()
+                            removeCartItem(index)
+                        }} className="close">
                           <img src="/img/icons/other/close.svg" alt="" />
                         </button>
                       </Link>
@@ -142,12 +171,12 @@ const Header = () => {
                   })}
                 </div>
                 <div className="flex total">
-                  <strong>ჯამი</strong>
-                  <strong>3200 ₾</strong>
+                  <strong>{__('client.mini_cart_total',sharedData)}</strong>
+                  <strong>{getCart().total.toFixed(2)} ₾</strong>
                 </div>
                 <div className="flex">
-                  <button className="archy-edt blue">კალათა</button>
-                  <button className="archy-edt">გადახდა</button>
+                  <Link href={route('client.cart.index')} className="archy-edt blue">{__('client.mini_cart_cart',sharedData)}</Link>
+                  <Link href={route('client.checkout.index')} className="archy-edt">{__('client.mini_cart_payment',sharedData)}</Link>
                 </div>
               </div>
             </div>

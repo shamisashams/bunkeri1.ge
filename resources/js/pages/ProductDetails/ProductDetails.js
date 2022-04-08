@@ -41,6 +41,7 @@ const ProductDetails = ({page,seo}) => {
 
     const { product, category_path, similar_products, product_images, product_attributes } = usePage().props;
 
+    console.log(similar_products)
     console.log(product)
     console.log(product_attributes)
 
@@ -56,6 +57,50 @@ const ProductDetails = ({page,seo}) => {
         });
         return rows;
     };
+
+
+    const addToCart = function (product){
+        //localStorage.removeItem('cart')
+        let _cart = localStorage.getItem('cart');
+        let cart;
+        if (_cart !== null) {
+            cart = JSON.parse(_cart);
+        } else cart = [];
+
+        let qty = parseInt(document.getElementById('qty_add').value);
+
+
+        if(cart.length > 0){
+            let exists = false;
+            cart.forEach(function (el,i){
+
+                if(el.product.id === product.id){
+                    el.qty += qty;
+                    exists = true;
+                }
+
+            })
+            if (!exists) {
+                let obj = {
+                    product: product,
+                    qty: qty
+                }
+                cart.push(obj);
+            }
+
+        } else {
+            let obj = {
+                product: product,
+                qty: qty
+            }
+            cart.push(obj);
+        }
+
+
+        localStorage.setItem('cart',JSON.stringify(cart))
+        console.log(JSON.parse(localStorage.getItem('cart')))
+        //localStorage.removeItem('cart')
+    }
 
   return (
       <Layout seo={seo}>
@@ -124,12 +169,12 @@ const ProductDetails = ({page,seo}) => {
                     >
                       −
                     </button>
-                    <input type="number" value={quantity} readOnly />
+                    <input id="qty_add" type="number" value={quantity} readOnly />
                     <button onClick={() => setquantity(quantity + 1)}>+</button>
                   </div>
-                  <button className="add flex radius5">
+                  <button onClick={() => addToCart(product)} className="add flex radius5">
                     <Cart color="#fff" />
-                    <span className="archy-edt">კალათაში დამატება</span>
+                    <span className="archy-edt">{__('client.prod_det_add_to_cart',sharedData)}</span>
                   </button>
                 </div>
                 <YellowButton link="/" text="გადაიხადე" />
@@ -146,9 +191,9 @@ const ProductDetails = ({page,seo}) => {
               </div>
             </div>
           </div>
-          <div className="wrapper">
-            <ProductSlider head="მსგავსი პროდუქცია" data={SliderData} />
-          </div>
+          {/*<div className="wrapper">
+            <ProductSlider head={__('client.product.similar',sharedData)} data={similar_products} />
+          </div>*/}
         </div>
       </Layout>
   );

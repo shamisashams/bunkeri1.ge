@@ -177,15 +177,15 @@ const ProductDetails = ({page,seo}) => {
                     <span className="archy-edt">{__('client.prod_det_add_to_cart',sharedData)}</span>
                   </button>
                 </div>
-                <YellowButton link="/" text="გადაიხადე" />
+                <YellowButton link="/" text={__('client.buy_now',sharedData)} />
               </div>
               <div className="flex share blue">
                 <div className="icon flex centered radius5">
                   <img src="/img/icons/other/share.svg"alt="" />
                 </div>
-                <span>გაუზიარე სხვას</span>
+                <span>{__('client.share_product',sharedData)}</span>
               </div>
-              <div className="archy-edt title">პროდუქტის აღწერა</div>
+              <div className="archy-edt title">{__('client.product_description',sharedData)}</div>
               <div className="op05">
                   {renderHTML(product.description)}
               </div>

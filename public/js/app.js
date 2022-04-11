@@ -5679,7 +5679,7 @@ var ProductDetails = function ProductDetails(_ref) {
     className: "archy-edt"
   }, __('client.prod_det_add_to_cart', sharedData)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_3__.YellowButton, {
     link: "/",
-    text: "\u10D2\u10D0\u10D3\u10D0\u10D8\u10EE\u10D0\u10D3\u10D4"
+    text: __('client.buy_now', sharedData)
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex share blue"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5687,9 +5687,9 @@ var ProductDetails = function ProductDetails(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/other/share.svg",
     alt: ""
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\u10D2\u10D0\u10E3\u10D6\u10D8\u10D0\u10E0\u10D4 \u10E1\u10EE\u10D5\u10D0\u10E1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, __('client.share_product', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "archy-edt title"
-  }, "\u10DE\u10E0\u10DD\u10D3\u10E3\u10E5\u10E2\u10D8\u10E1 \u10D0\u10E6\u10EC\u10D4\u10E0\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __('client.product_description', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "op05"
   }, renderHTML(product.description))))));
 };

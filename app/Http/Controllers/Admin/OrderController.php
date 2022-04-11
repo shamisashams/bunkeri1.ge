@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Repositories\Eloquent\OrderRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -48,10 +49,10 @@ class OrderController extends Controller
      * @param Setting $setting
      * @return Application|Factory|View
      */
-    public function show(string $locale, Setting $setting)
+    public function show(string $locale, Order $order)
     {
-        return view('admin.pages.setting.show', [
-            'setting' => $setting,
+        return view('admin.nowa.views.order.show', [
+            'order' => $order,
         ]);
     }
 

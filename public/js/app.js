@@ -5284,12 +5284,9 @@ var OrderForm = function OrderForm(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bank-transfer"
   }, "\u10D2\u10D0\u10D3\u10D0\u10EE\u10D3\u10D0 \u10D1\u10D0\u10DC\u10D9\u10D8\u10D7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
-    link: "/payment",
+    link: handleClick,
     text: "\u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D8\u10E1 \u10D2\u10D0\u10E4\u10DD\u10E0\u10DB\u10D4\u10D1\u10D0"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    type: "button",
-    onClick: handleClick
-  }, "place order"))))));
+  }))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderForm);
@@ -5856,7 +5853,7 @@ var Products = function Products(_ref) {
 
   var animatedComponents = (0,react_select_animated__WEBPACK_IMPORTED_MODULE_2__["default"])();
   var options = [{
-    value: "ფასის ზრდადობით",
+    value: "price",
     label: "ფასის ზრდადობით"
   }, {
     value: "ფასის კლებით",
@@ -6422,11 +6419,10 @@ var SliderButtons = function SliderButtons() {
 var YellowButton = function YellowButton(_ref4) {
   var link = _ref4.link,
       text = _ref4.text;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    href: link
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: link,
     className: "yellow_button archy-edt"
-  }, text));
+  }, text);
 };
 
 /***/ }),
@@ -7038,31 +7034,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Filters_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filters.css */ "./resources/js/components/Filters/Filters.css");
 /* harmony import */ var _PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../PriceRange/PriceRange */ "./resources/js/components/PriceRange/PriceRange.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 
 
 
 
 
-var options = function options(code, _options) {
-  var rows = [];
-
-  _options.map(function (item, index) {
-    rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "flex",
-      key: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      type: "checkbox",
-      id: "".concat(code, "-").concat(index)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-      htmlFor: "".concat(code, "-").concat(index)
-    }, item.label)));
-  });
-
-  return rows;
-};
 
 var Filters = function Filters() {
   var filter = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.filter;
+  var category = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.category;
+  var appliedFilters = [];
+
+  var options = function options(code, _options) {
+    var rows = [];
+
+    _options.map(function (item, index) {
+      rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "flex",
+        key: index
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        className: "filter_ckbox",
+        onClick: function onClick(event) {
+          handleFilterClick(event, code, item.id);
+        },
+        name: code,
+        type: "checkbox",
+        id: "".concat(code, "-").concat(index),
+        value: item.id
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "".concat(code, "-").concat(index)
+      }, item.label)));
+    });
+
+    return rows;
+  };
+
+  var handleFilterClick = function handleFilterClick(event, code, value) {
+    console.log(code);
+    console.log(value); //Inertia.visit('?brand=12');
+
+    var urlParams = new URLSearchParams(window.location.search);
+    urlParams.forEach(function (value, index) {
+      appliedFilters[index] = value.split(',');
+    });
+
+    if (appliedFilters.hasOwnProperty(code)) {
+      appliedFilters[code].push(value);
+    } else appliedFilters[code] = [value];
+
+    console.log(appliedFilters);
+    var params = [];
+
+    for (var key in appliedFilters) {
+      params.push(key + '=' + appliedFilters[key].join(','));
+    }
+
+    console.log(appliedFilters);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.visit("?" + params.join('&'));
+  };
+
   console.log(filter);
   var categories = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
   var brands = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
@@ -7080,7 +7111,9 @@ var Filters = function Filters() {
     className: "section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "head"
-  }, "\u10E4\u10D0\u10E1\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_2__["default"], null)), filter.attributes.map(function (item, index) {
+  }, "\u10E4\u10D0\u10E1\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    price: filter.price
+  })), filter.attributes.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "section"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -7562,12 +7595,12 @@ var DoubleRangeSlider = /*#__PURE__*/function (_React$Component) {
       sliderWidth: 0,
       offsetSliderWidht: 0,
       min: 0,
-      max: 200,
+      max: _this.props.price.max,
       minValueBetween: 10,
-      currentMin: 55,
-      inputMin: 55,
-      currentMax: 100,
-      inputMax: 100
+      currentMin: 0,
+      inputMin: 0,
+      currentMax: _this.props.price.max,
+      inputMax: _this.props.price.max
     });
 
     _defineProperty(_assertThisInitialized(_this), "setMin", function (e) {

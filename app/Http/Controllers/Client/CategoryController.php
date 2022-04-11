@@ -38,12 +38,13 @@ class CategoryController extends Controller
 //        return 1;
         $category = Category::where(['status' => 1, 'slug' => $slug])->firstOrFail();
         //dd($category->getAncestors());
-        $products = Product::where(['status' => 1, 'product_categories.category_id' => $category->id])
+        /*$products = Product::where(['status' => 1, 'product_categories.category_id' => $category->id])
             ->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')->with(['latestImage'])
             ->orderby('updated_at','desc')
-            ->paginate(16);
+            ->paginate(16);*/
+        $products = $this->productRepository->getAll($category->id);
 
-
+        //dd($products);
 
         foreach ($products as $product){
             $product_attributes = $product->attribute_values;
@@ -128,6 +129,7 @@ class CategoryController extends Controller
             $key++;
         }
         $result['price']['max'] = $this->productRepository->getMaxprice();
+        $result['price']['min'] = $this->productRepository->getMinprice();
         //dd($result);
         return $result;
     }

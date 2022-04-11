@@ -42,11 +42,25 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return $products;
     }
 
+    private function checkSortAttributeAndGenerateQuery($query, $sort, $direction)
+    {
+
+            if ($sort === 'price') {
+                $query->orderBy('price', $direction);
+            } else {
+                $query->orderBy($attribute->code, $direction);
+            }
+
+
+        return $query;
+    }
+
 
     public function getAll($categoryId = null){
 
 
         //dd(request()->post());
+        $params = request()->input();
 
         $query =  $this->model->select('products.*')
             ->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')
@@ -56,14 +70,40 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             $query->whereIn('product_categories.category_id', explode(',', $categoryId));
         }
 
-        if($priceRange = request()->post('filter')['price']){
+
+        # sort direction
+        $orderDirection = 'asc';
+        $sortOptions = ['created_at','desc'];
+        if (isset($params['order']) && in_array($params['order'], ['desc', 'asc'])) {
+            $orderDirection = $params['order'];
+        } else {
+
+
+            $orderDirection = ! empty($sortOptions) ? $sortOptions[1] : 'asc';
+        }
+
+        if (isset($params['sort'])) {
+            $query->orderBy($params['sort'], $orderDirection);
+        } else {
+
+            if (! empty($sortOptions)) {
+                $query->orderBy($sortOptions[0], $orderDirection);
+            }
+        }
+
+
+        if($priceFilter = request('price')){
+            $priceRange = explode(',', $priceFilter);
+
             $query->where(function ($pQ) use ($priceRange){
                 $pQ->where('products.price', '>=', $priceRange[0])
                     ->where('products.price', '<=', end($priceRange));
             });
+
         }
 
-        $attributes = $this->attributeRepository->getFilterAttributes(array_keys(request()->post('filter') ? request()->post('filter') : []));
+
+        $attributes = $this->attributeRepository->getFilterAttributes(array_keys(request()->except('price') ? request()->except('price') : []));
 
         if (count($attributes) > 0) {
             $query->where(function ($fQ) use ($attributes) {
@@ -71,7 +111,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                     $fQ->orWhere(function ($aQ) use ($attribute) {
                         $column = 'product_attribute_values.' . ProductAttributeValue::$attributeTypeFields[$attribute->type];
 
-                        $filterInputValues = request()->post('filter')[$attribute->code];
+                        $filterInputValues = explode(',', request()->get($attribute->code));
 
                         # attribute we are filtering
                         $aQ = $aQ->where('product_attribute_values.attribute_id', $attribute->id);
@@ -101,12 +141,15 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         }
 
         $query->groupBy('products.id');
-        return $query->paginate('2');
+        return $query->with('latestImage')->paginate('2')->withQueryString();
     }
 
 
     public function getMaxPrice(){
         return $this->model->max('price');
+    }
+    public function getMinPrice(){
+        return $this->model->min('price');
     }
 
 

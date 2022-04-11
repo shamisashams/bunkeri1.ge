@@ -102,7 +102,7 @@ const Products = ({page,seo}) => {
   };
   const animatedComponents = makeAnimated();
   const options = [
-    { value: "ფასის ზრდადობით", label: "ფასის ზრდადობით" },
+    { value: "price", label: "ფასის ზრდადობით" },
     { value: "ფასის კლებით", label: "ფასის კლებით" },
     { value: "თარიღის მიხედვით", label: "თარიღის მიხედვით" },
   ];

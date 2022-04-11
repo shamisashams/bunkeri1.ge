@@ -9,11 +9,11 @@ class DoubleRangeSlider extends React.Component {
     max: this.props.price.max,
     minValueBetween: 10,
 
-    currentMin: 55,
-    inputMin: 55,
+    currentMin: 0,
+    inputMin: 0,
 
-    currentMax: 100,
-    inputMax: 100,
+    currentMax: this.props.price.max,
+    inputMax: this.props.price.max,
   };
 
   componentDidMount() {

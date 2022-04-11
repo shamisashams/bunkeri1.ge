@@ -2,22 +2,58 @@ import React from "react";
 import "./Filters.css";
 import DoubleRangeSlider from "../PriceRange/PriceRange";
 import {usePage} from "@inertiajs/inertia-react";
+import { Inertia } from '@inertiajs/inertia'
 
-let options = function (code,options){
-    let rows = [];
-    options.map((item, index) => {
-        rows.push(
-            <div className="flex" key={index}>
-                <input type="checkbox" id={`${code}-${index}`} />
-                <label htmlFor={`${code}-${index}`}>{item.label}</label>
-            </div>
-        );
-    })
-    return rows;
-}
+
+
+
 
 const Filters = () => {
     const { filter } = usePage().props;
+    const { category } = usePage().props;
+
+    let appliedFilters = [];
+
+    let options = function (code,options){
+        let rows = [];
+        options.map((item, index) => {
+            rows.push(
+                <div className="flex" key={index}>
+                    <input className="filter_ckbox" onClick={(event) => {
+                        handleFilterClick(event,code,item.id)
+                    }} name={ code } type="checkbox" id={`${code}-${index}`} value={item.id} />
+                    <label htmlFor={`${code}-${index}`}>{item.label}</label>
+                </div>
+            );
+        })
+        return rows;
+    }
+
+    const handleFilterClick = function (event,code,value){
+        console.log(code);
+        console.log(value);
+        //Inertia.visit('?brand=12');
+
+        let urlParams = new URLSearchParams(window.location.search);
+
+        urlParams.forEach((value, index) => {
+            appliedFilters[index] = value.split(',');
+        });
+        if (appliedFilters.hasOwnProperty(code)){
+            appliedFilters[code].push(value);
+        } else appliedFilters[code] = [value];
+
+        console.log(appliedFilters)
+        let params = [];
+
+        for(let key in appliedFilters) {
+            params.push(key + '=' + appliedFilters[key].join(','))
+        }
+        console.log(appliedFilters)
+        Inertia.visit("?" + params.join('&'));
+
+
+    }
 
     console.log(filter);
   const categories = [

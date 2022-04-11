@@ -206,8 +206,7 @@ const OrderForm = ({seo}) => {
                   <input type="radio" name="payment" id="bank-transfer" />
                   <label htmlFor="bank-transfer">გადახდა ბანკით</label>
                 </div>
-                <YellowButton link="/payment" text="შეკვეთის გაფორმება" />
-                  <button type="button" onClick={handleClick}>place order</button>
+                <YellowButton link={handleClick} text="შეკვეთის გაფორმება" />
               </div>
             </div>
           </div>

@@ -74,8 +74,8 @@ export const SliderButtons = () => {
 
 export const YellowButton = ({ link, text }) => {
   return (
-    <Link href={link}>
-      <button className="yellow_button archy-edt">{text}</button>
-    </Link>
+
+      <button onClick={link} className="yellow_button archy-edt">{text}</button>
+
   );
 };

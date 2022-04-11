@@ -235,6 +235,34 @@ trait ScopeFilter
         });
     }
 
+    public function scopePrice($query, $value)
+    {
+
+            return $query->where('grand_total', 'like', $value . '%');
+
+    }
+
+    public function scopeFirstLastName($query, $value)
+    {
+
+        return $query->where('first_name', 'like', '%' . $value . '%')->orWhere('last_name', 'like', '%' . $value . '%');
+
+    }
+
+    public function scopeEmail($query, $value)
+    {
+
+        return $query->where('email', 'like', '%' . $value . '%');
+
+    }
+
+    public function scopePhone($query, $value)
+    {
+
+        return $query->where('phone', 'like', '%' . $value . '%');
+
+    }
+
 
     public function scopeCategoryId($query, $category_id){
         return $query->whereHas('categories', function ($query) use ($category_id) {

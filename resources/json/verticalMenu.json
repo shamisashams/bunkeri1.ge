@@ -72,6 +72,13 @@
             "i18n": "change password",
             "icon": "g_translate",
             "slug": "change_password"
+        },
+        {
+            "url": "order.index",
+            "name": "შეკვეთები",
+            "i18n": "order",
+            "icon": "g_translate",
+            "slug": "orders"
         }
     ],
     "_comment": [

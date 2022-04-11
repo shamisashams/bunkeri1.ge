@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\ScopeFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, ScopeFilter;
 
     protected $table = 'orders';
 
@@ -25,6 +26,36 @@ class Order extends Model
         'locale',
         'grand_total'
     ];
+
+    public function getFilterScopes(): array
+    {
+        return [
+            'id' => [
+                'hasParam' => true,
+                'scopeMethod' => 'id'
+            ],
+            'status' => [
+                'hasParam' => true,
+                'scopeMethod' => 'status'
+            ],
+            'price' => [
+                'hasParam' => true,
+                'scopeMethod' => 'price'
+            ],
+            'name' => [
+                'hasParam' => true,
+                'scopeMethod' => 'firstLastName'
+            ],
+            'email' => [
+                'hasParam' => true,
+                'scopeMethod' => 'email'
+            ],
+            'phone' => [
+                'hasParam' => true,
+                'scopeMethod' => 'phone'
+            ],
+        ];
+    }
 
 
     public function items():HasMany{

@@ -4919,6 +4919,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TodaysBox_TodaysBox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/TodaysBox/TodaysBox */ "./resources/js/components/TodaysBox/TodaysBox.js");
 /* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 
@@ -4945,6 +4947,49 @@ var Home = function Home(_ref) {
       images = _usePage$props.images,
       products = _usePage$props.products;
   console.log(products);
+
+  var addToCart = function addToCart(product) {
+    //localStorage.removeItem('cart')
+    var _cart = localStorage.getItem('cart');
+
+    var cart;
+
+    if (_cart !== null) {
+      cart = JSON.parse(_cart);
+    } else cart = [];
+
+    var qty = 1;
+
+    if (cart.length > 0) {
+      var exists = false;
+      cart.forEach(function (el, i) {
+        if (el.product.id === product.id) {
+          el.qty += qty;
+          exists = true;
+        }
+      });
+
+      if (!exists) {
+        var obj = {
+          product: product,
+          qty: qty
+        };
+        cart.push(obj);
+      }
+    } else {
+      var _obj = {
+        product: product,
+        qty: qty
+      };
+      cart.push(_obj);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(JSON.parse(localStorage.getItem('cart'))); //localStorage.removeItem('cart')
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.visit(window.location.href);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4991,6 +5036,7 @@ var Home = function Home(_ref) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "today wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TodaysBox_TodaysBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    addTocart: addToCart,
     day_product: products.day_product,
     day_price: products.day_price
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5093,7 +5139,7 @@ var getCart = function getCart() {
   if (_cart !== null) cart = JSON.parse(_cart);
   var total = 0;
   cart.forEach(function (el, i) {
-    total += el.qty * el.product.price;
+    total += el.qty * el.product.special_price !== null ? el.product.special_price : el.product.price;
   });
   var obj = {
     items: cart,
@@ -5244,7 +5290,7 @@ var OrderForm = function OrderForm(_ref) {
       className: "op05"
     }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", item.product.attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "quantity"
-    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
+    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
   }, "\u10E1\u10D0\u10D9\u10E3\u10E0\u10D8\u10D4\u10E0\u10DD \u10DB\u10DD\u10DB\u10E1\u10D0\u10EE\u10E3\u10E0\u10D4\u10D1\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -6133,7 +6179,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
     if (_cart !== null) cart = JSON.parse(_cart);
     var total = 0;
     cart.forEach(function (el, i) {
-      total += el.qty * el.product.price;
+      total += el.qty * el.product.special_price !== null ? el.product.special_price : el.product.price;
     });
     var obj = {
       items: cart,
@@ -6206,14 +6252,14 @@ var ShoppingCart = function ShoppingCart(_ref) {
       className: "name"
     }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.price, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "number radius5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "\u2212"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       type: "number",
       value: item.qty
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "+"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
       className: "sum"
-    }, item.product.price * item.qty, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, ((item.product.special_price !== null ? item.product.special_price : item.product.price) * item.qty).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick(event) {
         return removeCartItem(index);
       },
@@ -6408,9 +6454,11 @@ var CommonButton = function CommonButton(_ref3) {
     href: link
   }, text);
 };
-var AddToCart = function AddToCart() {
+var AddToCart = function AddToCart(_ref4) {
+  var onClick = _ref4.onClick;
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.localizations;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: onClick,
     className: "add_to_cart"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_2__.Cart, {
     color: "#303285"
@@ -6437,11 +6485,11 @@ var SliderButtons = function SliderButtons() {
     className: "slider_btns flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PrevSlide, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(NextSlide, null));
 };
-var YellowButton = function YellowButton(_ref4) {
-  var link = _ref4.link,
-      text = _ref4.text,
-      _ref4$onclick = _ref4.onclick,
-      onclick = _ref4$onclick === void 0 ? null : _ref4$onclick;
+var YellowButton = function YellowButton(_ref5) {
+  var link = _ref5.link,
+      text = _ref5.text,
+      _ref5$onclick = _ref5.onclick,
+      onclick = _ref5$onclick === void 0 ? null : _ref5$onclick;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
     href: link
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -7383,7 +7431,7 @@ var Header = function Header() {
     if (_cart !== null) cart = JSON.parse(_cart);
     var total = 0;
     cart.forEach(function (el, i) {
-      total += el.qty * el.product.price;
+      total += el.qty * el.product.special_price !== null ? el.product.special_price : el.product.price;
     });
     var obj = {
       items: cart,
@@ -7526,7 +7574,7 @@ var Header = function Header() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       src: item.product.latest_image != null ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null,
       alt: ""
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.qty, " x ", item.product.price.toFixed(2), "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.qty, " x ", item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick(event) {
         event.stopPropagation();
         removeCartItem(index);
@@ -7920,7 +7968,7 @@ var ProductBox = function ProductBox(props, handleClick, product) {
     style: {
       fontWeight: "bold"
     }
-  }, props.price, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, null))));
+  }, props.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, null))));
 };
 
 /***/ }),
@@ -8316,7 +8364,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var TodaysBox = function TodaysBox(_ref) {
   var day_product = _ref.day_product,
-      day_price = _ref.day_price;
+      day_price = _ref.day_price,
+      addTocart = _ref.addTocart;
   var secondBox = {
     dots: false,
     infinite: true,
@@ -8358,11 +8407,15 @@ var TodaysBox = function TodaysBox(_ref) {
       className: "flex centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "blue"
-    }, item.special_price !== null ? item.special_price : item.price, " \u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.special_price !== null ? item.special_price.toFixed(2) : item.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "old_price"
-    }, item.price, " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex btns centered"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, {
+      onClick: function onClick() {
+        return addTocart(item);
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
       link: "/",
       text: "\u10E7\u10D8\u10D3\u10D5\u10D0"
     })));
@@ -8391,11 +8444,15 @@ var TodaysBox = function TodaysBox(_ref) {
       className: "flex centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "blue"
-    }, item.special_price !== null ? item.special_price : item.price, " \u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.special_price !== null ? item.special_price.toFixed(2) : item.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "old_price"
-    }, item.price, " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex btns centered"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, {
+      onClick: function onClick() {
+        return addTocart(item);
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
       link: "/",
       text: "\u10E7\u10D8\u10D3\u10D5\u10D0"
     })));

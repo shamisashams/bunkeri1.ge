@@ -28,7 +28,7 @@ const Home = ({page,seo}) => {
             cart = JSON.parse(_cart);
         } else cart = [];
 
-        let qty = parseInt(document.getElementById('qty_add').value);
+        let qty = 1;
 
 
         if(cart.length > 0){

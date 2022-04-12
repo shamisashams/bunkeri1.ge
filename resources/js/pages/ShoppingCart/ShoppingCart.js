@@ -17,7 +17,7 @@ const ShoppingCart = ({seo}) => {
 
         let total = 0;
         cart.forEach(function (el,i){
-            total += el.qty * el.product.price;
+            total += el.qty * el.product.special_price !== null ? el.product.special_price : el.product.price;
         })
 
         let obj = {
@@ -92,7 +92,7 @@ const ShoppingCart = ({seo}) => {
                           </div>
                         </div>
                       </td>
-                      <td>{item.price} ლარი</td>
+                      <td>{item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2)} ლარი</td>
                       <td>
                         <div className="number radius5">
                           <button>−</button>
@@ -100,7 +100,7 @@ const ShoppingCart = ({seo}) => {
                           <button>+</button>
                         </div>
                       </td>
-                      <td className="sum">{item.product.price * item.qty} ლარი</td>
+                      <td className="sum">{((item.product.special_price !== null ? item.product.special_price : item.product.price) * item.qty).toFixed(2)} ლარი</td>
                       <td>
                         <button onClick={(event) => removeCartItem(index)} className="remove flex centered">
                           <img src="/img/icons/other/delete.svg" alt="" />

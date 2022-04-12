@@ -43,8 +43,8 @@ const TodaysBox = ({day_product,day_price,addTocart}) => {
                 <strong>{item.title}</strong>
                 <p className="op05">{item.short_description}</p>
                 <div className="flex centered">
-                  <div className="blue">{item.special_price !== null ? item.special_price : item.price} ლარი</div>
-                    {item.special_price !== null ? <div className="old_price">{item.price} ლარი</div>: null}
+                  <div className="blue">{item.special_price !== null ? item.special_price.toFixed(2) : item.price.toFixed(2)} ლარი</div>
+                    {item.special_price !== null ? <div className="old_price">{item.price.toFixed(2)} ლარი</div>: null}
                 </div>
                 <div className="flex btns centered">
                   <AddToCart onClick={() => addTocart(item)} />
@@ -120,11 +120,11 @@ const TodaysBox = ({day_product,day_price,addTocart}) => {
                 <strong>{item.title}</strong>
                 <p className="op05">{item.short_description}</p>
                 <div className="flex centered">
-                  <div className="blue">{item.special_price !== null ? item.special_price : item.price} ლარი</div>
-                    {item.special_price !== null ? <div className="old_price">{item.price} ლარი</div>: null}
+                  <div className="blue">{item.special_price !== null ? item.special_price.toFixed(2) : item.price.toFixed(2)} ლარი</div>
+                    {item.special_price !== null ? <div className="old_price">{item.price.toFixed(2)} ლარი</div>: null}
                 </div>
                 <div className="flex btns centered">
-                  <AddToCart />
+                  <AddToCart onClick={() => addTocart(item)} />
                   <CommonButton link="/" text="ყიდვა" />
                 </div>
               </div>

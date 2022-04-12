@@ -41,6 +41,25 @@ class HomeController extends Controller
         $products['special_price_tag'] = [];
         $products['popular'] = [];
         foreach ($_products as $product){
+            $product_attributes = $product->attribute_values;
+
+            $_result = [];
+
+            foreach ($product_attributes as $item){
+                $options = $item->attribute->options;
+                $value = '';
+                foreach ($options as $option){
+                    if($item->attribute->type == 'select'){
+                        if($item->integer_value == $option->id) {
+                            $_result[$item->attribute->code] = $option->label;
+                        }
+
+                    }
+                }
+
+            }
+            $product['attributes'] = $_result;
+
             if($product->new_collection) $products['new_collection'][] = $product;
             if($product->bunker) $products['bunker'][] = $product;
             if($product->day_product) $products['day_product'][] = $product;

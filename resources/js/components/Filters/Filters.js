@@ -11,12 +11,34 @@ import { Inertia } from '@inertiajs/inertia'
 const Filters = () => {
     const { filter } = usePage().props;
     const { category } = usePage().props;
-
     let appliedFilters = [];
+    let urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.forEach((value, index) => {
+        appliedFilters[index] = value.split(',');
+    });
+
+    console.log(appliedFilters)
+
+
+    let filt_ckbox = document.querySelectorAll('.filter_ckbox');
+    //console.log(el.name)
+    filt_ckbox.forEach(function (el){
+        if(appliedFilters.hasOwnProperty(el.name)){
+            if(appliedFilters[el.name].includes(el.value)){
+                el.checked = true
+            } else el.checked = false
+        } else el.checked = false
+    })
+
+
+
 
     let options = function (code,options){
         let rows = [];
+
         options.map((item, index) => {
+
             rows.push(
                 <div className="flex" key={index}>
                     <input className="filter_ckbox" onClick={(event) => {
@@ -33,7 +55,7 @@ const Filters = () => {
         console.log(code);
         console.log(value);
         //Inertia.visit('?brand=12');
-
+        let appliedFilters = [];
         let urlParams = new URLSearchParams(window.location.search);
 
         urlParams.forEach((value, index) => {
@@ -49,7 +71,7 @@ const Filters = () => {
         for(let key in appliedFilters) {
             params.push(key + '=' + appliedFilters[key].join(','))
         }
-        console.log(appliedFilters)
+
         Inertia.visit("?" + params.join('&'));
 
 
@@ -97,7 +119,6 @@ const Filters = () => {
                 </div>
                 )
         })}
-
     </div>
   );
 };

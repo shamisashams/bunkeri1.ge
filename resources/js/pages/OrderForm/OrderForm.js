@@ -110,7 +110,9 @@ const OrderForm = ({seo}) => {
     function handleClick(e) {
         //document.getElementById('order_f').submit();
         values['cart'] = getCart();
-        Inertia.post(route('client.checkout.order'), values)
+        Inertia.post(route('client.checkout.order'), values, {onSuccess: (page) => {
+            console.log(page)
+            }})
     }
 
 
@@ -206,7 +208,7 @@ const OrderForm = ({seo}) => {
                   <input type="radio" name="payment" id="bank-transfer" />
                   <label htmlFor="bank-transfer">გადახდა ბანკით</label>
                 </div>
-                <YellowButton link={handleClick} text="შეკვეთის გაფორმება" />
+                <YellowButton onclick={handleClick} text="შეკვეთის გაფორმება" />
               </div>
             </div>
           </div>

@@ -5168,7 +5168,11 @@ var OrderForm = function OrderForm(_ref) {
   function handleClick(e) {
     //document.getElementById('order_f').submit();
     values['cart'] = getCart();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.post(route('client.checkout.order'), values);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.post(route('client.checkout.order'), values, {
+      onSuccess: function onSuccess(page) {
+        console.log(page);
+      }
+    });
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -5284,7 +5288,7 @@ var OrderForm = function OrderForm(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bank-transfer"
   }, "\u10D2\u10D0\u10D3\u10D0\u10EE\u10D3\u10D0 \u10D1\u10D0\u10DC\u10D9\u10D8\u10D7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
-    link: handleClick,
+    onclick: handleClick,
     text: "\u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D8\u10E1 \u10D2\u10D0\u10E4\u10DD\u10E0\u10DB\u10D4\u10D1\u10D0"
   }))))));
 };
@@ -5445,6 +5449,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ProductSlider_SliderData__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/ProductSlider/SliderData */ "./resources/js/components/ProductSlider/SliderData.js");
 /* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -5458,6 +5463,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -5575,6 +5581,8 @@ var ProductDetails = function ProductDetails(_ref) {
 
     localStorage.setItem('cart', JSON.stringify(cart));
     console.log(JSON.parse(localStorage.getItem('cart'))); //localStorage.removeItem('cart')
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.visit(window.location.href);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -6093,6 +6101,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/SmallComps/Icons */ "./resources/js/components/SmallComps/Icons.js");
 /* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 
@@ -6130,6 +6140,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
     if (_cart !== null) cart = JSON.parse(_cart);
     cart.splice(i, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.visit(window.location.href);
   };
 
   var items = [{
@@ -6418,11 +6429,15 @@ var SliderButtons = function SliderButtons() {
 };
 var YellowButton = function YellowButton(_ref4) {
   var link = _ref4.link,
-      text = _ref4.text;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: link,
+      text = _ref4.text,
+      _ref4$onclick = _ref4.onclick,
+      onclick = _ref4$onclick === void 0 ? null : _ref4$onclick;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    href: link
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: onclick,
     className: "yellow_button archy-edt"
-  }, text);
+  }, text));
 };
 
 /***/ }),
@@ -7045,6 +7060,20 @@ var Filters = function Filters() {
   var filter = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.filter;
   var category = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.category;
   var appliedFilters = [];
+  var urlParams = new URLSearchParams(window.location.search);
+  urlParams.forEach(function (value, index) {
+    appliedFilters[index] = value.split(',');
+  });
+  console.log(appliedFilters);
+  var filt_ckbox = document.querySelectorAll('.filter_ckbox'); //console.log(el.name)
+
+  filt_ckbox.forEach(function (el) {
+    if (appliedFilters.hasOwnProperty(el.name)) {
+      if (appliedFilters[el.name].includes(el.value)) {
+        el.checked = true;
+      } else el.checked = false;
+    } else el.checked = false;
+  });
 
   var options = function options(code, _options) {
     var rows = [];
@@ -7074,6 +7103,7 @@ var Filters = function Filters() {
     console.log(code);
     console.log(value); //Inertia.visit('?brand=12');
 
+    var appliedFilters = [];
     var urlParams = new URLSearchParams(window.location.search);
     urlParams.forEach(function (value, index) {
       appliedFilters[index] = value.split(',');
@@ -7090,7 +7120,6 @@ var Filters = function Filters() {
       params.push(key + '=' + appliedFilters[key].join(','));
     }
 
-    console.log(appliedFilters);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.visit("?" + params.join('&'));
   };
 

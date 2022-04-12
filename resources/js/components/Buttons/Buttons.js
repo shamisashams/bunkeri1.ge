@@ -72,10 +72,10 @@ export const SliderButtons = () => {
   );
 };
 
-export const YellowButton = ({ link, text }) => {
+export const YellowButton = ({ link, text, onclick = null }) => {
   return (
-
-      <button onClick={link} className="yellow_button archy-edt">{text}</button>
-
+    <Link href={link}>
+      <button onClick={onclick} className="yellow_button archy-edt">{text}</button>
+    </Link>
   );
 };

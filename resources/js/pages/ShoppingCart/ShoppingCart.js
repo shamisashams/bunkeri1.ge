@@ -5,6 +5,7 @@ import { YellowButton } from "../../components/Buttons/Buttons";
 import { Arrow } from "../../components/SmallComps/Icons";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
 
 const ShoppingCart = ({seo}) => {
   // const [quantity, setquantity] = useState(1);
@@ -32,6 +33,7 @@ const ShoppingCart = ({seo}) => {
         if(_cart !== null) cart = JSON.parse(_cart);
         cart.splice(i,1);
         localStorage.setItem('cart',JSON.stringify(cart));
+        Inertia.visit(window.location.href)
     }
 
   const items = [

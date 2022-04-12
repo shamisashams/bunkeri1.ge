@@ -8,6 +8,7 @@ import ProductSlider from "../../components/ProductSlider/ProductSlider";
 import { SliderData } from "../../components/ProductSlider/SliderData";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
+import { Inertia } from '@inertiajs/inertia'
 
 
 const renderHTML = (rawHTML) =>
@@ -100,6 +101,7 @@ const ProductDetails = ({page,seo}) => {
         localStorage.setItem('cart',JSON.stringify(cart))
         console.log(JSON.parse(localStorage.getItem('cart')))
         //localStorage.removeItem('cart')
+        Inertia.visit(window.location.href)
     }
 
   return (

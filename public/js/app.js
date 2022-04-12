@@ -5587,19 +5587,6 @@ var ProductDetails = function ProductDetails(_ref) {
   console.log(product);
   console.log(product_attributes);
 
-  var breadcrumb = function breadcrumb(path) {
-    var rows = '';
-    path.map(function (el, i) {
-      if (i < path.length - 1) {
-        rows += el.title;
-        rows += ' / ';
-      } else {
-        rows += el.title;
-      }
-    });
-    return rows;
-  };
-
   var addToCart = function addToCart(product) {
     //localStorage.removeItem('cart')
     var _cart = localStorage.getItem('cart');

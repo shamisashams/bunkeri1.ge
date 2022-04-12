@@ -5232,13 +5232,20 @@ var OrderForm = function OrderForm(_ref) {
     });
   }
 
+  var path = [{
+    title: __('client.page_home', sharedData)
+  }, {
+    title: __('client.page_cart', sharedData)
+  }, {
+    title: __('client.page_checkout', sharedData)
+  }];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "orderformPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__.PagePath, {
     first: "\u10DB\u10D7\u10D0\u10D5\u10D0\u10E0\u10D8 /",
-    previous: "\u10D9\u10D0\u10DA\u10D0\u10D7\u10D0",
+    previous: breadcrumb(path),
     current: "\u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D8\u10E1 \u10D2\u10D0\u10E4\u10DD\u10E0\u10DB\u10D4\u10D1\u10D0"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper"
@@ -6211,12 +6218,17 @@ var ShoppingCart = function ShoppingCart(_ref) {
     price: 27.99,
     quantity: 1
   }];
+  var path = [{
+    title: __('client.page_home', sharedData)
+  }, {
+    title: __('client.page_cart', sharedData)
+  }];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_5__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "shoppingcartPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_2__.PagePath, {
-    previous: "\u10DB\u10D7\u10D0\u10D5\u10D0\u10E0\u10D8",
+    previous: breadcrumb(path),
     current: "\u10D9\u10D0\u10DA\u10D0\u10D7\u10D0"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper"
@@ -6297,6 +6309,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
 /* harmony import */ var _Success_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Success.css */ "./resources/js/Pages/Success/Success.css");
 /* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6314,7 +6327,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Success = function Success() {
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.usePage)().props.localizations;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       sparkle = _useState2[0],
@@ -6323,11 +6339,18 @@ var Success = function Success() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setSparkle(true);
   }, []);
+  var path = [{
+    title: __('client.page_home', sharedData)
+  }, {
+    title: __('client.page_cart', sharedData)
+  }, {
+    title: __('client.page_checkout', sharedData)
+  }];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "successPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__.PagePath, {
     first: "\u10DB\u10D7\u10D0\u10D5\u10D0\u10E0\u10D8 /",
-    previous: "\u10D9\u10D0\u10DA\u10D0\u10D7\u10D0",
+    previous: breadcrumb(path),
     current: "\u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D8\u10E1 \u10D2\u10D0\u10E4\u10DD\u10E0\u10DB\u10D4\u10D1\u10D0"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: sparkle ? "sparkles pop" : "sparkles",
@@ -6340,9 +6363,9 @@ var Success = function Success() {
     alt: ""
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "archy-edt head"
-  }, "\u10D2\u10D0\u10D3\u10D0\u10EE\u10D3\u10D0 \u10E8\u10D4\u10E1\u10E0\u10E3\u10DA\u10D4\u10D1\u10E3\u10DA\u10D8\u10D0!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __('client.order_success_line1', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "archy-edt"
-  }, "\u10DB\u10D0\u10D3\u10DA\u10DD\u10D1\u10D0 \u10E8\u10D4\u10DC\u10D0\u10EB\u10D4\u10DC\u10D8\u10E1\u10D7\u10D5\u10D8\u10E1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "\u10E9\u10D0\u10DB\u10DD\u10E2\u10D5\u10D8\u10E0\u10D7\u10D4 \u10E5\u10D5\u10D8\u10D7\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  }, __('client.order_success_line2', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, __('client.order_success_download', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/other/download.svg",
     alt: ""
   })))));

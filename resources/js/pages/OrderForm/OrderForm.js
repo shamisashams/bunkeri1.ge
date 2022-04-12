@@ -117,12 +117,28 @@ const OrderForm = ({seo}) => {
     }
 
 
+    const path = [
+        {
+            title: __('client.page_home',sharedData),
+
+        },
+        {
+            title: __('client.page_cart',sharedData),
+
+        },
+        {
+            title: __('client.page_checkout',sharedData),
+
+        },
+
+    ];
+
   return (
       <Layout seo={seo}>
         <div className="orderformPage">
           <PagePath
             first="მთავარი /"
-            previous="კალათა"
+            previous={breadcrumb(path)}
             current="შეკვეთის გაფორმება"
           />
           <div className="wrapper">

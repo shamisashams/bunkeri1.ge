@@ -60,10 +60,21 @@ const ShoppingCart = ({seo}) => {
       quantity: 1,
     },
   ];
+    const path = [
+        {
+            title: __('client.page_home',sharedData),
+
+        },
+        {
+            title: __('client.page_cart',sharedData),
+
+        },
+
+    ];
   return (
       <Layout seo={seo}>
         <div className="shoppingcartPage">
-          <PagePath previous="მთავარი" current="კალათა" />
+          <PagePath previous={breadcrumb(path)} current="კალათა" />
           <div className="wrapper">
             <div className="title35">{__('client.cart_title',sharedData)}</div>
             <div className="blue">სულ მოიძებნა {getCart().items.length} პროდუქტი</div>

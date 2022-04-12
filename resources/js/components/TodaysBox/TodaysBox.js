@@ -6,7 +6,7 @@ import { AddToCart, CommonButton, SliderButtons } from "../Buttons/Buttons";
 import "./TodaysBox.css";
 import { todayPrice } from "./TodaysData";
 
-const TodaysBox = ({day_product,day_price}) => {
+const TodaysBox = ({day_product,day_price,addTocart}) => {
   const secondBox = {
     dots: false,
     infinite: true,
@@ -47,7 +47,7 @@ const TodaysBox = ({day_product,day_price}) => {
                     {item.special_price !== null ? <div className="old_price">{item.price} ლარი</div>: null}
                 </div>
                 <div className="flex btns centered">
-                  <AddToCart />
+                  <AddToCart onClick={() => addTocart(item)} />
                   <CommonButton link="/" text="ყიდვა" />
                 </div>
               </div>

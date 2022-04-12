@@ -11,6 +11,7 @@ import { SliderData } from "../../components/ProductSlider/SliderData";
 import TodaysBox from "../../components/TodaysBox/TodaysBox";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
 
 const renderHTML = (rawHTML) => React.createElement("div", { dangerouslySetInnerHTML: { __html: rawHTML } });
 
@@ -18,6 +19,51 @@ const Home = ({page,seo}) => {
     const sharedData = usePage().props.localizations;
     const { images, products } = usePage().props;
     console.log(products)
+
+    const addToCart = function (product){
+        //localStorage.removeItem('cart')
+        let _cart = localStorage.getItem('cart');
+        let cart;
+        if (_cart !== null) {
+            cart = JSON.parse(_cart);
+        } else cart = [];
+
+        let qty = parseInt(document.getElementById('qty_add').value);
+
+
+        if(cart.length > 0){
+            let exists = false;
+            cart.forEach(function (el,i){
+
+                if(el.product.id === product.id){
+                    el.qty += qty;
+                    exists = true;
+                }
+
+            })
+            if (!exists) {
+                let obj = {
+                    product: product,
+                    qty: qty
+                }
+                cart.push(obj);
+            }
+
+        } else {
+            let obj = {
+                product: product,
+                qty: qty
+            }
+            cart.push(obj);
+        }
+
+
+        localStorage.setItem('cart',JSON.stringify(cart))
+        console.log(JSON.parse(localStorage.getItem('cart')))
+        //localStorage.removeItem('cart')
+        Inertia.visit(window.location.href)
+    }
+
   return (
       <Layout seo={seo}>
           <div className="homePage">
@@ -51,7 +97,7 @@ const Home = ({page,seo}) => {
                   </div>
               </div>
               <div className="today wrapper">
-                  <TodaysBox day_product={products.day_product} day_price={products.day_price} />
+                  <TodaysBox addTocart={addToCart} day_product={products.day_product} day_price={products.day_price} />
               </div>
               <div className="special_price" id="special_price">
                   <div className="wrapper">

@@ -37,10 +37,10 @@ export const CommonButton = ({ link, text, gray }) => {
   );
 };
 
-export const AddToCart = () => {
+export const AddToCart = ({onClick}) => {
     const sharedData = usePage().props.localizations;
   return (
-    <button className="add_to_cart">
+    <button onClick={onClick} className="add_to_cart">
       <Cart color="#303285" />
         {__('client.add_to_cart_btn',sharedData)}
     </button>

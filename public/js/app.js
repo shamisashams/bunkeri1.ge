@@ -5952,7 +5952,7 @@ var Products = function Products(_ref) {
     className: "flex headflex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "headtitle"
-  }, category.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, category !== null ? category.title : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_9__["default"], {
     closeMenuOnSelect: true,
     components: animatedComponents,
     placeholder: "\u10D7\u10D0\u10E0\u10D8\u10E6\u10D8\u10E1 \u10DB\u10D8\u10EE\u10D4\u10D3\u10D5\u10D8\u10D7",
@@ -7406,6 +7406,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SmallComps_Languages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../SmallComps/Languages */ "./resources/js/components/SmallComps/Languages.js");
 /* harmony import */ var _Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _Categories_Categories__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Categories/Categories */ "./resources/js/components/Categories/Categories.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -7417,6 +7418,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -7508,6 +7510,14 @@ var Header = function Header() {
     number: "1",
     price: "17.0"
   }];
+
+  var search = function search() {
+    var term = document.getElementById('search_inp').value;
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia.get(route('search.index'), {
+      term: term
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -7529,9 +7539,13 @@ var Header = function Header() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "search radius5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "search_inp",
+    name: "term",
     type: "text",
     placeholder: __('client.header_search_placeholder', sharedData)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: search
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/header/search.svg",
     alt: ""
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

@@ -159,4 +159,11 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
 
 
+    public function search($term){
+        return $this->model->whereTranslationLike('title', '%'.$term.'%')
+            ->orWhereTranslationLike('description', '%'.$term.'%')
+            ->with('latestImage')->paginate(16);
+    }
+
+
 }

@@ -131,7 +131,7 @@ const Products = ({page,seo}) => {
                 <img src="/img/icons/other/filter.png" alt="" />
               </button>
               <div className="flex headflex">
-                <div className="headtitle">{category.title}</div>
+                <div className="headtitle">{category !== null ? category.title : null}</div>
                 <Select
                   closeMenuOnSelect={true}
                   components={animatedComponents}

@@ -6,6 +6,7 @@ import "./Header.css";
 import { Languages } from "../SmallComps/Languages";
 import { CatButton } from "../Buttons/Buttons";
 import Categories from "../Categories/Categories";
+import { Inertia } from '@inertiajs/inertia'
 
 const Header = () => {
   const [categoryDrop, setCategoryDrop] = useState(false);
@@ -94,6 +95,10 @@ const Header = () => {
       price: "17.0",
     },
   ];
+  const search = function (){
+      let term = document.getElementById('search_inp').value;
+      Inertia.get(route('search.index'),{ term: term });
+  }
   return (
     <div className="header">
       <div className="top">
@@ -105,8 +110,8 @@ const Header = () => {
             <img src="/img/logo/2.svg" alt="" />
           </Link>
           <div className="search radius5">
-            <input type="text" placeholder={__('client.header_search_placeholder',sharedData)} />
-            <button>
+            <input id="search_inp" name="term" type="text" placeholder={__('client.header_search_placeholder',sharedData)} />
+            <button onClick={search}>
               <img src="/img/icons/header/search.svg" alt="" />
             </button>
           </div>

@@ -81,7 +81,7 @@ Route::prefix('{locale?}')
                 Route::resource('attribute', \App\Http\Controllers\Admin\AttributeController::class);
                 Route::get('attribute/{attribute}/destroy', [\App\Http\Controllers\Admin\AttributeController::class, 'destroy'])->name('attribute.destroy');
 
-
+                Route::get('search', [\App\Http\Controllers\Client\SearchController::class, 'show'])->name('search.index');
 
             });
         });

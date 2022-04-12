@@ -11,6 +11,7 @@ import { Inertia } from '@inertiajs/inertia'
 const Filters = () => {
     const { filter } = usePage().props;
     const { category } = usePage().props;
+    const sharedData = usePage().props.localizations;
     let appliedFilters = [];
     let urlParams = new URLSearchParams(window.location.search);
 
@@ -111,11 +112,11 @@ const Filters = () => {
       <div className="section">
         <button onClick={clearFilter} className=" op05 flex clear">
           <img src="/img/icons/other/delete.svg" alt="" />
-          <span>გასუფთავება</span>
+          <span>{__('client.products_filter_clear',sharedData)}</span>
         </button>
       </div>
       <div className="section">
-        <div className="head">ფასი</div>
+        <div className="head">{__('client.products_filter_price',sharedData)}</div>
         {/* Price Range */}
         <DoubleRangeSlider price={filter.price} />
       </div>

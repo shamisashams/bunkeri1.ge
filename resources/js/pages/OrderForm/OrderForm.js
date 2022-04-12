@@ -30,6 +30,7 @@ const getCart = function (){
 const OrderForm = ({seo}) => {
     /*const { errors } = usePage().props
     console.log(errors);*/
+    const sharedData = usePage().props.localizations;
   const items = [
     {
       img: Product1,
@@ -56,31 +57,31 @@ const OrderForm = ({seo}) => {
   const inputs = [
     {
       type: "text",
-      Placeholder: "სახელი",
+      Placeholder: __('client.checkout_f_name',sharedData),
         name: "first_name"
     },
     {
-      Placeholder: "ქალაქი / სოფელი",
+      Placeholder: __('client.checkout_city_country',sharedData),
       type: "text",
         name: "city"
     },
     {
-      Placeholder: "გვარი",
+      Placeholder: __('client.checkout_l_name',sharedData),
       type: "text",
         name: "last_name"
     },
     {
-      Placeholder: "მისამართი",
+      Placeholder: __('client.checkout_address',sharedData),
       type: "text",
         name: "address"
     },
     {
-      Placeholder: "ტელეფონის ნომერი",
+      Placeholder: __('client.checkout_phone',sharedData),
       type: "number",
         name: "phone"
     },
     {
-      Placeholder: "ელფოსტა",
+      Placeholder: __('client.checkout_email',sharedData),
       type: "email",
         name: "email"
     },
@@ -125,10 +126,10 @@ const OrderForm = ({seo}) => {
             current="შეკვეთის გაფორმება"
           />
           <div className="wrapper">
-            <div className="title35">შეკვეთის გაფორმება</div>
+            <div className="title35">{__('client.checkout_title',sharedData)}</div>
             <div className="grid">
               <div className="first">
-                <div className="title archy-edt">შეიყვანე პირადი ინფორმაცია</div>
+                <div className="title archy-edt">{__('client.checkout_form_title',sharedData)}</div>
                   <form id="order_f" onSubmit={handleSubmit}>
                       <div className="input_grid">
                           {inputs.map((input, index) => {
@@ -145,7 +146,7 @@ const OrderForm = ({seo}) => {
                           })}
                           <textarea name="info"
                                     className="common_input"
-                                    placeholder="დამატებითი ინფორმაცია"
+                                    placeholder={__('client.checkout_extra_info',sharedData)}
                                     onChange={handleChange}
                           ></textarea>
                       </div>
@@ -153,7 +154,7 @@ const OrderForm = ({seo}) => {
 
               </div>
               <div className="products">
-                <div className="title archy-edt">შენი შეკვეთა</div>
+                <div className="title archy-edt">{__('client.checkout_ordered_items',sharedData)}</div>
                 {getCart().items.map((item, index) => {
                   return (
                     <div
@@ -166,7 +167,7 @@ const OrderForm = ({seo}) => {
                       </div>
                       <div>
                         <div className="name">{item.product.title}</div>
-                        <div className="op05">მწარმოებელი: {item.product.attributes.brand}</div>
+                        <div className="op05">{__('client.checkout_brand',sharedData)}: {item.product.attributes.brand}</div>
                       </div>
                       <div className="quantity">{item.qty}</div>
                       <div>{item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2)} ლარი</div>
@@ -175,7 +176,7 @@ const OrderForm = ({seo}) => {
                 })}
               </div>
               <div>
-                <div className="title archy-edt">საკურიერო მომსახურება</div>
+                <div className="title archy-edt">{__('client.checkout_courier_service',sharedData)}</div>
                 <div className="checks">
                   <input type="radio" name="location" id="tbilisi" />
                   <label htmlFor="tbilisi">თბილისი</label>
@@ -187,9 +188,9 @@ const OrderForm = ({seo}) => {
                 <div className="checks last">
                   <input type="checkbox" name="location" id="iagree" />
                   <label htmlFor="iagree">
-                    გავეცანი და ვეთანხმები{" "}
+                      {__('client.checkout_agree',sharedData)}{" "}
                     <Link className="blue" href="/" style={{ whiteSpace: "nowrap" }}>
-                      წესებს და პირობებს
+                        {__('client.checkout_rules_cond',sharedData)}
                     </Link>
                   </label>
                 </div>
@@ -197,18 +198,18 @@ const OrderForm = ({seo}) => {
               <div>
                 <div className="title archy-edt">
                   <strong className="total_cost">
-                    ჯამური თანხა: <span>{getCart().total.toFixed(2)}</span> ლარი
+                      {__('client.checkout_grand_total',sharedData)}: <span>{getCart().total.toFixed(2)}</span> ლარი
                   </strong>
                 </div>
                 <div className="checks">
                   <input type="radio" name="payment" id="cash" />
-                  <label htmlFor="cash">ნაღდი ანგარიშსწორება</label>
+                  <label htmlFor="cash">{__('client.checkout_cash_pay',sharedData)}</label>
                 </div>
                 <div className="checks">
                   <input type="radio" name="payment" id="bank-transfer" />
-                  <label htmlFor="bank-transfer">გადახდა ბანკით</label>
+                  <label htmlFor="bank-transfer">{__('client.checkout_bank_pay',sharedData)}</label>
                 </div>
-                <YellowButton onclick={handleClick} text="შეკვეთის გაფორმება" />
+                <YellowButton onclick={handleClick} text={__('client.checkout_place_order',sharedData)} />
               </div>
             </div>
           </div>

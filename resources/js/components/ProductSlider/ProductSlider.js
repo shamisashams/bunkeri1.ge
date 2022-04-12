@@ -79,10 +79,10 @@ const ProductSlider = ({ data, head, rightBtns, showArrows }) => {
               link={route('client.product.show',item.slug)}
               img={( item.latest_image != null) ? '/' + item.latest_image.path + '/' + item.latest_image.title : null}
               title={item.title}
-              price={item.price}
-              special_price={item.special_price}
-              sale={item.sale}
+              price={item.special_price !== null ? item.special_price : item.price}
+              sale={item.special_price !== null ? true : false}
               new={item.new}
+              product={item}
             />
           );
         })}

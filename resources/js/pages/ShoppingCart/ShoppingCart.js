@@ -9,6 +9,7 @@ import {Inertia} from "@inertiajs/inertia";
 
 const ShoppingCart = ({seo}) => {
   // const [quantity, setquantity] = useState(1);
+    const sharedData = usePage().props.localizations;
 
     const getCart = function (){
         let cart = [];
@@ -64,16 +65,16 @@ const ShoppingCart = ({seo}) => {
         <div className="shoppingcartPage">
           <PagePath previous="მთავარი" current="კალათა" />
           <div className="wrapper">
-            <div className="title35">ჩემი კალათა</div>
+            <div className="title35">{__('client.cart_title',sharedData)}</div>
             <div className="blue">სულ მოიძებნა {getCart().items.length} პროდუქტი</div>
             <div className="table">
               <table>
                 <tr className="head">
-                  <th>პროდუქტი</th>
-                  <th>ერთეულის ფასი</th>
-                  <th>რაოდენობა</th>
-                  <th>ჯამი</th>
-                  <th>წაშლა</th>
+                  <th>{__('client.cart_table_product',sharedData)}</th>
+                  <th>{__('client.cart_table_unite_price',sharedData)}</th>
+                  <th>{__('client.cart_table_qnty',sharedData)}</th>
+                  <th>{__('client.cart_table_total',sharedData)}</th>
+                  <th>{__('client.cart_table_delete',sharedData)}</th>
                 </tr>
                 {getCart().items.map((item, index) => {
                   return (
@@ -114,13 +115,13 @@ const ShoppingCart = ({seo}) => {
             <div className="bottom flex">
               <button className="back">
                 <Arrow color="#fff" rotate="90" />
-                <span className="archy-edt">შოპინგის გაგრძელება</span>
+                <span className="archy-edt">{__('client.cart_continue_shopping',sharedData)}</span>
               </button>
               <div>
                 <strong className="total_cost">
-                  ჯამური თანხა: <span>{getCart().total.toFixed(2)}</span> ლარი
+                    {__('client.cart_grand_total',sharedData)}: <span>{getCart().total.toFixed(2)}</span> ლარი
                 </strong>
-                <YellowButton link={route('client.checkout.index')} text="შეკვეთის გაფორმება" />
+                <YellowButton link={route('client.checkout.index')} text={__('client.cart_checkout',sharedData)} />
               </div>
             </div>
           </div>

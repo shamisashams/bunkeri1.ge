@@ -79,13 +79,13 @@ const Home = ({page,seo}) => {
               <div className="new_products wrapper">
                   <ProductSlider
                       showArrows
-                      head="ახალი კოლექცია"
+                      head={__('client.home_new_collection',sharedData)}
                       data={products.new_collection}
                       rightBtns={[
                           <div>
-                              <CommonButton link="/#special_price" text="სპეც ფასი" />
-                              <CommonButton gray link="/" text="ახალი" />
-                              <CommonButton gray link="/" text="პოპულარული" />
+                              <CommonButton link="/#special_price" text={__('client.home_slider_special_price',sharedData)} />
+                              <CommonButton gray link="/" text={__('client.home_slider_new',sharedData)} />
+                              <CommonButton gray link="/" text={__('client.home_slider_popular',sharedData)} />
                           </div>,
                           <SliderButtons />,
                       ]}
@@ -93,7 +93,7 @@ const Home = ({page,seo}) => {
               </div>
               <div className="bunker">
                   <div className="wrapper">
-                      <ProductSlider head="ბუნკერი" data={products.bunker} />
+                      <ProductSlider head={__('client.home_bunker',sharedData)} data={products.bunker} />
                   </div>
               </div>
               <div className="today wrapper">
@@ -102,27 +102,26 @@ const Home = ({page,seo}) => {
               <div className="special_price" id="special_price">
                   <div className="wrapper">
                       <ProductSlider
-                          head="სპეციალური ფასი"
+                          head={__('client.home_special_price',sharedData)}
                           data={products.special_price_tag}
-                          rightBtns={[<CommonButton link="/" text="სრულად" />]}
+                          rightBtns={[<CommonButton link="/" text={__('client.home_btn_view_all',sharedData)} />]}
                       />
                   </div>
               </div>
               <div id="popular_products" className="popular wrapper">
                   <ProductSlider
-                      head="პოპულარული"
+                      head={__('client.home_popular',sharedData)}
                       data={products.popular}
-                      rightBtns={[<CommonButton link="/" text="სრულად" />]}
+                      rightBtns={[<CommonButton link="/" text={__('client.home_btn_view_all',sharedData)} />]}
                   />
               </div>
               <div className="new_collection">
                   <div className="wrapper">
-                      <div className="title35">ახალი კოლექცია</div>
+                      <div className="title35">{__('client.home_section2_title',sharedData)}</div>
                       <div className="archy-edt">
-                          შესძინე საკუთარ თავს მეტი თავდაჯერებულობა და შეიგრძენი ამერიკული და
-                          ევროპული ხარისხი
+                          {renderHTML(__('client.home_section2_text',sharedData).newLineToBr())}
                       </div>
-                      <RoundButton white text="გაიგე მეტი" link="/" />
+                      <RoundButton white text={__('client.home_section2_btn_txt',sharedData)} link="/" />
                   </div>
               </div>
           </div>

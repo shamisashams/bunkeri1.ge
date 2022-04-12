@@ -5,8 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { AddToCart, CommonButton, SliderButtons } from "../Buttons/Buttons";
 import "./TodaysBox.css";
 import { todayPrice } from "./TodaysData";
+import {usePage} from "@inertiajs/inertia-react";
 
 const TodaysBox = ({day_product,day_price,addTocart}) => {
+    const sharedData = usePage().props.localizations;
   const secondBox = {
     dots: false,
     infinite: true,
@@ -27,7 +29,7 @@ const TodaysBox = ({day_product,day_price,addTocart}) => {
     <div className="todays_boxes flex">
       <div className="box">
         <div className="flex head">
-          <div className="title35">დღის პროდუქცია</div>
+          <div className="title35">{__('client.today_product',sharedData)}</div>
           <SliderButtons />
         </div>
         <div className="progressbar">
@@ -104,7 +106,7 @@ const TodaysBox = ({day_product,day_price,addTocart}) => {
       </div>
       <div className="box two">
         <div className="flex head">
-          <div className="title35">დღის ფასი</div>
+          <div className="title35">{__('client.today_price',sharedData)}</div>
           <SliderButtons />
         </div>
         <div className="progressbar">

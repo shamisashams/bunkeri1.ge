@@ -96,6 +96,7 @@ const addToCart = function (product){
 }
 
 const Products = ({page,seo}) => {
+    const sharedData = usePage().props.localizations;
   const [showFilter, setShowFilter] = useState(false);
   const toggleFilter = () => {
     setShowFilter(!showFilter);
@@ -121,7 +122,7 @@ const Products = ({page,seo}) => {
                 showFilter ? "column filter_column show" : "column filter_column"
               }
             >
-              <div className="headtitle">ფილტრი</div>
+              <div className="headtitle">{__('client.products_filter_title',sharedData)}</div>
 
               <Filters />
             </div>
@@ -147,10 +148,11 @@ const Products = ({page,seo}) => {
                       link={route('client.product.show',data.slug)}
                       img={( data.latest_image != null) ? '/' + data.latest_image.path + '/' + data.latest_image.title : null}
                       title={data.title}
-                      price={data.price}
-                      sale={data.sale}
+                      price={data.special_price !== null ? data.special_price : data.price}
+                      sale={data.special_price !== null ? true : false}
                       new={data.new}
                       product={data}
+                      handleClick={() => addToCart(data)}
                     />
                   );
                 })}

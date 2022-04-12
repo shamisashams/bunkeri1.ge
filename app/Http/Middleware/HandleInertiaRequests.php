@@ -61,9 +61,10 @@ class HandleInertiaRequests extends Middleware
         $_result = [];
         foreach ($info as $item){
             $_result[$item->key] = $item->value;
+            $_result['active'][$item->key] = $item->active;
         }
 
-        //dd($result,$categories);
+        //dd($_result,$categories);
 
 
         //Generates urls for language switcher with each locale

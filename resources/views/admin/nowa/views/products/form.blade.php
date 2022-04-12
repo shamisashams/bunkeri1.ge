@@ -315,6 +315,46 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                         </label>
                     </div>
 
+                    <div class="form-group">
+                        <label class="ckbox">
+                            <input type="checkbox" name="new_collection"
+                                   value="true" {{$product->new_collection ? 'checked' : ''}}>
+                            <span>{{__('admin.new_collection')}}</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="ckbox">
+                            <input type="checkbox" name="bunker"
+                                   value="true" {{$product->bunker ? 'checked' : ''}}>
+                            <span>{{__('admin.bunker')}}</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="ckbox">
+                            <input type="checkbox" name="day_product"
+                                   value="true" {{$product->day_product ? 'checked' : ''}}>
+                            <span>{{__('admin.day_product')}}</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="ckbox">
+                            <input type="checkbox" name="day_price"
+                                   value="true" {{$product->day_price ? 'checked' : ''}}>
+                            <span>{{__('admin.day_price')}}</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="ckbox">
+                            <input type="checkbox" name="day_price_tag"
+                                   value="true" {{$product->day_price_tag ? 'checked' : ''}}>
+                            <span>{{__('admin.special_price_tag')}}</span>
+                        </label>
+                    </div>
+
                     {{--<div class="form-group">
 
                         {!! Form::label('sale',__('admin.sale')) !!}

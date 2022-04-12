@@ -78,7 +78,12 @@ class Product extends Model implements Searchable
         'price',
         'quantity',
         'special_price',
-        'new'
+        'new',
+        'new_collection',
+        'bunker',
+        'day_price',
+        'day_product',
+        'special_price_tag'
     ];
 
     /** @var string */

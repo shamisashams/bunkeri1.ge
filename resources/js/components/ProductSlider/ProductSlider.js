@@ -80,6 +80,7 @@ const ProductSlider = ({ data, head, rightBtns, showArrows }) => {
               img={( item.latest_image != null) ? '/' + item.latest_image.path + '/' + item.latest_image.title : null}
               title={item.title}
               price={item.price}
+              special_price={item.special_price}
               sale={item.sale}
               new={item.new}
             />

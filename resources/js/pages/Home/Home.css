@@ -1,6 +1,7 @@
 .homePage .hero_section {
   width: 100%;
-  background: url(/img/home/bg1.png) no-repeat;
+
+    background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   padding: 67px 0 83px 0;

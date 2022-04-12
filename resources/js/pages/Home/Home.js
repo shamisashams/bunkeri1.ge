@@ -16,10 +16,11 @@ const renderHTML = (rawHTML) => React.createElement("div", { dangerouslySetInner
 
 const Home = ({page,seo}) => {
     const sharedData = usePage().props.localizations;
+    const { images } = usePage().props;
   return (
       <Layout seo={seo}>
           <div className="homePage">
-              <div className="hero_section">
+              <div className="hero_section" style={{ background: "url(" + images[0] + ")" }}>
                   <div className="wrapper">
                       <div className="title35 blue">{__('client.home_section1_title',sharedData)}</div>
                       <div className="archy-edt blue">

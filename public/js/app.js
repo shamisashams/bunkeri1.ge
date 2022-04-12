@@ -4941,12 +4941,16 @@ var Home = function Home(_ref) {
   var page = _ref.page,
       seo = _ref.seo;
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.usePage)().props.localizations;
+  var images = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.usePage)().props.images;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "homePage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "hero_section"
+    className: "hero_section",
+    style: {
+      background: "url(" + images[0] + ")"
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -8706,7 +8710,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\r\n  width: 100%;\r\n  background: url(/img/home/bg1.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 67px 0 83px 0;\r\n  margin-bottom: 60px;\r\n}\r\n.homePage .hero_section .archy-edt {\r\n  margin: 15px 0 15px 0;\r\n  max-width: 500px;\r\n}\r\n.homePage .new_products {\r\n  margin-bottom: 80px;\r\n}\r\n.homePage .bunker {\r\n  background: url(/img/home/bg2.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 30px 0 60px 0;\r\n}\r\n.homePage .bunker .title35 {\r\n  color: #fdf416;\r\n}\r\n.homePage .bunker .progressbar {\r\n  border: 1px solid #fdf416;\r\n}\r\n.homePage .bunker .progressbar .fill::after {\r\n  background-color: #fff;\r\n  border: 1px solid #fff;\r\n}\r\n.homePage .bunker .slick-dots li button:before {\r\n  color: #fff;\r\n}\r\n\r\n.homePage .today {\r\n  padding: 20px 0 40px 0;\r\n}\r\n\r\n.homePage .special_price {\r\n  background: url(/img/home/bg3.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 20px 0 60px 0;\r\n}\r\n.homePage .popular {\r\n  padding: 40px 0 70px 0;\r\n}\r\n.homePage .new_collection {\r\n  background: url(/img/home/bg4.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 75px 0;\r\n  color: #fff;\r\n  text-align: center;\r\n}\r\n.homePage .new_collection .archy-edt {\r\n  max-width: 523px;\r\n  margin: 15px auto;\r\n}\r\n\r\n/* responsive */\r\n@media screen and (max-width: 600px) {\r\n  .homePage .hero_section {\r\n    padding: 29px 0 34px 0;\r\n    margin-bottom: 20px;\r\n  }\r\n  .homePage .hero_section .archy-edt {\r\n    margin: 4px 0 15px 0;\r\n    max-width: 90%;\r\n  }\r\n  .homePage .new_collection {\r\n    padding: 23px 0;\r\n  }\r\n  .homePage .new_collection .archy-edt {\r\n    margin: 7px auto;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\n  width: 100%;\n\n    background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 67px 0 83px 0;\n  margin-bottom: 60px;\n}\n.homePage .hero_section .archy-edt {\n  margin: 15px 0 15px 0;\n  max-width: 500px;\n}\n.homePage .new_products {\n  margin-bottom: 80px;\n}\n.homePage .bunker {\n  background: url(/img/home/bg2.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 30px 0 60px 0;\n}\n.homePage .bunker .title35 {\n  color: #fdf416;\n}\n.homePage .bunker .progressbar {\n  border: 1px solid #fdf416;\n}\n.homePage .bunker .progressbar .fill::after {\n  background-color: #fff;\n  border: 1px solid #fff;\n}\n.homePage .bunker .slick-dots li button:before {\n  color: #fff;\n}\n\n.homePage .today {\n  padding: 20px 0 40px 0;\n}\n\n.homePage .special_price {\n  background: url(/img/home/bg3.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 20px 0 60px 0;\n}\n.homePage .popular {\n  padding: 40px 0 70px 0;\n}\n.homePage .new_collection {\n  background: url(/img/home/bg4.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 75px 0;\n  color: #fff;\n  text-align: center;\n}\n.homePage .new_collection .archy-edt {\n  max-width: 523px;\n  margin: 15px auto;\n}\n\n/* responsive */\n@media screen and (max-width: 600px) {\n  .homePage .hero_section {\n    padding: 29px 0 34px 0;\n    margin-bottom: 20px;\n  }\n  .homePage .hero_section .archy-edt {\n    margin: 4px 0 15px 0;\n    max-width: 90%;\n  }\n  .homePage .new_collection {\n    padding: 23px 0;\n  }\n  .homePage .new_collection .archy-edt {\n    margin: 7px auto;\n  }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -55,8 +55,6 @@ const Filters = () => {
         console.log(code);
         console.log(value);
         //Inertia.visit('?brand=12');
-        let appliedFilters = [];
-        let urlParams = new URLSearchParams(window.location.search);
 
         urlParams.forEach((value, index) => {
             appliedFilters[index] = value.split(',');
@@ -74,6 +72,10 @@ const Filters = () => {
 
         Inertia.visit("?" + params.join('&'));
 
+
+    }
+
+    const clearFilter = function (){
 
     }
 
@@ -100,7 +102,7 @@ const Filters = () => {
   return (
     <div className="product_filter">
       <div className="section">
-        <button className=" op05 flex clear">
+        <button onClick={clearFilter} className=" op05 flex clear">
           <img src="/img/icons/other/delete.svg" alt="" />
           <span>გასუფთავება</span>
         </button>

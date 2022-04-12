@@ -55,6 +55,18 @@
             }
             return this;
         };*/
+        const breadcrumb = function (path) {
+            let rows = '';
+            path.map(function (el, i) {
+                if (i < path.length - 1) {
+                    rows += el.title;
+                    rows += ' / ';
+                } else {
+                    rows += el.title;
+                }
+            });
+            return rows;
+        };
 
     </script>
 </head>

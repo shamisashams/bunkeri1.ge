@@ -46,18 +46,7 @@ const ProductDetails = ({page,seo}) => {
     console.log(product)
     console.log(product_attributes)
 
-    const breadcrumb = function (path) {
-        let rows = '';
-        path.map(function (el, i) {
-            if (i < path.length - 1) {
-                rows += el.title;
-                rows += ' / ';
-            } else {
-                rows += el.title;
-            }
-        });
-        return rows;
-    };
+
 
 
     const addToCart = function (product){

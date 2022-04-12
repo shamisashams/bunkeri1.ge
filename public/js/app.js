@@ -7103,8 +7103,6 @@ var Filters = function Filters() {
     console.log(code);
     console.log(value); //Inertia.visit('?brand=12');
 
-    var appliedFilters = [];
-    var urlParams = new URLSearchParams(window.location.search);
     urlParams.forEach(function (value, index) {
       appliedFilters[index] = value.split(',');
     });
@@ -7123,6 +7121,17 @@ var Filters = function Filters() {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.visit("?" + params.join('&'));
   };
 
+  var clearFilter = function clearFilter() {
+    appliedFilters = [];
+    var params = [];
+
+    for (var key in appliedFilters) {
+      params.push(key + '=' + appliedFilters[key].join(','));
+    }
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.visit("?" + params.join('&'));
+  };
+
   console.log(filter);
   var categories = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
   var brands = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
@@ -7132,6 +7141,7 @@ var Filters = function Filters() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: clearFilter,
     className: " op05 flex clear"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/other/delete.svg",

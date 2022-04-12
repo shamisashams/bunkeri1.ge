@@ -76,7 +76,14 @@ const Filters = () => {
     }
 
     const clearFilter = function (){
+        appliedFilters = [];
+        let params = [];
 
+        for(let key in appliedFilters) {
+            params.push(key + '=' + appliedFilters[key].join(','))
+        }
+
+        Inertia.visit("?" + params.join('&'));
     }
 
     console.log(filter);

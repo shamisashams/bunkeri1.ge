@@ -16,7 +16,8 @@ const renderHTML = (rawHTML) => React.createElement("div", { dangerouslySetInner
 
 const Home = ({page,seo}) => {
     const sharedData = usePage().props.localizations;
-    const { images } = usePage().props;
+    const { images, products } = usePage().props;
+    console.log(products)
   return (
       <Layout seo={seo}>
           <div className="homePage">
@@ -33,7 +34,7 @@ const Home = ({page,seo}) => {
                   <ProductSlider
                       showArrows
                       head="ახალი კოლექცია"
-                      data={SliderData}
+                      data={products.new_collection}
                       rightBtns={[
                           <div>
                               <CommonButton link="/#special_price" text="სპეც ფასი" />
@@ -46,17 +47,17 @@ const Home = ({page,seo}) => {
               </div>
               <div className="bunker">
                   <div className="wrapper">
-                      <ProductSlider head="ბუნკერი" data={SliderData} />
+                      <ProductSlider head="ბუნკერი" data={products.bunker} />
                   </div>
               </div>
               <div className="today wrapper">
-                  <TodaysBox />
+                  <TodaysBox day_product={products.day_product} day_price={products.day_price} />
               </div>
               <div className="special_price" id="special_price">
                   <div className="wrapper">
                       <ProductSlider
                           head="სპეციალური ფასი"
-                          data={SliderData}
+                          data={products.special_price_tag}
                           rightBtns={[<CommonButton link="/" text="სრულად" />]}
                       />
                   </div>
@@ -64,7 +65,7 @@ const Home = ({page,seo}) => {
               <div id="popular_products" className="popular wrapper">
                   <ProductSlider
                       head="პოპულარული"
-                      data={SliderData}
+                      data={products.popular}
                       rightBtns={[<CommonButton link="/" text="სრულად" />]}
                   />
               </div>

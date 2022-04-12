@@ -31,8 +31,23 @@ class HomeController extends Controller
         $sliders = Slider::query()->where("status", 1)->with(['file', 'translations']);
 //        dd($page->file);
 //        dd(App::getLocale());
-        $products = app(ProductRepository::class)->getPopularProducts();
+        $_products = app(ProductRepository::class)->getHomePageProducts();
 
+        $products = [];
+        $products['new_collection'] = [];
+        $products['bunker'] = [];
+        $products['day_product'] = [];
+        $products['day_price'] = [];
+        $products['special_price_tag'] = [];
+        $products['popular'] = [];
+        foreach ($_products as $product){
+            if($product->new_collection) $products['new_collection'][] = $product;
+            if($product->bunker) $products['bunker'][] = $product;
+            if($product->day_product) $products['day_product'][] = $product;
+            if($product->day_price) $products['day_price'][] = $product;
+            if($product->special_price_tag) $products['special_price_tag'][] = $product;
+            if($product->popular) $products['popular'][] = $product;
+        }
 
         //dd($products);
 
@@ -45,7 +60,7 @@ class HomeController extends Controller
 
 //            "image" => "imgg",
 //            "locale" => App::getLocale()
-        ],'popular_products' => $products,'images' => $images])->withViewData([
+        ],'products' => $products,'images' => $images])->withViewData([
             'meta_title' => $page->meta_title,
             'meta_description' => $page->meta_description,
             'meta_keyword' => $page->meta_keyword,

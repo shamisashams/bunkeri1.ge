@@ -349,8 +349,8 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
 
                     <div class="form-group">
                         <label class="ckbox">
-                            <input type="checkbox" name="day_price_tag"
-                                   value="true" {{$product->day_price_tag ? 'checked' : ''}}>
+                            <input type="checkbox" name="special_price_tag"
+                                   value="true" {{$product->special_price_tag ? 'checked' : ''}}>
                             <span>{{__('admin.special_price_tag')}}</span>
                         </label>
                     </div>

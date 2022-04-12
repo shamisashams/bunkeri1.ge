@@ -33,8 +33,14 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $this->attributeRepository = $attributeRepository;
     }
 
-    public function getPopularProducts(){
-        $products = $this->model->where('popular',1)->whereHas('categories',function ($query){
+    public function getHomePageProducts(){
+        $products = $this->model->where('popular',1)
+            ->orWhere('new_collection',1)
+            ->orWhere('bunker',1)
+            ->orWhere('day_product',1)
+            ->orWhere('day_price',1)
+            ->orWhere('special_price_tag',1)
+            ->whereHas('categories',function ($query){
             $query->where('status',1);
         })->with(['latestImage'])->inRandomOrder()->get();
 

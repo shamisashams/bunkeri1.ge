@@ -4941,7 +4941,10 @@ var Home = function Home(_ref) {
   var page = _ref.page,
       seo = _ref.seo;
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.usePage)().props.localizations;
-  var images = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.usePage)().props.images;
+  var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.usePage)().props,
+      images = _usePage$props.images,
+      products = _usePage$props.products;
+  console.log(products);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4965,7 +4968,7 @@ var Home = function Home(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     showArrows: true,
     head: "\u10D0\u10EE\u10D0\u10DA\u10D8 \u10D9\u10DD\u10DA\u10D4\u10E5\u10EA\u10D8\u10D0",
-    data: _components_ProductSlider_SliderData__WEBPACK_IMPORTED_MODULE_5__.SliderData,
+    data: products.new_collection,
     rightBtns: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.CommonButton, {
       link: "/#special_price",
       text: "\u10E1\u10DE\u10D4\u10EA \u10E4\u10D0\u10E1\u10D8"
@@ -4984,17 +4987,20 @@ var Home = function Home(_ref) {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     head: "\u10D1\u10E3\u10DC\u10D9\u10D4\u10E0\u10D8",
-    data: _components_ProductSlider_SliderData__WEBPACK_IMPORTED_MODULE_5__.SliderData
+    data: products.bunker
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "today wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TodaysBox_TodaysBox__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TodaysBox_TodaysBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    day_product: products.day_product,
+    day_price: products.day_price
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "special_price",
     id: "special_price"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     head: "\u10E1\u10DE\u10D4\u10EA\u10D8\u10D0\u10DA\u10E3\u10E0\u10D8 \u10E4\u10D0\u10E1\u10D8",
-    data: _components_ProductSlider_SliderData__WEBPACK_IMPORTED_MODULE_5__.SliderData,
+    data: products.special_price_tag,
     rightBtns: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.CommonButton, {
       link: "/",
       text: "\u10E1\u10E0\u10E3\u10DA\u10D0\u10D3"
@@ -5004,7 +5010,7 @@ var Home = function Home(_ref) {
     className: "popular wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     head: "\u10DE\u10DD\u10DE\u10E3\u10DA\u10D0\u10E0\u10E3\u10DA\u10D8",
-    data: _components_ProductSlider_SliderData__WEBPACK_IMPORTED_MODULE_5__.SliderData,
+    data: products.popular,
     rightBtns: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.CommonButton, {
       link: "/",
       text: "\u10E1\u10E0\u10E3\u10DA\u10D0\u10D3"
@@ -8308,7 +8314,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var TodaysBox = function TodaysBox() {
+var TodaysBox = function TodaysBox(_ref) {
+  var day_product = _ref.day_product,
+      day_price = _ref.day_price;
   var secondBox = {
     dots: false,
     infinite: true,
@@ -8335,24 +8343,24 @@ var TodaysBox = function TodaysBox() {
     className: "progressbar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "fill"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_slick_lib_slider__WEBPACK_IMPORTED_MODULE_1__["default"], secondBox, _TodaysData__WEBPACK_IMPORTED_MODULE_6__.todayPrice.map(function (item, index) {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_slick_lib_slider__WEBPACK_IMPORTED_MODULE_1__["default"], secondBox, day_product.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "inbox_slider",
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "img"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: item.img,
+      src: item.latest_image != null ? '/' + item.latest_image.path + '/' + item.latest_image.title : null,
       alt: ""
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
       className: "op05"
-    }, item.para), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.short_description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "blue"
-    }, "17.5 \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.special_price !== null ? item.special_price : item.price, " \u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "old_price"
-    }, "27.5 \u10DA\u10D0\u10E0\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.price, " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex btns centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
       link: "/",
@@ -8368,24 +8376,24 @@ var TodaysBox = function TodaysBox() {
     className: "progressbar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "fill"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_slick_lib_slider__WEBPACK_IMPORTED_MODULE_1__["default"], secondBox, _TodaysData__WEBPACK_IMPORTED_MODULE_6__.todayPrice.map(function (item, index) {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_slick_lib_slider__WEBPACK_IMPORTED_MODULE_1__["default"], secondBox, day_price.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "inbox_slider",
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "img"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: item.img,
+      src: item.latest_image != null ? '/' + item.latest_image.path + '/' + item.latest_image.title : null,
       alt: ""
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
       className: "op05"
-    }, item.para), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.short_description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "blue"
-    }, "17.5 \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.special_price !== null ? item.special_price : item.price, " \u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "old_price"
-    }, "27.5 \u10DA\u10D0\u10E0\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.price, " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex btns centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
       link: "/",

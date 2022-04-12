@@ -6,7 +6,7 @@ import { AddToCart, CommonButton, SliderButtons } from "../Buttons/Buttons";
 import "./TodaysBox.css";
 import { todayPrice } from "./TodaysData";
 
-const TodaysBox = () => {
+const TodaysBox = ({day_product,day_price}) => {
   const secondBox = {
     dots: false,
     infinite: true,
@@ -34,17 +34,17 @@ const TodaysBox = () => {
           <div className="fill"></div>
         </div>
         <Slider {...secondBox}>
-          {todayPrice.map((item, index) => {
+          {day_product.map((item, index) => {
             return (
               <div className="inbox_slider" key={index}>
                 <div className="img">
-                  <img src={item.img} alt="" />
+                  <img src={( item.latest_image != null) ? '/' + item.latest_image.path + '/' + item.latest_image.title : null} alt="" />
                 </div>
-                <strong>{item.name}</strong>
-                <p className="op05">{item.para}</p>
+                <strong>{item.title}</strong>
+                <p className="op05">{item.short_description}</p>
                 <div className="flex centered">
-                  <div className="blue">17.5 ლარი</div>
-                  <div className="old_price">27.5 ლარი</div>
+                  <div className="blue">{item.special_price !== null ? item.special_price : item.price} ლარი</div>
+                    {item.special_price !== null ? <div className="old_price">{item.price} ლარი</div>: null}
                 </div>
                 <div className="flex btns centered">
                   <AddToCart />
@@ -111,17 +111,17 @@ const TodaysBox = () => {
           <div className="fill"></div>
         </div>
         <Slider {...secondBox}>
-          {todayPrice.map((item, index) => {
+          {day_price.map((item, index) => {
             return (
               <div className="inbox_slider" key={index}>
                 <div className="img">
-                  <img src={item.img} alt="" />
+                  <img src={( item.latest_image != null) ? '/' + item.latest_image.path + '/' + item.latest_image.title : null} alt="" />
                 </div>
-                <strong>{item.name}</strong>
-                <p className="op05">{item.para}</p>
+                <strong>{item.title}</strong>
+                <p className="op05">{item.short_description}</p>
                 <div className="flex centered">
-                  <div className="blue">17.5 ლარი</div>
-                  <div className="old_price">27.5 ლარი</div>
+                  <div className="blue">{item.special_price !== null ? item.special_price : item.price} ლარი</div>
+                    {item.special_price !== null ? <div className="old_price">{item.price} ლარი</div>: null}
                 </div>
                 <div className="flex btns centered">
                   <AddToCart />

@@ -150,6 +150,28 @@ class CategoryController extends Controller
 
         $products = $this->productRepository->getAll(null,1);
 
+        foreach ($products as $product){
+            $product_attributes = $product->attribute_values;
+
+            $_result = [];
+
+            foreach ($product_attributes as $item){
+                $options = $item->attribute->options;
+                $value = '';
+                foreach ($options as $option){
+                    if($item->attribute->type == 'select'){
+                        if($item->integer_value == $option->id) {
+                            $_result[$item->attribute->code] = $option->label;
+                        }
+
+                    }
+                }
+
+            }
+            $product['attributes'] = $_result;
+
+        }
+
         return Inertia::render('Products/Products',[
             'products' => $products,
             'category' => null,
@@ -189,6 +211,28 @@ class CategoryController extends Controller
 
         $products = $this->productRepository->getAll(null,null,1);
 
+        foreach ($products as $product){
+            $product_attributes = $product->attribute_values;
+
+            $_result = [];
+
+            foreach ($product_attributes as $item){
+                $options = $item->attribute->options;
+                $value = '';
+                foreach ($options as $option){
+                    if($item->attribute->type == 'select'){
+                        if($item->integer_value == $option->id) {
+                            $_result[$item->attribute->code] = $option->label;
+                        }
+
+                    }
+                }
+
+            }
+            $product['attributes'] = $_result;
+
+        }
+
         return Inertia::render('Products/Products',[
             'products' => $products,
             'category' => null,
@@ -227,6 +271,28 @@ class CategoryController extends Controller
         }
 
         $products = $this->productRepository->getAll(null,null,null,1);
+
+        foreach ($products as $product){
+            $product_attributes = $product->attribute_values;
+
+            $_result = [];
+
+            foreach ($product_attributes as $item){
+                $options = $item->attribute->options;
+                $value = '';
+                foreach ($options as $option){
+                    if($item->attribute->type == 'select'){
+                        if($item->integer_value == $option->id) {
+                            $_result[$item->attribute->code] = $option->label;
+                        }
+
+                    }
+                }
+
+            }
+            $product['attributes'] = $_result;
+
+        }
 
         return Inertia::render('Products/Products',[
             'products' => $products,

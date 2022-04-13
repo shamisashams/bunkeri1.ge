@@ -173,6 +173,28 @@ class ProductController extends Controller
             ->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')
             ->inRandomOrder()
             ->with('latestImage')->get();
+
+        foreach ($similar_products as $product){
+            $product_attributes = $product->attribute_values;
+
+            $_result = [];
+
+            foreach ($product_attributes as $item){
+                $options = $item->attribute->options;
+                $value = '';
+                foreach ($options as $option){
+                    if($item->attribute->type == 'select'){
+                        if($item->integer_value == $option->id) {
+                            $_result[$item->attribute->code] = $option->label;
+                        }
+
+                    }
+                }
+
+            }
+            $product['attributes'] = $_result;
+
+        }
         //dd($category);
         //$result = [];
         //$result['id'] = $category[0]['id'];

@@ -134,16 +134,18 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                         //dd($filterInputValues);
                         $aQ->where('product_attribute_values.attribute_id', $attribute->id);
 
-                        $aQ->where(function ($attributeValueQuery) use ($column, $filterInputValues) {
+                        $aQ->where(function ($attributeValueQuery) use ($column, $filterInputValues,$attribute) {
 
-                            if(is_array($filterInputValues)){
+                            if($attribute->type !== 'boolean'){
                                 foreach ($filterInputValues as $filterValue) {
                                     if (!is_numeric($filterValue)) {
                                         continue;
                                     }
                                     $attributeValueQuery->orWhereRaw("find_in_set(?, {$column})", [$filterValue]);
                                 }
+                                //dd('ff');
                             } else {
+                                //dd('dd');
                                 if (is_numeric($filterInputValues)) {
                                     $attributeValueQuery->orWhereRaw("find_in_set(?, {$column})", [$filterInputValues]);
                                 }

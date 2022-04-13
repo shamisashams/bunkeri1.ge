@@ -5930,13 +5930,13 @@ var Products = function Products(_ref) {
       images = _usePage$props.images;
   console.log(products);
   console.log(category);
-  var appliedFilters = [];
-  var urlParams = new URLSearchParams(window.location.search);
-  urlParams.forEach(function (value, index) {
-    appliedFilters[index] = value.split(',');
-  });
 
   var sort = function sort(data) {
+    var appliedFilters = [];
+    var urlParams = new URLSearchParams(window.location.search);
+    urlParams.forEach(function (value, index) {
+      appliedFilters[index] = value.split(',');
+    });
     console.log(data);
     urlParams.forEach(function (value, index) {
       appliedFilters[index] = value.split(',');
@@ -7210,21 +7210,21 @@ var Filters = function Filters() {
   urlParams.forEach(function (value, index) {
     appliedFilters[index] = value.split(',');
   });
-  console.log(appliedFilters);
-  var filt_ckbox = document.querySelectorAll('.filter_ckbox'); //console.log(el.name)
-
-  filt_ckbox.forEach(function (el) {
-    if (appliedFilters.hasOwnProperty(el.name)) {
-      if (appliedFilters[el.name].includes(el.value)) {
-        el.checked = true;
-      } else el.checked = false;
-    } else el.checked = false;
-  });
+  console.log(filter);
 
   var options = function options(code, _options) {
     var rows = [];
+    var checked;
+    console.log(appliedFilters);
 
     _options.map(function (item, index) {
+      if (appliedFilters.hasOwnProperty(code)) {
+        if (appliedFilters[code].includes(item.id.toString())) {
+          checked = true;
+        } else checked = false;
+      } else checked = false;
+
+      console.log(item.id);
       rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "flex",
         key: index
@@ -7236,7 +7236,8 @@ var Filters = function Filters() {
         name: code,
         type: "checkbox",
         id: "".concat(code, "-").concat(index),
-        value: item.id
+        value: item.id,
+        checked: checked
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "".concat(code, "-").concat(index)
       }, item.label)));
@@ -7244,6 +7245,23 @@ var Filters = function Filters() {
 
     return rows;
   };
+
+  function removeA(arr) {
+    var what,
+        a = arguments,
+        L = a.length,
+        ax;
+
+    while (L > 1 && arr.length) {
+      what = a[--L];
+
+      while ((ax = arr.indexOf(what)) !== -1) {
+        arr.splice(ax, 1);
+      }
+    }
+
+    return arr;
+  }
 
   var handleFilterClick = function handleFilterClick(event, code, value) {
     console.log(code);
@@ -7253,9 +7271,13 @@ var Filters = function Filters() {
       appliedFilters[index] = value.split(',');
     });
 
-    if (appliedFilters.hasOwnProperty(code)) {
-      appliedFilters[code].push(value);
-    } else appliedFilters[code] = [value];
+    if (event.target.checked === true) {
+      if (appliedFilters.hasOwnProperty(code)) {
+        appliedFilters[code].push(value);
+      } else appliedFilters[code] = [value];
+    } else {
+      if (appliedFilters[code].length > 1) removeA(appliedFilters[code], value.toString());else delete appliedFilters[code];
+    }
 
     console.log(appliedFilters);
     var params = [];
@@ -7299,11 +7321,32 @@ var Filters = function Filters() {
   }, __('client.products_filter_price', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_2__["default"], {
     price: filter.price
   })), filter.attributes.map(function (item, index) {
+    var checked;
+
+    if (appliedFilters.hasOwnProperty(item.code)) {
+      if (appliedFilters[item.code].includes(item.id.toString())) {
+        checked = true;
+      } else checked = false;
+    } else checked = false;
+
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "section"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "head"
-    }, item.name), options(item.code, item.options));
+    }, item.name), item.type !== 'boolean' ? options(item.code, item.options) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      style: {
+        display: "block"
+      },
+      className: "filter_ckbox",
+      onClick: function onClick(event) {
+        handleFilterClick(event, item.code, item.id);
+      },
+      name: item.code,
+      type: "checkbox",
+      id: "".concat(item.code),
+      value: "1",
+      checked: checked
+    }));
   }));
 };
 

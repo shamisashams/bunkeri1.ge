@@ -114,14 +114,15 @@ const Products = ({page,seo}) => {
     console.log(products);
     console.log(category);
 
-    let appliedFilters = [];
-    let urlParams = new URLSearchParams(window.location.search);
 
-    urlParams.forEach((value, index) => {
-        appliedFilters[index] = value.split(',');
-    });
 
     const sort = function (data){
+        let appliedFilters = [];
+        let urlParams = new URLSearchParams(window.location.search);
+
+        urlParams.forEach((value, index) => {
+            appliedFilters[index] = value.split(',');
+        });
         console.log(data)
 
         urlParams.forEach((value, index) => {

@@ -5203,7 +5203,9 @@ var OrderForm = function OrderForm(_ref) {
     first_name: "",
     last_name: "",
     email: "",
-    phone: ""
+    phone: "",
+    payment_method: null,
+    courier_service: null
   }),
       _useState2 = _slicedToArray(_useState, 2),
       values = _useState2[0],
@@ -5223,7 +5225,14 @@ var OrderForm = function OrderForm(_ref) {
   }
 
   function handleClick(e) {
-    //document.getElementById('order_f').submit();
+    e.preventDefault();
+
+    if (document.getElementById('iagree').checked === false) {
+      alert('Check i agree');
+      return false;
+    } //document.getElementById('order_f').submit();
+
+
     values['cart'] = getCart();
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.post(route('client.checkout.order'), values, {
       onSuccess: function onSuccess(page) {
@@ -5305,16 +5314,20 @@ var OrderForm = function OrderForm(_ref) {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
-    name: "location",
-    id: "tbilisi"
+    onClick: handleChange,
+    name: "courier_service",
+    id: "tbilisi",
+    value: 0
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "tbilisi"
   }, "\u10D7\u10D1\u10D8\u10DA\u10D8\u10E1\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
-    name: "location",
-    id: "region"
+    onClick: handleChange,
+    name: "courier_service",
+    id: "region",
+    value: 1
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "region"
   }, "\u10E0\u10D4\u10D2\u10D8\u10DD\u10DC\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5339,16 +5352,20 @@ var OrderForm = function OrderForm(_ref) {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
-    name: "payment",
-    id: "cash"
+    onClick: handleChange,
+    name: "payment_method",
+    id: "cash",
+    value: 0
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "cash"
   }, __('client.checkout_cash_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
-    name: "payment",
-    id: "bank-transfer"
+    onClick: handleChange,
+    name: "payment_method",
+    id: "bank-transfer",
+    value: 1
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bank-transfer"
   }, __('client.checkout_bank_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
@@ -5636,6 +5653,47 @@ var ProductDetails = function ProductDetails(_ref) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.visit(window.location.href);
   };
 
+  var buyNow = function buyNow(product) {
+    var _cart = localStorage.getItem('cart');
+
+    var cart;
+
+    if (_cart !== null) {
+      cart = JSON.parse(_cart);
+    } else cart = [];
+
+    var qty = parseInt(document.getElementById('qty_add').value);
+
+    if (cart.length > 0) {
+      var exists = false;
+      cart.forEach(function (el, i) {
+        if (el.product.id === product.id) {
+          el.qty += qty;
+          exists = true;
+        }
+      });
+
+      if (!exists) {
+        var obj = {
+          product: product,
+          qty: qty
+        };
+        cart.push(obj);
+      }
+    } else {
+      var _obj2 = {
+        product: product,
+        qty: qty
+      };
+      cart.push(_obj2);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(JSON.parse(localStorage.getItem('cart'))); //localStorage.removeItem('cart')
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get(route('client.checkout.index'));
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5739,7 +5797,11 @@ var ProductDetails = function ProductDetails(_ref) {
   }, __('client.prod_det_add_to_cart', sharedData)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_3__.YellowButton, {
     link: "/",
     text: __('client.buy_now', sharedData)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      return buyNow(product);
+    }
+  }, "Buy Now")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex share blue"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icon flex centered radius5"

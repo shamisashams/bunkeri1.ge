@@ -91,7 +91,9 @@ const OrderForm = ({seo}) => {
         first_name: "",
         last_name: "",
         email: "",
-        phone: ""
+        phone: "",
+        payment_method: null,
+        courier_service: null
     })
 
     function handleChange(e) {
@@ -109,6 +111,12 @@ const OrderForm = ({seo}) => {
     }
 
     function handleClick(e) {
+        e.preventDefault();
+        if(document.getElementById('iagree').checked === false){
+            alert('Check i agree');
+
+            return false;
+        }
         //document.getElementById('order_f').submit();
         values['cart'] = getCart();
         Inertia.post(route('client.checkout.order'), values, {onSuccess: (page) => {
@@ -194,11 +202,11 @@ const OrderForm = ({seo}) => {
               <div>
                 <div className="title archy-edt">{__('client.checkout_courier_service',sharedData)}</div>
                 <div className="checks">
-                  <input type="radio" name="location" id="tbilisi" />
+                  <input type="radio" onClick={handleChange} name="courier_service" id="tbilisi" value={0} />
                   <label htmlFor="tbilisi">თბილისი</label>
                 </div>
                 <div className="checks">
-                  <input type="radio" name="location" id="region" />
+                  <input type="radio" onClick={handleChange} name="courier_service" id="region" value={1} />
                   <label htmlFor="region">რეგიონი</label>
                 </div>
                 <div className="checks last">
@@ -218,11 +226,11 @@ const OrderForm = ({seo}) => {
                   </strong>
                 </div>
                 <div className="checks">
-                  <input type="radio" name="payment" id="cash" />
+                  <input type="radio" onClick={handleChange} name="payment_method" id="cash" value={0}/>
                   <label htmlFor="cash">{__('client.checkout_cash_pay',sharedData)}</label>
                 </div>
                 <div className="checks">
-                  <input type="radio" name="payment" id="bank-transfer" />
+                  <input type="radio" onClick={handleChange} name="payment_method" id="bank-transfer" value={1} />
                   <label htmlFor="bank-transfer">{__('client.checkout_bank_pay',sharedData)}</label>
                 </div>
                 <YellowButton onclick={handleClick} text={__('client.checkout_place_order',sharedData)} />

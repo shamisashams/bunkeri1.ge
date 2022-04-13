@@ -54,7 +54,9 @@
                                 {{$order->email}}<br>
                                 {{$order->city}}<br>
                                 {{$order->address}}<br>
-                                {{$order->info}}
+                                {{$order->info}}<br>
+                                <b>Payment Method ></b> {{$order->payment_method ? 'Bank' : 'Cash'}}<br>
+                                <b>Courier Service ></b> {{$order->courier_service === 0 ? 'Tbilisi' : 'Region'}}
                             </address>
                         </div>
                         {{--<div class="col-lg-6 text-end">

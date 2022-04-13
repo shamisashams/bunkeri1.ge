@@ -93,6 +93,49 @@ const ProductDetails = ({page,seo}) => {
         Inertia.visit(window.location.href)
     }
 
+    const buyNow = function (product){
+        let _cart = localStorage.getItem('cart');
+        let cart;
+        if (_cart !== null) {
+            cart = JSON.parse(_cart);
+        } else cart = [];
+
+        let qty = parseInt(document.getElementById('qty_add').value);
+
+
+        if(cart.length > 0){
+            let exists = false;
+            cart.forEach(function (el,i){
+
+                if(el.product.id === product.id){
+                    el.qty += qty;
+                    exists = true;
+                }
+
+            })
+            if (!exists) {
+                let obj = {
+                    product: product,
+                    qty: qty
+                }
+                cart.push(obj);
+            }
+
+        } else {
+            let obj = {
+                product: product,
+                qty: qty
+            }
+            cart.push(obj);
+        }
+
+
+        localStorage.setItem('cart',JSON.stringify(cart))
+        console.log(JSON.parse(localStorage.getItem('cart')))
+        //localStorage.removeItem('cart')
+        Inertia.get(route('client.checkout.index'));
+    }
+
   return (
       <Layout seo={seo}>
         <div className="productDetails">
@@ -169,6 +212,7 @@ const ProductDetails = ({page,seo}) => {
                   </button>
                 </div>
                 <YellowButton link="/" text={__('client.buy_now',sharedData)} />
+                  <button onClick={()=>buyNow(product)}>Buy Now</button>
               </div>
               <div className="flex share blue">
                 <div className="icon flex centered radius5">

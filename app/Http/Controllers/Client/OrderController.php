@@ -217,6 +217,7 @@ class OrderController extends Controller
             'email' => 'required',
             'city' => 'required',
             'address' => 'required',
+            'payment_method' => 'required'
         ]);
 
         $data = $request->all();

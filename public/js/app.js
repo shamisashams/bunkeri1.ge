@@ -6374,6 +6374,10 @@ var ShoppingCart = function ShoppingCart(_ref) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.visit(window.location.href);
   };
 
+  var toUrl = function toUrl(url) {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.get(url);
+  };
+
   var items = [{
     img: "/img/products/3.png",
     name: "პროდუქტის დასახელება გრძელი ვარიანტი",
@@ -6451,6 +6455,9 @@ var ShoppingCart = function ShoppingCart(_ref) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "bottom flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      return toUrl(route('client.home.index'));
+    },
     className: "back"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_SmallComps_Icons__WEBPACK_IMPORTED_MODULE_4__.Arrow, {
     color: "#fff",

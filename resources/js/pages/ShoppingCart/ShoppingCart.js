@@ -37,6 +37,10 @@ const ShoppingCart = ({seo}) => {
         Inertia.visit(window.location.href)
     }
 
+    const toUrl = function (url){
+        Inertia.get(url)
+    }
+
   const items = [
     {
       img: "/img/products/3.png",
@@ -124,7 +128,7 @@ const ShoppingCart = ({seo}) => {
               </table>
             </div>
             <div className="bottom flex">
-              <button className="back">
+              <button onClick={() => toUrl(route('client.home.index'))} className="back">
                 <Arrow color="#fff" rotate="90" />
                 <span className="archy-edt">{__('client.cart_continue_shopping',sharedData)}</span>
               </button>

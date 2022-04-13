@@ -64,6 +64,49 @@ const Home = ({page,seo}) => {
         Inertia.visit(window.location.href)
     }
 
+    const buyNow = function (product){
+        let _cart = localStorage.getItem('cart');
+        let cart;
+        if (_cart !== null) {
+            cart = JSON.parse(_cart);
+        } else cart = [];
+
+        let qty = 1;
+
+
+        if(cart.length > 0){
+            let exists = false;
+            cart.forEach(function (el,i){
+
+                if(el.product.id === product.id){
+                    el.qty += qty;
+                    exists = true;
+                }
+
+            })
+            if (!exists) {
+                let obj = {
+                    product: product,
+                    qty: qty
+                }
+                cart.push(obj);
+            }
+
+        } else {
+            let obj = {
+                product: product,
+                qty: qty
+            }
+            cart.push(obj);
+        }
+
+
+        localStorage.setItem('cart',JSON.stringify(cart))
+        console.log(JSON.parse(localStorage.getItem('cart')))
+        //localStorage.removeItem('cart')
+        Inertia.get(route('client.checkout.index'));
+    }
+
   return (
       <Layout seo={seo}>
           <div className="homePage">
@@ -97,14 +140,14 @@ const Home = ({page,seo}) => {
                   </div>
               </div>
               <div className="today wrapper">
-                  <TodaysBox addTocart={addToCart} day_product={products.day_product} day_price={products.day_price} />
+                  <TodaysBox addTocart={addToCart} buyNow={buyNow} day_product={products.day_product} day_price={products.day_price} />
               </div>
               <div className="special_price" id="special_price">
                   <div className="wrapper">
                       <ProductSlider
                           head={__('client.home_special_price',sharedData)}
                           data={products.special_price_tag}
-                          rightBtns={[<CommonButton link="/" text={__('client.home_btn_view_all',sharedData)} />]}
+                          rightBtns={[<CommonButton link={route('client.category.special')} text={__('client.home_btn_view_all',sharedData)} />]}
                       />
                   </div>
               </div>
@@ -112,7 +155,7 @@ const Home = ({page,seo}) => {
                   <ProductSlider
                       head={__('client.home_popular',sharedData)}
                       data={products.popular}
-                      rightBtns={[<CommonButton link="/" text={__('client.home_btn_view_all',sharedData)} />]}
+                      rightBtns={[<CommonButton link={route('client.category.popular')} text={__('client.home_btn_view_all',sharedData)} />]}
                   />
               </div>
               <div className="new_collection">

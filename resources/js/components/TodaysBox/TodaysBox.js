@@ -7,7 +7,7 @@ import "./TodaysBox.css";
 import { todayPrice } from "./TodaysData";
 import {usePage} from "@inertiajs/inertia-react";
 
-const TodaysBox = ({day_product,day_price,addTocart}) => {
+const TodaysBox = ({day_product,day_price,addTocart,buyNow}) => {
     const sharedData = usePage().props.localizations;
   const secondBox = {
     dots: false,
@@ -50,7 +50,7 @@ const TodaysBox = ({day_product,day_price,addTocart}) => {
                 </div>
                 <div className="flex btns centered">
                   <AddToCart onClick={() => addTocart(item)} />
-                  <CommonButton link="/" text="ყიდვა" />
+                  <CommonButton onClick={() => buyNow(item)} link={null} text={__('client.today_product_buy',sharedData)} />
                 </div>
               </div>
             );
@@ -127,7 +127,7 @@ const TodaysBox = ({day_product,day_price,addTocart}) => {
                 </div>
                 <div className="flex btns centered">
                   <AddToCart onClick={() => addTocart(item)} />
-                  <CommonButton link="/" text="ყიდვა" />
+                  <CommonButton onClick={() => buyNow(item)} link={null} text={__('client.today_product_buy',sharedData)} />
                 </div>
               </div>
             );

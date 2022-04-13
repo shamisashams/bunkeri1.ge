@@ -4990,6 +4990,47 @@ var Home = function Home(_ref) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.visit(window.location.href);
   };
 
+  var buyNow = function buyNow(product) {
+    var _cart = localStorage.getItem('cart');
+
+    var cart;
+
+    if (_cart !== null) {
+      cart = JSON.parse(_cart);
+    } else cart = [];
+
+    var qty = 1;
+
+    if (cart.length > 0) {
+      var exists = false;
+      cart.forEach(function (el, i) {
+        if (el.product.id === product.id) {
+          el.qty += qty;
+          exists = true;
+        }
+      });
+
+      if (!exists) {
+        var obj = {
+          product: product,
+          qty: qty
+        };
+        cart.push(obj);
+      }
+    } else {
+      var _obj2 = {
+        product: product,
+        qty: qty
+      };
+      cart.push(_obj2);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(JSON.parse(localStorage.getItem('cart'))); //localStorage.removeItem('cart')
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.get(route('client.checkout.index'));
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5037,6 +5078,7 @@ var Home = function Home(_ref) {
     className: "today wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TodaysBox_TodaysBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
     addTocart: addToCart,
+    buyNow: buyNow,
     day_product: products.day_product,
     day_price: products.day_price
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5048,7 +5090,7 @@ var Home = function Home(_ref) {
     head: __('client.home_special_price', sharedData),
     data: products.special_price_tag,
     rightBtns: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.CommonButton, {
-      link: "/",
+      link: route('client.category.special'),
       text: __('client.home_btn_view_all', sharedData)
     })]
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5058,7 +5100,7 @@ var Home = function Home(_ref) {
     head: __('client.home_popular', sharedData),
     data: products.popular,
     rightBtns: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.CommonButton, {
-      link: "/",
+      link: route('client.category.popular'),
       text: __('client.home_btn_view_all', sharedData)
     })]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -7647,13 +7689,13 @@ var Header = function Header() {
 
   var links = [{
     name: __('client.header_last_added', sharedData),
-    link: "/products"
+    link: route('client.category.new')
   }, {
     name: __('client.header_popular', sharedData),
-    link: "/products"
+    link: route('client.category.popular')
   }, {
     name: __('client.header_special', sharedData),
-    link: "/products"
+    link: route('client.category.special')
   }];
   var inCartProducts = [{
     link: "/",
@@ -8582,7 +8624,8 @@ __webpack_require__.r(__webpack_exports__);
 var TodaysBox = function TodaysBox(_ref) {
   var day_product = _ref.day_product,
       day_price = _ref.day_price,
-      addTocart = _ref.addTocart;
+      addTocart = _ref.addTocart,
+      buyNow = _ref.buyNow;
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.usePage)().props.localizations;
   var secondBox = {
     dots: false,
@@ -8634,8 +8677,11 @@ var TodaysBox = function TodaysBox(_ref) {
         return addTocart(item);
       }
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
-      link: "/",
-      text: "\u10E7\u10D8\u10D3\u10D5\u10D0"
+      onClick: function onClick() {
+        return buyNow(item);
+      },
+      link: null,
+      text: __('client.today_product_buy', sharedData)
     })));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "box two"
@@ -8671,8 +8717,11 @@ var TodaysBox = function TodaysBox(_ref) {
         return addTocart(item);
       }
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.CommonButton, {
-      link: "/",
-      text: "\u10E7\u10D8\u10D3\u10D5\u10D0"
+      onClick: function onClick() {
+        return buyNow(item);
+      },
+      link: null,
+      text: __('client.today_product_buy', sharedData)
     })));
   }))));
 };

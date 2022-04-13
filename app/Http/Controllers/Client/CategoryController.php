@@ -154,6 +154,85 @@ class CategoryController extends Controller
             'products' => $products,
             'category' => null,
             'images' => $images,
+            'filter' => $this->getAttributes(),
+            "seo" => [
+                "title"=>$page->meta_title,
+                "description"=>$page->meta_description,
+                "keywords"=>$page->meta_keyword,
+                "og_title"=>$page->meta_og_title,
+                "og_description"=>$page->meta_og_description,
+//            "image" => "imgg",
+//            "locale" => App::getLocale()
+            ]
+        ])->withViewData([
+            'meta_title' => $page->meta_title,
+            'meta_description' => $page->meta_description,
+            'meta_keyword' => $page->meta_keyword,
+            "image" => $page->file,
+            'og_title' => $page->meta_og_title,
+            'og_description' => $page->meta_og_description
+        ]);
+    }
+
+    public function special(){
+        $page = Page::where('key', 'products')->firstOrFail();
+
+        $images = [];
+        foreach ($page->sections as $sections){
+            if($sections->file){
+                $images[] = asset($sections->file->getFileUrlAttribute());
+            } else {
+                $images[] = null;
+            }
+
+        }
+
+        $products = $this->productRepository->getAll(null,null,1);
+
+        return Inertia::render('Products/Products',[
+            'products' => $products,
+            'category' => null,
+            'images' => $images,
+            'filter' => $this->getAttributes(),
+            "seo" => [
+                "title"=>$page->meta_title,
+                "description"=>$page->meta_description,
+                "keywords"=>$page->meta_keyword,
+                "og_title"=>$page->meta_og_title,
+                "og_description"=>$page->meta_og_description,
+//            "image" => "imgg",
+//            "locale" => App::getLocale()
+            ]
+        ])->withViewData([
+            'meta_title' => $page->meta_title,
+            'meta_description' => $page->meta_description,
+            'meta_keyword' => $page->meta_keyword,
+            "image" => $page->file,
+            'og_title' => $page->meta_og_title,
+            'og_description' => $page->meta_og_description
+        ]);
+    }
+
+    public function new(){
+        $page = Page::where('key', 'products')->firstOrFail();
+
+        $images = [];
+        foreach ($page->sections as $sections){
+            if($sections->file){
+                $images[] = asset($sections->file->getFileUrlAttribute());
+            } else {
+                $images[] = null;
+            }
+
+        }
+
+        $products = $this->productRepository->getAll(null,null,null,1);
+
+        return Inertia::render('Products/Products',[
+            'products' => $products,
+            'category' => null,
+            'images' => $images,
+            'filter' => $this->getAttributes(),
             "seo" => [
                 "title"=>$page->meta_title,
                 "description"=>$page->meta_description,

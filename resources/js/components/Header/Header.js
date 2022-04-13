@@ -47,7 +47,7 @@ const Header = () => {
   const links = [
     {
       name: __('client.header_last_added',sharedData),
-      link: "/products",
+      link: route('client.category.new'),
     },
     {
       name: __('client.header_popular',sharedData),
@@ -55,7 +55,7 @@ const Header = () => {
     },
     {
       name: __('client.header_special',sharedData),
-      link: "/products",
+      link: route('client.category.special'),
     },
   ];
   const inCartProducts = [

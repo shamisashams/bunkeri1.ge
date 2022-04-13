@@ -76,6 +76,14 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             $query->whereIn('product_categories.category_id', explode(',', $categoryId));
         }
 
+        if(isset($params['term'])){
+            $query->where(function ($tQ) use ($params){
+                $tQ->whereTranslationLike('title', '%'.$params['term'].'%')
+                    ->orWhereTranslationLike('description', '%'.$params['term'].'%');
+            });
+
+        }
+
 
         # sort direction
         $orderDirection = 'asc';
@@ -89,6 +97,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         }
 
         if (isset($params['sort'])) {
+            if($params['sort'] == 'title')
+                $query->orderByTranslation('title',$orderDirection);
+            else
             $query->orderBy($params['sort'], $orderDirection);
         } else {
 
@@ -110,7 +121,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 
         $attributes = $this->attributeRepository->getFilterAttributes(array_keys(request()->except('price') ? request()->except('price') : []));
-
+        //dd($attributes);
         if (count($attributes) > 0) {
             $query->where(function ($fQ) use ($attributes) {
                 foreach ($attributes as $attribute) {
@@ -119,8 +130,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
                         $filterInputValues = explode(',', request()->get($attribute->code));
 
-                        # attribute we are filtering
-                        $aQ = $aQ->where('product_attribute_values.attribute_id', $attribute->id);
+
+                        //dd($filterInputValues);
+                        $aQ->where('product_attribute_values.attribute_id', $attribute->id);
 
                         $aQ->where(function ($attributeValueQuery) use ($column, $filterInputValues) {
 
@@ -147,7 +159,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         }
 
         $query->groupBy('products.id');
-        return $query->with('latestImage')->paginate('2')->withQueryString();
+        return $query->with('latestImage')->paginate('16')->withQueryString();
     }
 
 

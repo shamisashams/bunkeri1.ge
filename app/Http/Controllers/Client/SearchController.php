@@ -45,7 +45,7 @@ class SearchController extends Controller
             ->orderby('updated_at','desc')
             ->paginate(16);*/
 
-        $products = $this->productRepository->search($request->get('term'));
+        $products = $this->productRepository->getAll();
 
         //dd($products);
 

@@ -9,6 +9,7 @@ import { Arrow } from "../../components/SmallComps/Icons";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
 import { Link } from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
 
 
 let links = function (links){
@@ -113,6 +114,38 @@ const Products = ({page,seo}) => {
     console.log(products);
     console.log(category);
 
+    let appliedFilters = [];
+    let urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.forEach((value, index) => {
+        appliedFilters[index] = value.split(',');
+    });
+
+    const sort = function (data){
+        console.log(data)
+
+        urlParams.forEach((value, index) => {
+            appliedFilters[index] = value.split(',');
+        });
+
+        appliedFilters['sort'] = data.sort;
+        appliedFilters['order'] = data.order;
+
+        console.log(appliedFilters);
+        let params = [];
+
+        for(let key in appliedFilters) {
+            if(Array.isArray(appliedFilters[key])){
+                params.push(key + '=' + appliedFilters[key].join(','))
+            } else {
+                params.push(key + '=' + appliedFilters[key])
+            }
+
+        }
+
+        Inertia.visit("?" + params.join('&'));
+    }
+
   return (
       <Layout seo={seo}>
         <div className="productsPage">
@@ -139,6 +172,12 @@ const Products = ({page,seo}) => {
                   isMulti={false}
                   options={options}
                 />
+                  <button onClick={() => sort({sort:"created_at",order:"desc"})}>newest</button>
+                  <button onClick={() => sort({sort:"created_at",order:"asc"})}>oldest</button>
+                  <button onClick={() => sort({sort:"price",order:"asc"})}>cheaper</button>
+                  <button onClick={() => sort({sort:"price",order:"desc"})}>expensive</button>
+                  <button onClick={() => sort({sort:"title",order:"asc"})}>a-z</button>
+                  <button onClick={() => sort({sort:"title",order:"desc"})}>z-a</button>
               </div>
               <div className="product_grid">
                 {products.data.map((data, index) => {

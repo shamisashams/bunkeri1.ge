@@ -148,8 +148,7 @@ class CategoryController extends Controller
 
         }
 
-        $products = Product::where(['products.status' => 1, 'products.popular' => 1])->with('latestImage')
-            ->paginate(16);
+        $products = $this->productRepository->getAll(null,1);
 
         return Inertia::render('Products/Products',[
             'products' => $products,

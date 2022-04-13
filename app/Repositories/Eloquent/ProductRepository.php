@@ -62,7 +62,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
 
 
-    public function getAll($categoryId = null){
+    public function getAll($categoryId = null, $popular = null){
 
 
         //dd(request()->post());
@@ -74,6 +74,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         if ($categoryId) {
             $query->whereIn('product_categories.category_id', explode(',', $categoryId));
+        }
+
+        if ($popular){
+            $query->where('products.popular', 1);
         }
 
         if(isset($params['term'])){

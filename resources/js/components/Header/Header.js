@@ -51,7 +51,7 @@ const Header = () => {
     },
     {
       name: __('client.header_popular',sharedData),
-      link: "/products",
+      link: route('client.category.popular'),
     },
     {
       name: __('client.header_special',sharedData),

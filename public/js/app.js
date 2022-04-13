@@ -5139,7 +5139,7 @@ var getCart = function getCart() {
   if (_cart !== null) cart = JSON.parse(_cart);
   var total = 0;
   cart.forEach(function (el, i) {
-    total += el.qty * el.product.special_price !== null ? el.product.special_price : el.product.price;
+    total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
   });
   var obj = {
     items: cart,
@@ -7626,7 +7626,7 @@ var Header = function Header() {
     if (_cart !== null) cart = JSON.parse(_cart);
     var total = 0;
     cart.forEach(function (el, i) {
-      total += el.qty * el.product.special_price !== null ? el.product.special_price : el.product.price;
+      total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
     });
     var obj = {
       items: cart,

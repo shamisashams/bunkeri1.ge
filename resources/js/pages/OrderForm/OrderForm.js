@@ -17,7 +17,7 @@ const getCart = function (){
 
     let total = 0;
     cart.forEach(function (el,i){
-        total += el.qty * el.product.special_price !== null ? el.product.special_price : el.product.price;
+        total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
     })
 
     let obj = {

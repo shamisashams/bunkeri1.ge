@@ -5650,8 +5650,7 @@ var ProductDetails = function ProductDetails(_ref) {
       product_images = _usePage$props.product_images,
       product_attributes = _usePage$props.product_attributes;
   console.log(similar_products);
-  console.log(product);
-  console.log(product_attributes);
+  console.log(sharedData);
 
   var addToCart = function addToCart(product) {
     //localStorage.removeItem('cart')
@@ -5854,7 +5853,12 @@ var ProductDetails = function ProductDetails(_ref) {
     className: "archy-edt title"
   }, __('client.product_description', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "op05"
-  }, renderHTML(product.description))))));
+  }, renderHTML(product.description)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    head: __('client.product_similar', sharedData),
+    data: similar_products
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductDetails);

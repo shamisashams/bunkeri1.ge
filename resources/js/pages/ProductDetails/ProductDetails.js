@@ -43,8 +43,8 @@ const ProductDetails = ({page,seo}) => {
     const { product, category_path, similar_products, product_images, product_attributes } = usePage().props;
 
     console.log(similar_products)
-    console.log(product)
-    console.log(product_attributes)
+    console.log(sharedData)
+
 
 
 
@@ -226,9 +226,9 @@ const ProductDetails = ({page,seo}) => {
               </div>
             </div>
           </div>
-          {/*<div className="wrapper">
-            <ProductSlider head={__('client.product.similar',sharedData)} data={similar_products} />
-          </div>*/}
+          <div className="wrapper">
+            <ProductSlider head={__('client.product_similar',sharedData)} data={similar_products} />
+          </div>
         </div>
       </Layout>
   );

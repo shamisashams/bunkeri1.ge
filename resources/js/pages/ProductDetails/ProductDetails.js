@@ -182,9 +182,9 @@ const ProductDetails = ({page,seo}) => {
               </div>
             </div>
           </div>
-          {/*<div className="wrapper">
+          <div className="wrapper">
             <ProductSlider head={__('client.product.similar',sharedData)} data={similar_products} />
-          </div>*/}
+          </div>
         </div>
       </Layout>
   );

@@ -44,6 +44,7 @@ const Header = () => {
         if (_cart !== null) cart = JSON.parse(_cart);
         cart.splice(i, 1);
         localStorage.setItem("cart", JSON.stringify(cart));
+        Inertia.visit(window.location.href);
     };
 
     const links = [

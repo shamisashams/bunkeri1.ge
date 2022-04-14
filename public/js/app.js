@@ -13016,7 +13016,8 @@ var ProductDetails = function ProductDetails(_ref) {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_6__["default"], {
     head: __("client.product_similar", sharedData),
-    data: similar_products
+    data: similar_products,
+    handleClick: addToCart
   }))));
 };
 

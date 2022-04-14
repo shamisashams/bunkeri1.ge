@@ -15262,7 +15262,8 @@ var ProductSlider = function ProductSlider(_ref) {
   var data = _ref.data,
       head = _ref.head,
       rightBtns = _ref.rightBtns,
-      showArrows = _ref.showArrows;
+      showArrows = _ref.showArrows,
+      handleClick = _ref.handleClick;
   var navigationPrevRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var navigationNextRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15332,7 +15333,8 @@ var ProductSlider = function ProductSlider(_ref) {
       price: item.special_price !== null ? item.special_price : item.price,
       sale: item.special_price !== null ? true : false,
       "new": item["new"],
-      product: item
+      product: item,
+      handleClick: handleClick
     }));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex centered slidebtns"

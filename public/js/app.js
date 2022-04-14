@@ -15005,7 +15005,7 @@ var Header = function Header() {
     alt: ""
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "archy-edt"
-  }, __("client.header_cart", sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.header_cart", sharedData))), getCart().items.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cart_drop"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "incart_products"
@@ -15040,7 +15040,7 @@ var Header = function Header() {
   }, __("client.mini_cart_cart", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
     href: route("client.checkout.index"),
     className: "archy-edt"
-  }, __("client.mini_cart_payment", sharedData))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Languages__WEBPACK_IMPORTED_MODULE_5__.Languages, null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Categories_Categories__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, __("client.mini_cart_payment", sharedData)))) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SmallComps_Languages__WEBPACK_IMPORTED_MODULE_5__.Languages, null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Categories_Categories__WEBPACK_IMPORTED_MODULE_7__["default"], {
     linkList: links,
     dropList: categoryDrop
   }));

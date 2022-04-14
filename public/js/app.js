@@ -12810,7 +12810,7 @@ var ProductDetails = function ProductDetails(_ref) {
       similar_products = _usePage$props.similar_products,
       product_images = _usePage$props.product_images,
       product_attributes = _usePage$props.product_attributes;
-  console.log(similar_products);
+  console.log(product);
   console.log(sharedData);
 
   var addToCart = function addToCart(product) {
@@ -12968,7 +12968,7 @@ var ProductDetails = function ProductDetails(_ref) {
     className: "op05"
   }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product_attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "blue price"
-  }, product.price, " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, (product.special_price !== null ? product.special_price : product.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "btns"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex"

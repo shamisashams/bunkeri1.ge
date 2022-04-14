@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./ShoppingCart.css";
 import { PagePath } from "../../components/PagePath/PagePath";
 import { YellowButton } from "../../components/Buttons/Buttons";
@@ -11,6 +11,7 @@ import { Link } from "@inertiajs/inertia-react";
 const ShoppingCart = ({ seo }) => {
     // const [quantity, setquantity] = useState(1);
     const sharedData = usePage().props.localizations;
+    const [quantity, setquantity] = useState(2);
 
     const getCart = function () {
         let cart = [];
@@ -77,6 +78,18 @@ const ShoppingCart = ({ seo }) => {
             title: __("client.page_cart", sharedData),
         },
     ];
+
+    const updateCart = (quantity,index) => {
+
+        console.log(quantity)
+        console.log(index)
+        let cart = localStorage.getItem("cart");
+        cart = JSON.parse(cart);
+        cart[index].qty = quantity;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        Inertia.visit(window.location.href);
+    }
+
     return (
         <Layout seo={seo}>
             <div className="shoppingcartPage">
@@ -114,6 +127,7 @@ const ShoppingCart = ({ seo }) => {
                                 </th>
                             </tr>
                             {getCart().items.map((item, index) => {
+                                const [quantity, setquantity] = useState(item.qty);
                                 return (
                                     <tr key={index}>
                                         <td>
@@ -168,12 +182,22 @@ const ShoppingCart = ({ seo }) => {
                                         </td>
                                         <td>
                                             <div className="number radius5">
-                                                <button>−</button>
+                                                <button onClick={() => {
+                                                    setquantity(
+                                                        quantity > 1 ? quantity - 1 : 1
+                                                    )
+                                                    updateCart(quantity > 1 ? quantity - 1 : 1,index)
+                                                }
+                                                }>−</button>
                                                 <input
                                                     type="number"
-                                                    value={item.qty}
+                                                    value={quantity}
                                                 />
-                                                <button>+</button>
+                                                <button onClick={() => {
+                                                    setquantity(quantity + 1)
+                                                    updateCart(quantity + 1,index)
+                                                }
+                                                }>+</button>
                                             </div>
                                         </td>
                                         <td className="sum">

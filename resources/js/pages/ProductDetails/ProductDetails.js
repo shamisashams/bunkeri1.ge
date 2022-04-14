@@ -258,7 +258,7 @@ const ProductDetails = ({ page, seo }) => {
                                 </button>
                             </div>
                             <YellowButton
-                                onClick={() => buyNow(product)}
+                                onclick={() => buyNow(product)}
                                 text={__("client.buy_now", sharedData)}
                             />
                         </div>

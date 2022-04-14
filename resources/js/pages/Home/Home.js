@@ -132,11 +132,12 @@ const Home = ({page,seo}) => {
                           </div>,
                           <SliderButtons />,
                       ]}
+                      handleClick={addToCart}
                   />
               </div>
               <div className="bunker">
                   <div className="wrapper">
-                      <ProductSlider head={__('client.home_bunker',sharedData)} data={products.bunker} />
+                      <ProductSlider head={__('client.home_bunker',sharedData)} data={products.bunker} handleClick={addToCart} />
                   </div>
               </div>
               <div className="today wrapper">
@@ -148,6 +149,7 @@ const Home = ({page,seo}) => {
                           head={__('client.home_special_price',sharedData)}
                           data={products.special_price_tag}
                           rightBtns={[<CommonButton link={route('client.category.special')} text={__('client.home_btn_view_all',sharedData)} />]}
+                          handleClick={addToCart}
                       />
                   </div>
               </div>
@@ -156,6 +158,7 @@ const Home = ({page,seo}) => {
                       head={__('client.home_popular',sharedData)}
                       data={products.popular}
                       rightBtns={[<CommonButton link={route('client.category.popular')} text={__('client.home_btn_view_all',sharedData)} />]}
+                      handleClick={addToCart}
                   />
               </div>
               <div className="new_collection">

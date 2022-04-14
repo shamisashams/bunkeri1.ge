@@ -12224,14 +12224,16 @@ var Home = function Home(_ref) {
       gray: true,
       link: "/",
       text: __('client.home_slider_popular', sharedData)
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.SliderButtons, null)]
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.SliderButtons, null)],
+    handleClick: addToCart
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "bunker"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     head: __('client.home_bunker', sharedData),
-    data: products.bunker
+    data: products.bunker,
+    handleClick: addToCart
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "today wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TodaysBox_TodaysBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -12250,7 +12252,8 @@ var Home = function Home(_ref) {
     rightBtns: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.CommonButton, {
       link: route('client.category.special'),
       text: __('client.home_btn_view_all', sharedData)
-    })]
+    })],
+    handleClick: addToCart
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "popular_products",
     className: "popular wrapper"
@@ -12260,7 +12263,8 @@ var Home = function Home(_ref) {
     rightBtns: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__.CommonButton, {
       link: route('client.category.popular'),
       text: __('client.home_btn_view_all', sharedData)
-    })]
+    })],
+    handleClick: addToCart
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "new_collection"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -13156,6 +13160,8 @@ var addToCart = function addToCart(product) {
 
   localStorage.setItem("cart", JSON.stringify(cart));
   console.log(JSON.parse(localStorage.getItem("cart"))); //localStorage.removeItem('cart')
+
+  _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia.visit(window.location.href);
 };
 
 var Products = function Products(_ref) {
@@ -15133,9 +15139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ProductBox = function ProductBox(props, _ref) {
-  var handleClick = _ref.handleClick,
-      product = _ref.product;
+var ProductBox = function ProductBox(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "product_box"
   }, props.sale ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15159,7 +15163,9 @@ var ProductBox = function ProductBox(props, _ref) {
       fontWeight: "bold"
     }
   }, props.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, {
-    onClick: handleClick
+    onClick: function onClick() {
+      return props.handleClick(props.product);
+    }
   })));
 };
 
@@ -15195,7 +15201,8 @@ var ProductSlider = function ProductSlider(_ref) {
   var data = _ref.data,
       head = _ref.head,
       rightBtns = _ref.rightBtns,
-      showArrows = _ref.showArrows;
+      showArrows = _ref.showArrows,
+      handleClick = _ref.handleClick;
   var settings = {
     dots: true,
     infinite: true,
@@ -15261,7 +15268,8 @@ var ProductSlider = function ProductSlider(_ref) {
       price: item.special_price !== null ? item.special_price : item.price,
       sale: item.special_price !== null ? true : false,
       "new": item["new"],
-      product: item
+      product: item,
+      handleClick: handleClick
     });
   })));
 };

@@ -6,7 +6,7 @@ import { ProductBox } from "../ProductBox/ProductBox";
 import "./ProductSlider.css";
 import { NextSlide, PrevSlide, SliderButtons } from "../Buttons/Buttons";
 
-const ProductSlider = ({ data, head, rightBtns, showArrows }) => {
+const ProductSlider = ({ data, head, rightBtns, showArrows, handleClick }) => {
   let settings = {
     dots: true,
     infinite: true,
@@ -83,6 +83,7 @@ const ProductSlider = ({ data, head, rightBtns, showArrows }) => {
               sale={item.special_price !== null ? true : false}
               new={item.new}
               product={item}
+              handleClick={handleClick}
             />
           );
         })}

@@ -12293,9 +12293,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/products/3.png */ "./public/img/products/3.png");
-/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/products/2.png */ "./public/img/products/2.png");
-/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/products/6.png */ "./public/img/products/6.png");
+/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../img/products/3.png */ "./public/img/products/3.png");
+/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/products/2.png */ "./public/img/products/2.png");
+/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../img/products/6.png */ "./public/img/products/6.png");
 /* harmony import */ var _OrderForm_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OrderForm.css */ "./resources/js/Pages/OrderForm/OrderForm.css");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
@@ -12592,7 +12592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
+/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
 /* harmony import */ var _Payment_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Payment.css */ "./resources/js/Pages/Payment/Payment.css");
 
 
@@ -13161,6 +13161,11 @@ var addToCart = function addToCart(product) {
 var Products = function Products(_ref) {
   var page = _ref.page,
       seo = _ref.seo;
+  var appliedFilters = [];
+  var urlParams = new URLSearchParams(window.location.search);
+  urlParams.forEach(function (value, index) {
+    appliedFilters[index] = value.split(",");
+  });
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.usePage)().props.localizations;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -13181,15 +13186,6 @@ var Products = function Products(_ref) {
   console.log(category);
 
   var sort = function sort(data) {
-    var appliedFilters = [];
-    var urlParams = new URLSearchParams(window.location.search);
-    urlParams.forEach(function (value, index) {
-      appliedFilters[index] = value.split(",");
-    });
-    console.log(data);
-    urlParams.forEach(function (value, index) {
-      appliedFilters[index] = value.split(",");
-    });
     appliedFilters["sort"] = data.sort;
     appliedFilters["order"] = data.order;
     console.log(appliedFilters);
@@ -13221,7 +13217,7 @@ var Products = function Products(_ref) {
   }, {
     label: "expensive",
     sort: "price",
-    order: "asc"
+    order: "desc"
   }, {
     label: "a-z",
     sort: "title",
@@ -13229,10 +13225,19 @@ var Products = function Products(_ref) {
   }, {
     label: "z-a",
     sort: "title",
-    order: "asc"
+    order: "desc"
   }];
+  var index = 0;
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  if (appliedFilters.hasOwnProperty('sort')) {
+    selectOptions.forEach(function (el, i) {
+      if (el.sort === appliedFilters['sort'][0] && el.order === appliedFilters['order'][0]) {
+        index = i;
+      }
+    });
+  }
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(index),
       _useState4 = _slicedToArray(_useState3, 2),
       selected = _useState4[0],
       setSelected = _useState4[1];
@@ -13255,7 +13260,9 @@ var Products = function Products(_ref) {
     className: showFilter ? "column filter_column show" : "column filter_column"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "headtitle"
-  }, __("client.products_filter_title", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Filters_Filters__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.products_filter_title", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Filters_Filters__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    appliedFilters: appliedFilters
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "column pro_co"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "filter_btn",
@@ -13585,7 +13592,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
       className: "name"
     }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "number radius5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "\u2212"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       type: "number",
@@ -14457,21 +14464,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Filters = function Filters() {
+var Filters = function Filters(_ref) {
+  var appliedFilters = _ref.appliedFilters;
   var filter = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.filter;
   var category = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.category;
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.localizations;
-  var appliedFilters = [];
-  var urlParams = new URLSearchParams(window.location.search);
-  urlParams.forEach(function (value, index) {
-    appliedFilters[index] = value.split(",");
-  });
-  console.log(filter);
 
   var options = function options(code, _options) {
     var rows = [];
     var checked;
-    console.log(appliedFilters);
 
     _options.map(function (item, index) {
       if (appliedFilters.hasOwnProperty(code)) {
@@ -14480,7 +14481,6 @@ var Filters = function Filters() {
         } else checked = false;
       } else checked = false;
 
-      console.log(item.id);
       rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "flex",
         key: index
@@ -14520,13 +14520,7 @@ var Filters = function Filters() {
   }
 
   var handleFilterClick = function handleFilterClick(event, code, value) {
-    console.log(code);
-    console.log(value); //Inertia.visit('?brand=12');
-
-    urlParams.forEach(function (value, index) {
-      appliedFilters[index] = value.split(",");
-    });
-
+    //Inertia.visit('?brand=12');
     if (event.target.checked === true) {
       if (appliedFilters.hasOwnProperty(code)) {
         appliedFilters[code].push(value);
@@ -14535,7 +14529,6 @@ var Filters = function Filters() {
       if (appliedFilters[code].length > 1) removeA(appliedFilters[code], value.toString());else delete appliedFilters[code];
     }
 
-    console.log(appliedFilters);
     var params = [];
 
     for (var key in appliedFilters) {
@@ -14556,10 +14549,6 @@ var Filters = function Filters() {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__.Inertia.visit("?" + params.join("&"));
   };
 
-  console.log(filter);
-  var categories = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
-  var brands = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
-  var sizes = ["XS", "S", "M", "L", "XL"];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "product_filter"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -14586,6 +14575,7 @@ var Filters = function Filters() {
     } else checked = false;
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: index,
       className: "section"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "head"
@@ -16046,7 +16036,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\r\n  width: 100%;\r\n\r\n    background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 67px 0 83px 0;\r\n  margin-bottom: 60px;\r\n}\r\n.homePage .hero_section .archy-edt {\r\n  margin: 15px 0 15px 0;\r\n  max-width: 500px;\r\n}\r\n.homePage .new_products {\r\n  margin-bottom: 80px;\r\n}\r\n.homePage .bunker {\r\n  background: url(/img/home/bg2.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 30px 0 60px 0;\r\n}\r\n.homePage .bunker .title35 {\r\n  color: #fdf416;\r\n}\r\n.homePage .bunker .progressbar {\r\n  border: 1px solid #fdf416;\r\n}\r\n.homePage .bunker .progressbar .fill::after {\r\n  background-color: #fff;\r\n  border: 1px solid #fff;\r\n}\r\n.homePage .bunker .slick-dots li button:before {\r\n  color: #fff;\r\n}\r\n\r\n.homePage .today {\r\n  padding: 20px 0 40px 0;\r\n}\r\n\r\n.homePage .special_price {\r\n  background: url(/img/home/bg3.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 20px 0 60px 0;\r\n}\r\n.homePage .popular {\r\n  padding: 40px 0 70px 0;\r\n}\r\n.homePage .new_collection {\r\n  background: url(/img/home/bg4.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 75px 0;\r\n  color: #fff;\r\n  text-align: center;\r\n}\r\n.homePage .new_collection .archy-edt {\r\n  max-width: 523px;\r\n  margin: 15px auto;\r\n}\r\n\r\n/* responsive */\r\n@media screen and (max-width: 600px) {\r\n  .homePage .hero_section {\r\n    padding: 29px 0 34px 0;\r\n    margin-bottom: 20px;\r\n  }\r\n  .homePage .hero_section .archy-edt {\r\n    margin: 4px 0 15px 0;\r\n    max-width: 90%;\r\n  }\r\n  .homePage .new_collection {\r\n    padding: 23px 0;\r\n  }\r\n  .homePage .new_collection .archy-edt {\r\n    margin: 7px auto;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\n  width: 100%;\n\n    background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 67px 0 83px 0;\n  margin-bottom: 60px;\n}\n.homePage .hero_section .archy-edt {\n  margin: 15px 0 15px 0;\n  max-width: 500px;\n}\n.homePage .new_products {\n  margin-bottom: 80px;\n}\n.homePage .bunker {\n  background: url(/img/home/bg2.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 30px 0 60px 0;\n}\n.homePage .bunker .title35 {\n  color: #fdf416;\n}\n.homePage .bunker .progressbar {\n  border: 1px solid #fdf416;\n}\n.homePage .bunker .progressbar .fill::after {\n  background-color: #fff;\n  border: 1px solid #fff;\n}\n.homePage .bunker .slick-dots li button:before {\n  color: #fff;\n}\n\n.homePage .today {\n  padding: 20px 0 40px 0;\n}\n\n.homePage .special_price {\n  background: url(/img/home/bg3.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 20px 0 60px 0;\n}\n.homePage .popular {\n  padding: 40px 0 70px 0;\n}\n.homePage .new_collection {\n  background: url(/img/home/bg4.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 75px 0;\n  color: #fff;\n  text-align: center;\n}\n.homePage .new_collection .archy-edt {\n  max-width: 523px;\n  margin: 15px auto;\n}\n\n/* responsive */\n@media screen and (max-width: 600px) {\n  .homePage .hero_section {\n    padding: 29px 0 34px 0;\n    margin-bottom: 20px;\n  }\n  .homePage .hero_section .archy-edt {\n    margin: 4px 0 15px 0;\n    max-width: 90%;\n  }\n  .homePage .new_collection {\n    padding: 23px 0;\n  }\n  .homePage .new_collection .archy-edt {\n    margin: 7px auto;\n  }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16118,7 +16108,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".productDetails {\r\n  padding-bottom: 140px;\r\n}\r\n.productDetails .main {\r\n  width: 1200px;\r\n  margin: auto;\r\n  align-items: flex-start;\r\n  padding-top: 15px;\r\n  margin-bottom: 75px;\r\n}\r\n.productDetails .details {\r\n  width: 45%;\r\n  margin-left: 70px;\r\n}\r\n.productDetails .details .title {\r\n  margin-top: 19px;\r\n  font-size: 22px;\r\n  margin-bottom: 5px;\r\n}\r\n.productDetails .details .share {\r\n  justify-content: flex-start;\r\n  margin-bottom: 15px;\r\n  margin-top: 25px;\r\n}\r\n.productDetails .details .icon {\r\n  background-color: #f7f8fa;\r\n  width: 50px;\r\n  height: 50px;\r\n  margin-right: 10px;\r\n}\r\n.productDetails .details .price {\r\n  font-size: 45px;\r\n  margin: 20px 0;\r\n}\r\n.productDetails .details .btns .flex {\r\n  margin-bottom: 20px;\r\n}\r\n.productDetails .details .btns {\r\n  width: 335px;\r\n}\r\n.productDetails .details .btns .add {\r\n  padding: 16px 23px;\r\n  background-color: #303285;\r\n  color: #fff;\r\n  white-space: nowrap;\r\n  margin-bottom: 0;\r\n}\r\n.productDetails .details .btns .add svg {\r\n  margin-right: 10px;\r\n}\r\n.productDetails .details .btns .number {\r\n  width: 40%;\r\n  background-color: #f7f8fa;\r\n  text-align: center;\r\n  height: 100%;\r\n  height: 50px;\r\n}\r\n.productDetails .details .btns .number input {\r\n  width: 60%;\r\n  height: 100%;\r\n  margin: auto;\r\n  text-align: center;\r\n  outline: none;\r\n}\r\n.image_slider {\r\n  align-items: flex-start;\r\n}\r\n.productDetails .vertical {\r\n  width: 122px;\r\n  margin-right: 16px;\r\n}\r\n.productDetails .vertical .img {\r\n  margin-bottom: 20px;\r\n}\r\n.productDetails .large {\r\n  width: 480px;\r\n}\r\n.image_slider .img {\r\n  background-color: #f8f9fd;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n.image_slider .img img {\r\n  width: 80%;\r\n  margin: auto;\r\n}\r\n.image_slider .main_slider {\r\n  position: relative;\r\n}\r\n.image_slider .main_slider .arrow {\r\n  border: none;\r\n  background-color: #fff;\r\n  position: absolute;\r\n  top: 50%;\r\n  transform: translateY(-50%);\r\n  z-index: 10;\r\n  margin: 0;\r\n}\r\n.image_slider .main_slider .arrow.left {\r\n  left: 10px;\r\n}\r\n.image_slider .main_slider .arrow.right {\r\n  right: 10px;\r\n}\r\n.image_slider .main_slider .slick-arrow {\r\n  background: red;\r\n  top: 44%;\r\n  width: 35px;\r\n  height: 35px;\r\n  transform: translateY(10px);\r\n  z-index: 100;\r\n}\r\n.slick-arrow.slick-next {\r\n  right: 10px;\r\n}\r\n.slick-arrow.slick-prev {\r\n  left: 10px;\r\n  right: auto;\r\n}\r\n\r\n@media screen and (max-width: 1260px) {\r\n  .productDetails .main {\r\n    width: 95%;\r\n  }\r\n  .productDetails .details {\r\n    margin-left: 26px;\r\n  }\r\n}\r\n@media screen and (max-width: 1050px) {\r\n  .productDetails .main {\r\n    flex-direction: column;\r\n  }\r\n  .productDetails .details {\r\n    margin-left: 0;\r\n    margin-top: 40px;\r\n    width: 100%;\r\n  }\r\n  .image_slider {\r\n    margin: auto;\r\n  }\r\n}\r\n@media screen and (max-width: 700px) {\r\n  .image_slider {\r\n    flex-direction: column-reverse;\r\n    align-items: center;\r\n  }\r\n  .productDetails .vertical {\r\n    width: 300px;\r\n    margin-right: 0;\r\n    margin-top: 30px;\r\n  }\r\n  .productDetails .vertical .img {\r\n    margin-bottom: 0;\r\n  }\r\n  .productDetails .details .price {\r\n    font-size: 31px;\r\n    margin: 9px 0;\r\n  }\r\n  .productDetails .details .btns .flex {\r\n    margin-bottom: 11px;\r\n  }\r\n}\r\n@media screen and (max-width: 520px) {\r\n  .productDetails .large {\r\n    width: 349px;\r\n  }\r\n}\r\n@media screen and (max-width: 375px) {\r\n  .productDetails .large {\r\n    width: 300px;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".productDetails {\r\n    padding-bottom: 140px;\r\n}\r\n.productDetails .main {\r\n    width: 1200px;\r\n    margin: auto;\r\n    align-items: flex-start;\r\n    padding-top: 15px;\r\n    margin-bottom: 75px;\r\n}\r\n.productDetails .details {\r\n    width: 45%;\r\n    margin-left: 70px;\r\n}\r\n.productDetails .details .title {\r\n    margin-top: 19px;\r\n    font-size: 22px;\r\n    margin-bottom: 5px;\r\n}\r\n.productDetails .details .share {\r\n    justify-content: flex-start;\r\n    margin-bottom: 15px;\r\n    margin-top: 25px;\r\n}\r\n.productDetails .details .icon {\r\n    background-color: #f7f8fa;\r\n    width: 50px;\r\n    height: 50px;\r\n    margin-right: 10px;\r\n}\r\n.productDetails .details .price {\r\n    font-size: 45px;\r\n    margin: 20px 0;\r\n}\r\n.productDetails .details .btns .flex {\r\n    margin-bottom: 20px;\r\n}\r\n.productDetails .details .btns {\r\n    width: 335px;\r\n}\r\n.productDetails .details .btns .add {\r\n    padding: 16px 23px;\r\n    background-color: #303285;\r\n    color: #fff;\r\n    white-space: nowrap;\r\n    margin-bottom: 0;\r\n}\r\n.productDetails .details .btns .add svg {\r\n    margin-right: 10px;\r\n}\r\n.productDetails .details .btns .number {\r\n    width: 40%;\r\n    background-color: #f7f8fa;\r\n    text-align: center;\r\n    height: 100%;\r\n    height: 50px;\r\n}\r\n.productDetails .details .btns .number input {\r\n    width: 60%;\r\n    height: 100%;\r\n    margin: auto;\r\n    text-align: center;\r\n    outline: none;\r\n}\r\n.image_slider {\r\n    align-items: flex-start;\r\n}\r\n.productDetails .vertical {\r\n    width: 122px;\r\n    margin-right: 16px;\r\n}\r\n.productDetails .vertical .img {\r\n    margin-bottom: 20px;\r\n}\r\n.productDetails .large {\r\n    width: 480px;\r\n}\r\n.image_slider .img {\r\n    background-color: #f8f9fd;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n.image_slider .img img {\r\n    width: 80%;\r\n    margin: auto;\r\n}\r\n.image_slider .main_slider {\r\n    position: relative;\r\n}\r\n.image_slider .main_slider .arrow {\r\n    border: none;\r\n    background-color: #fff;\r\n    position: absolute;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    z-index: 10;\r\n    margin: 0;\r\n}\r\n.image_slider .main_slider .arrow.left {\r\n    left: 10px;\r\n}\r\n.image_slider .main_slider .arrow.right {\r\n    right: 10px;\r\n}\r\n.image_slider .main_slider .slick-arrow {\r\n    top: 50%;\r\n    width: 35px;\r\n    height: 35px;\r\n    transform: translateY(-50%);\r\n    z-index: 100;\r\n    opacity: 0;\r\n}\r\n.slick-arrow.slick-next {\r\n    right: 10px;\r\n}\r\n.slick-arrow.slick-prev {\r\n    left: 10px;\r\n    right: auto;\r\n}\r\n\r\n@media screen and (max-width: 1260px) {\r\n    .productDetails .main {\r\n        width: 95%;\r\n    }\r\n    .productDetails .details {\r\n        margin-left: 26px;\r\n    }\r\n}\r\n@media screen and (max-width: 1050px) {\r\n    .productDetails .main {\r\n        flex-direction: column;\r\n    }\r\n    .productDetails .details {\r\n        margin-left: 0;\r\n        margin-top: 40px;\r\n        width: 100%;\r\n    }\r\n    .image_slider {\r\n        margin: auto;\r\n    }\r\n}\r\n@media screen and (max-width: 700px) {\r\n    .image_slider {\r\n        flex-direction: column-reverse;\r\n        align-items: center;\r\n    }\r\n    .productDetails .vertical {\r\n        width: 300px;\r\n        margin-right: 0;\r\n        margin-top: 30px;\r\n    }\r\n    .productDetails .vertical .img {\r\n        margin-bottom: 0;\r\n    }\r\n    .productDetails .details .price {\r\n        font-size: 31px;\r\n        margin: 9px 0;\r\n    }\r\n    .productDetails .details .btns .flex {\r\n        margin-bottom: 11px;\r\n    }\r\n}\r\n@media screen and (max-width: 520px) {\r\n    .productDetails .large {\r\n        width: 349px;\r\n    }\r\n}\r\n@media screen and (max-width: 375px) {\r\n    .productDetails .large {\r\n        width: 300px;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20493,16 +20483,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
 
       if (n === 1) {
         // Fade out
-        css(progress, {
-          transition: 'none',
-          opacity: 1
+        css(progress, { 
+          transition: 'none', 
+          opacity: 1 
         });
         progress.offsetWidth; /* Repaint */
 
         setTimeout(function() {
-          css(progress, {
-            transition: 'all ' + speed + 'ms linear',
-            opacity: 0
+          css(progress, { 
+            transition: 'all ' + speed + 'ms linear', 
+            opacity: 0 
           });
           setTimeout(function() {
             NProgress.remove();
@@ -20630,7 +20620,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
     if (NProgress.isRendered()) return document.getElementById('nprogress');
 
     addClass(document.documentElement, 'nprogress-busy');
-
+    
     var progress = document.createElement('div');
     progress.id = 'nprogress';
     progress.innerHTML = Settings.template;
@@ -20639,7 +20629,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
         perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0),
         parent   = document.querySelector(Settings.parent),
         spinner;
-
+    
     css(bar, {
       transition: 'all 0 linear',
       transform: 'translate3d(' + perc + '%,0,0)'
@@ -20750,7 +20740,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
 
   var queue = (function() {
     var pending = [];
-
+    
     function next() {
       var fn = pending.shift();
       if (fn) {
@@ -20765,10 +20755,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
   })();
 
   /**
-   * (Internal) Applies css properties to an element, similar to the jQuery
+   * (Internal) Applies css properties to an element, similar to the jQuery 
    * css method.
    *
-   * While this helper does assist with vendor prefixed property names, it
+   * While this helper does assist with vendor prefixed property names, it 
    * does not perform any manipulation of values prior to setting styles.
    */
 
@@ -20809,7 +20799,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
 
     return function(element, properties) {
       var args = arguments,
-          prop,
+          prop, 
           value;
 
       if (args.length == 2) {
@@ -20840,7 +20830,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
     var oldList = classList(element),
         newList = oldList + name;
 
-    if (hasClass(oldList, name)) return;
+    if (hasClass(oldList, name)) return; 
 
     // Trim the opening space.
     element.className = newList.substring(1);
@@ -20864,8 +20854,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
   }
 
   /**
-   * (Internal) Gets a space separated list of the class names on the element.
-   * The list is wrapped with a single space on each end to facilitate finding
+   * (Internal) Gets a space separated list of the class names on the element. 
+   * The list is wrapped with a single space on each end to facilitate finding 
    * matches within the list.
    */
 
@@ -48490,7 +48480,7 @@ function injectIntoDevTools(devToolsConfig) {
     scheduleRoot:  scheduleRoot ,
     setRefreshHandler:  setRefreshHandler ,
     // Enables DevTools to append owner stacks to error messages in DEV mode.
-    getCurrentFiber:  getCurrentFiberForDevTools
+    getCurrentFiber:  getCurrentFiberForDevTools 
   });
 }
 
@@ -61020,7 +61010,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_aos_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./aos.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/aos/dist/aos.css");
 
-
+            
 
 var options = {};
 
@@ -61050,7 +61040,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_slick_theme_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./slick-theme.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/slick-carousel/slick/slick-theme.css");
 
-
+            
 
 var options = {};
 
@@ -61080,7 +61070,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_slick_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./slick.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/slick-carousel/slick/slick.css");
 
-
+            
 
 var options = {};
 
@@ -61110,7 +61100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Home_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Home.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/Home/Home.css");
 
-
+            
 
 var options = {};
 
@@ -61140,7 +61130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_OrderForm_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./OrderForm.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/OrderForm/OrderForm.css");
 
-
+            
 
 var options = {};
 
@@ -61170,7 +61160,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Payment_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Payment.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/Payment/Payment.css");
 
-
+            
 
 var options = {};
 
@@ -61200,7 +61190,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ProductDetails_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./ProductDetails.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/ProductDetails/ProductDetails.css");
 
-
+            
 
 var options = {};
 
@@ -61230,7 +61220,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Products_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Products.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/Products/Products.css");
 
-
+            
 
 var options = {};
 
@@ -61260,7 +61250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ShoppingCart_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./ShoppingCart.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/ShoppingCart/ShoppingCart.css");
 
-
+            
 
 var options = {};
 
@@ -61290,7 +61280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Success_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Success.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/Success/Success.css");
 
-
+            
 
 var options = {};
 
@@ -61320,7 +61310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Buttons_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Buttons.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/Buttons/Buttons.css");
 
-
+            
 
 var options = {};
 
@@ -61350,7 +61340,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Categories_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Categories.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/Categories/Categories.css");
 
-
+            
 
 var options = {};
 
@@ -61380,7 +61370,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Filters_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Filters.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/Filters/Filters.css");
 
-
+            
 
 var options = {};
 
@@ -61410,7 +61400,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Footer_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Footer.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/Footer/Footer.css");
 
-
+            
 
 var options = {};
 
@@ -61440,7 +61430,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Header_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Header.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/Header/Header.css");
 
-
+            
 
 var options = {};
 
@@ -61470,7 +61460,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_PagePath_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./PagePath.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/PagePath/PagePath.css");
 
-
+            
 
 var options = {};
 
@@ -61500,7 +61490,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_PriceRange_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./PriceRange.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/PriceRange/PriceRange.css");
 
-
+            
 
 var options = {};
 
@@ -61530,7 +61520,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ProductBox_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./ProductBox.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/ProductBox/ProductBox.css");
 
-
+            
 
 var options = {};
 
@@ -61560,7 +61550,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ProductSlider_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./ProductSlider.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/ProductSlider/ProductSlider.css");
 
-
+            
 
 var options = {};
 
@@ -61590,7 +61580,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_TodaysBox_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./TodaysBox.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/TodaysBox/TodaysBox.css");
 
-
+            
 
 var options = {};
 
@@ -63643,7 +63633,7 @@ function combine (array, callback) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\\\Desktop\\\\local-projects\\\\dollarstore"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\Users\\\\Shamisa\\\\Desktop\\\\local-projects\\\\dollarstore","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
 
 /***/ })
 
@@ -63651,7 +63641,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -63665,20 +63655,20 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -63711,7 +63701,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -63723,7 +63713,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/create fake namespace object */
 /******/ 	(() => {
 /******/ 		var getProto = Object.getPrototypeOf ? (obj) => (Object.getPrototypeOf(obj)) : (obj) => (obj.__proto__);
@@ -63753,7 +63743,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			return ns;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -63765,7 +63755,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -63777,12 +63767,12 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -63793,7 +63783,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -63802,11 +63792,11 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/
+/******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -63814,19 +63804,19 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0
 /******/ 		};
-/******/
+/******/ 		
 /******/ 		// no chunk on demand loading
-/******/
+/******/ 		
 /******/ 		// no prefetching
-/******/
+/******/ 		
 /******/ 		// no preloaded
-/******/
+/******/ 		
 /******/ 		// no HMR
-/******/
+/******/ 		
 /******/ 		// no HMR manifest
-/******/
+/******/ 		
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/
+/******/ 		
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -63851,20 +63841,20 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/
+/******/ 		
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/
+/******/ 	
 /******/ })()
 ;

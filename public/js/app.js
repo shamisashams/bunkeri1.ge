@@ -12293,9 +12293,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/products/3.png */ "./public/img/products/3.png");
-/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/products/2.png */ "./public/img/products/2.png");
-/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/products/6.png */ "./public/img/products/6.png");
+/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../img/products/3.png */ "./public/img/products/3.png");
+/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/products/2.png */ "./public/img/products/2.png");
+/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../img/products/6.png */ "./public/img/products/6.png");
 /* harmony import */ var _OrderForm_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OrderForm.css */ "./resources/js/Pages/OrderForm/OrderForm.css");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
@@ -12592,7 +12592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
+/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
 /* harmony import */ var _Payment_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Payment.css */ "./resources/js/Pages/Payment/Payment.css");
 
 
@@ -14574,7 +14574,9 @@ var Filters = function Filters() {
     className: "section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "head"
-  }, __("client.products_filter_price", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_4__["default"], null)), filter.attributes.map(function (item, index) {
+  }, __("client.products_filter_price", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PriceRange_PriceRange__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    appliedFilters: appliedFilters
+  })), filter.attributes.map(function (item, index) {
     var checked;
 
     if (appliedFilters.hasOwnProperty(item.code)) {
@@ -15043,9 +15045,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ RangeSlider)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material/Box */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _mui_material_Slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/Slider */ "./node_modules/@mui/material/Slider/Slider.js");
+/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Box */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material_Slider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Slider */ "./node_modules/@mui/material/Slider/Slider.js");
 /* harmony import */ var _PriceRange_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PriceRange.css */ "./resources/js/components/PriceRange/PriceRange.css");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -15063,30 +15067,58 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function valuetext(value) {
   return "".concat(value, "\xB0C");
 }
 
-function RangeSlider() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState([2000, 4500]),
+function RangeSlider(_ref) {
+  var appliedFilters = _ref.appliedFilters;
+  var filter = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.filter;
+  var min, max;
+
+  if (appliedFilters.hasOwnProperty('price')) {
+    min = appliedFilters['price'][0];
+    max = appliedFilters['price'][1];
+  } else {
+    min = 0;
+    max = filter.price.max;
+  }
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState([min, max]),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       value = _React$useState2[0],
       setValue = _React$useState2[1];
 
   var handleChange = function handleChange(event, newValue) {
-    setValue(newValue);
+    setValue(newValue); //console.log(value)
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Box__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Slider__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  var handleCommit = function handleCommit(event, value) {
+    console.log(value);
+    console.log(appliedFilters);
+    appliedFilters['price'] = value;
+    var params = [];
+
+    for (var key in appliedFilters) {
+      params.push(key + "=" + appliedFilters[key].join(","));
+    }
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__.Inertia.visit("?" + params.join("&"));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Box__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Slider__WEBPACK_IMPORTED_MODULE_5__["default"], {
     getAriaLabel: function getAriaLabel() {
       return "Temperature range";
     },
     value: value,
     onChange: handleChange,
+    onChangeCommitted: handleCommit,
     valueLabelDisplay: "auto",
     getAriaValueText: valuetext,
-    min: 900,
-    max: 5000
+    min: 0,
+    max: filter.price.max
   }));
 }
 
@@ -16014,7 +16046,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\r\n  width: 100%;\r\n\r\n    background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 67px 0 83px 0;\r\n  margin-bottom: 60px;\r\n}\r\n.homePage .hero_section .archy-edt {\r\n  margin: 15px 0 15px 0;\r\n  max-width: 500px;\r\n}\r\n.homePage .new_products {\r\n  margin-bottom: 80px;\r\n}\r\n.homePage .bunker {\r\n  background: url(/img/home/bg2.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 30px 0 60px 0;\r\n}\r\n.homePage .bunker .title35 {\r\n  color: #fdf416;\r\n}\r\n.homePage .bunker .progressbar {\r\n  border: 1px solid #fdf416;\r\n}\r\n.homePage .bunker .progressbar .fill::after {\r\n  background-color: #fff;\r\n  border: 1px solid #fff;\r\n}\r\n.homePage .bunker .slick-dots li button:before {\r\n  color: #fff;\r\n}\r\n\r\n.homePage .today {\r\n  padding: 20px 0 40px 0;\r\n}\r\n\r\n.homePage .special_price {\r\n  background: url(/img/home/bg3.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 20px 0 60px 0;\r\n}\r\n.homePage .popular {\r\n  padding: 40px 0 70px 0;\r\n}\r\n.homePage .new_collection {\r\n  background: url(/img/home/bg4.png) no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n  padding: 75px 0;\r\n  color: #fff;\r\n  text-align: center;\r\n}\r\n.homePage .new_collection .archy-edt {\r\n  max-width: 523px;\r\n  margin: 15px auto;\r\n}\r\n\r\n/* responsive */\r\n@media screen and (max-width: 600px) {\r\n  .homePage .hero_section {\r\n    padding: 29px 0 34px 0;\r\n    margin-bottom: 20px;\r\n  }\r\n  .homePage .hero_section .archy-edt {\r\n    margin: 4px 0 15px 0;\r\n    max-width: 90%;\r\n  }\r\n  .homePage .new_collection {\r\n    padding: 23px 0;\r\n  }\r\n  .homePage .new_collection .archy-edt {\r\n    margin: 7px auto;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\n  width: 100%;\n\n    background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 67px 0 83px 0;\n  margin-bottom: 60px;\n}\n.homePage .hero_section .archy-edt {\n  margin: 15px 0 15px 0;\n  max-width: 500px;\n}\n.homePage .new_products {\n  margin-bottom: 80px;\n}\n.homePage .bunker {\n  background: url(/img/home/bg2.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 30px 0 60px 0;\n}\n.homePage .bunker .title35 {\n  color: #fdf416;\n}\n.homePage .bunker .progressbar {\n  border: 1px solid #fdf416;\n}\n.homePage .bunker .progressbar .fill::after {\n  background-color: #fff;\n  border: 1px solid #fff;\n}\n.homePage .bunker .slick-dots li button:before {\n  color: #fff;\n}\n\n.homePage .today {\n  padding: 20px 0 40px 0;\n}\n\n.homePage .special_price {\n  background: url(/img/home/bg3.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 20px 0 60px 0;\n}\n.homePage .popular {\n  padding: 40px 0 70px 0;\n}\n.homePage .new_collection {\n  background: url(/img/home/bg4.png) no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 75px 0;\n  color: #fff;\n  text-align: center;\n}\n.homePage .new_collection .archy-edt {\n  max-width: 523px;\n  margin: 15px auto;\n}\n\n/* responsive */\n@media screen and (max-width: 600px) {\n  .homePage .hero_section {\n    padding: 29px 0 34px 0;\n    margin-bottom: 20px;\n  }\n  .homePage .hero_section .archy-edt {\n    margin: 4px 0 15px 0;\n    max-width: 90%;\n  }\n  .homePage .new_collection {\n    padding: 23px 0;\n  }\n  .homePage .new_collection .archy-edt {\n    margin: 7px auto;\n  }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -63611,7 +63643,7 @@ function combine (array, callback) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\\\Desktop\\\\local-projects\\\\dollarstore"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\Users\\\\Shamisa\\\\Desktop\\\\local-projects\\\\dollarstore","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
 
 /***/ })
 

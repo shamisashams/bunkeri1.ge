@@ -1,75 +1,76 @@
 .category_btn {
-  background-color: #e0060e;
-  width: 260px;
-  padding: 9px 17px;
-  color: #fff;
-  font-size: inherit;
+    background-color: #e0060e;
+    width: 260px;
+    padding: 9px 17px;
+    color: #fff;
+    font-size: inherit;
 }
 
 .round_btn {
-  background-color: #303285;
-  color: #fff;
-  height: 60px;
-  width: 160px;
-  border-radius: 100px;
-  font-size: 16px;
+    background-color: #303285;
+    color: #fff;
+    height: 60px;
+    width: 160px;
+    border-radius: 100px;
+    font-size: 16px;
 }
 .round_btn.white {
-  background-color: #fff;
-  color: #303285;
+    background-color: #fff;
+    color: #303285;
 }
 
 .common_btn {
-  padding: 8px 17px;
-  font-size: 16px;
-  background-color: #303285;
-  color: #fff;
-  border-radius: 5px;
-  margin-left: 20px;
+    padding: 8px 17px;
+    font-size: 16px;
+    background-color: #303285;
+    color: #fff;
+    border-radius: 5px;
+    margin-left: 20px;
 }
 .common_btn.gray {
-  background-color: #dedede;
-  color: #7a7a7a;
+    background-color: #dedede;
+    color: #7a7a7a;
 }
 
 .add_to_cart {
-  padding: 10px 15px;
-  background-color: #d2d3ff;
-  color: #303285;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: 0.2s;
+    padding: 10px 15px;
+    background-color: #d2d3ff;
+    color: #303285;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.2s;
 }
 .add_to_cart svg {
-  vertical-align: middle;
-  margin-right: 10px;
-  margin-top: -4px;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-top: -4px;
 }
 .add_to_cart:hover {
-  transform: scale(0.95);
-  background-color: #c4c5ff;
+    transform: scale(0.95);
+    background-color: #c4c5ff;
 }
 
 .slider_btns {
-  margin-left: 30px;
+    margin-left: 30px;
 }
 .arrow {
-  border: 1px solid #dedede;
-  width: 35px;
-  height: 35px;
-  margin-left: 10px;
+    border: 1px solid #dedede;
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    background-color: #fff;
 }
 
 .yellow_button {
-  width: 335px;
-  height: 50px;
-  font-size: 16px;
-  border-radius: 5px;
-  background-color: #fbeaa4;
-  color: #2f3e51;
-  transition: 0.2s;
+    width: 335px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #fbeaa4;
+    color: #2f3e51;
+    transition: 0.2s;
 }
 .yellow_button:active {
-  transform: scale(0.9);
+    transform: scale(0.9);
 }

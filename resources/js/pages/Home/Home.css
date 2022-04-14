@@ -1,79 +1,86 @@
 .homePage .hero_section {
-  width: 100%;
+    width: 100%;
 
     background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding: 67px 0 83px 0;
-  margin-bottom: 60px;
+    background-position: center;
+    background-size: cover;
+    padding: 67px 0 83px 0;
+    margin-bottom: 60px;
 }
 .homePage .hero_section .archy-edt {
-  margin: 15px 0 15px 0;
-  max-width: 500px;
+    margin: 15px 0 15px 0;
+    max-width: 500px;
 }
 .homePage .new_products {
-  margin-bottom: 80px;
+    margin-bottom: 80px;
 }
 .homePage .bunker {
-  background: url(/img/home/bg2.png) no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding: 30px 0 60px 0;
+    background: url(/img/home/bg2.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 30px 0 60px 0;
+}
+.homePage
+    .bunker
+    .swiper-pagination-progressbar
+    .swiper-pagination-progressbar-fill::after {
+    background-color: #fff;
+    border: 1px solid #fff;
 }
 .homePage .bunker .title35 {
-  color: #fdf416;
+    color: #fdf416;
 }
 .homePage .bunker .progressbar {
-  border: 1px solid #fdf416;
+    border: 1px solid #fdf416;
 }
 .homePage .bunker .progressbar .fill::after {
-  background-color: #fff;
-  border: 1px solid #fff;
+    background-color: #fff;
+    border: 1px solid #fff;
 }
 .homePage .bunker .slick-dots li button:before {
-  color: #fff;
+    color: #fff;
 }
 
 .homePage .today {
-  padding: 20px 0 40px 0;
+    padding: 20px 0 40px 0;
 }
 
 .homePage .special_price {
-  background: url(/img/home/bg3.png) no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding: 20px 0 60px 0;
+    background: url(/img/home/bg3.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 20px 0 60px 0;
 }
 .homePage .popular {
-  padding: 40px 0 70px 0;
+    margin: 40px auto 70px auto;
 }
 .homePage .new_collection {
-  background: url(/img/home/bg4.png) no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding: 75px 0;
-  color: #fff;
-  text-align: center;
+    background: url(/img/home/bg4.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 75px 0;
+    color: #fff;
+    text-align: center;
 }
 .homePage .new_collection .archy-edt {
-  max-width: 523px;
-  margin: 15px auto;
+    max-width: 523px;
+    margin: 15px auto;
 }
 
 /* responsive */
 @media screen and (max-width: 600px) {
-  .homePage .hero_section {
-    padding: 29px 0 34px 0;
-    margin-bottom: 20px;
-  }
-  .homePage .hero_section .archy-edt {
-    margin: 4px 0 15px 0;
-    max-width: 90%;
-  }
-  .homePage .new_collection {
-    padding: 23px 0;
-  }
-  .homePage .new_collection .archy-edt {
-    margin: 7px auto;
-  }
+    .homePage .hero_section {
+        padding: 29px 0 34px 0;
+        margin-bottom: 20px;
+    }
+    .homePage .hero_section .archy-edt {
+        margin: 4px 0 15px 0;
+        max-width: 90%;
+    }
+    .homePage .new_collection {
+        padding: 23px 0;
+    }
+    .homePage .new_collection .archy-edt {
+        margin: 7px auto;
+    }
 }

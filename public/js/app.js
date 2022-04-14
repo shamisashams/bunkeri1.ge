@@ -12810,7 +12810,7 @@ var ProductDetails = function ProductDetails(_ref) {
       similar_products = _usePage$props.similar_products,
       product_images = _usePage$props.product_images,
       product_attributes = _usePage$props.product_attributes;
-  console.log(product);
+  console.log(similar_products);
   console.log(sharedData);
 
   var addToCart = function addToCart(product) {

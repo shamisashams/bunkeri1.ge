@@ -174,6 +174,7 @@ class ProductController extends Controller
             ->where('products.id','!=',$product->id)
             ->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')
             ->inRandomOrder()
+            ->groupBy('products.id')
             ->with('latestImage')->get();
 
         foreach ($similar_products as $_product){

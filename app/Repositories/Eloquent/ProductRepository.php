@@ -142,6 +142,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
                         $filterInputValues = explode(',', request()->get($attribute->code));
 
+                        //dump($column,$attribute->type,$filterInputValues);
 
                         //dd($filterInputValues);
                         $aQ->where('product_attribute_values.attribute_id', $attribute->id);
@@ -158,8 +159,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                                 //dd('ff');
                             } else {
                                 //dd('dd');
-                                if (is_numeric($filterInputValues)) {
-                                    $attributeValueQuery->orWhereRaw("find_in_set(?, {$column})", [$filterInputValues]);
+                                if (is_numeric($filterInputValues[0])) {
+                                    $attributeValueQuery->whereRaw("find_in_set(?, {$column})", [1]);
                                 }
 
                             }

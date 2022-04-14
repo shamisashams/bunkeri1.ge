@@ -137,7 +137,7 @@ const Filters = () => {
                     {__("client.products_filter_price", sharedData)}
                 </div>
                 {/* Price Range */}
-                <RangeSlider />
+                <RangeSlider appliedFilters={appliedFilters} />
             </div>
 
             {filter.attributes.map((item, index) => {

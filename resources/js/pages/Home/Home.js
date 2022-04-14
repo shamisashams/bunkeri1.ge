@@ -159,7 +159,9 @@ const Home = ({ page, seo }) => {
                                     )}
                                 />
                             </div>,
+                            <SliderButtons />,
                         ]}
+                        handleClick={addToCart}
                     />
                 </div>
                 <div className="bunker">
@@ -167,6 +169,7 @@ const Home = ({ page, seo }) => {
                         <ProductSlider
                             head={__("client.home_bunker", sharedData)}
                             data={products.bunker}
+                            handleClick={addToCart}
                         />
                     </div>
                 </div>
@@ -192,6 +195,7 @@ const Home = ({ page, seo }) => {
                                     )}
                                 />,
                             ]}
+                            handleClick={addToCart}
                         />
                     </div>
                 </div>
@@ -208,6 +212,7 @@ const Home = ({ page, seo }) => {
                                 )}
                             />,
                         ]}
+                        handleClick={addToCart}
                     />
                 </div>
                 <div className="new_collection">

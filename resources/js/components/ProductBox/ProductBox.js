@@ -4,7 +4,7 @@ import { AddToCart } from "../Buttons/Buttons";
 
 import "./ProductBox.css";
 
-export const ProductBox = (props, { handleClick, product }) => {
+export const ProductBox = (props) => {
     return (
         <div className="product_box">
             {props.sale ? <div className="status sale">Sale</div> : ""}
@@ -19,7 +19,7 @@ export const ProductBox = (props, { handleClick, product }) => {
                 <div className="price blue" style={{ fontWeight: "bold" }}>
                     {props.price.toFixed(2)} ლარი
                 </div>
-                <AddToCart onClick={handleClick} />
+                <AddToCart onClick={() => props.handleClick(props.product)} />
             </div>
         </div>
     );

@@ -95,6 +95,7 @@ const addToCart = function (product) {
     localStorage.setItem("cart", JSON.stringify(cart));
     console.log(JSON.parse(localStorage.getItem("cart")));
     //localStorage.removeItem('cart')
+    Inertia.visit(window.location.href)
 };
 
 const Products = ({ page, seo }) => {

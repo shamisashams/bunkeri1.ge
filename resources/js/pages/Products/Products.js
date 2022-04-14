@@ -98,6 +98,15 @@ const addToCart = function (product) {
 };
 
 const Products = ({ page, seo }) => {
+
+    let appliedFilters = [];
+    let urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.forEach((value, index) => {
+        appliedFilters[index] = value.split(",");
+    });
+
+
     const sharedData = usePage().props.localizations;
     const [showFilter, setShowFilter] = useState(false);
     const toggleFilter = () => {
@@ -111,17 +120,7 @@ const Products = ({ page, seo }) => {
     console.log(category);
 
     const sort = function (data) {
-        let appliedFilters = [];
-        let urlParams = new URLSearchParams(window.location.search);
 
-        urlParams.forEach((value, index) => {
-            appliedFilters[index] = value.split(",");
-        });
-        console.log(data);
-
-        urlParams.forEach((value, index) => {
-            appliedFilters[index] = value.split(",");
-        });
 
         appliedFilters["sort"] = data.sort;
         appliedFilters["order"] = data.order;
@@ -158,7 +157,7 @@ const Products = ({ page, seo }) => {
         {
             label: "expensive",
             sort: "price",
-            order: "asc",
+            order: "desc",
         },
         {
             label: "a-z",
@@ -168,15 +167,30 @@ const Products = ({ page, seo }) => {
         {
             label: "z-a",
             sort: "title",
-            order: "asc",
+            order: "desc",
         },
     ];
-    const [selected, setSelected] = useState(0);
+
+    let index = 0;
+
+    if(appliedFilters.hasOwnProperty('sort')){
+        selectOptions.forEach(function (el,i){
+            if(el.sort === appliedFilters['sort'][0] && el.order === appliedFilters['order'][0]){
+                index = i;
+            }
+        })
+    }
+
+
+    const [selected, setSelected] = useState(index);
+
+
     const handleOption = (index) => {
         sort({
             sort: selectOptions[index].sort,
             order: selectOptions[index].order,
         });
+
         setSelected(index);
     };
 
@@ -195,7 +209,7 @@ const Products = ({ page, seo }) => {
                             {__("client.products_filter_title", sharedData)}
                         </div>
 
-                        <Filters />
+                        <Filters appliedFilters={appliedFilters} />
                     </div>
                     <div className="column pro_co">
                         <button

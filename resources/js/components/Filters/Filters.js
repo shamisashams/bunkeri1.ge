@@ -4,16 +4,11 @@ import { usePage } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
 import RangeSlider from "../PriceRange/PriceRange";
 
-const Filters = () => {
+const Filters = ({appliedFilters}) => {
     const { filter } = usePage().props;
     const { category } = usePage().props;
     const sharedData = usePage().props.localizations;
-    let appliedFilters = [];
-    let urlParams = new URLSearchParams(window.location.search);
 
-    urlParams.forEach((value, index) => {
-        appliedFilters[index] = value.split(",");
-    });
 
     console.log(filter);
 
@@ -68,9 +63,6 @@ const Filters = () => {
         console.log(value);
         //Inertia.visit('?brand=12');
 
-        urlParams.forEach((value, index) => {
-            appliedFilters[index] = value.split(",");
-        });
         if (event.target.checked === true) {
             if (appliedFilters.hasOwnProperty(code)) {
                 appliedFilters[code].push(value);

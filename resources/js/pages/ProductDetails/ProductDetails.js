@@ -281,7 +281,7 @@ const ProductDetails = ({ page, seo }) => {
                 <div className="wrapper">
                     <ProductSlider
                         head={__("client.product_similar", sharedData)}
-                        data={similar_products}
+                        data={similar_products} handleClick={addToCart}
                     />
                 </div>
             </div>

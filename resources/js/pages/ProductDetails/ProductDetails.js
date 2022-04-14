@@ -52,7 +52,7 @@ const ProductDetails = ({ page, seo }) => {
         product_attributes,
     } = usePage().props;
 
-    console.log(similar_products);
+    console.log(product);
     console.log(sharedData);
 
     const addToCart = function (product) {

@@ -173,6 +173,7 @@ const Header = () => {
                                     {__("client.header_cart", sharedData)}
                                 </span>
                             </Link>
+                            {getCart().items.length > 0 ?
                             <div className="cart_drop">
                                 <div className="incart_products">
                                     {getCart().items.map((item, index) => {
@@ -272,7 +273,7 @@ const Header = () => {
                                         )}
                                     </Link>
                                 </div>
-                            </div>
+                            </div> : null}
                         </div>
 
                         <Languages />

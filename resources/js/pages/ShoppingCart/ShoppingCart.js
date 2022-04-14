@@ -6,6 +6,7 @@ import { Arrow } from "../../components/SmallComps/Icons";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
+import { Link } from "@inertiajs/inertia-react";
 
 const ShoppingCart = ({ seo }) => {
     // const [quantity, setquantity] = useState(1);
@@ -221,9 +222,12 @@ const ShoppingCart = ({ seo }) => {
                                 {__("client.cart_grand_total", sharedData)}:{" "}
                                 <span>{getCart().total.toFixed(2)}</span> ლარი
                             </strong>
-                            <YellowButton
-                                text={__("client.cart_checkout", sharedData)}
-                            />
+                            <Link href={route('client.checkout.index')}>
+                                <YellowButton
+                                    text={__("client.cart_checkout", sharedData)}
+                                />
+                            </Link>
+
                         </div>
                     </div>
                 </div>

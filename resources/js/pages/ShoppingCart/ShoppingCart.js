@@ -5,144 +5,233 @@ import { YellowButton } from "../../components/Buttons/Buttons";
 import { Arrow } from "../../components/SmallComps/Icons";
 import Layout from "../../Layouts/Layout";
 import { usePage } from "@inertiajs/inertia-react";
-import {Inertia} from "@inertiajs/inertia";
+import { Inertia } from "@inertiajs/inertia";
 
-const ShoppingCart = ({seo}) => {
-  // const [quantity, setquantity] = useState(1);
+const ShoppingCart = ({ seo }) => {
+    // const [quantity, setquantity] = useState(1);
     const sharedData = usePage().props.localizations;
 
-    const getCart = function (){
+    const getCart = function () {
         let cart = [];
-        let _cart = localStorage.getItem('cart');
-        if(_cart !== null) cart = JSON.parse(_cart);
+        let _cart = localStorage.getItem("cart");
+        if (_cart !== null) cart = JSON.parse(_cart);
 
         let total = 0;
-        cart.forEach(function (el,i){
-            total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
-        })
+        cart.forEach(function (el, i) {
+            total +=
+                el.qty *
+                (el.product.special_price !== null
+                    ? el.product.special_price
+                    : el.product.price);
+        });
 
         let obj = {
             items: cart,
-            total: total
-        }
+            total: total,
+        };
         return obj;
-    }
+    };
 
-    const removeCartItem = function (i){
+    const removeCartItem = function (i) {
         let cart = [];
-        let _cart = localStorage.getItem('cart');
-        if(_cart !== null) cart = JSON.parse(_cart);
-        cart.splice(i,1);
-        localStorage.setItem('cart',JSON.stringify(cart));
-        Inertia.visit(window.location.href)
-    }
+        let _cart = localStorage.getItem("cart");
+        if (_cart !== null) cart = JSON.parse(_cart);
+        cart.splice(i, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        Inertia.visit(window.location.href);
+    };
 
-    const toUrl = function (url){
-        Inertia.get(url)
-    }
+    const toUrl = function (url) {
+        Inertia.get(url);
+    };
 
-  const items = [
-    {
-      img: "/img/products/3.png",
-      name: "პროდუქტის დასახელება გრძელი ვარიანტი",
-      brand: "brandname",
-      price: 17.5,
-      quantity: 1,
-    },
-    {
-      img: "/img/products/2.png",
-      name: "პროდუქტის დასახელება გრძელი ვარიანტი",
-      brand: "brandname",
-      price: 48,
-      quantity: 2,
-    },
-    {
-      img: "/img/products/6.png",
-      name: "პროდუქტის დასახელება გრძელი ვარიანტი",
-      brand: "brandname",
-      price: 27.99,
-      quantity: 1,
-    },
-  ];
+    const items = [
+        {
+            img: "/img/products/3.png",
+            name: "პროდუქტის დასახელება გრძელი ვარიანტი",
+            brand: "brandname",
+            price: 17.5,
+            quantity: 1,
+        },
+        {
+            img: "/img/products/2.png",
+            name: "პროდუქტის დასახელება გრძელი ვარიანტი",
+            brand: "brandname",
+            price: 48,
+            quantity: 2,
+        },
+        {
+            img: "/img/products/6.png",
+            name: "პროდუქტის დასახელება გრძელი ვარიანტი",
+            brand: "brandname",
+            price: 27.99,
+            quantity: 1,
+        },
+    ];
     const path = [
         {
-            title: __('client.page_home',sharedData),
-
+            title: __("client.page_home", sharedData),
         },
         {
-            title: __('client.page_cart',sharedData),
-
+            title: __("client.page_cart", sharedData),
         },
-
     ];
-  return (
-      <Layout seo={seo}>
-        <div className="shoppingcartPage">
-          <PagePath previous={breadcrumb(path)} current="კალათა" />
-          <div className="wrapper">
-            <div className="title35">{__('client.cart_title',sharedData)}</div>
-            <div className="blue">სულ მოიძებნა {getCart().items.length} პროდუქტი</div>
-            <div className="table">
-              <table>
-                <tr className="head">
-                  <th>{__('client.cart_table_product',sharedData)}</th>
-                  <th>{__('client.cart_table_unite_price',sharedData)}</th>
-                  <th>{__('client.cart_table_qnty',sharedData)}</th>
-                  <th>{__('client.cart_table_total',sharedData)}</th>
-                  <th>{__('client.cart_table_delete',sharedData)}</th>
-                </tr>
-                {getCart().items.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>
-                        <div
-                          className="flex intable_pro"
-                          style={{ justifyContent: "flex-start" }}
+    return (
+        <Layout seo={seo}>
+            <div className="shoppingcartPage">
+                <PagePath previous={breadcrumb(path)} current="კალათა" />
+                <div className="wrapper">
+                    <div className="title35">
+                        {__("client.cart_title", sharedData)}
+                    </div>
+                    <div className="blue">
+                        სულ მოიძებნა {getCart().items.length} პროდუქტი
+                    </div>
+                    <div className="table">
+                        <table>
+                            <tr className="head">
+                                <th>
+                                    {__(
+                                        "client.cart_table_product",
+                                        sharedData
+                                    )}
+                                </th>
+                                <th>
+                                    {__(
+                                        "client.cart_table_unite_price",
+                                        sharedData
+                                    )}
+                                </th>
+                                <th>
+                                    {__("client.cart_table_qnty", sharedData)}
+                                </th>
+                                <th>
+                                    {__("client.cart_table_total", sharedData)}
+                                </th>
+                                <th>
+                                    {__("client.cart_table_delete", sharedData)}
+                                </th>
+                            </tr>
+                            {getCart().items.map((item, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>
+                                            <div
+                                                className="flex intable_pro"
+                                                style={{
+                                                    justifyContent:
+                                                        "flex-start",
+                                                }}
+                                            >
+                                                <div className="img">
+                                                    <img
+                                                        src={
+                                                            item.product
+                                                                .latest_image !=
+                                                            null
+                                                                ? "/" +
+                                                                  item.product
+                                                                      .latest_image
+                                                                      .path +
+                                                                  "/" +
+                                                                  item.product
+                                                                      .latest_image
+                                                                      .title
+                                                                : null
+                                                        }
+                                                        alt=""
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <div className="name">
+                                                        {item.product.title}
+                                                    </div>
+                                                    <div className="op05">
+                                                        მწარმოებელი:{" "}
+                                                        {
+                                                            item.product
+                                                                .attributes
+                                                                .brand
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {item.product.special_price !== null
+                                                ? item.product.special_price.toFixed(
+                                                      2
+                                                  )
+                                                : item.product.price.toFixed(
+                                                      2
+                                                  )}{" "}
+                                            ლარი
+                                        </td>
+                                        <td>
+                                            <div className="number radius5">
+                                                <button>−</button>
+                                                <input
+                                                    type="number"
+                                                    value={item.qty}
+                                                />
+                                                <button>+</button>
+                                            </div>
+                                        </td>
+                                        <td className="sum">
+                                            {(
+                                                (item.product.special_price !==
+                                                null
+                                                    ? item.product.special_price
+                                                    : item.product.price) *
+                                                item.qty
+                                            ).toFixed(2)}{" "}
+                                            ლარი
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={(event) =>
+                                                    removeCartItem(index)
+                                                }
+                                                className="remove flex centered"
+                                            >
+                                                <img
+                                                    src="/img/icons/other/delete.svg"
+                                                    alt=""
+                                                />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </table>
+                    </div>
+                    <div className="bottom flex">
+                        <button
+                            onClick={() => toUrl(route("client.home.index"))}
+                            className="back"
                         >
-                          <div className="img">
-                            <img src={( item.product.latest_image != null) ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null} alt="" />
-                          </div>
-                          <div>
-                            <div className="name">{item.product.title}</div>
-                            <div className="op05">მწარმოებელი: {item.product.attributes.brand}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>{item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2)} ლარი</td>
-                      <td>
-                        <div className="number radius5">
-                          <button>−</button>
-                          <input type="number" value={item.qty} />
-                          <button>+</button>
-                        </div>
-                      </td>
-                      <td className="sum">{((item.product.special_price !== null ? item.product.special_price : item.product.price) * item.qty).toFixed(2)} ლარი</td>
-                      <td>
-                        <button onClick={(event) => removeCartItem(index)} className="remove flex centered">
-                          <img src="/img/icons/other/delete.svg" alt="" />
+                            <Arrow color="#fff" rotate="90" />
+                            <span className="archy-edt">
+                                {__(
+                                    "client.cart_continue_shopping",
+                                    sharedData
+                                )}
+                            </span>
                         </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </table>
+                        <div>
+                            <strong className="total_cost">
+                                {__("client.cart_grand_total", sharedData)}:{" "}
+                                <span>{getCart().total.toFixed(2)}</span> ლარი
+                            </strong>
+                            <YellowButton
+                                text={__("client.cart_checkout", sharedData)}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="bottom flex">
-              <button onClick={() => toUrl(route('client.home.index'))} className="back">
-                <Arrow color="#fff" rotate="90" />
-                <span className="archy-edt">{__('client.cart_continue_shopping',sharedData)}</span>
-              </button>
-              <div>
-                <strong className="total_cost">
-                    {__('client.cart_grand_total',sharedData)}: <span>{getCart().total.toFixed(2)}</span> ლარი
-                </strong>
-                <YellowButton link={route('client.checkout.index')} text={__('client.cart_checkout',sharedData)} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </Layout>
-  );
+        </Layout>
+    );
 };
 
 export default ShoppingCart;

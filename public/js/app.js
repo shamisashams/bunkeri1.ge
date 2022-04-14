@@ -14880,6 +14880,7 @@ var Header = function Header() {
     if (_cart !== null) cart = JSON.parse(_cart);
     cart.splice(i, 1);
     localStorage.setItem("cart", JSON.stringify(cart));
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia.visit(window.location.href);
   };
 
   var links = [{

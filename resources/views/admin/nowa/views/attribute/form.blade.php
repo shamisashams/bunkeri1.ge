@@ -277,7 +277,7 @@
             tr.append('<input type="hidden" name="options[option_'+ ind +'][isDelete]" value="false">');
             Object.keys(locales).map((name, index) => {
 
-                console.log(locales[name])
+              
 
                 tr.append('<td> <input class="form-control" type="text" name="options[option_'+ ind +']['+ locales[name] +'][label]" value=""> </td>');
 
@@ -294,7 +294,7 @@
         $(document).on('click','.del-option',function (e){
 
             let input = $(this).parents('tr').find('input[type=hidden]');
-            console.log(input[0])
+         
             if(input[0].value === 'true'){
                 $(this).parents('tr').remove();
             } else {
@@ -305,7 +305,7 @@
 
         $('select[name=type]').change(function (e){
             let value = $(this).val();
-            console.log(value);
+          
             if(value == 'select'){
                 $('#option_row').show();
             } else {

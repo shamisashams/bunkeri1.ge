@@ -15,20 +15,17 @@ const Filters = () => {
         appliedFilters[index] = value.split(",");
     });
 
-    console.log(filter);
-
     let options = function (code, options) {
         let rows = [];
         let checked;
 
-        console.log(appliedFilters);
         options.map((item, index) => {
             if (appliedFilters.hasOwnProperty(code)) {
                 if (appliedFilters[code].includes(item.id.toString())) {
                     checked = true;
                 } else checked = false;
             } else checked = false;
-            console.log(item.id);
+
             rows.push(
                 <div className="flex" key={index}>
                     <input
@@ -64,8 +61,6 @@ const Filters = () => {
     }
 
     const handleFilterClick = function (event, code, value) {
-        console.log(code);
-        console.log(value);
         //Inertia.visit('?brand=12');
 
         urlParams.forEach((value, index) => {
@@ -81,7 +76,6 @@ const Filters = () => {
             else delete appliedFilters[code];
         }
 
-        console.log(appliedFilters);
         let params = [];
 
         for (let key in appliedFilters) {
@@ -102,26 +96,6 @@ const Filters = () => {
         Inertia.visit("?" + params.join("&"));
     };
 
-    console.log(filter);
-    const categories = [
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-    ];
-    const brands = [
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-        "დასახელება",
-    ];
-    const sizes = ["XS", "S", "M", "L", "XL"];
     return (
         <div className="product_filter">
             <div className="section">
@@ -150,7 +124,7 @@ const Filters = () => {
                     } else checked = false;
                 } else checked = false;
                 return (
-                    <div className="section">
+                    <div key={index} className="section">
                         <div className="head">{item.name}</div>
                         {item.type !== "boolean" ? (
                             options(item.code, item.options)

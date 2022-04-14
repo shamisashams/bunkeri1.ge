@@ -162,9 +162,7 @@ const ShoppingCart = ({ seo }) => {
                                                 ? item.product.special_price.toFixed(
                                                       2
                                                   )
-                                                : item.product.price.toFixed(
-                                                      2
-                                                  )}{" "}
+                                                : item.product.price.toFixed(2)}
                                             ლარი
                                         </td>
                                         <td>

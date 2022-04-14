@@ -161,7 +161,7 @@
 
         data = data + '&_token={{csrf_token()}}'
 
-        console.log(data);
+     
 
         $.ajax({
             url: $this.attr('action'),

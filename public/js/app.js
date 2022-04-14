@@ -13585,7 +13585,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
       className: "name"
     }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "number radius5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "\u2212"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       type: "number",
@@ -14466,12 +14466,10 @@ var Filters = function Filters() {
   urlParams.forEach(function (value, index) {
     appliedFilters[index] = value.split(",");
   });
-  console.log(filter);
 
   var options = function options(code, _options) {
     var rows = [];
     var checked;
-    console.log(appliedFilters);
 
     _options.map(function (item, index) {
       if (appliedFilters.hasOwnProperty(code)) {
@@ -14480,7 +14478,6 @@ var Filters = function Filters() {
         } else checked = false;
       } else checked = false;
 
-      console.log(item.id);
       rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "flex",
         key: index
@@ -14520,9 +14517,7 @@ var Filters = function Filters() {
   }
 
   var handleFilterClick = function handleFilterClick(event, code, value) {
-    console.log(code);
-    console.log(value); //Inertia.visit('?brand=12');
-
+    //Inertia.visit('?brand=12');
     urlParams.forEach(function (value, index) {
       appliedFilters[index] = value.split(",");
     });
@@ -14535,7 +14530,6 @@ var Filters = function Filters() {
       if (appliedFilters[code].length > 1) removeA(appliedFilters[code], value.toString());else delete appliedFilters[code];
     }
 
-    console.log(appliedFilters);
     var params = [];
 
     for (var key in appliedFilters) {
@@ -14556,10 +14550,6 @@ var Filters = function Filters() {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__.Inertia.visit("?" + params.join("&"));
   };
 
-  console.log(filter);
-  var categories = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
-  var brands = ["დასახელება", "დასახელება", "დასახელება", "დასახელება", "დასახელება"];
-  var sizes = ["XS", "S", "M", "L", "XL"];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "product_filter"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -14586,6 +14576,7 @@ var Filters = function Filters() {
     } else checked = false;
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: index,
       className: "section"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "head"
@@ -16118,7 +16109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".productDetails {\r\n  padding-bottom: 140px;\r\n}\r\n.productDetails .main {\r\n  width: 1200px;\r\n  margin: auto;\r\n  align-items: flex-start;\r\n  padding-top: 15px;\r\n  margin-bottom: 75px;\r\n}\r\n.productDetails .details {\r\n  width: 45%;\r\n  margin-left: 70px;\r\n}\r\n.productDetails .details .title {\r\n  margin-top: 19px;\r\n  font-size: 22px;\r\n  margin-bottom: 5px;\r\n}\r\n.productDetails .details .share {\r\n  justify-content: flex-start;\r\n  margin-bottom: 15px;\r\n  margin-top: 25px;\r\n}\r\n.productDetails .details .icon {\r\n  background-color: #f7f8fa;\r\n  width: 50px;\r\n  height: 50px;\r\n  margin-right: 10px;\r\n}\r\n.productDetails .details .price {\r\n  font-size: 45px;\r\n  margin: 20px 0;\r\n}\r\n.productDetails .details .btns .flex {\r\n  margin-bottom: 20px;\r\n}\r\n.productDetails .details .btns {\r\n  width: 335px;\r\n}\r\n.productDetails .details .btns .add {\r\n  padding: 16px 23px;\r\n  background-color: #303285;\r\n  color: #fff;\r\n  white-space: nowrap;\r\n  margin-bottom: 0;\r\n}\r\n.productDetails .details .btns .add svg {\r\n  margin-right: 10px;\r\n}\r\n.productDetails .details .btns .number {\r\n  width: 40%;\r\n  background-color: #f7f8fa;\r\n  text-align: center;\r\n  height: 100%;\r\n  height: 50px;\r\n}\r\n.productDetails .details .btns .number input {\r\n  width: 60%;\r\n  height: 100%;\r\n  margin: auto;\r\n  text-align: center;\r\n  outline: none;\r\n}\r\n.image_slider {\r\n  align-items: flex-start;\r\n}\r\n.productDetails .vertical {\r\n  width: 122px;\r\n  margin-right: 16px;\r\n}\r\n.productDetails .vertical .img {\r\n  margin-bottom: 20px;\r\n}\r\n.productDetails .large {\r\n  width: 480px;\r\n}\r\n.image_slider .img {\r\n  background-color: #f8f9fd;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n.image_slider .img img {\r\n  width: 80%;\r\n  margin: auto;\r\n}\r\n.image_slider .main_slider {\r\n  position: relative;\r\n}\r\n.image_slider .main_slider .arrow {\r\n  border: none;\r\n  background-color: #fff;\r\n  position: absolute;\r\n  top: 50%;\r\n  transform: translateY(-50%);\r\n  z-index: 10;\r\n  margin: 0;\r\n}\r\n.image_slider .main_slider .arrow.left {\r\n  left: 10px;\r\n}\r\n.image_slider .main_slider .arrow.right {\r\n  right: 10px;\r\n}\r\n.image_slider .main_slider .slick-arrow {\r\n  background: red;\r\n  top: 44%;\r\n  width: 35px;\r\n  height: 35px;\r\n  transform: translateY(10px);\r\n  z-index: 100;\r\n}\r\n.slick-arrow.slick-next {\r\n  right: 10px;\r\n}\r\n.slick-arrow.slick-prev {\r\n  left: 10px;\r\n  right: auto;\r\n}\r\n\r\n@media screen and (max-width: 1260px) {\r\n  .productDetails .main {\r\n    width: 95%;\r\n  }\r\n  .productDetails .details {\r\n    margin-left: 26px;\r\n  }\r\n}\r\n@media screen and (max-width: 1050px) {\r\n  .productDetails .main {\r\n    flex-direction: column;\r\n  }\r\n  .productDetails .details {\r\n    margin-left: 0;\r\n    margin-top: 40px;\r\n    width: 100%;\r\n  }\r\n  .image_slider {\r\n    margin: auto;\r\n  }\r\n}\r\n@media screen and (max-width: 700px) {\r\n  .image_slider {\r\n    flex-direction: column-reverse;\r\n    align-items: center;\r\n  }\r\n  .productDetails .vertical {\r\n    width: 300px;\r\n    margin-right: 0;\r\n    margin-top: 30px;\r\n  }\r\n  .productDetails .vertical .img {\r\n    margin-bottom: 0;\r\n  }\r\n  .productDetails .details .price {\r\n    font-size: 31px;\r\n    margin: 9px 0;\r\n  }\r\n  .productDetails .details .btns .flex {\r\n    margin-bottom: 11px;\r\n  }\r\n}\r\n@media screen and (max-width: 520px) {\r\n  .productDetails .large {\r\n    width: 349px;\r\n  }\r\n}\r\n@media screen and (max-width: 375px) {\r\n  .productDetails .large {\r\n    width: 300px;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".productDetails {\r\n    padding-bottom: 140px;\r\n}\r\n.productDetails .main {\r\n    width: 1200px;\r\n    margin: auto;\r\n    align-items: flex-start;\r\n    padding-top: 15px;\r\n    margin-bottom: 75px;\r\n}\r\n.productDetails .details {\r\n    width: 45%;\r\n    margin-left: 70px;\r\n}\r\n.productDetails .details .title {\r\n    margin-top: 19px;\r\n    font-size: 22px;\r\n    margin-bottom: 5px;\r\n}\r\n.productDetails .details .share {\r\n    justify-content: flex-start;\r\n    margin-bottom: 15px;\r\n    margin-top: 25px;\r\n}\r\n.productDetails .details .icon {\r\n    background-color: #f7f8fa;\r\n    width: 50px;\r\n    height: 50px;\r\n    margin-right: 10px;\r\n}\r\n.productDetails .details .price {\r\n    font-size: 45px;\r\n    margin: 20px 0;\r\n}\r\n.productDetails .details .btns .flex {\r\n    margin-bottom: 20px;\r\n}\r\n.productDetails .details .btns {\r\n    width: 335px;\r\n}\r\n.productDetails .details .btns .add {\r\n    padding: 16px 23px;\r\n    background-color: #303285;\r\n    color: #fff;\r\n    white-space: nowrap;\r\n    margin-bottom: 0;\r\n}\r\n.productDetails .details .btns .add svg {\r\n    margin-right: 10px;\r\n}\r\n.productDetails .details .btns .number {\r\n    width: 40%;\r\n    background-color: #f7f8fa;\r\n    text-align: center;\r\n    height: 100%;\r\n    height: 50px;\r\n}\r\n.productDetails .details .btns .number input {\r\n    width: 60%;\r\n    height: 100%;\r\n    margin: auto;\r\n    text-align: center;\r\n    outline: none;\r\n}\r\n.image_slider {\r\n    align-items: flex-start;\r\n}\r\n.productDetails .vertical {\r\n    width: 122px;\r\n    margin-right: 16px;\r\n}\r\n.productDetails .vertical .img {\r\n    margin-bottom: 20px;\r\n}\r\n.productDetails .large {\r\n    width: 480px;\r\n}\r\n.image_slider .img {\r\n    background-color: #f8f9fd;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n.image_slider .img img {\r\n    width: 80%;\r\n    margin: auto;\r\n}\r\n.image_slider .main_slider {\r\n    position: relative;\r\n}\r\n.image_slider .main_slider .arrow {\r\n    border: none;\r\n    background-color: #fff;\r\n    position: absolute;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    z-index: 10;\r\n    margin: 0;\r\n}\r\n.image_slider .main_slider .arrow.left {\r\n    left: 10px;\r\n}\r\n.image_slider .main_slider .arrow.right {\r\n    right: 10px;\r\n}\r\n.image_slider .main_slider .slick-arrow {\r\n    top: 50%;\r\n    width: 35px;\r\n    height: 35px;\r\n    transform: translateY(-50%);\r\n    z-index: 100;\r\n    opacity: 0;\r\n}\r\n.slick-arrow.slick-next {\r\n    right: 10px;\r\n}\r\n.slick-arrow.slick-prev {\r\n    left: 10px;\r\n    right: auto;\r\n}\r\n\r\n@media screen and (max-width: 1260px) {\r\n    .productDetails .main {\r\n        width: 95%;\r\n    }\r\n    .productDetails .details {\r\n        margin-left: 26px;\r\n    }\r\n}\r\n@media screen and (max-width: 1050px) {\r\n    .productDetails .main {\r\n        flex-direction: column;\r\n    }\r\n    .productDetails .details {\r\n        margin-left: 0;\r\n        margin-top: 40px;\r\n        width: 100%;\r\n    }\r\n    .image_slider {\r\n        margin: auto;\r\n    }\r\n}\r\n@media screen and (max-width: 700px) {\r\n    .image_slider {\r\n        flex-direction: column-reverse;\r\n        align-items: center;\r\n    }\r\n    .productDetails .vertical {\r\n        width: 300px;\r\n        margin-right: 0;\r\n        margin-top: 30px;\r\n    }\r\n    .productDetails .vertical .img {\r\n        margin-bottom: 0;\r\n    }\r\n    .productDetails .details .price {\r\n        font-size: 31px;\r\n        margin: 9px 0;\r\n    }\r\n    .productDetails .details .btns .flex {\r\n        margin-bottom: 11px;\r\n    }\r\n}\r\n@media screen and (max-width: 520px) {\r\n    .productDetails .large {\r\n        width: 349px;\r\n    }\r\n}\r\n@media screen and (max-width: 375px) {\r\n    .productDetails .large {\r\n        width: 300px;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

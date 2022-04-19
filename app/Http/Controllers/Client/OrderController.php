@@ -227,20 +227,58 @@ class OrderController extends Controller
 
         $order = Order::create($data);
 
-        $data = [];
-        $insert = [];
+        $product_ids = [];
         foreach ($cart['items'] as $item){
-            $data['order_id'] = $order->id;
-            $data['product_id'] = $item['product']['id'];
-            $data['name'] = $item['product']['title'];
-            $data['qty_ordered'] = $item['qty'];
-            $data['price'] = $item['product']['price'];
-            $data['total'] = $item['product']['price'] * $item['qty'];
-            $insert[] = $data;
+            $product_ids[] = $item['product']['id'];
         }
-        //dd($insert);
-        OrderItem::insert($insert);
-        return redirect(locale_route('order.success'));
+
+        $products = Product::whereIn('id',$product_ids)->get();
+
+        if($products){
+            $prod_data = [];
+            foreach ($products as $product){
+                $prod_data[$product->id]['qty'] = $product->quantity;
+                $prod_data[$product->id]['status'] = $product->status;
+                $prod_data[$product->id]['price'] = $product->price;
+                $prod_data[$product->id]['special_price'] = $product->special_price;
+            }
+
+            $error = true;
+            foreach ($cart['items'] as $item){
+                if(isset($prod_data[$item['product']['id']])){
+                    $price = ($prod_data[$item['product']['id']]['special_price'] !== null) ? $prod_data[$item['product']['id']]['special_price'] : $prod_data[$item['product']['id']]['price'];
+                    if ($prod_data[$item['product']['id']]['qty'] >= $item['qty'] && $price == $item['product']['price'] && $prod_data[$item['product']['id']]['status'] == 1){
+                        $error = false;
+                    }
+                } else {
+                    $error = true;
+                    break;
+                }
+            }
+
+            //dd($prod_data);
+
+            if ($error){
+                 dd('error cart is not valid');
+            }
+
+
+            $data = [];
+            $insert = [];
+            foreach ($cart['items'] as $item){
+                $data['order_id'] = $order->id;
+                $data['product_id'] = $item['product']['id'];
+                $data['name'] = $item['product']['title'];
+                $data['qty_ordered'] = $item['qty'];
+                $data['price'] = $item['product']['price'];
+                $data['total'] = $item['product']['price'] * $item['qty'];
+                $insert[] = $data;
+            }
+            //dd($insert);
+            OrderItem::insert($insert);
+            return redirect(locale_route('order.success'));
+        }
+
     }
 
     public function statusSuccess(){

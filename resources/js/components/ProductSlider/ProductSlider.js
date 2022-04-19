@@ -12,7 +12,7 @@ import "swiper/swiper.min.css";
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
-const ProductSlider = ({ data, head, rightBtns, showArrows }) => {
+const ProductSlider = ({ data, head, rightBtns, showArrows, handleClick }) => {
     const navigationPrevRef = useRef(null);
     const navigationNextRef = useRef(null);
     return (
@@ -106,6 +106,7 @@ const ProductSlider = ({ data, head, rightBtns, showArrows }) => {
                                 }
                                 new={item.new}
                                 product={item}
+                                handleClick={handleClick}
                             />
                         </SwiperSlide>
                     );

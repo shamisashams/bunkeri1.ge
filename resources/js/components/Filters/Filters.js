@@ -117,26 +117,29 @@ const Filters = ({appliedFilters}) => {
                 } else checked = false;
                 return (
                     <div key={index} className="section">
-                        <div className="head">{item.name}</div>
+                        {item.type !== "boolean" ? <div className="head">{item.name}</div> : null}
                         {item.type !== "boolean" ? (
                             options(item.code, item.options)
                         ) : (
+
+                            <div className="flex" key={item.code}>
                             <input
-                                style={{ display: "block" }}
-                                className="filter_ckbox"
-                                onClick={(event) => {
-                                    handleFilterClick(
-                                        event,
-                                        item.code,
-                                        item.id
-                                    );
-                                }}
-                                name={item.code}
-                                type="checkbox"
-                                id={`${item.code}`}
-                                value="1"
-                                checked={checked}
+                            className="filter_ckbox"
+                            onClick={(event) => {
+                            handleFilterClick(
+                                event,
+                                item.code,
+                                item.id
+                            );
+                        }}
+                            name={item.code}
+                            type="checkbox"
+                            id={`${item.code}`}
+                            value={1}
+                            checked={checked}
                             />
+                            <label htmlFor={`${item.code}`}>{item.name}</label>
+                            </div>
                         )}
                     </div>
                 );

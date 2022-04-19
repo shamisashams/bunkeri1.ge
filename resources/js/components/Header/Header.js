@@ -44,6 +44,7 @@ const Header = () => {
         if (_cart !== null) cart = JSON.parse(_cart);
         cart.splice(i, 1);
         localStorage.setItem("cart", JSON.stringify(cart));
+        Inertia.visit(window.location.href);
     };
 
     const links = [
@@ -172,6 +173,7 @@ const Header = () => {
                                     {__("client.header_cart", sharedData)}
                                 </span>
                             </Link>
+                            {getCart().items.length > 0 ?
                             <div className="cart_drop">
                                 <div className="incart_products">
                                     {getCart().items.map((item, index) => {
@@ -271,7 +273,7 @@ const Header = () => {
                                         )}
                                     </Link>
                                 </div>
-                            </div>
+                            </div> : null}
                         </div>
 
                         <Languages />

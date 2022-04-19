@@ -107,6 +107,8 @@ class ProductController extends Controller
 
         $product['attributes'] = $result;
 
+        //dd($product);
+
 
         //dd(last($product->categories));
         $categories = $product->categories;
@@ -172,10 +174,11 @@ class ProductController extends Controller
             ->where('products.id','!=',$product->id)
             ->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')
             ->inRandomOrder()
+            ->groupBy('products.id')
             ->with('latestImage')->get();
 
-        foreach ($similar_products as $product){
-            $product_attributes = $product->attribute_values;
+        foreach ($similar_products as $_product){
+            $product_attributes = $_product->attribute_values;
 
             $_result = [];
 
@@ -192,7 +195,7 @@ class ProductController extends Controller
                 }
 
             }
-            $product['attributes'] = $_result;
+            $_product['attributes'] = $_result;
 
         }
         //dd($category);

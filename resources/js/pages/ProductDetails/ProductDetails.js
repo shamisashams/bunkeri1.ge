@@ -217,7 +217,7 @@ const ProductDetails = ({ page, seo }) => {
                         <div className="op05">
                             მწარმოებელი: <span>{product_attributes.brand}</span>
                         </div>
-                        <div className="blue price">{product.price} ლარი</div>
+                        <div className="blue price">{(product.special_price !== null ? product.special_price : product.price).toFixed(2)} ლარი</div>
                         <div className="btns">
                             <div className="flex">
                                 <div className="number radius5">
@@ -281,7 +281,7 @@ const ProductDetails = ({ page, seo }) => {
                 <div className="wrapper">
                     <ProductSlider
                         head={__("client.product_similar", sharedData)}
-                        data={similar_products}
+                        data={similar_products} handleClick={addToCart}
                     />
                 </div>
             </div>

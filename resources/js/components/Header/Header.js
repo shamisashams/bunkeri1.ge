@@ -162,7 +162,7 @@ const Header = () => {
                         <div className="shopping_cart">
                             <Link
                                 className="  flex centered"
-                                href="/shopping-cart"
+                                href={route("client.cart.index")}
                             >
                                 {getCart().items.length > 0 ? (
                                     <div className="number_of_products">

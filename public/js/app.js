@@ -15013,7 +15013,7 @@ var Header = function Header() {
     className: "shopping_cart"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
     className: "  flex centered",
-    href: "/shopping-cart"
+    href: route("client.cart.index")
   }, getCart().items.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "number_of_products"
   }, getCart().items.length) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {

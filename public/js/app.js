@@ -15218,7 +15218,7 @@ var ProductBox = function ProductBox(props) {
     style: {
       fontWeight: "bold"
     }
-  }, props.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, {
+  }, parseFloat(props.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, {
     onClick: function onClick() {
       return props.handleClick(props.product);
     }

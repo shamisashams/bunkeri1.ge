@@ -17,7 +17,7 @@ export const ProductBox = (props) => {
             <div className="title">{props.title}</div>
             <div className="flex">
                 <div className="price blue" style={{ fontWeight: "bold" }}>
-                    {props.price.toFixed(2)} ლარი
+                    {parseFloat(props.price).toFixed(2)} ლარი
                 </div>
                 <AddToCart onClick={() => props.handleClick(props.product)} />
             </div>

@@ -250,10 +250,7 @@ const ProductDetails = ({ page, seo }) => {
                                 >
                                     <Cart color="#fff" />
                                     <span className="archy-edt">
-                                        {__(
-                                            "client.prod_det_add_to_cart",
-                                            sharedData
-                                        )}
+                                        {__("client.prod_det_add_to_cart",sharedData)}
                                     </span>
                                 </button>
                             </div>

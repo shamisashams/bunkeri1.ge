@@ -117,10 +117,7 @@ const Header = () => {
                             id="search_inp"
                             name="term"
                             type="text"
-                            placeholder={__(
-                                "client.header_search_placeholder",
-                                sharedData
-                            )}
+                            placeholder={__("client.header_search_placeholder", sharedData)}
                         />
                         <button onClick={search}>
                             <img src="/img/icons/header/search.svg" alt="" />

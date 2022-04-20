@@ -113,18 +113,11 @@ const Home = ({ page, seo }) => {
                         </div>
                         <div className="archy-edt blue">
                             {renderHTML(
-                                __(
-                                    "client.home_section1_text",
-                                    sharedData
-                                ).newLineToBr()
-                            )}
+                                __("client.home_section1_text",sharedData).newLineToBr())}
                         </div>
                         <RoundButton
                             link="/"
-                            text={__(
-                                "client.home_section1_btn_title",
-                                sharedData
-                            )}
+                            text={__("client.home_section1_btn_title",sharedData)}
                         />
                     </div>
                 </div>
@@ -137,26 +130,17 @@ const Home = ({ page, seo }) => {
                             <div>
                                 <CommonButton
                                     link="/#special_price"
-                                    text={__(
-                                        "client.home_slider_special_price",
-                                        sharedData
-                                    )}
+                                    text={__("client.home_slider_special_price",sharedData)}
                                 />
                                 <CommonButton
                                     gray
                                     link="/"
-                                    text={__(
-                                        "client.home_slider_new",
-                                        sharedData
-                                    )}
+                                    text={__("client.home_slider_new",sharedData)}
                                 />
                                 <CommonButton
                                     gray
                                     link="/"
-                                    text={__(
-                                        "client.home_slider_popular",
-                                        sharedData
-                                    )}
+                                    text={__("client.home_slider_popular",sharedData)}
                                 />
                             </div>,
                             <SliderButtons />,
@@ -189,10 +173,7 @@ const Home = ({ page, seo }) => {
                             rightBtns={[
                                 <CommonButton
                                     link={route("client.category.special")}
-                                    text={__(
-                                        "client.home_btn_view_all",
-                                        sharedData
-                                    )}
+                                    text={__("client.home_btn_view_all",sharedData)}
                                 />,
                             ]}
                             handleClick={addToCart}
@@ -223,16 +204,12 @@ const Home = ({ page, seo }) => {
                         <div className="archy-edt">
                             {renderHTML(
                                 __(
-                                    "client.home_section2_text",
-                                    sharedData
-                                ).newLineToBr()
+                                    "client.home_section2_text",sharedData).newLineToBr()
                             )}
                         </div>
                         <RoundButton
                             white
-                            text={__(
-                                "client.home_section2_btn_txt",
-                                sharedData
+                            text={__("client.home_section2_btn_txt",sharedData
                             )}
                             link="/"
                         />

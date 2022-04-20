@@ -185,8 +185,7 @@ const TodaysBox = ({ day_product, day_price, addTocart, buyNow }) => {
                                         onClick={() => buyNow(item)}
                                         className="common_btn"
                                     >
-                                        {__(
-                                            "client.today_product_buy",
+                                        {__("client.today_product_buy",
                                             sharedData
                                         )}
                                     </button>

@@ -126,25 +126,24 @@ const Home = ({ page, seo }) => {
                         showArrows
                         head={__("client.home_new_collection", sharedData)}
                         data={products.new_collection}
-                        rightBtns={[
-                            <div>
-                                <CommonButton
-                                    link="/#special_price"
-                                    text={__("client.home_slider_special_price",sharedData)}
-                                />
-                                <CommonButton
-                                    gray
-                                    link="/"
-                                    text={__("client.home_slider_new",sharedData)}
-                                />
-                                <CommonButton
-                                    gray
-                                    link="/"
-                                    text={__("client.home_slider_popular",sharedData)}
-                                />
-                            </div>,
-                            <SliderButtons />,
-                        ]}
+                        // rightBtns={[
+                        //     <div>
+                        //         <CommonButton
+                        //             link="/#special_price"
+                        //             text={__("client.home_slider_special_price",sharedData)}
+                        //         />
+                        //         <CommonButton
+                        //             gray
+                        //             link="/"
+                        //             text={__("client.home_slider_new",sharedData)}
+                        //         />
+                        //         <CommonButton
+                        //             gray
+                        //             link="/"
+                        //             text={__("client.home_slider_popular",sharedData)}
+                        //         />
+                        //     </div>,
+                        // ]}
                         handleClick={addToCart}
                     />
                 </div>

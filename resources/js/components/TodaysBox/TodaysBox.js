@@ -59,13 +59,13 @@ const TodaysBox = ({ day_product, day_price, addTocart, buyNow }) => {
                                 <div className="flex centered">
                                     <div className="blue">
                                         {item.special_price !== null
-                                            ? item.special_price.toFixed(2)
-                                            : item.price.toFixed(2)}{" "}
+                                            ? parseFloat(item.special_price).toFixed(2)
+                                            : parseFloat(item.price).toFixed(2)}{" "}
                                         ლარი
                                     </div>
                                     {item.special_price !== null ? (
                                         <div className="old_price">
-                                            {item.price.toFixed(2)} ლარი
+                                            {parseFloat(item.price).toFixed(2)} ლარი
                                         </div>
                                     ) : null}
                                 </div>
@@ -167,13 +167,13 @@ const TodaysBox = ({ day_product, day_price, addTocart, buyNow }) => {
                                 <div className="flex centered">
                                     <div className="blue">
                                         {item.special_price !== null
-                                            ? item.special_price.toFixed(2)
-                                            : item.price.toFixed(2)}{" "}
+                                            ? parseFloat(item.special_price).toFixed(2)
+                                            : parseFloat(item.price).toFixed(2)}{" "}
                                         ლარი
                                     </div>
                                     {item.special_price !== null ? (
                                         <div className="old_price">
-                                            {item.price.toFixed(2)} ლარი
+                                            {parseFloat(item.price).toFixed(2)} ლარი
                                         </div>
                                     ) : null}
                                 </div>

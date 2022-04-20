@@ -49,6 +49,10 @@ const Header = () => {
 
     const links = [
         {
+            name: __("client.nav_home", sharedData),
+            link: route("client.home.index"),
+        },
+        {
             name: __("client.header_last_added", sharedData),
             link: route("client.category.new"),
         },

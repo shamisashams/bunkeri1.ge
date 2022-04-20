@@ -14891,6 +14891,9 @@ var Header = function Header() {
   };
 
   var links = [{
+    name: __("client.nav_home", sharedData),
+    link: route("client.home.index")
+  }, {
     name: __("client.header_last_added", sharedData),
     link: route("client.category.new")
   }, {
@@ -15696,9 +15699,9 @@ var TodaysBox = function TodaysBox(_ref) {
       className: "flex centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "blue"
-    }, item.special_price !== null ? item.special_price.toFixed(2) : item.price.toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.special_price !== null ? parseFloat(item.special_price).toFixed(2) : parseFloat(item.price).toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "old_price"
-    }, item.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, parseFloat(item.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex btns centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, {
       onClick: function onClick() {
@@ -15735,9 +15738,9 @@ var TodaysBox = function TodaysBox(_ref) {
       className: "flex centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "blue"
-    }, item.special_price !== null ? item.special_price.toFixed(2) : item.price.toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, item.special_price !== null ? parseFloat(item.special_price).toFixed(2) : parseFloat(item.price).toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), item.special_price !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "old_price"
-    }, item.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, parseFloat(item.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "flex btns centered"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_4__.AddToCart, {
       onClick: function onClick() {

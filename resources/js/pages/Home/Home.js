@@ -148,7 +148,7 @@ const Home = ({ page, seo }) => {
                         handleClick={addToCart}
                     />
                 </div>
-                <div className="bunker">
+                <div className="bunker" style={{ background: "url(" + images[1] + ")" }}>
                     <div className="wrapper">
                         <ProductSlider
                             head={__("client.home_bunker", sharedData)}
@@ -196,7 +196,7 @@ const Home = ({ page, seo }) => {
                         handleClick={addToCart}
                     />
                 </div>
-                <div className="new_collection">
+                <div className="new_collection" style={{ background: "url(" + images[2] + ")" }}>
                     <div className="wrapper">
                         <div className="title35">
                             {__("client.home_section2_title", sharedData)}

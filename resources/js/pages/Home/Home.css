@@ -15,7 +15,7 @@
     margin-bottom: 80px;
 }
 .homePage .bunker {
-    background: url(/img/home/bg2.png) no-repeat;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     padding: 30px 0 60px 0;
@@ -55,7 +55,7 @@
     margin: 40px auto 70px auto;
 }
 .homePage .new_collection {
-    background: url(/img/home/bg4.png) no-repeat;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     padding: 75px 0;

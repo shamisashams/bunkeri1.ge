@@ -48,12 +48,12 @@ class PageSectionsSeeder extends Seeder
         $key = 0;
         foreach ($pages as $item){
             switch ($item->key){
-                /*case 'home':
+                case 'home':
                     for ($i = 0; $i < 3; $i++){
                         $ins[$key]['page_id'] = $item->id;
                         $key++;
                     }
-                    break;*/
+                    break;
                 case 'about':
                     for ($i = 0; $i < 3; $i++){
                         $ins[$key]['page_id'] = $item->id;

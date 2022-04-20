@@ -29,7 +29,7 @@ const ShoppingCart = ({ seo }) => {
 
         let obj = {
             items: cart,
-            total: total,
+            total: parseFloat(total),
         };
         return obj;
     };
@@ -174,10 +174,10 @@ const ShoppingCart = ({ seo }) => {
                                         </td>
                                         <td>
                                             {item.product.special_price !== null
-                                                ? item.product.special_price.toFixed(
+                                                ? parseFloat(item.product.special_price).toFixed(
                                                       2
                                                   )
-                                                : item.product.price.toFixed(2)}
+                                                : parseFloat(item.product.price).toFixed(2)}
                                             ლარი
                                         </td>
                                         <td>
@@ -204,8 +204,8 @@ const ShoppingCart = ({ seo }) => {
                                             {(
                                                 (item.product.special_price !==
                                                 null
-                                                    ? item.product.special_price
-                                                    : item.product.price) *
+                                                    ? parseFloat(item.product.special_price)
+                                                    : parseFloat(item.product.price)) *
                                                 item.qty
                                             ).toFixed(2)}{" "}
                                             ლარი

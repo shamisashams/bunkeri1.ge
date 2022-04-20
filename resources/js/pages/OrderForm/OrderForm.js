@@ -17,7 +17,7 @@ const getCart = function (){
 
     let total = 0;
     cart.forEach(function (el,i){
-        total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
+        total += el.qty * (el.product.special_price !== null ? parseFloat(el.product.special_price) : parseFloat(el.product.price));
     })
 
     let obj = {
@@ -194,7 +194,7 @@ const OrderForm = ({seo}) => {
                         <div className="op05">{__('client.checkout_brand',sharedData)}: {item.product.attributes.brand}</div>
                       </div>
                       <div className="quantity">{item.qty}</div>
-                      <div>{item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2)} ლარი</div>
+                      <div>{item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2)} ლარი</div>
                     </div>
                   );
                 })}

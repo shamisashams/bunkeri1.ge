@@ -52,6 +52,8 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
     <link rel="stylesheet" href="{{asset('assets/plugins/telephoneinput/telephoneinput.css')}}">
 
     <link rel="stylesheet" href="{{asset('uploader/image-uploader.css')}}">
+    <!--  smart photo master css -->
+    <link href="{{asset('assets/plugins/SmartPhoto-master/smartphoto.css')}}" rel="stylesheet">
 
 @endsection
 
@@ -456,6 +458,33 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                                             {{ $errors->first('images') }}
                                         </span>
                     @endif
+
+
+
+                    <div class="image-uploader">
+                        <div class="uploaded">
+
+                            @foreach($product->files as $item)
+
+                                    <div class="uploaded-image">
+
+                                        <img src="{{asset($item->getFileUrlAttribute())}}" alt="" />
+
+                                        <div style="position: absolute;z-index: 10;background-color: #fff">
+                                            <input type="hidden" name="old_images[]"  value="{{$item->id}}">
+                                            <label class="rdiobox"><input name="main" value="{{$item->id}}" name="rdio" type="radio" {{$item->main ? 'checked':''}}> <span>Main</span></label>
+
+                                            <button type="button" class="btn" data-rm_img="{{$item->id}}">remove</button>
+                                        </div>
+                                    </div>
+
+
+
+                            @endforeach
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -503,6 +532,10 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
 
     <script src="{{asset('uploader/image-uploader.js')}}"></script>
 
+    <!-- smart photo master js -->
+    <script src="{{asset('assets/plugins/SmartPhoto-master/smartphoto.js')}}"></script>
+    <script src="{{asset('assets/js/gallery.js')}}"></script>
+
     <script>
         let oldImages = $('#old_images').val();
         if (oldImages) {
@@ -523,7 +556,7 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                 })
             })
             $('.input-images').imageUploader({
-                preloaded: imagedata,
+                //preloaded: imagedata,
                 imagesInputName: 'images',
                 preloadedInputName: 'old_images'
             });
@@ -578,6 +611,10 @@ $traverse = function ($categories, $prefix = '-') use (&$traverse,$ids) {
                 $(this).prev('input[type=hidden]').val(1);
             } else $(this).prev('input[type=hidden]').val(0);
         });
+
+        $('[data-rm_img]').click(function (e){
+            $(this).parents('.uploaded-image').remove();
+        })
     </script>
 
 @endsection

@@ -50,7 +50,8 @@ class File extends Model
         'title',
         'path',
         'format',
-        'type'
+        'type',
+        'main'
     ];
 
     /**

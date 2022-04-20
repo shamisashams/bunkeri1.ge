@@ -162,7 +162,9 @@ class BaseRepository implements EloquentRepositoryInterface
         $this->model = $this->findOrFail($id);
         // Delete old files if exist
         if (count($this->model->files)) {
+
             foreach ($this->model->files as $file) {
+                $file->update(['main' => 0]);
                 if (!$request->old_images) {
                     $file->delete();
                     continue;
@@ -172,6 +174,8 @@ class BaseRepository implements EloquentRepositoryInterface
                 }
             }
         }
+
+        $this->model->files()->where('id',$request->post('main'))->update(['main'=>1]);
 
         if ($request->hasFile('images')) {
             // Get Name Of model
@@ -186,7 +190,8 @@ class BaseRepository implements EloquentRepositoryInterface
                     'title' => $imagename,
                     'path' => 'storage/' . $modelName . '/' . $this->model->id,
                     'format' => $file->getClientOriginalExtension(),
-                    'type' => File::FILE_DEFAULT
+                    'type' => File::FILE_DEFAULT,
+                    'main' => 0
                 ]);
             }
         }

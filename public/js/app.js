@@ -12355,7 +12355,7 @@ var getCart = function getCart() {
   if (_cart !== null) cart = JSON.parse(_cart);
   var total = 0;
   cart.forEach(function (el, i) {
-    total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
+    total += el.qty * (el.product.special_price !== null ? parseFloat(el.product.special_price) : parseFloat(el.product.price));
   });
   var obj = {
     items: cart,
@@ -12523,7 +12523,7 @@ var OrderForm = function OrderForm(_ref) {
       className: "op05"
     }, __('client.checkout_brand', sharedData), ": ", item.product.attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "quantity"
-    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
+    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
   }, __('client.checkout_courier_service', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -12980,7 +12980,7 @@ var ProductDetails = function ProductDetails(_ref) {
     className: "op05"
   }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product_attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "blue price"
-  }, (product.special_price !== null ? product.special_price : product.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, (product.special_price !== null ? parseFloat(product.special_price) : parseFloat(product.price)).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "btns"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex"
@@ -13551,7 +13551,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
     });
     var obj = {
       items: cart,
-      total: total
+      total: parseFloat(total)
     };
     return obj;
   };
@@ -13645,7 +13645,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
       className: "name"
     }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "number radius5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick() {
@@ -13662,7 +13662,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
       }
     }, "+"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
       className: "sum"
-    }, ((item.product.special_price !== null ? item.product.special_price : item.product.price) * item.qty).toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, ((item.product.special_price !== null ? parseFloat(item.product.special_price) : parseFloat(item.product.price)) * item.qty).toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick(event) {
         return removeCartItem(index);
       },
@@ -14876,7 +14876,7 @@ var Header = function Header() {
     if (_cart !== null) cart = JSON.parse(_cart);
     var total = 0;
     cart.forEach(function (el, i) {
-      total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
+      total += el.qty * (el.product.special_price !== null ? parseFloat(el.product.special_price) : parseFloat(el.product.price));
     });
     var obj = {
       items: cart,
@@ -15036,7 +15036,7 @@ var Header = function Header() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       src: item.product.latest_image != null ? "/" + item.product.latest_image.path + "/" + item.product.latest_image.title : null,
       alt: ""
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.qty, " x", " ", item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.qty, " x", " ", item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick(event) {
         event.stopPropagation();
         removeCartItem(index);

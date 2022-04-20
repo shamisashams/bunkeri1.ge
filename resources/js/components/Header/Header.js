@@ -181,10 +181,7 @@ const Header = () => {
                                         return (
                                             <div className="flex" key={index}>
                                                 <Link
-                                                    href={route(
-                                                        "client.product.show",
-                                                        item.product.slug
-                                                    )}
+                                                    href={route("client.product.show",item.product.slug)}
                                                 >
                                                     <div className="img">
                                                         <img
@@ -245,10 +242,7 @@ const Header = () => {
                                 </div>
                                 <div className="flex total">
                                     <strong>
-                                        {__(
-                                            "client.mini_cart_total",
-                                            sharedData
-                                        )}
+                                        {__("client.mini_cart_total",sharedData)}
                                     </strong>
                                     <strong>
                                         {getCart().total.toFixed(2)} ₾
@@ -259,18 +253,14 @@ const Header = () => {
                                         href={route("client.cart.index")}
                                         className="archy-edt blue"
                                     >
-                                        {__(
-                                            "client.mini_cart_cart",
-                                            sharedData
+                                        {__("client.mini_cart_cart",sharedData
                                         )}
                                     </Link>
                                     <Link
                                         href={route("client.checkout.index")}
                                         className="archy-edt"
                                     >
-                                        {__(
-                                            "client.mini_cart_payment",
-                                            sharedData
+                                        {__("client.mini_cart_payment",sharedData
                                         )}
                                     </Link>
                                 </div>

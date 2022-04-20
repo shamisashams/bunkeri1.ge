@@ -27,8 +27,8 @@ const Header = () => {
             total +=
                 el.qty *
                 (el.product.special_price !== null
-                    ? el.product.special_price
-                    : el.product.price);
+                    ? parseFloat(el.product.special_price)
+                    : parseFloat(el.product.price));
         });
 
         let obj = {
@@ -218,10 +218,10 @@ const Header = () => {
                                                         {item.product
                                                             .special_price !==
                                                         null
-                                                            ? item.product.special_price.toFixed(
+                                                            ? parseFloat(item.product.special_price).toFixed(
                                                                   2
                                                               )
-                                                            : item.product.price.toFixed(
+                                                            : parseFloat(item.product.price).toFixed(
                                                                   2
                                                               )}
                                                         ₾

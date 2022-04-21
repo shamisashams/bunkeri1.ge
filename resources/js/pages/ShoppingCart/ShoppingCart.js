@@ -105,16 +105,10 @@ const ShoppingCart = ({ seo }) => {
                         <table>
                             <tr className="head">
                                 <th>
-                                    {__(
-                                        "client.cart_table_product",
-                                        sharedData
-                                    )}
+                                    {__("client.cart_table_product",sharedData)}
                                 </th>
                                 <th>
-                                    {__(
-                                        "client.cart_table_unite_price",
-                                        sharedData
-                                    )}
+                                    {__("client.cart_table_unite_price",sharedData)}
                                 </th>
                                 <th>
                                     {__("client.cart_table_qnty", sharedData)}

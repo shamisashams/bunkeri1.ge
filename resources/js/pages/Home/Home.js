@@ -202,8 +202,7 @@ const Home = ({ page, seo }) => {
                         </div>
                         <div className="archy-edt">
                             {renderHTML(
-                                __(
-                                    "client.home_section2_text",sharedData).newLineToBr()
+                                __("client.home_section2_text",sharedData).newLineToBr()
                             )}
                         </div>
                         <RoundButton

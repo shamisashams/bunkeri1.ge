@@ -229,10 +229,7 @@ const ShoppingCart = ({ seo }) => {
                         >
                             <Arrow color="#fff" rotate="90" />
                             <span className="archy-edt">
-                                {__(
-                                    "client.cart_continue_shopping",
-                                    sharedData
-                                )}
+                                {__("client.cart_continue_shopping",sharedData)}
                             </span>
                         </button>
                         <div>

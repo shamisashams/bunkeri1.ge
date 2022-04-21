@@ -33,7 +33,7 @@ class SearchController extends Controller
      * @param string $slug
      * @return Application|Factory|View
      */
-    public function show(string $locale, Request $request)
+    public function index(string $locale, Request $request)
     {
 
         $page = Page::where('key', 'search')->firstOrFail();

@@ -81,7 +81,7 @@ Route::prefix('{locale?}')
                 Route::resource('attribute', \App\Http\Controllers\Admin\AttributeController::class);
                 Route::get('attribute/{attribute}/destroy', [\App\Http\Controllers\Admin\AttributeController::class, 'destroy'])->name('attribute.destroy');
 
-                Route::get('search', [\App\Http\Controllers\Client\SearchController::class, 'show'])->name('search.index');
+
 
             });
         });
@@ -115,12 +115,14 @@ Route::prefix('{locale?}')
             Route::post('checkout',[\App\Http\Controllers\Client\OrderController::class,'order'])->name('client.checkout.order');
             Route::get('order/success',[\App\Http\Controllers\Client\OrderController::class,'statusSuccess'])->name('order.success');
 
-            Route::get('test/{method}',function ($locale,$method,\App\Http\Controllers\TestController $testController){
+            Route::get('search', [\App\Http\Controllers\Client\SearchController::class, 'index'])->name('search.index');
+
+            /*Route::get('test/{method}',function ($locale,$method,\App\Http\Controllers\TestController $testController){
 
                 return $testController->{$method}();
             });
 
-            Route::post('test/filter',[\App\Http\Controllers\TestController::class,'filter']);
+            Route::post('test/filter',[\App\Http\Controllers\TestController::class,'filter']);*/
         });
     });
 

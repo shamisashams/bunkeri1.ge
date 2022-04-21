@@ -1,16 +1,14 @@
 import React, { useRef } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { ProductBox } from "../ProductBox/ProductBox";
 import "./ProductSlider.css";
 import { NextSlide, PrevSlide } from "../Buttons/Buttons";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper";
+import SwiperCore, { Pagination, Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 
-SwiperCore.use([Pagination, Navigation, Autoplay]);
+SwiperCore.use([Pagination, Navigation]);
 
 const ProductSlider = ({ data, head, rightBtns, showArrows, handleClick }) => {
     const navigationPrevRef = useRef(null);
@@ -30,15 +28,11 @@ const ProductSlider = ({ data, head, rightBtns, showArrows, handleClick }) => {
                 )}
             </div>
             <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
+                modules={[Navigation, Pagination]}
                 navigation={{
                     prevEl: navigationPrevRef.current,
                     nextEl: navigationNextRef.current,
                 }}
-                autoplay={{
-                    delay: 2000,
-                }}
-                cssMode={true}
                 onSwiper={(swiper) => {
                     // Delay execution for the refs to be defined
                     setTimeout(() => {

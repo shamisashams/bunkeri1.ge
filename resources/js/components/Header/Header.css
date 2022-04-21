@@ -1,249 +1,252 @@
 .header {
-  position: relative;
-  font-size: 18px;
+    position: relative;
+    font-size: 18px;
 }
 .header .top {
-  background-color: #fff;
-  padding: 30px 0;
+    background-color: #fff;
+    padding: 30px 0;
 }
 .header .bottom {
-  background-color: #303285;
-  color: #fff;
-  padding: 15px 0;
+    background-color: #303285;
+    color: #fff;
+    padding: 15px 0;
 }
 .header .search {
-  background-color: #f6f6f6;
-  position: relative;
-  overflow: hidden;
-  margin: 0 56px;
-  width: 40%;
-  height: 52px;
+    background-color: #f6f6f6;
+    position: relative;
+    overflow: hidden;
+    margin: 0 56px;
+    width: 40%;
+    height: 52px;
 }
 .header .search input {
-  width: 100%;
-  height: 100%;
-  background: none;
-  padding-left: 15px;
-  font-size: inherit;
+    width: 100%;
+    height: 100%;
+    background: none;
+    padding-left: 15px;
+    font-size: inherit;
 }
 .header .search button {
-  position: absolute;
-  top: 14px;
-  right: 16px;
+    position: absolute;
+    top: 14px;
+    right: 16px;
 }
 .header .links_3 {
-  margin-left: 40px;
+    margin-left: 40px;
 }
 
 .language {
-  position: relative;
-  margin-left: 40px;
-  cursor: default;
+    position: relative;
+    margin-left: 40px;
+    cursor: default;
 }
 .language .drop {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
 }
 .language:hover .drop {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 .language .drop a {
-  font-family: "archy-edt";
+    font-family: "archy-edt";
 }
 
 .header .contact_info svg {
-  vertical-align: top;
-  margin-right: 10px;
+    vertical-align: top;
+    margin-right: 10px;
 }
 .header .contact_info a {
-  margin-right: 22px;
+    margin-right: 22px;
 }
 
 .header .shopping_cart {
-  position: relative;
+    position: relative;
 }
 .header .shopping_cart img {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 .number_of_products {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  color: #fff;
-  background-color: #3bb77e;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  top: -6px;
-  left: 12px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    background-color: #3bb77e;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: -6px;
+    left: 12px;
 }
 .header .shopping_cart .cart_drop {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background-color: #fff;
-  width: 321px;
-  color: #2f3e51;
-  padding: 20px;
-  z-index: 1000;
-  box-shadow: 0 10px 15px #1f243025;
-  border-radius: 5px;
-  transition: 0.4s;
-  transform: translateY(50px);
-  opacity: 0;
-  visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    width: 321px;
+    color: #2f3e51;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 10px 15px #1f243025;
+    border-radius: 5px;
+    transition: 0.4s;
+    transform: translateY(50px);
+    opacity: 0;
+    visibility: hidden;
 }
 .header .shopping_cart:hover .cart_drop {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 .header .shopping_cart .cart_drop .incart_products {
-  max-height: 275px;
-  overflow-y: scroll;
+    max-height: 275px;
+    overflow-y: scroll;
 }
 .header .shopping_cart .cart_drop .incart_products::-webkit-scrollbar {
-  width: 0;
+    width: 0;
 }
 .header .shopping_cart .cart_drop .incart_products strong {
-  font-size: 12px;
+    font-size: 12px;
 }
 .header .shopping_cart .cart_drop .img {
-  width: 66px;
-  height: 77px;
-  border-radius: 5px;
-  border: 1px solid #dedede;
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
+    width: 66px;
+    height: 77px;
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
 }
 .header .shopping_cart .cart_drop .img img {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 .header .shopping_cart .cart_drop .incart_products .flex {
-  align-items: flex-start;
-  margin-bottom: 15px;
+    align-items: flex-start;
+    margin-bottom: 15px;
 }
 .header .shopping_cart .cart_drop .total {
-  position: relative;
-  padding-top: 40px;
-  margin-bottom: 15px;
+    position: relative;
+    padding-top: 40px;
+    margin-bottom: 15px;
 }
 .header .shopping_cart .cart_drop .total::before {
-  left: 0;
-  top: 15px;
-  height: 5px;
-  width: 100%;
-  border-top: 1px solid #eeeeee;
-  border-bottom: 1px solid #eeeeee;
+    left: 0;
+    top: 15px;
+    height: 5px;
+    width: 100%;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
 }
 .header .shopping_cart .cart_drop button.archy-edt {
-  width: 109px;
-  height: 39px;
-  background-color: #303285;
-  border: 1px solid #303285;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 5px;
+    width: 109px;
+    height: 39px;
+    background-color: #303285;
+    border: 1px solid #303285;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
 }
 .header .shopping_cart .cart_drop button.archy-edt.blue {
-  background-color: transparent;
-  color: #303285;
+    background-color: transparent;
+    color: #303285;
+}
+.header .shopping_cart .cart_drop .common_btn {
+    margin-left: 0;
 }
 
 @media screen and (max-width: 1400px) {
-  .header {
-    font-size: 16px;
-  }
-  .header .search button {
-    top: 10px;
-    right: 12px;
-  }
-  .header .search {
-    margin: 0 15px;
-    width: 33%;
-    height: 46px;
-  }
-  .header .contact_info a {
-    margin-right: 16px;
-  }
-  .header .top {
-    background-color: #fff;
-    padding: 19px 0;
-  }
-  .header .links_3 {
-    margin-left: 26px;
-  }
-  .language {
-    position: relative;
-    margin-left: 27px;
-    cursor: default;
-  }
+    .header {
+        font-size: 16px;
+    }
+    .header .search button {
+        top: 10px;
+        right: 12px;
+    }
+    .header .search {
+        margin: 0 15px;
+        width: 33%;
+        height: 46px;
+    }
+    .header .contact_info a {
+        margin-right: 16px;
+    }
+    .header .top {
+        background-color: #fff;
+        padding: 19px 0;
+    }
+    .header .links_3 {
+        margin-left: 26px;
+    }
+    .language {
+        position: relative;
+        margin-left: 27px;
+        cursor: default;
+    }
 }
 @media screen and (max-width: 1100px) {
-  .header .links_3 {
-    display: none;
-  }
-  .contact_info {
-    display: none;
-  }
-  .header .search {
-    width: 57%;
-  }
+    .header .links_3 {
+        display: none;
+    }
+    .contact_info {
+        display: none;
+    }
+    .header .search {
+        width: 57%;
+    }
 }
 @media screen and (max-width: 900px) {
-  .logo img {
-    max-width: 120px;
-  }
-  .header .search {
-    height: 38px;
-  }
-  .header .search button {
-    top: 11px;
-    width: 16px;
-  }
-  .header .top {
-    padding: 8px 0;
-  }
-  .header .category_btn {
-    width: 170px;
-    padding: 7px 9px;
-  }
+    .logo img {
+        max-width: 120px;
+    }
+    .header .search {
+        height: 38px;
+    }
+    .header .search button {
+        top: 11px;
+        width: 16px;
+    }
+    .header .top {
+        padding: 8px 0;
+    }
+    .header .category_btn {
+        width: 170px;
+        padding: 7px 9px;
+    }
 }
 @media screen and (max-width: 600px) {
-  .header {
-    font-size: 14px;
-  }
-  .header .sm {
-    display: none;
-  }
-  .header .search {
-    margin-right: 0;
-  }
+    .header {
+        font-size: 14px;
+    }
+    .header .sm {
+        display: none;
+    }
+    .header .search {
+        margin-right: 0;
+    }
 
-  .header .bottom {
-    padding: 9px 0;
-  }
-  .language {
-    margin-left: 10px;
-  }
-  .header .shopping_cart .cart_drop {
-    right: -33px;
-  }
+    .header .bottom {
+        padding: 9px 0;
+    }
+    .language {
+        margin-left: 10px;
+    }
+    .header .shopping_cart .cart_drop {
+        right: -33px;
+    }
 }
 @media screen and (max-width: 500px) {
-  .logo.second {
-    display: none;
-  }
-  .header .search {
-    width: 71%;
-  }
+    .logo.second {
+        display: none;
+    }
+    .header .search {
+        width: 71%;
+    }
 }

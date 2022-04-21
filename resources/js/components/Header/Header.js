@@ -4,7 +4,7 @@ import { Pin } from "../SmallComps/Icons";
 import { SocialMedia } from "../SmallComps/SocialMedia";
 import "./Header.css";
 import { Languages } from "../SmallComps/Languages";
-import { CatButton } from "../Buttons/Buttons";
+import { CatButton, CommonButton } from "../Buttons/Buttons";
 import Categories from "../Categories/Categories";
 import { Inertia } from "@inertiajs/inertia";
 
@@ -173,107 +173,112 @@ const Header = () => {
                                     {__("client.header_cart", sharedData)}
                                 </span>
                             </Link>
-                            {getCart().items.length > 0 ?
-                            <div className="cart_drop">
-                                <div className="incart_products">
-                                    {getCart().items.map((item, index) => {
-                                        return (
-                                            <div className="flex" key={index}>
-                                                <Link
-                                                    href={route(
-                                                        "client.product.show",
-                                                        item.product.slug
-                                                    )}
+                            {getCart().items.length > 0 ? (
+                                <div className="cart_drop">
+                                    <div className="incart_products">
+                                        {getCart().items.map((item, index) => {
+                                            return (
+                                                <div
+                                                    className="flex"
+                                                    key={index}
                                                 >
-                                                    <div className="img">
+                                                    <Link
+                                                        href={route(
+                                                            "client.product.show",
+                                                            item.product.slug
+                                                        )}
+                                                    >
+                                                        <div className="img">
+                                                            <img
+                                                                src={
+                                                                    item.product
+                                                                        .latest_image !=
+                                                                    null
+                                                                        ? "/" +
+                                                                          item
+                                                                              .product
+                                                                              .latest_image
+                                                                              .path +
+                                                                          "/" +
+                                                                          item
+                                                                              .product
+                                                                              .latest_image
+                                                                              .title
+                                                                        : null
+                                                                }
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                    </Link>
+
+                                                    <div>
+                                                        <strong>
+                                                            {item.product.title}
+                                                        </strong>
+                                                        <p>
+                                                            {item.qty} x{" "}
+                                                            {item.product
+                                                                .special_price !==
+                                                            null
+                                                                ? item.product.special_price.toFixed(
+                                                                      2
+                                                                  )
+                                                                : item.product.price.toFixed(
+                                                                      2
+                                                                  )}
+                                                            ₾
+                                                        </p>
+                                                    </div>
+                                                    <button
+                                                        onClick={(event) => {
+                                                            event.stopPropagation();
+                                                            removeCartItem(
+                                                                index
+                                                            );
+                                                        }}
+                                                        className="close"
+                                                    >
                                                         <img
-                                                            src={
-                                                                item.product
-                                                                    .latest_image !=
-                                                                null
-                                                                    ? "/" +
-                                                                      item
-                                                                          .product
-                                                                          .latest_image
-                                                                          .path +
-                                                                      "/" +
-                                                                      item
-                                                                          .product
-                                                                          .latest_image
-                                                                          .title
-                                                                    : null
-                                                            }
+                                                            src="/img/icons/other/close.svg"
                                                             alt=""
                                                         />
-                                                    </div>
-                                                </Link>
-
-                                                <div>
-                                                    <strong>
-                                                        {item.product.title}
-                                                    </strong>
-                                                    <p>
-                                                        {item.qty} x{" "}
-                                                        {item.product
-                                                            .special_price !==
-                                                        null
-                                                            ? item.product.special_price.toFixed(
-                                                                  2
-                                                              )
-                                                            : item.product.price.toFixed(
-                                                                  2
-                                                              )}
-                                                        ₾
-                                                    </p>
+                                                    </button>
                                                 </div>
-                                                <button
-                                                    onClick={(event) => {
-                                                        event.stopPropagation();
-                                                        removeCartItem(index);
-                                                    }}
-                                                    className="close"
-                                                >
-                                                    <img
-                                                        src="/img/icons/other/close.svg"
-                                                        alt=""
-                                                    />
-                                                </button>
-                                            </div>
-                                        );
-                                    })}
+                                            );
+                                        })}
+                                    </div>
+                                    <div className="flex total">
+                                        <strong>
+                                            {__(
+                                                "client.mini_cart_total",
+                                                sharedData
+                                            )}
+                                        </strong>
+                                        <strong>
+                                            {getCart().total.toFixed(2)} ₾
+                                        </strong>
+                                    </div>
+                                    <div className="flex">
+                                        <CommonButton
+                                            link={route("client.cart.index")}
+                                            text={__(
+                                                "client.mini_cart_cart",
+                                                sharedData
+                                            )}
+                                        />
+                                        <CommonButton
+                                            gray
+                                            link={route(
+                                                "client.checkout.index"
+                                            )}
+                                            text={__(
+                                                "client.mini_cart_payment",
+                                                sharedData
+                                            )}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex total">
-                                    <strong>
-                                        {__(
-                                            "client.mini_cart_total",
-                                            sharedData
-                                        )}
-                                    </strong>
-                                    <strong>
-                                        {getCart().total.toFixed(2)} ₾
-                                    </strong>
-                                </div>
-                                <div className="flex">
-                                    <Link
-                                        href={route("client.cart.index")}
-                                        className="archy-edt blue"
-                                    >
-                                        {__(
-                                            "client.mini_cart_cart",
-                                            sharedData
-                                        )}
-                                    </Link>
-                                    <Link
-                                        href={route("client.checkout.index")}
-                                        className="archy-edt"
-                                    >
-                                        {__(
-                                            "client.mini_cart_payment",
-                                            sharedData
-                                        )}
-                                    </Link>
-                                </div>
-                            </div> : null}
+                            ) : null}
                         </div>
 
                         <Languages />

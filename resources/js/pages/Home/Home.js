@@ -21,7 +21,6 @@ const renderHTML = (rawHTML) =>
 const Home = ({ page, seo }) => {
     const sharedData = usePage().props.localizations;
     const { images, products } = usePage().props;
-    console.log(products);
 
     const addToCart = function (product) {
         //localStorage.removeItem('cart')
@@ -57,7 +56,6 @@ const Home = ({ page, seo }) => {
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
-        console.log(JSON.parse(localStorage.getItem("cart")));
         //localStorage.removeItem('cart')
         Inertia.visit(window.location.href);
     };
@@ -95,7 +93,6 @@ const Home = ({ page, seo }) => {
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
-        console.log(JSON.parse(localStorage.getItem("cart")));
         //localStorage.removeItem('cart')
         Inertia.get(route("client.checkout.index"));
     };
@@ -133,34 +130,6 @@ const Home = ({ page, seo }) => {
                         showArrows
                         head={__("client.home_new_collection", sharedData)}
                         data={products.new_collection}
-                        rightBtns={[
-                            <div>
-                                <CommonButton
-                                    link="/#special_price"
-                                    text={__(
-                                        "client.home_slider_special_price",
-                                        sharedData
-                                    )}
-                                />
-                                <CommonButton
-                                    gray
-                                    link="/"
-                                    text={__(
-                                        "client.home_slider_new",
-                                        sharedData
-                                    )}
-                                />
-                                <CommonButton
-                                    gray
-                                    link="/"
-                                    text={__(
-                                        "client.home_slider_popular",
-                                        sharedData
-                                    )}
-                                />
-                            </div>,
-                            <SliderButtons />,
-                        ]}
                         handleClick={addToCart}
                     />
                 </div>
@@ -173,12 +142,12 @@ const Home = ({ page, seo }) => {
                         />
                     </div>
                 </div>
-                <div className="today wrapper">
+                <div className="today wrapper ">
                     <TodaysBox
                         addTocart={addToCart}
                         buyNow={buyNow}
-                        day_product={products.day_product}
-                        day_price={products.day_price}
+                        data1={products.day_product}
+                        data2={products.day_price}
                     />
                 </div>
                 <div className="special_price" id="special_price">

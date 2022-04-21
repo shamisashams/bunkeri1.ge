@@ -29,7 +29,7 @@ const ShoppingCart = ({ seo }) => {
 
         let obj = {
             items: cart,
-            total: total,
+            total: parseFloat(total),
         };
         return obj;
     };
@@ -105,16 +105,10 @@ const ShoppingCart = ({ seo }) => {
                         <table>
                             <tr className="head">
                                 <th>
-                                    {__(
-                                        "client.cart_table_product",
-                                        sharedData
-                                    )}
+                                    {__("client.cart_table_product",sharedData)}
                                 </th>
                                 <th>
-                                    {__(
-                                        "client.cart_table_unite_price",
-                                        sharedData
-                                    )}
+                                    {__("client.cart_table_unite_price",sharedData)}
                                 </th>
                                 <th>
                                     {__("client.cart_table_qnty", sharedData)}
@@ -174,10 +168,10 @@ const ShoppingCart = ({ seo }) => {
                                         </td>
                                         <td>
                                             {item.product.special_price !== null
-                                                ? item.product.special_price.toFixed(
+                                                ? parseFloat(item.product.special_price).toFixed(
                                                       2
                                                   )
-                                                : item.product.price.toFixed(2)}
+                                                : parseFloat(item.product.price).toFixed(2)}
                                             ლარი
                                         </td>
                                         <td>
@@ -204,8 +198,8 @@ const ShoppingCart = ({ seo }) => {
                                             {(
                                                 (item.product.special_price !==
                                                 null
-                                                    ? item.product.special_price
-                                                    : item.product.price) *
+                                                    ? parseFloat(item.product.special_price)
+                                                    : parseFloat(item.product.price)) *
                                                 item.qty
                                             ).toFixed(2)}{" "}
                                             ლარი
@@ -235,10 +229,7 @@ const ShoppingCart = ({ seo }) => {
                         >
                             <Arrow color="#fff" rotate="90" />
                             <span className="archy-edt">
-                                {__(
-                                    "client.cart_continue_shopping",
-                                    sharedData
-                                )}
+                                {__("client.cart_continue_shopping",sharedData)}
                             </span>
                         </button>
                         <div>

@@ -27,8 +27,8 @@ const Header = () => {
             total +=
                 el.qty *
                 (el.product.special_price !== null
-                    ? el.product.special_price
-                    : el.product.price);
+                    ? parseFloat(el.product.special_price)
+                    : parseFloat(el.product.price));
         });
 
         let obj = {
@@ -48,6 +48,10 @@ const Header = () => {
     };
 
     const links = [
+        {
+            name: __("client.nav_home", sharedData),
+            link: route("client.home.index"),
+        },
         {
             name: __("client.header_last_added", sharedData),
             link: route("client.category.new"),
@@ -102,6 +106,20 @@ const Header = () => {
         let term = document.getElementById("search_inp").value;
         Inertia.get(route("search.index"), { term: term });
     };
+
+    /*let input = document.getElementById("search_inp");
+
+// Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            search()
+        }
+    });*/
+
     return (
         <div className="header">
             <div className="top">
@@ -161,7 +179,7 @@ const Header = () => {
                         <div className="shopping_cart">
                             <Link
                                 className="  flex centered"
-                                href="/shopping-cart"
+                                href={route("client.cart.index")}
                             >
                                 {getCart().items.length > 0 ? (
                                     <div className="number_of_products">

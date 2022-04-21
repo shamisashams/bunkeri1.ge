@@ -12212,7 +12212,10 @@ var Home = function Home(_ref) {
     data: products.new_collection,
     handleClick: addToCart
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "bunker"
+    className: "bunker",
+    style: {
+      background: "url(" + images[1] + ")"
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ProductSlider_ProductSlider__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -12251,7 +12254,10 @@ var Home = function Home(_ref) {
     })],
     handleClick: addToCart
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "new_collection"
+    className: "new_collection",
+    style: {
+      background: "url(" + images[2] + ")"
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -12328,7 +12334,7 @@ var getCart = function getCart() {
   if (_cart !== null) cart = JSON.parse(_cart);
   var total = 0;
   cart.forEach(function (el, i) {
-    total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
+    total += el.qty * (el.product.special_price !== null ? parseFloat(el.product.special_price) : parseFloat(el.product.price));
   });
   var obj = {
     items: cart,
@@ -12496,7 +12502,7 @@ var OrderForm = function OrderForm(_ref) {
       className: "op05"
     }, __('client.checkout_brand', sharedData), ": ", item.product.attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "quantity"
-    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
+    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
   }, __('client.checkout_courier_service', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -12953,7 +12959,7 @@ var ProductDetails = function ProductDetails(_ref) {
     className: "op05"
   }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product_attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "blue price"
-  }, (product.special_price !== null ? product.special_price : product.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, (product.special_price !== null ? parseFloat(product.special_price) : parseFloat(product.price)).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "btns"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex"
@@ -13524,7 +13530,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
     });
     var obj = {
       items: cart,
-      total: total
+      total: parseFloat(total)
     };
     return obj;
   };
@@ -13618,7 +13624,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
       className: "name"
     }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "\u10DB\u10EC\u10D0\u10E0\u10DB\u10DD\u10D4\u10D1\u10D4\u10DA\u10D8:", " ", item.product.attributes.brand)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "number radius5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick() {
@@ -13635,7 +13641,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
       }
     }, "+"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
       className: "sum"
-    }, ((item.product.special_price !== null ? item.product.special_price : item.product.price) * item.qty).toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, ((item.product.special_price !== null ? parseFloat(item.product.special_price) : parseFloat(item.product.price)) * item.qty).toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick(event) {
         return removeCartItem(index);
       },
@@ -14849,7 +14855,7 @@ var Header = function Header() {
     if (_cart !== null) cart = JSON.parse(_cart);
     var total = 0;
     cart.forEach(function (el, i) {
-      total += el.qty * (el.product.special_price !== null ? el.product.special_price : el.product.price);
+      total += el.qty * (el.product.special_price !== null ? parseFloat(el.product.special_price) : parseFloat(el.product.price));
     });
     var obj = {
       items: cart,
@@ -14870,6 +14876,9 @@ var Header = function Header() {
   };
 
   var links = [{
+    name: __("client.nav_home", sharedData),
+    link: route("client.home.index")
+  }, {
     name: __("client.header_last_added", sharedData),
     link: route("client.category.new")
   }, {
@@ -14917,6 +14926,18 @@ var Header = function Header() {
       term: term
     });
   };
+  /*let input = document.getElementById("search_inp");
+  // Execute a function when the user releases a key on the keyboard
+  input.addEventListener("keyup", function(event) {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13) {
+          // Cancel the default action, if needed
+          event.preventDefault();
+          // Trigger the button element with a click
+          search()
+      }
+  });*/
+
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header"
@@ -14983,7 +15004,7 @@ var Header = function Header() {
     className: "shopping_cart"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
     className: "  flex centered",
-    href: "/shopping-cart"
+    href: route("client.cart.index")
   }, getCart().items.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "number_of_products"
   }, getCart().items.length) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -15198,7 +15219,7 @@ var ProductBox = function ProductBox(props) {
     style: {
       fontWeight: "bold"
     }
-  }, props.price.toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, {
+  }, parseFloat(props.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_2__.AddToCart, {
     onClick: function onClick() {
       return props.handleClick(props.product);
     }
@@ -16122,7 +16143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\r\n    width: 100%;\r\n\r\n    background-repeat: no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    padding: 67px 0 83px 0;\r\n    margin-bottom: 60px;\r\n}\r\n.homePage .hero_section .archy-edt {\r\n    margin: 15px 0 15px 0;\r\n    max-width: 500px;\r\n}\r\n.homePage .new_products {\r\n    margin-bottom: 80px;\r\n}\r\n.homePage .bunker {\r\n    background: url(/img/home/bg2.png) no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    padding: 30px 0 60px 0;\r\n}\r\n.homePage\r\n    .bunker\r\n    .swiper-pagination-progressbar\r\n    .swiper-pagination-progressbar-fill::after {\r\n    background-color: #fff;\r\n    border: 1px solid #fff;\r\n}\r\n.homePage .bunker .title35 {\r\n    color: #fdf416;\r\n}\r\n.homePage .bunker .progressbar {\r\n    border: 1px solid #fdf416;\r\n}\r\n.homePage .bunker .progressbar .fill::after {\r\n    background-color: #fff;\r\n    border: 1px solid #fff;\r\n}\r\n.homePage .bunker .slick-dots li button:before {\r\n    color: #fff;\r\n}\r\n\r\n.homePage .today {\r\n    padding: 20px 0 40px 0;\r\n}\r\n\r\n.homePage .special_price {\r\n    background: url(/img/home/bg3.png) no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    padding: 20px 0 60px 0;\r\n}\r\n.homePage .popular {\r\n    margin: 40px auto 70px auto;\r\n}\r\n.homePage .new_collection {\r\n    background: url(/img/home/bg4.png) no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    padding: 75px 0;\r\n    color: #fff;\r\n    text-align: center;\r\n}\r\n.homePage .new_collection .archy-edt {\r\n    max-width: 523px;\r\n    margin: 15px auto;\r\n}\r\n\r\n/* responsive */\r\n@media screen and (max-width: 600px) {\r\n    .homePage .hero_section {\r\n        padding: 29px 0 34px 0;\r\n        margin-bottom: 20px;\r\n    }\r\n    .homePage .hero_section .archy-edt {\r\n        margin: 4px 0 15px 0;\r\n        max-width: 90%;\r\n    }\r\n    .homePage .new_collection {\r\n        padding: 23px 0;\r\n    }\r\n    .homePage .new_collection .archy-edt {\r\n        margin: 7px auto;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".homePage .hero_section {\r\n    width: 100%;\r\n\r\n    background-repeat: no-repeat !important;\r\n    background-position: center !important;\r\n    background-size: cover !important;\r\n    padding: 67px 0 83px 0;\r\n    margin-bottom: 60px;\r\n}\r\n.homePage .hero_section .archy-edt {\r\n    margin: 15px 0 15px 0;\r\n    max-width: 500px;\r\n}\r\n.homePage .new_products {\r\n    margin-bottom: 80px;\r\n}\r\n.homePage .bunker {\r\n    background-repeat: no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    padding: 30px 0 60px 0;\r\n}\r\n.homePage\r\n    .bunker\r\n    .swiper-pagination-progressbar\r\n    .swiper-pagination-progressbar-fill::after {\r\n    background-color: #fff;\r\n    border: 1px solid #fff;\r\n}\r\n.homePage .bunker .title35 {\r\n    color: #fdf416;\r\n}\r\n.homePage .bunker .progressbar {\r\n    border: 1px solid #fdf416;\r\n}\r\n.homePage .bunker .progressbar .fill::after {\r\n    background-color: #fff;\r\n    border: 1px solid #fff;\r\n}\r\n.homePage .bunker .slick-dots li button:before {\r\n    color: #fff;\r\n}\r\n\r\n.homePage .today {\r\n    padding: 20px 0 40px 0;\r\n}\r\n\r\n.homePage .special_price {\r\n    background: url(/img/home/bg3.png) no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    padding: 20px 0 60px 0;\r\n}\r\n.homePage .popular {\r\n    margin: 40px auto 70px auto;\r\n}\r\n.homePage .new_collection {\r\n    background-repeat: no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    padding: 75px 0;\r\n    color: #fff;\r\n    text-align: center;\r\n}\r\n.homePage .new_collection .archy-edt {\r\n    max-width: 523px;\r\n    margin: 15px auto;\r\n}\r\n\r\n/* responsive */\r\n@media screen and (max-width: 600px) {\r\n    .homePage .hero_section {\r\n        padding: 29px 0 34px 0;\r\n        margin-bottom: 20px;\r\n    }\r\n    .homePage .hero_section .archy-edt {\r\n        margin: 4px 0 15px 0;\r\n        max-width: 90%;\r\n    }\r\n    .homePage .new_collection {\r\n        padding: 23px 0;\r\n    }\r\n    .homePage .new_collection .archy-edt {\r\n        margin: 7px auto;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

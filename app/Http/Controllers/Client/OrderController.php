@@ -225,7 +225,7 @@ class OrderController extends Controller
         $data['locale'] = app()->getLocale();
         $data['grand_total'] = $cart['total'];
 
-        $order = Order::create($data);
+
 
         $product_ids = [];
         foreach ($cart['items'] as $item){
@@ -263,6 +263,8 @@ class OrderController extends Controller
             }
 
 
+            $order = Order::create($data);
+
             $data = [];
             $insert = [];
             foreach ($cart['items'] as $item){
@@ -276,19 +278,20 @@ class OrderController extends Controller
             }
             //dd($insert);
             OrderItem::insert($insert);
-            return redirect(locale_route('order.success'));
+            return redirect(locale_route('order.success',$order->id));
         }
 
     }
 
-    public function statusSuccess(){
-        return Inertia::render('Success/Success')->withViewData([
+    public function statusSuccess($order_id){
+        $order = Order::query()->where('id',$order_id)->with('items')->first();
+        return Inertia::render('Success/Success',['order' => $order])->withViewData([
             'meta_title' => 'success',
             'meta_description' => 'success',
             'meta_keyword' => 'success',
             "image" => '',
             'og_title' => 'success',
-            'og_description' => 'success'
+            'og_description' => 'success',
         ]);
     }
 

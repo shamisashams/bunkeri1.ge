@@ -108,12 +108,12 @@
 
                                                 <a href="{{locale_route('attribute.edit',$attribute->id)}}"
                                                    class="pl-3">
-                                                    <i class="fa fa-edit">შეცვლა</i>
+                                                    <i class="fa fa-edit">@lang('admin.edit_button')</i>
                                                 </a>
 
                                                 <a href="{{locale_route('attribute.destroy',$attribute->id)}}"
                                                    class="pl-3">
-                                                    <i class="fa fa-edit">delete</i>
+                                                    <i class="fa fa-edit">@lang('admin.delete_button')</i>
                                                 </a>
 
 

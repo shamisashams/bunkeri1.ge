@@ -238,10 +238,10 @@ const Header = () => {
                                                             {item.product
                                                                 .special_price !==
                                                             null
-                                                                ? item.product.special_price.toFixed(
+                                                                ? parseFloat(item.product.special_price).toFixed(
                                                                       2
                                                                   )
-                                                                : item.product.price.toFixed(
+                                                                : parseFloat(item.product.price).toFixed(
                                                                       2
                                                                   )}
                                                             ₾

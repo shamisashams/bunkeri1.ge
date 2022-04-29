@@ -15027,7 +15027,7 @@ var Header = function Header() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       src: item.product.latest_image != null ? "/" + item.product.latest_image.path + "/" + item.product.latest_image.title : null,
       alt: ""
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.qty, " x", " ", item.product.special_price !== null ? item.product.special_price.toFixed(2) : item.product.price.toFixed(2), "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, item.qty, " x", " ", item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), "\u20BE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick(event) {
         event.stopPropagation();
         removeCartItem(index);

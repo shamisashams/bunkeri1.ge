@@ -140,6 +140,7 @@ const OrderForm = ({seo}) => {
         },
 
     ];
+    const { errors } = usePage().props
 
   return (
       <Layout seo={seo}>
@@ -174,6 +175,9 @@ const OrderForm = ({seo}) => {
                                     onChange={handleChange}
                           ></textarea>
                       </div>
+                      {Object.keys(errors).map((item,i) => {
+                          return (<div className="error">{item} : {errors[item]}</div>)
+                      })}
                   </form>
 
               </div>

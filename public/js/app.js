@@ -12288,9 +12288,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../img/products/3.png */ "./public/img/products/3.png");
-/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/products/2.png */ "./public/img/products/2.png");
-/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../img/products/6.png */ "./public/img/products/6.png");
+/* harmony import */ var _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/products/3.png */ "./public/img/products/3.png");
+/* harmony import */ var _img_products_2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/products/2.png */ "./public/img/products/2.png");
+/* harmony import */ var _img_products_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/products/6.png */ "./public/img/products/6.png");
 /* harmony import */ var _OrderForm_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OrderForm.css */ "./resources/js/Pages/OrderForm/OrderForm.css");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
@@ -12329,7 +12329,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var getCart = function getCart() {
   var cart = [];
 
-  var _cart = localStorage.getItem('cart');
+  var _cart = localStorage.getItem("cart");
 
   if (_cart !== null) cart = JSON.parse(_cart);
   var total = 0;
@@ -12367,26 +12367,26 @@ var OrderForm = function OrderForm(_ref) {
   }];
   var inputs = [{
     type: "text",
-    Placeholder: __('client.checkout_f_name', sharedData),
+    Placeholder: __("client.checkout_f_name", sharedData),
     name: "first_name"
   }, {
-    Placeholder: __('client.checkout_city_country', sharedData),
+    Placeholder: __("client.checkout_city_country", sharedData),
     type: "text",
     name: "city"
   }, {
-    Placeholder: __('client.checkout_l_name', sharedData),
+    Placeholder: __("client.checkout_l_name", sharedData),
     type: "text",
     name: "last_name"
   }, {
-    Placeholder: __('client.checkout_address', sharedData),
+    Placeholder: __("client.checkout_address", sharedData),
     type: "text",
     name: "address"
   }, {
-    Placeholder: __('client.checkout_phone', sharedData),
+    Placeholder: __("client.checkout_phone", sharedData),
     type: "number",
     name: "phone"
   }, {
-    Placeholder: __('client.checkout_email', sharedData),
+    Placeholder: __("client.checkout_email", sharedData),
     type: "email",
     name: "email"
   }];
@@ -12410,31 +12410,31 @@ var OrderForm = function OrderForm(_ref) {
       return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
     });
     console.log(e.target.id);
-    var bankList = document.getElementById('banks_list');
+    var bankList = document.getElementById("banks_list");
 
-    if (e.target.id === 'bank-transfer' || e.target.id === 'bog') {
-      bankList.style.display = 'block';
+    if (e.target.id === "bank-transfer" || e.target.id === "bog") {
+      bankList.style.display = "block";
     } else {
-      bankList.style.display = 'none';
+      bankList.style.display = "none";
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.post(route('client.checkout.order'), values);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.post(route("client.checkout.order"), values);
   }
 
   function handleClick(e) {
     e.preventDefault();
 
-    if (document.getElementById('iagree').checked === false) {
-      alert('Check i agree');
+    if (document.getElementById("iagree").checked === false) {
+      alert("Check i agree");
       return false;
     } //document.getElementById('order_f').submit();
 
 
-    values['cart'] = getCart();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.post(route('client.checkout.order'), values, {
+    values["cart"] = getCart();
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__.Inertia.post(route("client.checkout.order"), values, {
       onSuccess: function onSuccess(page) {
         console.log(page);
       }
@@ -12442,11 +12442,11 @@ var OrderForm = function OrderForm(_ref) {
   }
 
   var path = [{
-    title: __('client.page_home', sharedData)
+    title: __("client.page_home", sharedData)
   }, {
-    title: __('client.page_cart', sharedData)
+    title: __("client.page_cart", sharedData)
   }, {
-    title: __('client.page_checkout', sharedData)
+    title: __("client.page_checkout", sharedData)
   }];
   var errors = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.usePage)().props.errors;
   console.log(errors);
@@ -12462,13 +12462,13 @@ var OrderForm = function OrderForm(_ref) {
     className: "wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title35"
-  }, __('client.checkout_title', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.checkout_title", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "first"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
-  }, __('client.checkout_form_title', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+  }, __("client.checkout_form_title", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     id: "order_f",
     onSubmit: handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -12485,7 +12485,7 @@ var OrderForm = function OrderForm(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     name: "info",
     className: "common_input",
-    placeholder: __('client.checkout_extra_info', sharedData),
+    placeholder: __("client.checkout_extra_info", sharedData),
     onChange: handleChange
   })), Object.keys(errors).map(function (item, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -12495,7 +12495,7 @@ var OrderForm = function OrderForm(_ref) {
     className: "products"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
-  }, __('client.checkout_ordered_items', sharedData)), getCart().items.map(function (item, index) {
+  }, __("client.checkout_ordered_items", sharedData)), getCart().items.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       key: index,
       className: "flex intable_pro",
@@ -12505,18 +12505,18 @@ var OrderForm = function OrderForm(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "img"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: item.product.latest_image != null ? '/' + item.product.latest_image.path + '/' + item.product.latest_image.title : null,
+      src: item.product.latest_image != null ? "/" + item.product.latest_image.path + "/" + item.product.latest_image.title : null,
       alt: ""
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "name"
     }, item.product.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "op05"
-    }, __('client.checkout_brand', sharedData), ": ", item.product.attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, __("client.checkout_brand", sharedData), ":", " ", item.product.attributes.brand)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "quantity"
-    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), " \u10DA\u10D0\u10E0\u10D8"));
+    }, item.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.product.special_price !== null ? parseFloat(item.product.special_price).toFixed(2) : parseFloat(item.product.price).toFixed(2), " ", "\u10DA\u10D0\u10E0\u10D8"));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
-  }, __('client.checkout_courier_service', sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.checkout_courier_service", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -12544,17 +12544,17 @@ var OrderForm = function OrderForm(_ref) {
     id: "iagree"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "iagree"
-  }, __('client.checkout_agree', sharedData), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.Link, {
+  }, __("client.checkout_agree", sharedData), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.Link, {
     className: "blue",
     href: "/",
     style: {
       whiteSpace: "nowrap"
     }
-  }, __('client.checkout_rules_cond', sharedData))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.checkout_rules_cond", sharedData))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title archy-edt"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", {
     className: "total_cost"
-  }, __('client.checkout_grand_total', sharedData), ": ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, getCart().total.toFixed(2)), " \u10DA\u10D0\u10E0\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.checkout_grand_total", sharedData), ": ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, getCart().total.toFixed(2)), " ", "\u10DA\u10D0\u10E0\u10D8")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -12564,7 +12564,7 @@ var OrderForm = function OrderForm(_ref) {
     value: 0
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "cash"
-  }, __('client.checkout_cash_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.checkout_cash_pay", sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "checks"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -12574,11 +12574,13 @@ var OrderForm = function OrderForm(_ref) {
     value: 1
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bank-transfer"
-  }, __('client.checkout_bank_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.checkout_bank_pay", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "banks_list",
     style: {
       display: "none"
     }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "banks_list_item flex "
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
     onClick: handleChange,
@@ -12587,9 +12589,19 @@ var OrderForm = function OrderForm(_ref) {
     value: "bog"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bog"
-  }, __('client.checkout_bog_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
+  }, __("client.checkout_bog_pay", sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "banks_list_item flex "
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio" // onClick={handleChange}
+    ,
+    name: "payment_type",
+    id: "tbc",
+    value: "bog"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "tbc"
+  }, __("client.checkout_bog_pay", sharedData))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
     onclick: handleClick,
-    text: __('client.checkout_place_order', sharedData)
+    text: __("client.checkout_place_order", sharedData)
   }))))));
 };
 
@@ -12611,7 +12623,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Buttons/Buttons */ "./resources/js/components/Buttons/Buttons.js");
 /* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
-/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
+/* harmony import */ var _img_icons_other_receipt_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/icons/other/receipt.svg */ "./public/img/icons/other/receipt.svg");
 /* harmony import */ var _Payment_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Payment.css */ "./resources/js/Pages/Payment/Payment.css");
 
 
@@ -16191,7 +16203,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".orderformPage .grid {\r\n  display: grid;\r\n  grid-template-columns: repeat(2, 1fr);\r\n  grid-gap: 50px;\r\n  margin-top: 30px;\r\n}\r\n.orderformPage .title {\r\n  font-size: 20px;\r\n  margin-bottom: 20px;\r\n}\r\n.orderformPage .input_grid {\r\n  display: grid;\r\n  grid-template-columns: repeat(2, 1fr);\r\n  grid-gap: 16px;\r\n}\r\n.orderformPage .input_grid textarea {\r\n  grid-row: span 2;\r\n  grid-row-start: 3;\r\n  grid-row-end: 5;\r\n  grid-column-start: 2;\r\n  grid-column-end: 3;\r\n  height: 100%;\r\n  padding-top: 15px;\r\n}\r\n.orderformPage .intable_pro .img {\r\n  width: 121px;\r\n  height: 100px;\r\n  margin-right: 12px;\r\n}\r\n.orderformPage .intable_pro .name {\r\n  max-width: 200px;\r\n  margin-bottom: 10px;\r\n}\r\n.orderformPage .intable_pro .op05 {\r\n  font-size: 14px;\r\n}\r\n.orderformPage .intable_pro {\r\n  align-items: flex-start;\r\n  margin-bottom: 15px;\r\n}\r\n.orderformPage .intable_pro .quantity {\r\n  margin: 0 15px;\r\n}\r\n.orderformPage .checks {\r\n  margin-bottom: 25px;\r\n}\r\n.orderformPage .checks.last {\r\n  margin-top: 50px;\r\n}\r\n.orderformPage .checks label {\r\n  position: relative;\r\n  padding-left: 30px;\r\n  color: #2f3e5173;\r\n}\r\n.orderformPage .checks label::before {\r\n  border: 1px solid #dedede;\r\n  width: 15px;\r\n  height: 15px;\r\n  border-radius: 3px;\r\n  left: 0;\r\n  top: 2px;\r\n}\r\n.orderformPage .checks label::after {\r\n  width: 16px;\r\n  height: 15px;\r\n  left: 3px;\r\n  top: 2px;\r\n  background: url(/img/icons/other/tick.svg) no-repeat;\r\n  background-size: contain;\r\n  display: none;\r\n}\r\n.orderformPage .checks input {\r\n  display: none;\r\n}\r\n.orderformPage .checks input:checked + label::after {\r\n  display: block;\r\n}\r\n\r\n@media screen and (max-width: 1400px) {\r\n  .orderformPage .grid {\r\n    grid-gap: 23px;\r\n  }\r\n}\r\n@media screen and (max-width: 1100px) {\r\n  .orderformPage .grid .products,\r\n  .orderformPage .grid .first {\r\n    grid-column: span 2;\r\n  }\r\n  .orderformPage .intable_pro .name {\r\n    max-width: none;\r\n  }\r\n}\r\n@media screen and (max-width: 700px) {\r\n  .orderformPage .grid {\r\n    grid-template-columns: 1fr;\r\n  }\r\n  .orderformPage .grid .products,\r\n  .orderformPage .grid .first {\r\n    grid-column: span 1;\r\n  }\r\n  .orderformPage .intable_pro {\r\n    font-size: 13px;\r\n  }\r\n  .orderformPage .intable_pro .name {\r\n    font-size: 14px;\r\n    max-width: 80%;\r\n  }\r\n  .orderformPage .intable_pro .op05 {\r\n    font-size: 13px;\r\n  }\r\n  .orderformPage .intable_pro .img {\r\n    width: 83px;\r\n    height: 66px;\r\n    margin-right: 9px;\r\n  }\r\n  .orderformPage .checks {\r\n    margin-bottom: 10px;\r\n    font-size: 13px;\r\n  }\r\n}\r\n@media screen and (max-width: 550px) {\r\n  .orderformPage .intable_pro .name {\r\n    font-size: 13px;\r\n  }\r\n  .orderformPage .input_grid {\r\n    grid-template-columns: 1fr;\r\n    grid-gap: 10px;\r\n  }\r\n  .orderformPage .input_grid textarea {\r\n    grid-row: span 1;\r\n    grid-row-start: auto;\r\n    grid-row-end: auto;\r\n    grid-column-start: auto;\r\n    grid-column-end: auto;\r\n    height: 100px;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".orderformPage .grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-gap: 50px;\r\n    margin-top: 30px;\r\n}\r\n.orderformPage .title {\r\n    font-size: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n.orderformPage .input_grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-gap: 16px;\r\n}\r\n.orderformPage .input_grid textarea {\r\n    grid-row: span 2;\r\n    grid-row-start: 3;\r\n    grid-row-end: 5;\r\n    grid-column-start: 2;\r\n    grid-column-end: 3;\r\n    height: 100%;\r\n    padding-top: 15px;\r\n}\r\n.orderformPage .intable_pro .img {\r\n    width: 121px;\r\n    height: 100px;\r\n    margin-right: 12px;\r\n}\r\n.orderformPage .intable_pro .name {\r\n    max-width: 200px;\r\n    margin-bottom: 10px;\r\n}\r\n.orderformPage .intable_pro .op05 {\r\n    font-size: 14px;\r\n}\r\n.orderformPage .intable_pro {\r\n    align-items: flex-start;\r\n    margin-bottom: 15px;\r\n}\r\n.orderformPage .intable_pro .quantity {\r\n    margin: 0 15px;\r\n}\r\n.orderformPage .checks {\r\n    margin-bottom: 25px;\r\n}\r\n.orderformPage .checks.last {\r\n    margin-top: 50px;\r\n}\r\n.orderformPage .checks label {\r\n    position: relative;\r\n    padding-left: 30px;\r\n    color: #2f3e5173;\r\n}\r\n.orderformPage .checks label::before {\r\n    border: 1px solid #dedede;\r\n    width: 15px;\r\n    height: 15px;\r\n    border-radius: 3px;\r\n    left: 0;\r\n    top: 2px;\r\n}\r\n.orderformPage .checks label::after {\r\n    width: 16px;\r\n    height: 15px;\r\n    left: 3px;\r\n    top: 2px;\r\n    background: url(/img/icons/other/tick.svg) no-repeat;\r\n    background-size: contain;\r\n    display: none;\r\n}\r\n.orderformPage .checks input {\r\n    display: none;\r\n}\r\n.orderformPage .checks input:checked + label::after {\r\n    display: block;\r\n}\r\n#banks_list {\r\n    margin-left: 20px;\r\n    margin-bottom: 30px;\r\n    margin-top: 20px;\r\n    font-size: 14px;\r\n}\r\n#banks_list .banks_list_item {\r\n    margin-bottom: 15px;\r\n}\r\n\r\n@media screen and (max-width: 1400px) {\r\n    .orderformPage .grid {\r\n        grid-gap: 23px;\r\n    }\r\n}\r\n@media screen and (max-width: 1100px) {\r\n    .orderformPage .grid .products,\r\n    .orderformPage .grid .first {\r\n        grid-column: span 2;\r\n    }\r\n    .orderformPage .intable_pro .name {\r\n        max-width: none;\r\n    }\r\n}\r\n@media screen and (max-width: 700px) {\r\n    .orderformPage .grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n    .orderformPage .grid .products,\r\n    .orderformPage .grid .first {\r\n        grid-column: span 1;\r\n    }\r\n    .orderformPage .intable_pro {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .intable_pro .name {\r\n        font-size: 14px;\r\n        max-width: 80%;\r\n    }\r\n    .orderformPage .intable_pro .op05 {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .intable_pro .img {\r\n        width: 83px;\r\n        height: 66px;\r\n        margin-right: 9px;\r\n    }\r\n    .orderformPage .checks {\r\n        margin-bottom: 10px;\r\n        font-size: 13px;\r\n    }\r\n}\r\n@media screen and (max-width: 550px) {\r\n    .orderformPage .intable_pro .name {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .input_grid {\r\n        grid-template-columns: 1fr;\r\n        grid-gap: 10px;\r\n    }\r\n    .orderformPage .input_grid textarea {\r\n        grid-row: span 1;\r\n        grid-row-start: auto;\r\n        grid-row-end: auto;\r\n        grid-column-start: auto;\r\n        grid-column-end: auto;\r\n        height: 100px;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16215,7 +16227,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".paymentPage .title35 {\r\n  margin-bottom: 30px;\r\n}\r\n.paymentPage .content {\r\n  width: 890px;\r\n  margin: 67px auto;\r\n}\r\n.paymentPage .flex.main {\r\n  align-items: flex-start;\r\n}\r\n.paymentPage .content .form {\r\n  margin-right: 99px;\r\n  width: 60%;\r\n}\r\n.paymentPage .content .form input {\r\n  width: 100%;\r\n}\r\n.paymentPage .content .title {\r\n  font-size: 18px;\r\n  margin: 22px 0;\r\n}\r\n.paymentPage .content .expiration {\r\n  margin: 25px 0;\r\n}\r\n.paymentPage .content .expiration input {\r\n  max-width: 110px;\r\n}\r\n.paymentPage .content .cvv input {\r\n  max-width: 168px;\r\n}\r\n.paymentPage .content .yellow_button {\r\n  width: 100%;\r\n  margin-top: 22px;\r\n  height: 65px;\r\n}\r\n\r\n.paymentPage .content .receipt {\r\n  width: 268px;\r\n  padding: 23px 18px;\r\n  box-shadow: 0 15px 30px #22252c23;\r\n  font-size: 14px;\r\n}\r\n.paymentPage .content .receipt .op05 {\r\n  margin-bottom: 14px;\r\n  margin-top: 27px;\r\n}\r\n.paymentPage .content .receipt .op05:first-child {\r\n  margin-top: 0;\r\n}\r\n.paymentPage .content .receipt .costs .flex {\r\n  border-bottom: #70707046 1px dashed;\r\n  margin-bottom: 8px;\r\n}\r\n.paymentPage .content .receipt .costs {\r\n  max-height: 112px;\r\n  overflow-y: scroll;\r\n}\r\n.paymentPage .content .receipt .costs::-webkit-scrollbar {\r\n  width: 2px;\r\n}\r\n.paymentPage .content .receipt .costs::-webkit-scrollbar-thumb {\r\n  background: #3031855d;\r\n}\r\n.paymentPage .content .receipt .total {\r\n  margin-top: 40px;\r\n  padding-top: 23px;\r\n  border-top: #707070 1px dashed;\r\n}\r\n.paymentPage .content .receipt .total span {\r\n  font-size: 25px;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n  .paymentPage .content {\r\n    width: 95%;\r\n  }\r\n  .paymentPage .content .form {\r\n    margin-right: 31px;\r\n  }\r\n}\r\n@media screen and (max-width: 770px) {\r\n  .paymentPage .flex.main {\r\n    flex-direction: column;\r\n  }\r\n  .paymentPage .content .form {\r\n    margin-right: 0;\r\n    margin-bottom: 40px;\r\n    width: 100%;\r\n  }\r\n  .paymentPage .content .receipt {\r\n    margin: auto;\r\n  }\r\n  .paymentPage .content .title {\r\n    font-size: 16px;\r\n    margin: 14px 0;\r\n  }\r\n  .paymentPage .content .expiration {\r\n    margin: 16px 0;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".paymentPage .title35 {\r\n    margin-bottom: 30px;\r\n}\r\n.paymentPage .content {\r\n    width: 890px;\r\n    margin: 67px auto;\r\n}\r\n.paymentPage .flex.main {\r\n    align-items: flex-start;\r\n}\r\n.paymentPage .content .form {\r\n    margin-right: 99px;\r\n    width: 60%;\r\n}\r\n.paymentPage .content .form input {\r\n    width: 100%;\r\n}\r\n.paymentPage .content .title {\r\n    font-size: 18px;\r\n    margin: 22px 0;\r\n}\r\n.paymentPage .content .expiration {\r\n    margin: 25px 0;\r\n}\r\n.paymentPage .content .expiration input {\r\n    max-width: 110px;\r\n}\r\n.paymentPage .content .cvv input {\r\n    max-width: 168px;\r\n}\r\n.paymentPage .content .yellow_button {\r\n    width: 100%;\r\n    margin-top: 22px;\r\n    height: 65px;\r\n}\r\n\r\n.paymentPage .content .receipt {\r\n    width: 268px;\r\n    padding: 23px 18px;\r\n    box-shadow: 0 15px 30px #22252c23;\r\n    font-size: 14px;\r\n}\r\n.paymentPage .content .receipt .op05 {\r\n    margin-bottom: 14px;\r\n    margin-top: 27px;\r\n}\r\n.paymentPage .content .receipt .op05:first-child {\r\n    margin-top: 0;\r\n}\r\n.paymentPage .content .receipt .costs .flex {\r\n    border-bottom: #70707046 1px dashed;\r\n    margin-bottom: 8px;\r\n}\r\n.paymentPage .content .receipt .costs {\r\n    max-height: 112px;\r\n    overflow-y: scroll;\r\n}\r\n.paymentPage .content .receipt .costs::-webkit-scrollbar {\r\n    width: 2px;\r\n}\r\n.paymentPage .content .receipt .costs::-webkit-scrollbar-thumb {\r\n    background: #3031855d;\r\n}\r\n.paymentPage .content .receipt .total {\r\n    margin-top: 40px;\r\n    padding-top: 23px;\r\n    border-top: #707070 1px dashed;\r\n}\r\n.paymentPage .content .receipt .total span {\r\n    font-size: 25px;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    .paymentPage .content {\r\n        width: 95%;\r\n    }\r\n    .paymentPage .content .form {\r\n        margin-right: 31px;\r\n    }\r\n}\r\n@media screen and (max-width: 770px) {\r\n    .paymentPage .flex.main {\r\n        flex-direction: column;\r\n    }\r\n    .paymentPage .content .form {\r\n        margin-right: 0;\r\n        margin-bottom: 40px;\r\n        width: 100%;\r\n    }\r\n    .paymentPage .content .receipt {\r\n        margin: auto;\r\n    }\r\n    .paymentPage .content .title {\r\n        font-size: 16px;\r\n        margin: 14px 0;\r\n    }\r\n    .paymentPage .content .expiration {\r\n        margin: 16px 0;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -72824,7 +72836,7 @@ function combine (array, callback) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Shamisa\\\\Desktop\\\\local-projects\\\\dollarstore"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\Users\\\\Shamisa\\\\Desktop\\\\local-projects\\\\dollarstore","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

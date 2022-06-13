@@ -313,8 +313,8 @@ class OrderController extends Controller
         $order = Order::query()->where('id',$request->get('order_id'))->first();
 
         //dd($order);
-        if($order->status == 1) return redirect(locale_route('order.success',$order->id));
-        else if($order->status == 2) return redirect(route('order.failure'));
+        if($order->status == 'success') return redirect(locale_route('order.success',$order->id));
+        else if($order->status == 'error') return redirect(route('order.failure'));
         else {
             sleep(3);
             return redirect('https://bunkeri1.ge/' . app()->getLocale() . '/payments/bog/status?order_id='.$order->id);

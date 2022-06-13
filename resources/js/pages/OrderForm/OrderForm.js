@@ -372,13 +372,13 @@ const OrderForm = ({ seo }) => {
                                     // onClick={handleChange}
                                     name="payment_type"
                                     id="tbc"
-                                    value="bog"
+                                    value="tbc"
                                 />
                                 <label htmlFor="tbc" className="flex centered">
                                     <img src="/img/icons/tbc.png" alt="" />
                                     <span>
                                         {__(
-                                            "client.checkout_bog_pay",
+                                            "client.checkout_tbc_pay",
                                             sharedData
                                         )}
                                     </span>

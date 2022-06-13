@@ -12597,14 +12597,14 @@ var OrderForm = function OrderForm(_ref) {
     ,
     name: "payment_type",
     id: "tbc",
-    value: "bog"
+    value: "tbc"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "tbc",
     className: "flex centered"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "/img/icons/tbc.png",
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, __("client.checkout_bog_pay", sharedData)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, __("client.checkout_tbc_pay", sharedData)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
     onclick: handleClick,
     text: __("client.checkout_place_order", sharedData)
   }))))));

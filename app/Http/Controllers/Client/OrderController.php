@@ -295,7 +295,10 @@ class OrderController extends Controller
 
                 if($order->payment_method == 1 && $order->payment_type == 'bog'){
                     return app(BogPaymentController::class)->make_order($order->id,$order->grand_total);
-                } else {
+                } elseif($order->payment_method == 1 && $order->payment_type == 'tbc'){
+                    return redirect(locale_route('order.failure',$order->id));
+                }
+                 else {
                     return redirect(locale_route('order.success',$order->id));
                 }
 

@@ -16,13 +16,13 @@ class BogCallbackController extends Controller
         //dd($request->all());
         switch ($request->status){
             case 'success':
-                Order::where('id','=',$request->shop_order_id)->update(['status' => 1]);
+                Order::where('id','=',$request->shop_order_id)->update(['status' => 'success']);
                 break;
             case 'error':
-                Order::where('id','=',$request->shop_order_id)->update(['status' => 2]);
+                Order::where('id','=',$request->shop_order_id)->update(['status' => 'error']);
                 break;
             case 'in_progress':
-                Order::where('id','=',$request->shop_order_id)->update(['status' => 3]);
+                Order::where('id','=',$request->shop_order_id)->update(['status' => 'in_progress']);
                 break;
         }
         return response('',200);

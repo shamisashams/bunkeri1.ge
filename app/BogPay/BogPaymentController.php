@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Inertia\Inertia;
 
 
 
@@ -53,7 +54,7 @@ class BogPaymentController extends Controller
 
         Order::where('id', '=', $order_id)->update(['transaction_id' => $data['order_id'],'payment_hash'=> $data['payment_hash']]);
         //dd($data);
-        return redirect($data['links'][1]['href']);
+        return Inertia::location($data['links'][1]['href']);
     }
 
 

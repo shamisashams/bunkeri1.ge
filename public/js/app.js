@@ -12574,13 +12574,12 @@ var OrderForm = function OrderForm(_ref) {
     value: 1
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bank-transfer"
-  }, __("client.checkout_bank_pay", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.checkout_bank_pay", sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "banks_list",
     style: {
       display: "none"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "banks_list_item flex "
+    },
+    className: "flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
     onClick: handleChange,
@@ -12588,18 +12587,24 @@ var OrderForm = function OrderForm(_ref) {
     id: "bog",
     value: "bog"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    htmlFor: "bog"
-  }, __("client.checkout_bog_pay", sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "banks_list_item flex "
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    htmlFor: "bog",
+    className: "flex centered"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "/img/icons/bog.png",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, __("client.checkout_bog_pay", sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio" // onClick={handleChange}
     ,
     name: "payment_type",
     id: "tbc",
     value: "bog"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    htmlFor: "tbc"
-  }, __("client.checkout_bog_pay", sharedData))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
+    htmlFor: "tbc",
+    className: "flex centered"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "/img/icons/tbc.png",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, __("client.checkout_bog_pay", sharedData)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
     onclick: handleClick,
     text: __("client.checkout_place_order", sharedData)
   }))))));
@@ -13708,6 +13713,81 @@ var ShoppingCart = function ShoppingCart(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShoppingCart);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Success/Failure.js":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Success/Failure.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PagePath/PagePath */ "./resources/js/components/PagePath/PagePath.js");
+/* harmony import */ var _Success_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Success.css */ "./resources/js/Pages/Success/Success.css");
+/* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var Failure = function Failure() {
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.usePage)().props.localizations;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      sparkle = _useState2[0],
+      setSparkle = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setSparkle(true);
+  }, []);
+  var path = [{
+    title: __("client.page_home", sharedData)
+  }, {
+    title: __("client.page_cart", sharedData)
+  }, {
+    title: __("client.page_checkout", sharedData)
+  }];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "successPage failure"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PagePath_PagePath__WEBPACK_IMPORTED_MODULE_1__.PagePath, {
+    first: "\u10DB\u10D7\u10D0\u10D5\u10D0\u10E0\u10D8 /",
+    previous: breadcrumb(path),
+    current: "\u10E8\u10D4\u10D9\u10D5\u10D4\u10D7\u10D8\u10E1 \u10D2\u10D0\u10E4\u10DD\u10E0\u10DB\u10D4\u10D1\u10D0"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "failure_box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "/img/icons/other/fail.png",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "\u10D2\u10D0\u10D3\u10D0\u10EE\u10D3\u10D0 \u10D5\u10D4\u10E0 \u10D2\u10D0\u10DC\u10EE\u10DD\u10E0\u10EA\u10D8\u10D4\u10DA\u10D3\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "\u10D2\u10D7\u10EE\u10DD\u10D5\u10D7 \u10D2\u10D0\u10D3\u10D0\u10D0\u10DB\u10DD\u10EC\u10DB\u10DD\u10D7 \u10D8\u10DC\u10E4\u10DD\u10E0\u10DB\u10D0\u10EA\u10D8\u10D0 \u10D3\u10D0 \u10E1\u10EA\u10D0\u10D3\u10DD\u10D7 \u10EE\u10D4\u10DA\u10D0\u10EE\u10DA\u10D0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "back flex centered"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "/img/icons/other/back.png",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\u10E3\u10D9\u10D0\u10DC \u10D3\u10D0\u10D1\u10E0\u10E3\u10DC\u10D4\u10D1\u10D0")))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Failure);
 
 /***/ }),
 
@@ -16203,7 +16283,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".orderformPage .grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-gap: 50px;\r\n    margin-top: 30px;\r\n}\r\n.orderformPage .title {\r\n    font-size: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n.orderformPage .input_grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-gap: 16px;\r\n}\r\n.orderformPage .input_grid textarea {\r\n    grid-row: span 2;\r\n    grid-row-start: 3;\r\n    grid-row-end: 5;\r\n    grid-column-start: 2;\r\n    grid-column-end: 3;\r\n    height: 100%;\r\n    padding-top: 15px;\r\n}\r\n.orderformPage .intable_pro .img {\r\n    width: 121px;\r\n    height: 100px;\r\n    margin-right: 12px;\r\n}\r\n.orderformPage .intable_pro .name {\r\n    max-width: 200px;\r\n    margin-bottom: 10px;\r\n}\r\n.orderformPage .intable_pro .op05 {\r\n    font-size: 14px;\r\n}\r\n.orderformPage .intable_pro {\r\n    align-items: flex-start;\r\n    margin-bottom: 15px;\r\n}\r\n.orderformPage .intable_pro .quantity {\r\n    margin: 0 15px;\r\n}\r\n.orderformPage .checks {\r\n    margin-bottom: 25px;\r\n}\r\n.orderformPage .checks.last {\r\n    margin-top: 50px;\r\n}\r\n.orderformPage .checks label {\r\n    position: relative;\r\n    padding-left: 30px;\r\n    color: #2f3e5173;\r\n}\r\n.orderformPage .checks label::before {\r\n    border: 1px solid #dedede;\r\n    width: 15px;\r\n    height: 15px;\r\n    border-radius: 3px;\r\n    left: 0;\r\n    top: 2px;\r\n}\r\n.orderformPage .checks label::after {\r\n    width: 16px;\r\n    height: 15px;\r\n    left: 3px;\r\n    top: 2px;\r\n    background: url(/img/icons/other/tick.svg) no-repeat;\r\n    background-size: contain;\r\n    display: none;\r\n}\r\n.orderformPage .checks input {\r\n    display: none;\r\n}\r\n.orderformPage .checks input:checked + label::after {\r\n    display: block;\r\n}\r\n#banks_list {\r\n    margin-left: 20px;\r\n    margin-bottom: 30px;\r\n    margin-top: 20px;\r\n    font-size: 14px;\r\n}\r\n#banks_list .banks_list_item {\r\n    margin-bottom: 15px;\r\n}\r\n\r\n@media screen and (max-width: 1400px) {\r\n    .orderformPage .grid {\r\n        grid-gap: 23px;\r\n    }\r\n}\r\n@media screen and (max-width: 1100px) {\r\n    .orderformPage .grid .products,\r\n    .orderformPage .grid .first {\r\n        grid-column: span 2;\r\n    }\r\n    .orderformPage .intable_pro .name {\r\n        max-width: none;\r\n    }\r\n}\r\n@media screen and (max-width: 700px) {\r\n    .orderformPage .grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n    .orderformPage .grid .products,\r\n    .orderformPage .grid .first {\r\n        grid-column: span 1;\r\n    }\r\n    .orderformPage .intable_pro {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .intable_pro .name {\r\n        font-size: 14px;\r\n        max-width: 80%;\r\n    }\r\n    .orderformPage .intable_pro .op05 {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .intable_pro .img {\r\n        width: 83px;\r\n        height: 66px;\r\n        margin-right: 9px;\r\n    }\r\n    .orderformPage .checks {\r\n        margin-bottom: 10px;\r\n        font-size: 13px;\r\n    }\r\n}\r\n@media screen and (max-width: 550px) {\r\n    .orderformPage .intable_pro .name {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .input_grid {\r\n        grid-template-columns: 1fr;\r\n        grid-gap: 10px;\r\n    }\r\n    .orderformPage .input_grid textarea {\r\n        grid-row: span 1;\r\n        grid-row-start: auto;\r\n        grid-row-end: auto;\r\n        grid-column-start: auto;\r\n        grid-column-end: auto;\r\n        height: 100px;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".orderformPage .grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-gap: 50px;\r\n    margin-top: 30px;\r\n}\r\n.orderformPage .title {\r\n    font-size: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n.orderformPage .input_grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-gap: 16px;\r\n}\r\n.orderformPage .input_grid textarea {\r\n    grid-row: span 2;\r\n    grid-row-start: 3;\r\n    grid-row-end: 5;\r\n    grid-column-start: 2;\r\n    grid-column-end: 3;\r\n    height: 100%;\r\n    padding-top: 15px;\r\n}\r\n.orderformPage .intable_pro .img {\r\n    width: 121px;\r\n    height: 100px;\r\n    margin-right: 12px;\r\n}\r\n.orderformPage .intable_pro .name {\r\n    max-width: 200px;\r\n    margin-bottom: 10px;\r\n}\r\n.orderformPage .intable_pro .op05 {\r\n    font-size: 14px;\r\n}\r\n.orderformPage .intable_pro {\r\n    align-items: flex-start;\r\n    margin-bottom: 15px;\r\n}\r\n.orderformPage .intable_pro .quantity {\r\n    margin: 0 15px;\r\n}\r\n.orderformPage .checks {\r\n    margin-bottom: 25px;\r\n}\r\n.orderformPage .checks.last {\r\n    margin-top: 50px;\r\n}\r\n.orderformPage .checks label {\r\n    position: relative;\r\n    padding-left: 30px;\r\n    color: #2f3e5173;\r\n}\r\n.orderformPage .checks label::before {\r\n    border: 1px solid #dedede;\r\n    width: 15px;\r\n    height: 15px;\r\n    border-radius: 3px;\r\n    left: 0;\r\n    top: 2px;\r\n}\r\n.orderformPage .checks label::after {\r\n    width: 16px;\r\n    height: 15px;\r\n    left: 3px;\r\n    top: 2px;\r\n    background: url(/img/icons/other/tick.svg) no-repeat;\r\n    background-size: contain;\r\n    display: none;\r\n}\r\n.orderformPage .checks input {\r\n    display: none;\r\n}\r\n.orderformPage .checks input:checked + label::after {\r\n    display: block;\r\n}\r\n#banks_list {\r\n    margin-bottom: 30px;\r\n    margin-top: 20px;\r\n    font-size: 14px;\r\n}\r\n#banks_list input {\r\n    display: none;\r\n}\r\n#banks_list label {\r\n    padding: 4px 8px;\r\n    border-radius: 5px;\r\n\r\n    margin-right: 15px;\r\n    height: 45px;\r\n    width: -webkit-fit-content;\r\n    width: -moz-fit-content;\r\n    width: fit-content;\r\n    transition: 0.3s;\r\n}\r\n#banks_list img {\r\n    width: 40px;\r\n    margin-right: 5px;\r\n    filter: grayscale(100%);\r\n    transition: 0.3s;\r\n}\r\n#banks_list input:checked + label {\r\n    background-color: #f5f5f5;\r\n}\r\n#banks_list input:checked + label img {\r\n    filter: grayscale(0);\r\n}\r\n\r\n@media screen and (max-width: 1400px) {\r\n    .orderformPage .grid {\r\n        grid-gap: 23px;\r\n    }\r\n}\r\n@media screen and (max-width: 1100px) {\r\n    .orderformPage .grid .products,\r\n    .orderformPage .grid .first {\r\n        grid-column: span 2;\r\n    }\r\n    .orderformPage .intable_pro .name {\r\n        max-width: none;\r\n    }\r\n}\r\n@media screen and (max-width: 700px) {\r\n    .orderformPage .grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n    .orderformPage .grid .products,\r\n    .orderformPage .grid .first {\r\n        grid-column: span 1;\r\n    }\r\n    .orderformPage .intable_pro {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .intable_pro .name {\r\n        font-size: 14px;\r\n        max-width: 80%;\r\n    }\r\n    .orderformPage .intable_pro .op05 {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .intable_pro .img {\r\n        width: 83px;\r\n        height: 66px;\r\n        margin-right: 9px;\r\n    }\r\n    .orderformPage .checks {\r\n        margin-bottom: 10px;\r\n        font-size: 13px;\r\n    }\r\n}\r\n@media screen and (max-width: 550px) {\r\n    .orderformPage .intable_pro .name {\r\n        font-size: 13px;\r\n    }\r\n    .orderformPage .input_grid {\r\n        grid-template-columns: 1fr;\r\n        grid-gap: 10px;\r\n    }\r\n    .orderformPage .input_grid textarea {\r\n        grid-row: span 1;\r\n        grid-row-start: auto;\r\n        grid-row-end: auto;\r\n        grid-column-start: auto;\r\n        grid-column-end: auto;\r\n        height: 100px;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16323,7 +16403,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".successPage {\r\n  text-align: center;\r\n  position: relative;\r\n}\r\n.successPage .sparkles {\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 50%;\r\n  transform: translateX(-50%) scale(0.2);\r\n  transform-origin: center;\r\n  transition: 0.7s;\r\n  z-index: -1;\r\n}\r\n.successPage .sparkles.pop {\r\n  transform: translateX(-50%) scale(1);\r\n}\r\n.successPage .ball {\r\n  width: 351px;\r\n  height: 351px;\r\n  border-radius: 50%;\r\n  flex-direction: column;\r\n  box-shadow: 0 10px 35px #1d202c2a;\r\n  margin: 250px auto;\r\n  background-color: #fff;\r\n}\r\n.successPage .ball .head {\r\n  margin-top: 44px;\r\n  margin-bottom: 12px;\r\n  font-size: 25px;\r\n}\r\n.successPage .ball p {\r\n  margin-top: 30px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n@media screen and (max-width: 900px) {\r\n  .successPage .ball {\r\n    margin: 185px auto;\r\n  }\r\n}\r\n@media screen and (max-width: 670px) {\r\n  .successPage .ball .head {\r\n    margin-top: 20px;\r\n    margin-bottom: 7px;\r\n    font-size: 23px;\r\n  }\r\n  .successPage .ball {\r\n    width: 290px;\r\n    height: 290px;\r\n    margin: 100px auto;\r\n  }\r\n  .successPage .ball p {\r\n    margin-top: 21px;\r\n    margin-bottom: 15px;\r\n  }\r\n  .successPage .sparkles {\r\n    top: 28px;\r\n  }\r\n}\r\n@media screen and (max-width: 500px) {\r\n  .successPage .sparkles {\r\n    top: 60px;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".successPage {\r\n    text-align: center;\r\n    position: relative;\r\n}\r\n.successPage .sparkles {\r\n    position: absolute;\r\n    top: 100px;\r\n    left: 50%;\r\n    transform: translateX(-50%) scale(0.2);\r\n    transform-origin: center;\r\n    transition: 0.7s;\r\n    z-index: -1;\r\n}\r\n.successPage .sparkles.pop {\r\n    transform: translateX(-50%) scale(1);\r\n}\r\n.successPage .ball {\r\n    width: 351px;\r\n    height: 351px;\r\n    border-radius: 50%;\r\n    flex-direction: column;\r\n    box-shadow: 0 10px 35px #1d202c2a;\r\n    margin: 250px auto;\r\n    background-color: #fff;\r\n}\r\n.successPage .ball .head {\r\n    margin-top: 44px;\r\n    margin-bottom: 12px;\r\n    font-size: 25px;\r\n}\r\n.successPage .ball p {\r\n    margin-top: 30px;\r\n    margin-bottom: 20px;\r\n}\r\n.failure_box {\r\n    width: 600px;\r\n    padding: 50px;\r\n    background-color: #f5f5f5;\r\n    margin: 110px auto;\r\n}\r\n.failure_box h2 {\r\n    margin-top: 40px;\r\n    margin-bottom: 15px;\r\n    font-size: 25px;\r\n}\r\n.failure_box button {\r\n    margin: auto;\r\n    margin-top: 30px;\r\n}\r\n.failure_box button img {\r\n    margin-right: 10px;\r\n}\r\n\r\n@media screen and (max-width: 900px) {\r\n    .successPage .ball {\r\n        margin: 185px auto;\r\n    }\r\n}\r\n@media screen and (max-width: 670px) {\r\n    .successPage .ball .head {\r\n        margin-top: 20px;\r\n        margin-bottom: 7px;\r\n        font-size: 23px;\r\n    }\r\n    .successPage .ball {\r\n        width: 290px;\r\n        height: 290px;\r\n        margin: 100px auto;\r\n    }\r\n    .successPage .ball p {\r\n        margin-top: 21px;\r\n        margin-bottom: 15px;\r\n    }\r\n    .successPage .sparkles {\r\n        top: 28px;\r\n    }\r\n    .failure_box {\r\n        width: 95%;\r\n        padding: 30px;\r\n        background-color: #f5f5f5;\r\n        margin: 49px auto;\r\n    }\r\n    .failure_box h2 {\r\n        margin-top: 18px;\r\n        font-size: 20px;\r\n    }\r\n}\r\n@media screen and (max-width: 500px) {\r\n    .successPage .sparkles {\r\n        top: 60px;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -71104,6 +71184,8 @@ var map = {
 	"./ShoppingCart/ShoppingCart": "./resources/js/Pages/ShoppingCart/ShoppingCart.js",
 	"./ShoppingCart/ShoppingCart.css": "./resources/js/Pages/ShoppingCart/ShoppingCart.css",
 	"./ShoppingCart/ShoppingCart.js": "./resources/js/Pages/ShoppingCart/ShoppingCart.js",
+	"./Success/Failure": "./resources/js/Pages/Success/Failure.js",
+	"./Success/Failure.js": "./resources/js/Pages/Success/Failure.js",
 	"./Success/Success": "./resources/js/Pages/Success/Success.js",
 	"./Success/Success.css": "./resources/js/Pages/Success/Success.css",
 	"./Success/Success.js": "./resources/js/Pages/Success/Success.js"

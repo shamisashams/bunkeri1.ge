@@ -334,7 +334,14 @@ class OrderController extends Controller
     }
 
     public function statusFail($order_id){
-        return 'fail';
+        return Inertia::render('Success/Failure',[])->withViewData([
+            'meta_title' => 'success',
+            'meta_description' => 'success',
+            'meta_keyword' => 'success',
+            "image" => '',
+            'og_title' => 'success',
+            'og_description' => 'success',
+        ]);
     }
 
 }

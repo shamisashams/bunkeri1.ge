@@ -1,64 +1,92 @@
 .successPage {
-  text-align: center;
-  position: relative;
+    text-align: center;
+    position: relative;
 }
 .successPage .sparkles {
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%) scale(0.2);
-  transform-origin: center;
-  transition: 0.7s;
-  z-index: -1;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.2);
+    transform-origin: center;
+    transition: 0.7s;
+    z-index: -1;
 }
 .successPage .sparkles.pop {
-  transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
 }
 .successPage .ball {
-  width: 351px;
-  height: 351px;
-  border-radius: 50%;
-  flex-direction: column;
-  box-shadow: 0 10px 35px #1d202c2a;
-  margin: 250px auto;
-  background-color: #fff;
+    width: 351px;
+    height: 351px;
+    border-radius: 50%;
+    flex-direction: column;
+    box-shadow: 0 10px 35px #1d202c2a;
+    margin: 250px auto;
+    background-color: #fff;
 }
 .successPage .ball .head {
-  margin-top: 44px;
-  margin-bottom: 12px;
-  font-size: 25px;
+    margin-top: 44px;
+    margin-bottom: 12px;
+    font-size: 25px;
 }
 .successPage .ball p {
-  margin-top: 30px;
-  margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.failure_box {
+    width: 600px;
+    padding: 50px;
+    background-color: #f5f5f5;
+    margin: 110px auto;
+}
+.failure_box h2 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+.failure_box button {
+    margin: auto;
+    margin-top: 30px;
+}
+.failure_box button img {
+    margin-right: 10px;
 }
 
 @media screen and (max-width: 900px) {
-  .successPage .ball {
-    margin: 185px auto;
-  }
+    .successPage .ball {
+        margin: 185px auto;
+    }
 }
 @media screen and (max-width: 670px) {
-  .successPage .ball .head {
-    margin-top: 20px;
-    margin-bottom: 7px;
-    font-size: 23px;
-  }
-  .successPage .ball {
-    width: 290px;
-    height: 290px;
-    margin: 100px auto;
-  }
-  .successPage .ball p {
-    margin-top: 21px;
-    margin-bottom: 15px;
-  }
-  .successPage .sparkles {
-    top: 28px;
-  }
+    .successPage .ball .head {
+        margin-top: 20px;
+        margin-bottom: 7px;
+        font-size: 23px;
+    }
+    .successPage .ball {
+        width: 290px;
+        height: 290px;
+        margin: 100px auto;
+    }
+    .successPage .ball p {
+        margin-top: 21px;
+        margin-bottom: 15px;
+    }
+    .successPage .sparkles {
+        top: 28px;
+    }
+    .failure_box {
+        width: 95%;
+        padding: 30px;
+        background-color: #f5f5f5;
+        margin: 49px auto;
+    }
+    .failure_box h2 {
+        margin-top: 18px;
+        font-size: 20px;
+    }
 }
 @media screen and (max-width: 500px) {
-  .successPage .sparkles {
-    top: 60px;
-  }
+    .successPage .sparkles {
+        top: 60px;
+    }
 }

@@ -345,41 +345,44 @@ const OrderForm = ({ seo }) => {
                                 <label htmlFor="bank-transfer">
                                     {__("client.checkout_bank_pay", sharedData)}
                                 </label>
-                                <div
-                                    id="banks_list"
-                                    style={{ display: "none" }}
-                                >
-                                    <div className="banks_list_item flex ">
-                                        <input
-                                            type="radio"
-                                            onClick={handleChange}
-                                            name="payment_type"
-                                            id="bog"
-                                            value="bog"
-                                        />
-                                        <label htmlFor="bog">
-                                            {__(
-                                                "client.checkout_bog_pay",
-                                                sharedData
-                                            )}
-                                        </label>
-                                    </div>
-                                    <div className="banks_list_item flex ">
-                                        <input
-                                            type="radio"
-                                            // onClick={handleChange}
-                                            name="payment_type"
-                                            id="tbc"
-                                            value="bog"
-                                        />
-                                        <label htmlFor="tbc">
-                                            {__(
-                                                "client.checkout_bog_pay",
-                                                sharedData
-                                            )}
-                                        </label>
-                                    </div>
-                                </div>
+                            </div>
+                            <div
+                                id="banks_list"
+                                style={{ display: "none" }}
+                                className="flex"
+                            >
+                                <input
+                                    type="radio"
+                                    onClick={handleChange}
+                                    name="payment_type"
+                                    id="bog"
+                                    value="bog"
+                                />
+                                <label htmlFor="bog" className="flex centered">
+                                    <img src="/img/icons/bog.png" alt="" />
+                                    <span>
+                                        {__(
+                                            "client.checkout_bog_pay",
+                                            sharedData
+                                        )}
+                                    </span>
+                                </label>
+                                <input
+                                    type="radio"
+                                    // onClick={handleChange}
+                                    name="payment_type"
+                                    id="tbc"
+                                    value="bog"
+                                />
+                                <label htmlFor="tbc" className="flex centered">
+                                    <img src="/img/icons/tbc.png" alt="" />
+                                    <span>
+                                        {__(
+                                            "client.checkout_bog_pay",
+                                            sharedData
+                                        )}
+                                    </span>
+                                </label>
                             </div>
                             <YellowButton
                                 onclick={handleClick}

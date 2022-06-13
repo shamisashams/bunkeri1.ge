@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\BogPay\BogPay;
+use App\BogPay\BogPaymentController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Page;
 use App\Models\Product;
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -17,11 +20,14 @@ use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use App\Repositories\Eloquent\ProductRepository;
 use Spatie\TranslationLoader\TranslationLoaders\Db;
+use Illuminate\Support\Facades\DB as DataBase;
 
 class OrderController extends Controller
 {
 
     protected $productRepository;
+
+
 
     public function __construct(ProductRepository $productRepository){
         $this->productRepository = $productRepository;
@@ -217,7 +223,8 @@ class OrderController extends Controller
             'email' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'payment_method' => 'required'
+            'payment_method' => 'required',
+            'payment_type' => 'required_if:payment_method,1'
         ]);
 
         $data = $request->all();
@@ -262,25 +269,56 @@ class OrderController extends Controller
                  dd('error cart is not valid');
             }
 
+            try {
+                DataBase::beginTransaction();
+                $order = Order::create($data);
 
-            $order = Order::create($data);
+                $data = [];
+                $insert = [];
+                foreach ($cart['items'] as $item){
+                    $data['order_id'] = $order->id;
+                    $data['product_id'] = $item['product']['id'];
+                    $data['name'] = $item['product']['title'];
+                    $data['qty_ordered'] = $item['qty'];
+                    $data['price'] = $item['product']['price'];
+                    $data['total'] = $item['product']['price'] * $item['qty'];
+                    $insert[] = $data;
+                }
+                //dd($insert);
+                OrderItem::insert($insert);
 
-            $data = [];
-            $insert = [];
-            foreach ($cart['items'] as $item){
-                $data['order_id'] = $order->id;
-                $data['product_id'] = $item['product']['id'];
-                $data['name'] = $item['product']['title'];
-                $data['qty_ordered'] = $item['qty'];
-                $data['price'] = $item['product']['price'];
-                $data['total'] = $item['product']['price'] * $item['qty'];
-                $insert[] = $data;
+
+
+                DataBase::commit();
+
+
+
+                if($order->payment_method == 1 && $order->payment_type == 'bog'){
+                    return app(BogPaymentController::class)->make_order($order->id,$order->grand_total);
+                } else {
+                    return redirect(locale_route('order.success',$order->id));
+                }
+
+            } catch (QueryException $exception){
+                DataBase::rollBack();
             }
-            //dd($insert);
-            OrderItem::insert($insert);
-            return redirect(locale_route('order.success',$order->id));
+
+
         }
 
+    }
+
+    public function bogResponse(Request $request){
+        //dump($request->order_id);
+        $order = Order::query()->where('id',$request->get('order_id'))->first();
+
+        //dd($order);
+        if($order->status == 1) return redirect(locale_route('order.success',$order->id));
+        else if($order->status == 2) return redirect(route('order.failure'));
+        else {
+            sleep(3);
+            return redirect('https://bunkeri1.ge/' . app()->getLocale() . '/payments/bog/status?order_id='.$order->id);
+        }
     }
 
     public function statusSuccess($order_id){
@@ -293,6 +331,10 @@ class OrderController extends Controller
             'og_title' => 'success',
             'og_description' => 'success',
         ]);
+    }
+
+    public function statusFail($order_id){
+        return 'fail';
     }
 
 }

@@ -12345,9 +12345,6 @@ var getCart = function getCart() {
 
 var OrderForm = function OrderForm(_ref) {
   var seo = _ref.seo;
-
-  /*const { errors } = usePage().props
-  console.log(errors);*/
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.usePage)().props.localizations;
   var items = [{
     img: _img_products_3_png__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -12412,6 +12409,14 @@ var OrderForm = function OrderForm(_ref) {
     setValues(function (values) {
       return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
     });
+    console.log(e.target.id);
+    var bankList = document.getElementById('banks_list');
+
+    if (e.target.id === 'bank-transfer' || e.target.id === 'bog') {
+      bankList.style.display = 'block';
+    } else {
+      bankList.style.display = 'none';
+    }
   }
 
   function handleSubmit(e) {
@@ -12444,6 +12449,7 @@ var OrderForm = function OrderForm(_ref) {
     title: __('client.page_checkout', sharedData)
   }];
   var errors = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.usePage)().props.errors;
+  console.log(errors);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -12568,7 +12574,20 @@ var OrderForm = function OrderForm(_ref) {
     value: 1
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bank-transfer"
-  }, __('client.checkout_bank_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
+  }, __('client.checkout_bank_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "banks_list",
+    style: {
+      display: "none"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio",
+    onClick: handleChange,
+    name: "payment_type",
+    id: "bog",
+    value: "bog"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "bog"
+  }, __('client.checkout_bog_pay', sharedData))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Buttons_Buttons__WEBPACK_IMPORTED_MODULE_6__.YellowButton, {
     onclick: handleClick,
     text: __('client.checkout_place_order', sharedData)
   }))))));

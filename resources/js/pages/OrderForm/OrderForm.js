@@ -28,8 +28,8 @@ const getCart = function (){
 }
 
 const OrderForm = ({seo}) => {
-    /*const { errors } = usePage().props
-    console.log(errors);*/
+
+
     const sharedData = usePage().props.localizations;
   const items = [
     {
@@ -103,6 +103,14 @@ const OrderForm = ({seo}) => {
             ...values,
             [key]: value,
         }))
+
+        console.log(e.target.id);
+        let bankList = document.getElementById('banks_list');
+        if(e.target.id === 'bank-transfer' || e.target.id === 'bog'){
+            bankList.style.display = 'block';
+        } else {
+            bankList.style.display = 'none';
+        }
     }
 
     function handleSubmit(e) {
@@ -141,6 +149,8 @@ const OrderForm = ({seo}) => {
 
     ];
     const { errors } = usePage().props
+
+    console.log(errors);
 
   return (
       <Layout seo={seo}>
@@ -237,6 +247,10 @@ const OrderForm = ({seo}) => {
                   <input type="radio" onClick={handleChange} name="payment_method" id="bank-transfer" value={1} />
                   <label htmlFor="bank-transfer">{__('client.checkout_bank_pay',sharedData)}</label>
                 </div>
+                  <div id="banks_list" style={{display: "none"}}>
+                      <input type="radio" onClick={handleChange} name="payment_type" id="bog" value="bog" />
+                      <label htmlFor="bog">{__('client.checkout_bog_pay',sharedData)}</label>
+                  </div>
                 <YellowButton onclick={handleClick} text={__('client.checkout_place_order',sharedData)} />
               </div>
             </div>

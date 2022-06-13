@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
+Route::any('bog/callback/status', [\App\BogPay\BogCallbackController::class, 'status'])->withoutMiddleware('web')->name('bogCallbackStatus');
+Route::any('bog/callback/refund',[\App\BogPay\BogCallbackController::class, 'refund'])->withoutMiddleware('web')->name('bogCallbackRefund');
+
 Route::redirect('', config('translatable.fallback_locale'));
 Route::prefix('{locale?}')
     ->middleware(['setlocale'])
@@ -114,8 +117,11 @@ Route::prefix('{locale?}')
             Route::get('checkout',[\App\Http\Controllers\Client\OrderController::class,'index'])->name('client.checkout.index');
             Route::post('checkout',[\App\Http\Controllers\Client\OrderController::class,'order'])->name('client.checkout.order');
             Route::get('order/success',[\App\Http\Controllers\Client\OrderController::class,'statusSuccess'])->name('order.success');
+            Route::get('order/failure',[\App\Http\Controllers\Client\OrderController::class,'statusFail'])->name('order.failure');
 
             Route::get('search', [\App\Http\Controllers\Client\SearchController::class, 'index'])->name('search.index');
+
+            Route::any('payments/bog/status',[\App\Http\Controllers\Client\OrderController::class, 'bogResponse'])->name('bogResponse');
 
             /*Route::get('test/{method}',function ($locale,$method,\App\Http\Controllers\TestController $testController){
 

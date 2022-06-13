@@ -94,7 +94,20 @@
                                         <tr>
                                             <td>{{$order->id}}</td>
 
-                                            <td>{{$order->status}}</td>
+                                                <?php
+                                                    switch ($order->status){
+                                                        case 'success':
+                                                            $color = 'green';
+                                                            break;
+                                                        case 'error':
+                                                            $color = 'red';
+                                                            break;
+                                                        case 'pending':
+                                                            $color = 'yellow';
+                                                            break;
+                                                    }
+                                                ?>
+                                            <td><span style="color: {{$color}};font-weight: bold">{{$order->status}}</span></td>
                                             <td>{{$order->grand_total}}₾</td>
                                             <td>{{$order->first_name .', '.$order->last_name}}</td>
                                             <td>{{$order->email}}</td>

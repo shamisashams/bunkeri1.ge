@@ -370,11 +370,11 @@ const OrderForm = ({ seo }) => {
                                             // onClick={handleChange}
                                             name="payment_type"
                                             id="tbc"
-                                            value="bog"
+                                            value="tbc"
                                         />
                                         <label htmlFor="tbc">
                                             {__(
-                                                "client.checkout_bog_pay",
+                                                "client.checkout_tbc_pay",
                                                 sharedData
                                             )}
                                         </label>
